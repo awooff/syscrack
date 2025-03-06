@@ -1,9 +1,9 @@
-import { SoftwareAction } from '@/lib/types/software.type'
+import { SoftwareAction } from "@/lib/types/software.type";
 
 const ftpr = {
   settings: {
     // Hasher settings
-  }
-} satisfies SoftwareAction
+  },
+} satisfies SoftwareAction;
 
-export default ftpr
+export default ftpr;

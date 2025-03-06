@@ -30,8 +30,9 @@ const fetch = {
 
     if (
       !req.session.connections?.find((element) => element.id === connectionId)
-    )
+    ) {
       return error("not connected to that current computer");
+    }
 
     let target = null;
 
@@ -41,8 +42,9 @@ const fetch = {
 
     target = new Computer(computer?.id, computer);
 
-    if (!isConnectedToMachine(req, executor, target))
+    if (!isConnectedToMachine(req, executor, target)) {
       return error("your current computer must be connected to this computer");
+    }
 
     let logs = await target.getLogs(64, page);
     let count = await target.getLogCount();

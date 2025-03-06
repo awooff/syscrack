@@ -29,7 +29,7 @@ const action = {
   delay: async (
     computer: Computer | null,
     executor: Computer,
-    data: ExecuteData
+    data: ExecuteData,
   ) => {
     if (computer === null) {
       throw new Error("no computer");
@@ -61,16 +61,16 @@ const action = {
   before: async (
     computer: Computer | null,
     executor: Computer,
-    data: ExecuteData
+    data: ExecuteData,
   ) => {
     if (computer === null) {
       throw new Error("no computer");
     }
 
     let software;
-    if (data.custom.action === "upload")
+    if (data.custom.action === "upload") {
       software = executor.getSoftware(data.softwareId);
-    else software = computer.getSoftware(data.softwareId);
+    } else software = computer.getSoftware(data.softwareId);
 
     if (!software) throw new GameException("invalid software");
 
@@ -88,16 +88,16 @@ const action = {
   after: async (
     computer: Computer | null,
     executor: Computer,
-    data: ExecuteData
+    data: ExecuteData,
   ) => {
     if (computer === null) {
       throw new Error("no computer");
     }
 
     let software;
-    if (data.custom.action === "upload")
+    if (data.custom.action === "upload") {
       software = executor.getSoftware(data.softwareId);
-    else software = computer.getSoftware(data.softwareId);
+    } else software = computer.getSoftware(data.softwareId);
 
     return await software.execute(data.custom.action, executor);
   },

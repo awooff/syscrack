@@ -1,11 +1,11 @@
-import test from 'ava'
-import request from 'supertest'
-import { server } from '../index'
+import test from "ava";
+import request from "supertest";
+import { server } from "../index";
 
-const api = server.server
-test('check status', async t => {
+const api = server.server;
+test("check status", async (t) => {
   const response = await request(api)
-    .get('/index')
+    .get("/index");
 
-  t.is(response.status, 304)
-})
+  t.is(response.status, 304);
+});

@@ -26,7 +26,7 @@ const modify = {
   before: async (
     computer: Computer | null,
     executor: Computer,
-    data: ModifyData
+    data: ModifyData,
   ) => {
     if (!computer || !executor.computer) throw new Error("invalid computer");
 
@@ -36,8 +36,9 @@ const modify = {
     if (
       !(await addressBook.findInAddressBook(data.ip)) &&
       executor.computerId !== computer.computerId
-    )
+    ) {
       throw new GameException("you must hack this computer first");
+    }
 
     let logs = [] as any[];
 
@@ -52,7 +53,7 @@ const modify = {
         });
 
         if (result) logs.push(result);
-      })
+      }),
     );
 
     //if none exit return false
@@ -63,7 +64,7 @@ const modify = {
   after: async (
     computer: Computer | null,
     executor: Computer,
-    data: ProcessData
+    data: ProcessData,
   ) => {
     if (!computer || !executor.computer) throw new Error("invalid computer");
 
@@ -79,7 +80,7 @@ const modify = {
         });
 
         if (result) logs.push(result);
-      })
+      }),
     );
 
     await computer.deleteLogs(logs);

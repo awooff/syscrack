@@ -48,24 +48,23 @@ const logout = {
       skip: page * 32,
     });
 
-    let count =
-      dns.length !== 0
-        ? await server.prisma.dNS.count({
-          where: {
-            OR: [
-              {
-                tags: { contains: domain },
-              },
-              {
-                website: { contains: domain },
-              },
-              {
-                description: { contains: domain },
-              },
-            ],
-          },
-        })
-        : 0;
+    let count = dns.length !== 0
+      ? await server.prisma.dNS.count({
+        where: {
+          OR: [
+            {
+              tags: { contains: domain },
+            },
+            {
+              website: { contains: domain },
+            },
+            {
+              description: { contains: domain },
+            },
+          ],
+        },
+      })
+      : 0;
 
     return res.send({
       results: dns,

@@ -1,7 +1,7 @@
 import { Route } from "../../lib/types/route.type";
 import { Groups } from "@/db/client";
 import { processCompleteSchema } from "@/lib/schemas/process.schema";
-import { ProcessType, getProcessZodObject } from "@/app/process";
+import { getProcessZodObject, ProcessType } from "@/app/process";
 import processes from "@/app/processes";
 import { Computer, findComputer, getComputer } from "@/app/computer";
 import { server } from "../../index";
@@ -49,21 +49,24 @@ const create = {
       !req.session.connections?.find(
         (element) => element.id === executor.computerId,
       )
-    )
+    ) {
       return error(
         "you need to connect to this computer to finish this process",
       );
+    }
 
     if (
       target &&
       !(gameProcess.settings as ProcessSettings).external &&
       !isConnectedToMachine(req, executor, new Computer(target.id, target)) &&
       target.id !== executor.computerId
-    )
+    ) {
       return error("your current computer must be connected to this computer");
+    }
 
-    if (new Date(processData.completion).getMilliseconds() >= Date.now())
+    if (new Date(processData.completion).getMilliseconds() >= Date.now()) {
       return error("process not ready to complete");
+    }
 
     if (
       !(await gameProcess.before(
@@ -71,8 +74,9 @@ const create = {
         executor,
         processData.data as any,
       ))
-    )
+    ) {
       return error("cannot complete process");
+    }
 
     const result = await gameProcess.after(
       target ? await getComputer(target.id, target) : null,

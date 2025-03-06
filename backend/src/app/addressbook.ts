@@ -71,8 +71,9 @@ export class AddressBook {
 
     data.viruses = data.viruses || [];
 
-    if (data.viruses.find((elm) => elm.id === virus.softwareId))
+    if (data.viruses.find((elm) => elm.id === virus.softwareId)) {
       throw new Error("virus already present");
+    }
 
     data.viruses.push(virus);
 
@@ -146,7 +147,6 @@ export class AddressBook {
   }
 
   /**
-   *
    * @param ip
    * @returns
    */

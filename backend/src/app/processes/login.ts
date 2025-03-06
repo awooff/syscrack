@@ -19,40 +19,44 @@ const login = {
   before: async (
     computer: Computer | null,
     executor: Computer,
-    data: ProcessData
+    data: ProcessData,
   ) => {
     if (!computer || !executor.computer) throw new Error("invalid computer");
 
-    if (computer.computerId === executor.computerId)
+    if (computer.computerId === executor.computerId) {
       throw new GameException("cannot logout of the same computer you own");
+    }
 
     let addressBook = new AddressBook(executor.computer?.userId);
     await addressBook.check();
 
-    if (!addressBook.findInAddressBook(data.ip))
+    if (!addressBook.findInAddressBook(data.ip)) {
       throw new GameException("you must hack this computer first");
+    }
 
     if (
       isConnectedToMachine(server.request[data.sessionId], executor, computer)
-    )
+    ) {
       throw new GameException("you are already connected to this computer");
+    }
 
     return true;
   },
   after: async (
     computer: Computer | null,
     executor: Computer,
-    data: ProcessData
+    data: ProcessData,
   ) => {
-    if (!computer?.computer || !executor.computer)
+    if (!computer?.computer || !executor.computer) {
       throw new Error("invalid computer");
+    }
 
     let req = server.request[data.sessionId];
     req.session.logins = req.session.logins || {};
     req.session.logins[executor.computerId] =
       req.session.logins[executor.computerId] || [];
     req.session.logins[executor.computerId].push(
-      removeFromObject(computer.computer, ["software", "process"])
+      removeFromObject(computer.computer, ["software", "process"]),
     );
 
     computer.log("remote session created", executor);

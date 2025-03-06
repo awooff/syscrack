@@ -18,7 +18,7 @@ export class Software {
   public constructor(
     softwareId: string,
     software?: Table,
-    computer?: Computer
+    computer?: Computer,
   ) {
     this.softwareId = softwareId;
     if (software) {
@@ -53,16 +53,16 @@ export class Software {
     baseCost = baseCost * (this.action.settings?.complexity || 1);
     baseCost = Math.floor(baseCost * settings.actionNerf);
 
-    if (action === "delete" || action === "uninstall" || action === "view")
-      baseCost =
-        Math.floor(baseCost * settings.hddNerf) -
+    if (action === "delete" || action === "uninstall" || action === "view") {
+      baseCost = Math.floor(baseCost * settings.hddNerf) -
         this.computer.getCombinedHardwareStrength("HDD") / 84;
+    }
 
-    if (action === "install" || action === "uninstall")
-      baseCost =
-        (Math.floor(baseCost * settings.ramNerf) -
-          this.computer.getCombinedHardwareStrength("RAM") / 12) *
+    if (action === "install" || action === "uninstall") {
+      baseCost = (Math.floor(baseCost * settings.ramNerf) -
+        this.computer.getCombinedHardwareStrength("RAM") / 12) *
         Math.max(1, this.software?.size || 1);
+    }
 
     return ((baseCost * 1000) / 2) * this.level;
   }
@@ -70,7 +70,7 @@ export class Software {
   public async preExecute(
     action: keyof SoftwareAction,
     executor?: Computer,
-    data?: any
+    data?: any,
   ): Promise<boolean> {
     const computer = executor == null ? this.computer : executor;
 
@@ -85,7 +85,7 @@ export class Software {
           this,
           this.computer || computer,
           computer,
-          data
+          data,
         );
       case "uninstall":
         if (this.action?.preUninstall == null) {
@@ -95,7 +95,7 @@ export class Software {
           this,
           this.computer || computer,
           computer,
-          data
+          data,
         );
       case "execute":
         if (this.action?.preExecute == null) {
@@ -105,7 +105,7 @@ export class Software {
           this,
           this.computer || computer,
           computer,
-          data
+          data,
         );
       case "view":
         if (this.action?.preView == null) {
@@ -115,7 +115,7 @@ export class Software {
           this,
           this.computer || computer,
           computer,
-          data
+          data,
         );
       case "delete":
         if (this.action?.preDelete == null) {
@@ -125,7 +125,7 @@ export class Software {
           this,
           this.computer || computer,
           computer,
-          data
+          data,
         );
       case "upload":
         if (this.action?.preUpload == null) {
@@ -135,7 +135,7 @@ export class Software {
           this,
           this.computer || computer,
           computer,
-          data
+          data,
         );
       case "download":
         if (this.action?.preDownload == null) {
@@ -145,7 +145,7 @@ export class Software {
           this,
           this.computer || computer,
           computer,
-          data
+          data,
         );
       default:
         throw new GameException("invalid action");
@@ -155,7 +155,7 @@ export class Software {
   public async execute(
     action: keyof SoftwareAction,
     executor?: Computer,
-    data?: any
+    data?: any,
   ) {
     const computer = executor == null ? this.computer : executor;
 
@@ -170,7 +170,7 @@ export class Software {
           this,
           this.computer || computer,
           computer,
-          data
+          data,
         );
       case "uninstall":
         if (this.action?.uninstall == null) {
@@ -180,7 +180,7 @@ export class Software {
           this,
           this.computer || computer,
           computer,
-          data
+          data,
         );
       case "execute":
         if (this.action?.execute == null) {
@@ -190,7 +190,7 @@ export class Software {
           this,
           this.computer || computer,
           computer,
-          data
+          data,
         );
       case "view":
         if (this.action?.view == null) {
@@ -200,7 +200,7 @@ export class Software {
           this,
           this.computer || computer,
           computer,
-          data
+          data,
         );
       case "delete":
         if (this.action?.delete == null) {
@@ -210,7 +210,7 @@ export class Software {
           this,
           this.computer || computer,
           computer,
-          data
+          data,
         );
       case "upload":
         if (this.action?.upload == null) {
@@ -220,7 +220,7 @@ export class Software {
           this,
           this.computer || computer,
           computer,
-          data
+          data,
         );
       case "download":
         if (this.action?.download == null) {
@@ -230,7 +230,7 @@ export class Software {
           this,
           this.computer || computer,
           computer,
-          data
+          data,
         );
       default:
         throw new GameException("invalid action");
@@ -257,10 +257,11 @@ export class Software {
       },
     });
 
-    if (this.computer)
+    if (this.computer) {
       this.computer.software = this.computer.software.filter(
-        (that) => that.softwareId !== this.softwareId
+        (that) => that.softwareId !== this.softwareId,
       );
+    }
   }
 
   public async update(data: Prisma.SoftwareUpdateInput) {
@@ -287,8 +288,7 @@ export class Software {
   }
 
   public async load(data?: Table) {
-    this.software =
-      data ||
+    this.software = data ||
       (await server.prisma.software.findFirstOrThrow({
         where: {
           id: this.softwareId,
@@ -309,10 +309,11 @@ export class Software {
 
       if (
         !this.computer.software.find(
-          (val) => val.softwareId === this.softwareId
+          (val) => val.softwareId === this.softwareId,
         )
-      )
+      ) {
         this.computer.software.push(this);
+      }
     }
 
     // the actions (install, etc) to do for this software

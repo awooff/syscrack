@@ -2,10 +2,9 @@ import { Memory, Prisma } from "@/db/client";
 import { server } from "../index";
 
 export const canAfford = async (bankAccount: string | Memory, cost: number) => {
-  const account =
-    typeof bankAccount === "string"
-      ? await getBankAccount(bankAccount)
-      : bankAccount;
+  const account = typeof bankAccount === "string"
+    ? await getBankAccount(bankAccount)
+    : bankAccount;
 
   if (account === null) {
     throw new Error("bank account is ivnalid");
@@ -19,10 +18,9 @@ export const canAfford = async (bankAccount: string | Memory, cost: number) => {
 };
 
 export const deposit = async (bankAccount: string | Memory, value: number) => {
-  const account =
-    typeof bankAccount === "string"
-      ? await getBankAccount(bankAccount)
-      : bankAccount;
+  const account = typeof bankAccount === "string"
+    ? await getBankAccount(bankAccount)
+    : bankAccount;
 
   if (account === null) {
     throw new Error("bank account is ivnalid");
@@ -43,10 +41,9 @@ export const deposit = async (bankAccount: string | Memory, value: number) => {
 };
 
 export const withdraw = async (bankAccount: string | Memory, value: number) => {
-  const account =
-    typeof bankAccount === "string"
-      ? await getBankAccount(bankAccount)
-      : bankAccount;
+  const account = typeof bankAccount === "string"
+    ? await getBankAccount(bankAccount)
+    : bankAccount;
 
   if (account === null) {
     throw new Error("bank account is ivnalid");

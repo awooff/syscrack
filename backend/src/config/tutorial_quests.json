@@ -1,32 +1,32 @@
 {
-	"tutorial": {
-		"title": "Welcome To Syscrack",
-		"reward": {
-			"quest": [
-				"tutorial_2"
-			]
-		}
-	},
-	"tutorial_2": {
-		"title": "Learning Your Software",
-		"reward": {
-			"software": [
-				{
-					"type": "cracker",
-					"size": "10",
-					"level": "1.0",
-					"name": "Basic Cracker"
-				},
-				{
-					"type": "hasher",
-					"size": "10",
-					"level": "1.0",
-					"name": "Basic Hasher"
-				}
-			],
-			"quest": [
-				"tutorial_3"
-			]
-		}
-	}
+  "tutorial": {
+    "title": "Welcome To Syscrack",
+    "reward": {
+      "quest": [
+        "tutorial_2"
+      ]
+    }
+  },
+  "tutorial_2": {
+    "title": "Learning Your Software",
+    "reward": {
+      "software": [
+        {
+          "type": "cracker",
+          "size": "10",
+          "level": "1.0",
+          "name": "Basic Cracker"
+        },
+        {
+          "type": "hasher",
+          "size": "10",
+          "level": "1.0",
+          "name": "Basic Hasher"
+        }
+      ],
+      "quest": [
+        "tutorial_3"
+      ]
+    }
+  }
 }

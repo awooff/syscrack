@@ -14,12 +14,12 @@ export const removeFromObject = (obj: any, keys: any[]) => {
 export const isConnectedToMachine = (
   req: Request,
   computer: Computer,
-  targetComputer: Computer
+  targetComputer: Computer,
 ) => {
   if (!req.session?.logins?.[computer.computerId]) return false;
 
   let result = req.session.logins[computer.computerId].find(
-    (that) => that.id === targetComputer.computerId
+    (that) => that.id === targetComputer.computerId,
   );
 
   if (!result) return false;

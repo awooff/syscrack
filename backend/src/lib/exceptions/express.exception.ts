@@ -1,15 +1,15 @@
 export default class ExpressError extends Error {
-  public status: number = 500
+  public status: number = 500;
 
-  constructor (
+  constructor(
     message: string,
-    status: number = 500
+    status: number = 500,
   ) {
-    super(message)
-    this.status = status
+    super(message);
+    this.status = status;
   }
 
-  public toString (): Error['message'] {
-    return this.message
+  public toString(): Error["message"] {
+    return this.message;
   }
 }

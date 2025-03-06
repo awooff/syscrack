@@ -29,10 +29,11 @@ const connect = {
     if (
       req.session?.connections &&
       req.session?.connections?.filter(
-        (that) => that.id === computer.computerId,
-      ).length !== 0
-    )
+          (that) => that.id === computer.computerId,
+        ).length !== 0
+    ) {
       return error("already connected to this computer");
+    }
 
     req.session.connections = req.session.connections || [];
     req.session.connections.push(

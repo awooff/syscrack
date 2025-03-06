@@ -4,7 +4,7 @@ import { ProcessData } from "@/lib/types/process.type";
 import GameException from "@/lib/exceptions/game.exception";
 import { AddressBook } from "../addressbook";
 import { getComputer } from "../computer";
-import { Software, AddressBook as Table } from "@/db/client";
+import { AddressBook as Table, Software } from "@/db/client";
 import settings from "../../settings";
 import { server } from "../../index";
 
@@ -37,10 +37,11 @@ const collector = {
     let addressBook = new AddressBook(executor.computer.userId);
     let viruses = await addressBook.viruses();
 
-    if (viruses.length === 0)
+    if (viruses.length === 0) {
       throw new GameException(
-        "You have no viruses installed on any of your computers in the address book"
+        "You have no viruses installed on any of your computers in the address book",
       );
+    }
 
     return true;
   },
@@ -65,8 +66,7 @@ const collector = {
     viruses.forEach((res) => {
       let virus = res.virus;
       if (!virus) return;
-      let total =
-        software.level *
+      let total = software.level *
         (virus.level *
           (0.1 * (Date.now() - new Date(virus.executed).getTime())));
 
@@ -105,7 +105,7 @@ const collector = {
       "Collection " + new Date(Date.now()).toString(),
       "collection_report",
       executor.computer.userId,
-      result
+      result,
     );
 
     return {

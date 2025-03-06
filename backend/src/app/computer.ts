@@ -42,7 +42,7 @@ export class Computer {
         software: true;
         process: true;
       };
-    }>
+    }>,
   ) {
     this.computerId = computerId;
     this.computer = computer;
@@ -68,7 +68,7 @@ export class Computer {
     key: string,
     type: string,
     value?: number,
-    data?: any
+    data?: any,
   ) {
     if (!this.computer) throw new Error("comptuer not loaded");
 
@@ -125,7 +125,7 @@ export class Computer {
     type: string,
     userId: number,
     data?: any,
-    value?: any
+    value?: any,
   ) {
     return await server.prisma.memory.create({
       data: {
@@ -249,10 +249,9 @@ export class Computer {
         software: true;
         process: true;
       };
-    }>
+    }>,
   ) {
-    this.computer =
-      data ||
+    this.computer = data ||
       (await server.prisma.computer.findFirstOrThrow({
         where: {
           id: this.computerId,
@@ -291,13 +290,13 @@ export class Computer {
 
   public getSoftware(softwareId: string) {
     return this.software.filter(
-      (software) => software.softwareId === softwareId
+      (software) => software.softwareId === softwareId,
     )[0];
   }
 
   public getFirstTypeInstalled(type: string) {
     return this.software.filter(
-      (software) => software?.software?.type === type && software.installed
+      (software) => software?.software?.type === type && software.installed,
     )[0];
   }
 
@@ -308,10 +307,11 @@ export class Computer {
   public async cloneSoftware(
     computer: Computer,
     software: Software | string,
-    installed: boolean = false
+    installed: boolean = false,
   ) {
-    software =
-      typeof software === "string" ? this.getSoftware(software) : software;
+    software = typeof software === "string"
+      ? this.getSoftware(software)
+      : software;
 
     if (!software.software) throw new Error("software class is not loaded");
 
@@ -382,7 +382,7 @@ export class Computer {
     if (!this.computer) throw new Error("comptuer not loaded");
 
     const result = this.computer.hardware.filter(
-      (hardware) => hardware.type === type
+      (hardware) => hardware.type === type,
     );
     let combinedStrength = 0;
     result.forEach((hardware) => (combinedStrength += hardware.strength));
@@ -399,7 +399,7 @@ export class Computer {
     if (!this.computer) throw new Error("comptuer not loaded");
 
     return this.computer.hardware.filter(
-      (hardware) => hardware.type === type
+      (hardware) => hardware.type === type,
     )?.[0];
   }
 }
@@ -428,7 +428,7 @@ export const getComputer = async (
       software: true;
       process: true;
     };
-  }>
+  }>,
 ) => {
   if (!(await Computer.exists(computerId))) {
     return null;

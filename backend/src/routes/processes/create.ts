@@ -1,7 +1,7 @@
 import { Route } from "../../lib/types/route.type";
 import { Groups } from "@/db/client";
 import { processCreateSchema } from "@/lib/schemas/process.schema";
-import { ProcessType, getProcessZodObject } from "@/app/process";
+import { getProcessZodObject, ProcessType } from "@/app/process";
 import processes from "@/app/processes";
 import { Computer, findComputer, getComputer } from "@/app/computer";
 import { server } from "../../index";
@@ -30,8 +30,9 @@ const create = {
 
     const { type, connectionId } = body.data;
 
-    if (processes[type as ProcessType] === undefined)
+    if (processes[type as ProcessType] === undefined) {
       return error("bad process type");
+    }
 
     const gameProcess = processes[type as ProcessType] as Process;
     let validation = await getProcessZodObject(type as ProcessType);
@@ -72,15 +73,17 @@ const create = {
     let target = null;
     if (
       !req.session.connections?.find((element) => element.id === connectionId)
-    )
+    ) {
       return error("not connected to that current computer");
+    }
 
     const executor = await getComputer(connectionId);
 
     if (!executor) throw new Error("bad computer");
 
-    if (gameProcess?.settings?.parameters?.computer && data.computer)
+    if (gameProcess?.settings?.parameters?.computer && data.computer) {
       target = await getComputer(data.computer);
+    }
 
     if (gameProcess?.settings?.parameters?.ip && data.ip) {
       let computer = await findComputer(data.ip);
@@ -91,16 +94,18 @@ const create = {
       await target.load(computer);
     }
 
-    if (gameProcess.settings?.parameters?.sessionId)
+    if (gameProcess.settings?.parameters?.sessionId) {
       data.sessionId = req.sessionID;
+    }
 
     if (
       target &&
       !gameProcess.settings?.external &&
       !isConnectedToMachine(req, executor, target) &&
       target.computerId !== executor.computerId
-    )
+    ) {
       return error("your current computer must be connected to this computer");
+    }
 
     if (
       await server.prisma.process.findFirst({
@@ -110,10 +115,11 @@ const create = {
           ip: target?.ip || executor.ip,
         },
       })
-    )
+    ) {
       return error(
         "you already have a process of this type being executed on this machine",
       );
+    }
 
     const before = await gameProcess.before(target, executor, data);
 
@@ -121,24 +127,24 @@ const create = {
 
     let delay = 0;
 
-    if (gameProcess?.settings?.delay)
+    if (gameProcess?.settings?.delay) {
       delay = gameProcess?.settings?.delay * 1000;
+    }
 
     delay *= settings.processNerf;
 
-    if (gameProcess.settings?.utilizesHardware)
-      delay *=
-        (settings as any)?.[
+    if (gameProcess.settings?.utilizesHardware) {
+      delay *= (settings as any)?.[
         gameProcess.settings?.utilizesHardware?.toLowerCase() + "Nerf"
-        ] || 1;
+      ] || 1;
+    }
 
-    if (gameProcess.delay)
+    if (gameProcess.delay) {
       delay = delay + (await gameProcess.delay(target, executor, data));
-    else if (gameProcess.settings?.utilizesHardware) {
-      delay =
-        delay -
+    } else if (gameProcess.settings?.utilizesHardware) {
+      delay = delay -
         (gameProcess.settings?.utilizesHardware === "Download" ||
-          gameProcess.settings?.utilizesHardware === "Upload"
+            gameProcess.settings?.utilizesHardware === "Upload"
           ? executor.getCombinedHardwareStrength(
             gameProcess.settings?.utilizesHardware,
           ) * 24

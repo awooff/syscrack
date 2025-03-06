@@ -11,7 +11,6 @@ export class AccountBook {
   }
 
   /**
-   *
    * @param ip
    * @returns
    */
@@ -72,7 +71,7 @@ export class AccountBook {
   public async addToAccountBook(
     computer: Computer,
     memory: Memory,
-    data?: any
+    data?: any,
   ) {
     if (!computer.computer) throw new Error("computer not loaded");
 

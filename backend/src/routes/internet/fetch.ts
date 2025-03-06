@@ -24,14 +24,16 @@ const fetch = {
 
     if (
       !req.session.connections?.find((element) => element.id === connectionId)
-    )
+    ) {
       return error("not connected to that current computer");
+    }
 
     let target = null;
     if (
       !req.session.connections?.find((element) => element.id === connectionId)
-    )
+    ) {
       return error("not connected to that current computer");
+    }
 
     const executor = await getComputer(connectionId);
 
@@ -39,8 +41,9 @@ const fetch = {
 
     target = new Computer(computer?.id, computer);
 
-    if (!isConnectedToMachine(req, executor, target))
+    if (!isConnectedToMachine(req, executor, target)) {
       return error("your current computer must be connected to this computer");
+    }
 
     res.send({
       computer: removeFromObject(target.computer, ["process"]),

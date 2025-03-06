@@ -1,9 +1,9 @@
-import { SoftwareAction } from '@/lib/types/software.type'
+import { SoftwareAction } from "@/lib/types/software.type";
 
 const cracker = {
   settings: {
     // cracker settings
-  }
-} satisfies SoftwareAction
+  },
+} satisfies SoftwareAction;
 
-export default cracker
+export default cracker;

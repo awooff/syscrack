@@ -34,9 +34,10 @@ const logs = {
     if (
       !req.session.connections ||
       req.session.connections.filter((that) => that.id === computer.computerId)
-        .length === 0
-    )
+          .length === 0
+    ) {
       return error("not connected to this computer");
+    }
 
     let logs = await computer.getLogs(64, page);
     let count = await computer.getLogCount();

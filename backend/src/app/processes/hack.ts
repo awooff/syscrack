@@ -15,7 +15,7 @@ const hack = {
   delay: async (
     computer: Computer | null,
     executor: Computer,
-    data: ProcessData
+    data: ProcessData,
   ) => {
     if (computer === null) {
       throw new Error("no computer");
@@ -33,15 +33,16 @@ const hack = {
   before: async (
     computer: Computer | null,
     executor: Computer,
-    data: ProcessData
+    data: ProcessData,
   ) => {
     if (computer === null) {
       throw new Error("no computer");
     }
-    if (computer.computerId === executor.computerId)
+    if (computer.computerId === executor.computerId) {
       throw new GameException(
-        "cannot perform this action on your own computer"
+        "cannot perform this action on your own computer",
       );
+    }
 
     const hasher = computer.getFirstTypeInstalled("hasher");
     const cracker = executor.getFirstTypeInstalled("cracker");
@@ -55,7 +56,7 @@ const hack = {
   after: async (
     computer: Computer | null,
     executor: Computer,
-    data: ProcessData
+    data: ProcessData,
   ) => {
     if (computer === null) throw new Error("no computer");
 

@@ -1,58 +1,58 @@
 {
-	"defaultHardwareLimits": {
-		"HDD": 1,
-		"GPU": 1,
-		"CPU": 1,
-		"RAM": 1,
-		"Upload": 1,
-		"Download": 1
-	},
-	"difficulty": 1,
-	"actionNerf": 1.25,
-	"cpuNerf": 1.25,
-	"hddNerf": 1.25,
-	"gpuNerf": 1.25,
-	"ramNerf": 1.25,
-	"downloadNerf": 1.25,
-	"inflation": 2.0,
-	"uploadNerf": 1.25,
-	"processNerf": 1.25,
-	"actionDelay": {
-		"install": 6,
-		"uninstall": 8,
-		"execute": 4,
-		"view": 1,
-		"delete": 10
-	},
-	"processDelay": {
-		"action": 2,
-		"hack": 4,
-		"wipe": 7,
-		"login": 2,
-		"logout": 1,
-		"modify": 2,
-		"exploit": 8
-	},
-	"defaultSoftware": [
-		{
-			"type": "cracker",
-			"level": 1.0,
-			"size": 1.5,
-			"installed": true
-		},
-		{
-			"type": "hasher",
-			"level": 1.5,
-			"size": 1.5,
-			"installed": true
-		}
-	],
-	"defaultHardware": {
-		"HDD": 512,
-		"GPU": 125,
-		"CPU": 866,
-		"RAM": 64,
-		"Upload": 10,
-		"Download": 15
-	}
+  "defaultHardwareLimits": {
+    "HDD": 1,
+    "GPU": 1,
+    "CPU": 1,
+    "RAM": 1,
+    "Upload": 1,
+    "Download": 1
+  },
+  "difficulty": 1,
+  "actionNerf": 1.25,
+  "cpuNerf": 1.25,
+  "hddNerf": 1.25,
+  "gpuNerf": 1.25,
+  "ramNerf": 1.25,
+  "downloadNerf": 1.25,
+  "inflation": 2.0,
+  "uploadNerf": 1.25,
+  "processNerf": 1.25,
+  "actionDelay": {
+    "install": 6,
+    "uninstall": 8,
+    "execute": 4,
+    "view": 1,
+    "delete": 10
+  },
+  "processDelay": {
+    "action": 2,
+    "hack": 4,
+    "wipe": 7,
+    "login": 2,
+    "logout": 1,
+    "modify": 2,
+    "exploit": 8
+  },
+  "defaultSoftware": [
+    {
+      "type": "cracker",
+      "level": 1.0,
+      "size": 1.5,
+      "installed": true
+    },
+    {
+      "type": "hasher",
+      "level": 1.5,
+      "size": 1.5,
+      "installed": true
+    }
+  ],
+  "defaultHardware": {
+    "HDD": 512,
+    "GPU": 125,
+    "CPU": 866,
+    "RAM": 64,
+    "Upload": 10,
+    "Download": 15
+  }
 }

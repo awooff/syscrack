@@ -27,9 +27,10 @@ const connect = {
     if (
       !req.session.connections ||
       req.session.connections.filter((that) => that.id === computer.computerId)
-        .length === 0
-    )
+          .length === 0
+    ) {
       return error("not connected to this computer");
+    }
 
     req.session.connections = req.session.connections.filter(
       (that) => that.id !== computer.computerId,

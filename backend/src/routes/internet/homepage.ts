@@ -57,20 +57,20 @@ const fetch = {
         data?.homepage
           ? fs.readFileSync(
             process.cwd() +
-            "/resources/homepages/" +
-            data.homepage.replace(/\/\\\./g, "") +
-            ".md",
+              "/resources/homepages/" +
+              data.homepage.replace(/\/\\\./g, "") +
+              ".md",
             {
               encoding: "utf-8",
             },
           )
           : data?.markdown ||
-          fs.readFileSync(
-            process.cwd() + "/resources/homepages/default.md",
-            {
-              encoding: "utf-8",
-            },
-          ),
+            fs.readFileSync(
+              process.cwd() + "/resources/homepages/default.md",
+              {
+                encoding: "utf-8",
+              },
+            ),
         {
           computer: computer,
           access: (await addressBook.get(computer.ip)) || undefined,

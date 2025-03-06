@@ -19,34 +19,39 @@ const logout = {
   before: async (
     computer: Computer | null,
     executor: Computer,
-    data: ProcessData
+    data: ProcessData,
   ) => {
-    if (!computer?.computer || !executor.computer)
+    if (!computer?.computer || !executor.computer) {
       throw new Error("invalid computer");
+    }
 
-    if (computer.computerId === executor.computerId)
+    if (computer.computerId === executor.computerId) {
       throw new GameException("cannot login to the same computer you own");
+    }
 
     let addressBook = new AddressBook(executor.computer?.userId);
     await addressBook.check();
 
-    if (!(await addressBook.findInAddressBook(data.ip)))
+    if (!(await addressBook.findInAddressBook(data.ip))) {
       throw new GameException("you must hack this computer first");
+    }
 
     if (
       !isConnectedToMachine(server.request[data.sessionId], executor, computer)
-    )
+    ) {
       throw new GameException("you are already connected to this computer");
+    }
 
     return true;
   },
   after: async (
     computer: Computer | null,
     executor: Computer,
-    data: ProcessData
+    data: ProcessData,
   ) => {
-    if (!computer?.computer || !executor.computer)
+    if (!computer?.computer || !executor.computer) {
       throw new Error("invalid computer");
+    }
 
     let req = server.request[data.sessionId];
 
@@ -54,12 +59,13 @@ const logout = {
       req.session.logins &&
       req.session.logins?.[executor.computerId] &&
       req.session.logins[executor.computerId].find(
-        (val) => val.id === computer.computerId
+        (val) => val.id === computer.computerId,
       )
-    )
+    ) {
       req.session.logins[executor.computerId] = req.session.logins[
         executor.computerId
       ].filter((val) => val.id !== computer.computerId);
+    }
 
     executor.log("remote session terminated", computer);
   },

@@ -16,7 +16,7 @@ const wipe = {
   before: async (
     computer: Computer | null,
     executor: Computer,
-    data: ProcessData
+    data: ProcessData,
   ) => {
     if (!computer || !executor.computer) throw new Error("invalid computer");
 
@@ -26,8 +26,9 @@ const wipe = {
     if (
       !(await addressBook.findInAddressBook(data.ip)) &&
       executor.computerId !== computer.computerId
-    )
+    ) {
       throw new GameException("you must hack this computer first");
+    }
 
     if ((await computer.getLogCount()) === 0) return false;
 
@@ -36,7 +37,7 @@ const wipe = {
   after: async (
     computer: Computer | null,
     executor: Computer,
-    data: ProcessData
+    data: ProcessData,
   ) => {
     if (!computer || !executor.computer) throw new Error("invalid computer");
 

@@ -7,7 +7,7 @@ export default function errorMiddleware(
   err: HttpException,
   req: Request,
   res: Response,
-  next: any
+  next: any,
 ): void {
   if (typeof err === "string") {
     err = new ExpressError(err);

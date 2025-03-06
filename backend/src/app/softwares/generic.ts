@@ -14,9 +14,10 @@ const defaultSoftware = {
     // if the executor is full do not download
     if (
       size + software.software.size >
-      executor.getCombinedHardwareStrength("HDD")
-    )
+        executor.getCombinedHardwareStrength("HDD")
+    ) {
       return false;
+    }
 
     // if that exact software already exists
     if (
@@ -25,10 +26,11 @@ const defaultSoftware = {
           that.software?.level === software.level &&
           that.type === software.type &&
           (that.data.title || "Unknown " + that.type).toLowerCase() ===
-            (software.data.title || "Unknown " + software.type).toLowerCase()
+            (software.data.title || "Unknown " + software.type).toLowerCase(),
       )
-    )
+    ) {
       throw new GameException("Exact match of software found on computer");
+    }
 
     return true;
   },
@@ -44,9 +46,10 @@ const defaultSoftware = {
     // if the computer is full do not download
     if (
       size + software.software.size >
-      computer.getCombinedHardwareStrength("HDD")
-    )
+        computer.getCombinedHardwareStrength("HDD")
+    ) {
       return false;
+    }
 
     // if that exact software already exists
     if (
@@ -55,10 +58,11 @@ const defaultSoftware = {
           that.software?.level === software.level &&
           that.type === software.type &&
           (that.data.title || "Unknown " + that.type).toLowerCase() ===
-            (software.data.title || "Unknown " + software.type).toLowerCase()
+            (software.data.title || "Unknown " + software.type).toLowerCase(),
       )
-    )
+    ) {
       throw new GameException("Exact match of software found on computer");
+    }
 
     return true;
   },
@@ -93,11 +97,11 @@ const defaultSoftware = {
 
     computer.log(
       `software remotely uploaded => ${software.toString()}`,
-      executor
+      executor,
     );
     executor.log(
       `software uploaded remotely => ${software.toString()}`,
-      computer
+      computer,
     );
   },
   download: async (software, computer, executor) => {
@@ -132,21 +136,21 @@ const defaultSoftware = {
 
     computer.log(
       `software remotely downloaded => ${software.toString()}`,
-      executor
+      executor,
     );
     executor.log(
       `software downloaded remotely => ${software.toString()}`,
-      computer
+      computer,
     );
   },
   uninstall: async (software, computer, executor) => {
     computer.log(
       `software remotely uninstalled => ${software.toString()}`,
-      executor
+      executor,
     );
     executor.log(
       `software uninstalled remotely => ${software.toString()}`,
-      computer
+      computer,
     );
 
     await software.uninstall();
@@ -160,7 +164,7 @@ const defaultSoftware = {
     // if the computer RAM is full do not download
     if (
       size + (software?.software?.size || 0) >
-      executor.getCombinedHardwareStrength("RAM")
+        executor.getCombinedHardwareStrength("RAM")
     ) {
       return false;
     }
@@ -170,11 +174,11 @@ const defaultSoftware = {
   install: async (software, computer, executor) => {
     computer.log(
       `software remotely installed => ${software.toString()}`,
-      executor
+      executor,
     );
     executor.log(
       `software installed remotely => ${software.toString()}`,
-      computer
+      computer,
     );
 
     await software.install();
@@ -182,11 +186,11 @@ const defaultSoftware = {
   delete: async (software, computer, executor) => {
     computer.log(
       `software remotely deleted => ${software.toString()}`,
-      executor
+      executor,
     );
     executor.log(
       `software deleted removely => ${software.toString()}`,
-      computer
+      computer,
     );
 
     await software.delete();

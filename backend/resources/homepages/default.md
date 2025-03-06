@@ -8,4 +8,5 @@
 
 # Default Homepage
 
-Welcome to <span data-computer='ip'></span>.  Please contact the administrator in regards to setting up a homepage.
+Welcome to <span data-computer='ip'></span>. Please contact the administrator in
+regards to setting up a homepage.
