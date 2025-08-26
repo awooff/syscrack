@@ -23,7 +23,7 @@ function ProcessListComponent({
   computer,
   connectionId,
 }: {
-  computer: Computer;
+  computer: any;
   connectionId?: string;
 }) {
   const navigate = useNavigate();

@@ -100,31 +100,33 @@ function AddressBook() {
                           </h4>
                           <Row>
                             <Col>
-                              {address.viruses ? 
-                              <Card
-                                body
-                                className="rounded-0 border-secondary text-center"
-                              >
-                                <h4>Spammer</h4>
-                                <p>
-                                  <span className="badge bg-danger rounded-0">
-                                    {address.viruses.filter((v) => v.type === "spammer").pop()?.level || "0.0"}
-                                  </span>
-                                </p>
-                              </Card>
-                              :
+                              {(address as any).viruses ? (
                                 <Card
-                                body
-                                className="rounded-0 border-secondary text-center"
-                              >
-                                <h4>Spammer</h4>
-                                <p>
-                                  <span className="badge bg-danger rounded-0">
-                                    Not Installed
-                                  </span>
-                                </p>
-                              </Card>
-                              }
+                                  body
+                                  className="rounded-0 border-secondary text-center"
+                                >
+                                  <h4>Spammer</h4>
+                                  <p>
+                                    <span className="badge bg-danger rounded-0">
+                                      {(address as any).viruses
+                                        .filter((v) => v.type === "spammer")
+                                        .pop()?.level || "0.0"}
+                                    </span>
+                                  </p>
+                                </Card>
+                              ) : (
+                                <Card
+                                  body
+                                  className="rounded-0 border-secondary text-center"
+                                >
+                                  <h4>Spammer</h4>
+                                  <p>
+                                    <span className="badge bg-danger rounded-0">
+                                      Not Installed
+                                    </span>
+                                  </p>
+                                </Card>
+                              )}
                             </Col>
                             <Col>
                               <Card

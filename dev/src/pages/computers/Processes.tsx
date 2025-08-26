@@ -192,7 +192,7 @@ export default function Processes() {
           </Card>
         </Col>
         <Col>
-          <ProcessListComponent computer={computer} />
+          <ProcessListComponent computer={computer as any} />
         </Col>
       </Row>
     </Layout>

@@ -1,5 +1,5 @@
 import { EventEmitter } from "events";
-import { Process } from "./types/process.type";
+import { Process } from "backend/src/generated/client";
 
 export interface WebEmitterEvents {
   processCompleted: (process: Process) => {};

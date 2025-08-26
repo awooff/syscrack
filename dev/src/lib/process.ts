@@ -1,6 +1,6 @@
 import { postRequestHandler } from "./submit";
 import toast from "react-hot-toast";
-import { Process } from "./types/process.type";
+import { Process } from "backend/src/generated/client";
 import { AxiosResponse } from "axios";
 import WebEvents from "./events";
 
@@ -29,8 +29,8 @@ export const createProcess = async <T>(
     AxiosResponse<
       | T
       | {
-        process: Process;
-      },
+          process: Process;
+        },
       any
     >
   >((resolve, reject) => {
@@ -68,9 +68,9 @@ export const createProcess = async <T>(
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       autoComplete
         ? "Successfully executed " +
-        ((data as any).action || result.data.process.type) +
-        " on " +
-        result.data.process.ip
+          ((data as any).action || result.data.process.type) +
+          " on " +
+          result.data.process.ip
         : "Awaiting completion...",
     error:
       "Error executing " +

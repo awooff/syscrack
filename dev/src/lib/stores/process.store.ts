@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { Process } from "../types/process.type";
+import { Process } from "backend/src/generated/client";
 import { createJSONStorage, persist } from "zustand/middleware";
 
 type State = {

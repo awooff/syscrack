@@ -5,9 +5,7 @@ import GameContext, {
 } from "../contexts/game.context";
 import PropTypes from "prop-types";
 import axios from "axios";
-import { Computer } from "backend/src/generated/client";
-import { BankAccount } from "../lib/types/account.type";
-import { User } from "../lib/types/user.type";
+import { Computer, User } from "backend/src/generated/client";
 
 function GameProvider({ children }: { children: unknown }) {
   const [game, setGame] = useState<GameType>(GameContextDefault);
@@ -48,7 +46,7 @@ function GameProvider({ children }: { children: unknown }) {
       );
 
       const accounts = await axios.post<{
-        accounts: BankAccount[];
+        accounts: any[];
       }>(
         "http://localhost:1337/finances/accounts",
         {
@@ -81,7 +79,7 @@ function GameProvider({ children }: { children: unknown }) {
         gameId: game.data.currentGameId,
         loaded: true,
         load: load,
-      };
+      } as any;
 
       setGame(newGame);
     } catch (error) {

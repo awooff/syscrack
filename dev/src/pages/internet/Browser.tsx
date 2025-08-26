@@ -236,7 +236,7 @@ export default function Browser() {
                         {connection.ip}{" "}
                       </b>{" "}
                       <span className={"badge rounded-0 bg-black"}>
-                        {connection.data?.title}
+                        {(connection.data as any)?.title}
                       </span>
                       {browserStore?.history?.[connection.id] &&
                       browserStore.history[connection.id].length !== 0 ? (
@@ -476,7 +476,8 @@ export default function Browser() {
                             browserStore.setConnectionId(connection.id);
                           }}
                         >
-                          Connect to {connection.ip} ({connection.data.title})
+                          Connect to {connection.ip} (
+                          {(connection.data as any).title})
                         </a>
                         <br />
                       </>
@@ -726,7 +727,7 @@ export default function Browser() {
                                   YOU
                                 </span>
                                 <span className="badge bg-black rounded-0">
-                                  {login.data?.title || "Unknown"}
+                                  {(login.data as any).title || "Unknown"}
                                 </span>
                                 <span
                                   className="badge bg-secondary rounded-0"
