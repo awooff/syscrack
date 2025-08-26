@@ -96,15 +96,13 @@ class Server {
    * Add all our routes to the public `routes` array.
    */
   private async initialiseRoutes(): Promise<void> {
-    const files = await glob([
-      path.join(__dirname, "routes", "**/*.ts"),
-      path.join(__dirname, "routes", "**/*.js"),
-    ]);
+    let files = await glob(__dirname + "/routes/**/*.js");
+    files = files.map((file) => file.replace("dist\\", "").replace(/\\/g, "/"));
     await Promise.all(
       files.map(async (file) => {
         if (file.endsWith(".d.ts") || file.endsWith(".map")) return;
 
-        let route = (await require(file)) as Route;
+        let route = (await require("./" + file)) as Route;
         route = (route as any).default || (route as any).route;
 
         if (route?.settings == null) {
@@ -114,7 +112,7 @@ class Server {
         if (route.settings?.route === undefined) {
           const parsedPath = path.parse(file);
           route.settings.route = file
-            .replace(path.join(__dirname, "routes"), "")
+            .replace(path.join("routes"), "")
             .replace(parsedPath.ext, "");
         }
 
