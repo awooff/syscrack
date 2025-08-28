@@ -11,7 +11,7 @@ function Layout({
   fluid,
   gap,
 }: {
-  children: unknown;
+  children: ReactNode;
   fluid?: boolean;
   gap?: number;
 }) {

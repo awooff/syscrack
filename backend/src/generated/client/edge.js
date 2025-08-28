@@ -330,7 +330,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\code\\syscrack\\backend\\src\\generated\\client",
+      "value": "/home/kaelta/Projects/Syscrack/backend/src/generated/client",
       "fromEnvVar": null
     },
     "config": {
@@ -339,17 +339,16 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "windows",
+        "value": "debian-openssl-3.0.x",
         "native": true
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "C:\\code\\syscrack\\backend\\prisma\\schema.prisma",
+    "sourceFilePath": "/home/kaelta/Projects/Syscrack/backend/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": null,
-    "schemaEnvPath": "../../../.env"
+    "rootEnvPath": null
   },
   "relativePath": "../../../prisma",
   "clientVersion": "5.22.0",
@@ -358,6 +357,7 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
