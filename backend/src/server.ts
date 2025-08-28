@@ -4,7 +4,7 @@ import express, {
   Request,
   Response,
 } from "express";
-import path from "path";
+import path from "node:path";
 import { glob } from "glob";
 import { Route } from "./lib/types/route.type";
 import { PrismaClient } from "@/db/client";
@@ -96,89 +96,94 @@ class Server {
    * Add all our routes to the public `routes` array.
    */
   private async initialiseRoutes(): Promise<void> {
-    let files = await glob(__dirname + "/routes/**/*.js");
-    files = files.map((file) => file.replace("dist\\", "").replace(/\\/g, "/"));
+    let files = await glob(path.join(__dirname, "routes", "**/*.js"));
+    
     await Promise.all(
       files.map(async (file) => {
-        if (file.endsWith(".d.ts") || file.endsWith(".map")) return;
-
-        let route = (await require("./" + file)) as Route;
+        const normalizedFile = file.replace(/\\/g, "/");
+        
+        if (normalizedFile.endsWith(".d.ts") || normalizedFile.endsWith(".map")) 
+          return;
+        
+        const relativePath = path.relative(path.join(__dirname), file);
+        let route = (await require(path.join(__dirname, relativePath))) as 
+        Route;
         route = (route as any).default || (route as any).route;
-
+        
         if (route?.settings == null) {
           route.settings = {};
         }
-
+        
         if (route.settings?.route === undefined) {
           const parsedPath = path.parse(file);
-          route.settings.route = file
-            .replace(path.join("routes"), "")
-            .replace(parsedPath.ext, "");
+          
+          // Calculate route path relative to "routes" dir
+          const relativeToRoutes = path.relative(
+            path.join(__dirname, "routes"),
+                                                 file,
+          );
+          
+          route.settings.route =
+          "/" +
+          relativeToRoutes
+          .replace(parsedPath.ext, "")
+          .split(path.sep)
+          .join("/");
         }
-
+        
         const newRoute = this.server.route(route.settings.route);
-        // bad
         (newRoute as any).settings = route.settings;
-        // bad
         (newRoute as any).source = route;
-
+        
         if (route.get) {
           newRoute.get(
-            (req: Request, res: Response, next: any) => {
-              next(route);
-            },
-            authMiddleware,
-            async (req: Request, res: Response, next: any) => {
-              try {
-                route.get !== undefined
-                  ? await route.get(req, res, next)
-                  : null;
-              } catch (error) {
-                if (error instanceof GameException === false) throw error;
-
-                next(error, route);
-              }
-            },
-            errorMiddleware,
+            (req: Request, res: Response, next: any) => next(route),
+                       authMiddleware,
+                       async (req: Request, res: Response, next: any) => {
+                         try {
+                           if (route.get) await route.get(req, res, next);
+                         } catch (error) {
+                           if (!(error instanceof GameException)) throw error;
+                           next(error, route);
+                         }
+                       },
+                       errorMiddleware,
           );
         }
-
+        
         if (route.post) {
           newRoute.post(
-            (req: Request, res: Response, next: any) => {
-              next(route);
-            },
-            authMiddleware,
-            async (req: Request, res: Response, next: any) => {
-              try {
-                route.post !== undefined
-                  ? await route.post(req, res, next)
-                  : null;
-              } catch (error) {
-                if (error instanceof GameException === false) throw error;
-
-                next(error, route);
-              }
-            },
-            errorMiddleware,
+            (req: Request, res: Response, next: any) => next(route),
+                        authMiddleware,
+                        async (req: Request, res: Response, next: any) => {
+                          try {
+                            if (route.post) await route.post(req, res, next);
+                          } catch (error) {
+                            if (!(error instanceof GameException)) throw error;
+                            next(error, route);
+                          }
+                        },
+                        errorMiddleware,
           );
         }
-
+        
         this.routes.push(newRoute);
       }),
     );
-
+    
     console.table(
       this.routes.map((route) => {
         const settings = { ...(route as any).settings };
         return {
           ...settings,
           get: !!(route as any).source?.get,
-          post: !!(route as any).source?.post,
+                      post: !!(route as any).source?.post,
         };
       }),
-    );
-  }
+  );
 }
+}
+
+
 
 export default Server;

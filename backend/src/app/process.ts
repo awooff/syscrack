@@ -2,7 +2,7 @@ import { Process as Table } from "@/db/client";
 import { Computer } from "./computer";
 import { server } from "../index";
 import processes from "@/app/processes/";
-import z from "zod";
+import * as z from "zod";
 import { Process, ProcessParameters } from "@/lib/types/process.type";
 
 export type ProcessType = keyof typeof processes;

@@ -21,7 +21,7 @@ export default function Game() {
             >
               <img
                 className="d-block w-full mx-auto"
-                src="https://placekitten.com/900/600"
+                src="https://placecats.com/900/600"
                 alt="First slide"
               />
               <Carousel.Caption
@@ -40,7 +40,7 @@ export default function Game() {
             >
               <img
                 className="d-block w-full mx-auto"
-                src="https://placekitten.com/900/500"
+                src="https://placecats.com/900/500"
                 alt="First slide"
               />
               <Carousel.Caption
@@ -67,7 +67,7 @@ export default function Game() {
       <Row lg={3} sm={1} className="gy-4">
         <Col>
           <Card>
-            <Card.Img src="https://placekitten.com/800/600" />
+            <Card.Img src="https://placecats.com/millie/800/600" />
             <Card.Body className="text-center">
               Browse The Internet
               <div className="d-grid mt-4">
@@ -85,7 +85,7 @@ export default function Game() {
         </Col>
         <Col>
           <Card>
-            <Card.Img src="https://placekitten.com/800/600" />
+            <Card.Img src="https://placecats.com/neo_2/800/600" />
             <Card.Body className="text-center">
               View Your Computer
               <div className="d-grid mt-4">
@@ -103,7 +103,7 @@ export default function Game() {
         </Col>
         <Col>
           <Card>
-            <Card.Img src="https://placekitten.com/800/600" />
+            <Card.Img src="https://placecats.com/bella/800/600" />
             <Card.Body className="text-center">
               View Your Finances
               <div className="d-grid mt-4">

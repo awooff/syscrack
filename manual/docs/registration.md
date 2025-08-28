@@ -50,6 +50,8 @@ spam](https://ico.org.uk/for-the-public/online/spam-emails/).
 
 ## Password
 
+Your password must be a valid ASCII UTF-8 sequence at least 8 characters long.
+
 We strongly recommend [using a password manager](https://itsfoss.com/open-source-password-managers/)
 to safeguard your Syscrack ID. Your password manager can also create secure
 passwords on your behalf, remember them for you, and autofill them into
@@ -71,6 +73,9 @@ where you will have to enter your details once more.
 
 You should now be able to play Syscrack.
 
+Please now navigate to [the getting started guide](/getting-started).
+
 For any queries please send an e-mail to
 [no-reply@gen-sys.uk](mailto:no-reply@gen-sys.uk)
 
+![Game Screen](/images/getting-started/game-screen.png)
