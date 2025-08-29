@@ -1,10 +1,10 @@
-import { Prisma, Software as Table } from "@/db/client";
+import { Prisma, Software as Table } from "~/db/client";
 import { Computer } from "./computer";
-import { server } from "../index";
-import { SoftwareAction } from "@/lib/types/software.type";
+import { server } from "~/index";
+import { SoftwareAction } from "~/lib/types/software.type";
 import softwares, { SoftwareType } from "./softwares";
-import settings from "../settings";
-import GameException from "@/lib/exceptions/game.exception";
+import settings from "~/settings";
+import GameException from "~/lib/exceptions/game.exception";
 
 export type SoftwareData = {
   title?: string;
@@ -54,13 +54,15 @@ export class Software {
     baseCost = Math.floor(baseCost * settings.actionNerf);
 
     if (action === "delete" || action === "uninstall" || action === "view") {
-      baseCost = Math.floor(baseCost * settings.hddNerf) -
+      baseCost =
+        Math.floor(baseCost * settings.hddNerf) -
         this.computer.getCombinedHardwareStrength("HDD") / 84;
     }
 
     if (action === "install" || action === "uninstall") {
-      baseCost = (Math.floor(baseCost * settings.ramNerf) -
-        this.computer.getCombinedHardwareStrength("RAM") / 12) *
+      baseCost =
+        (Math.floor(baseCost * settings.ramNerf) -
+          this.computer.getCombinedHardwareStrength("RAM") / 12) *
         Math.max(1, this.software?.size || 1);
     }
 
@@ -288,7 +290,8 @@ export class Software {
   }
 
   public async load(data?: Table) {
-    this.software = data ||
+    this.software =
+      data ||
       (await server.prisma.software.findFirstOrThrow({
         where: {
           id: this.softwareId,

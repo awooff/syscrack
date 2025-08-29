@@ -1,7 +1,7 @@
-import { Route } from "../../lib/types/route.type";
-import { Groups } from "@/db/client";
-import { paginationSchema } from "@/lib/schemas/pagination.schema";
-import { AddressBook } from "@/app/addressbook";
+import { Route } from "~/lib/types/route.type";
+import { Groups } from "~/db/client";
+import { paginationSchema } from "~/lib/schemas/pagination.schema";
+import { AddressBook } from "~/app/addressbook";
 
 const addressBook = {
   settings: {

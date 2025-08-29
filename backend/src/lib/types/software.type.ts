@@ -1,5 +1,5 @@
-import { Computer } from "@/app/computer";
-import { Software } from "@/app/software";
+import { Computer } from "~/app/computer";
+import { Software } from "~/app/software";
 import { ProcessParameters } from "./process.type";
 
 export interface SoftwareAction {

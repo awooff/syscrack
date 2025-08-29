@@ -1,6 +1,6 @@
-import { Route } from "../../lib/types/route.type";
-import { server } from "../../index";
-import { Groups, User } from "@/db/client";
+import { Route } from "~/lib/types/route.type";
+import { server } from "~/index";
+import { Groups, User } from "~/db/client";
 import { SessionData } from "express-session";
 
 const valid = {

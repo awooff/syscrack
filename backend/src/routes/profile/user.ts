@@ -1,6 +1,6 @@
-import { Route } from "../../lib/types/route.type";
-import { server } from "../../index";
-import { Groups } from "@/db/client";
+import { Route } from "~/lib/types/route.type";
+import { server } from "~/index";
+import { Groups } from "~/db/client";
 
 const profile = {
   settings: {

@@ -1,10 +1,10 @@
-import { Process, ProcessData } from "@/lib/types/process.type";
-import { Computer } from "../computer";
-import GameException from "@/lib/exceptions/game.exception";
-import { AddressBook } from "../addressbook";
-import { server } from "../../index";
-import settings from "../../settings";
-import { isConnectedToMachine } from "@/lib/helpers";
+import { Process, ProcessData } from "~/lib/types/process.type";
+import { Computer } from "~/app/computer";
+import GameException from "~/lib/exceptions/game.exception";
+import { AddressBook } from "~/app/addressbook";
+import { server } from "~/index";
+import settings from "~/settings";
+import { isConnectedToMachine } from "~/lib/helpers";
 
 const logout = {
   settings: {

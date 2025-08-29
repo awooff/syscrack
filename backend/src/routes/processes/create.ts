@@ -1,19 +1,19 @@
-import { Route } from "../../lib/types/route.type";
-import { Groups } from "@/db/client";
-import { processCreateSchema } from "@/lib/schemas/process.schema";
-import { getProcessZodObject, ProcessType } from "@/app/process";
-import processes from "@/app/processes";
-import { Computer, findComputer, getComputer } from "@/app/computer";
-import { server } from "../../index";
-import GameException from "@/lib/exceptions/game.exception";
+import { Route } from "~/lib/types/route.type";
+import { Groups } from "~/db/client";
+import { processCreateSchema } from "~/lib/schemas/process.schema";
+import { getProcessZodObject, ProcessType } from "~/app/process";
+import processes from "~/app/processes";
+import { Computer, findComputer, getComputer } from "~/app/computer";
+import { server } from "~/index";
+import GameException from "~/lib/exceptions/game.exception";
 import {
   Process,
   ProcessData,
   ProcessParameters,
-} from "@/lib/types/process.type";
-import { isConnectedToMachine } from "@/lib/helpers";
-import { Software } from "@/app/software";
-import settings from "../../settings";
+} from "~/lib/types/process.type";
+import { isConnectedToMachine } from "~/lib/helpers";
+import { Software } from "~/app/software";
+import settings from "~/settings";
 
 const create = {
   settings: {
@@ -134,23 +134,25 @@ const create = {
     delay *= settings.processNerf;
 
     if (gameProcess.settings?.utilizesHardware) {
-      delay *= (settings as any)?.[
-        gameProcess.settings?.utilizesHardware?.toLowerCase() + "Nerf"
-      ] || 1;
+      delay *=
+        (settings as any)?.[
+          gameProcess.settings?.utilizesHardware?.toLowerCase() + "Nerf"
+        ] || 1;
     }
 
     if (gameProcess.delay) {
       delay = delay + (await gameProcess.delay(target, executor, data));
     } else if (gameProcess.settings?.utilizesHardware) {
-      delay = delay -
+      delay =
+        delay -
         (gameProcess.settings?.utilizesHardware === "Download" ||
-            gameProcess.settings?.utilizesHardware === "Upload"
+        gameProcess.settings?.utilizesHardware === "Upload"
           ? executor.getCombinedHardwareStrength(
-            gameProcess.settings?.utilizesHardware,
-          ) * 24
+              gameProcess.settings?.utilizesHardware,
+            ) * 24
           : executor.getCombinedHardwareStrength(
-            gameProcess.settings?.utilizesHardware,
-          ));
+              gameProcess.settings?.utilizesHardware,
+            ));
     }
 
     delay = Math.max(

@@ -1,10 +1,10 @@
-import { Route } from "@/lib/types/route.type";
-import { server } from "../../index";
+import { Route } from "~/lib/types/route.type";
+import { server } from "~/index";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { removeFromObject } from "@/lib/helpers";
-import { Groups, User } from "@/db/client";
-import { loginSchema } from "@/lib/schemas/login.schema";
+import { removeFromObject } from "~/lib/helpers";
+import { Groups, User } from "~/db/client";
+import { loginSchema } from "~/lib/schemas/login.schema";
 
 const login = {
   settings: {

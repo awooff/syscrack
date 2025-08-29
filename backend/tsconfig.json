@@ -1,24 +1,27 @@
 {
-  "compilerOptions": {
-    "target": "es6",
-    "module": "commonjs",
-    "outDir": "./dist",
-    "strict": true,
-    "declaration": true,
-    "declarationMap": true,
-    "sourceMap": true,
-    "baseUrl": "./src",
-    "resolveJsonModule": true,
-    "paths": {
-      "@": ["./"],
-      "@/app/*": ["app/*"],
-      "@/routes/*": ["resources/*"],
-      "@/lib/*": ["lib/*"],
-      "@/middleware/*": ["middleware/*"],
-      "@/db/*": ["generated/*"]
-    }, /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */
-    "esModuleInterop": true, /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */
-    "skipLibCheck": true, /* Skip type checking of declaration files. */
-    "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */
-  }
+	"compilerOptions": {
+		"target": "es6",
+		"module": "commonjs",
+		"outDir": "./dist",
+		"strict": true,
+		"declaration": true,
+		"declarationMap": true,
+		"sourceMap": true,
+		"baseUrl": "./src",
+		"resolveJsonModule": true,
+		"paths": {
+			"~/*": ["./*"],
+			"~/app/*": ["app/*"],
+			"~/app/processes/*": ["app/processes/*"],
+			"~/app/profiles/*": ["app/profiles/*"],
+			"~/config/*": ["app/profiles/*"],
+			"~/routes/*": ["resources/*"],
+			"~/lib/*": ["lib/*"],
+			"~/middleware/*": ["middleware/*"],
+			"~/db/*": ["generated/*"]
+		} /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */,
+		"esModuleInterop": true /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */,
+		"skipLibCheck": true /* Skip type checking of declaration files. */,
+		"forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */
+	}
 }

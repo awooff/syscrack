@@ -1,12 +1,12 @@
-import { Route } from "../../lib/types/route.type";
-import { Groups } from "@/db/client";
-import { homepageSchema } from "@/lib/schemas/homepage.schema";
-import { ComputerData, findComputer, getComputer } from "@/app/computer";
-import { removeFromObject } from "@/lib/helpers";
-import { AddressBook } from "@/app/addressbook";
+import { Route } from "~/lib/types/route.type";
+import { Groups } from "~/db/client";
+import { homepageSchema } from "~/lib/schemas/homepage.schema";
+import { ComputerData, findComputer, getComputer } from "~/app/computer";
+import { removeFromObject } from "~/lib/helpers";
+import { AddressBook } from "~/app/addressbook";
 import markdownit from "markdown-it";
 import fs from "fs";
-import { server } from "../../index";
+import { server } from "~/index";
 
 const fetch = {
   settings: {
@@ -56,21 +56,21 @@ const fetch = {
       markdown: md.render(
         data?.homepage
           ? fs.readFileSync(
-            process.cwd() +
-              "/resources/homepages/" +
-              data.homepage.replace(/\/\\\./g, "") +
-              ".md",
-            {
-              encoding: "utf-8",
-            },
-          )
-          : data?.markdown ||
-            fs.readFileSync(
-              process.cwd() + "/resources/homepages/default.md",
+              process.cwd() +
+                "/resources/homepages/" +
+                data.homepage.replace(/\/\\\./g, "") +
+                ".md",
               {
                 encoding: "utf-8",
               },
-            ),
+            )
+          : data?.markdown ||
+              fs.readFileSync(
+                process.cwd() + "/resources/homepages/default.md",
+                {
+                  encoding: "utf-8",
+                },
+              ),
         {
           computer: computer,
           access: (await addressBook.get(computer.ip)) || undefined,

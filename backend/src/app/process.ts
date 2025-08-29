@@ -1,9 +1,9 @@
-import { Process as Table } from "@/db/client";
+import { Process as Table } from "~/db/client";
 import { Computer } from "./computer";
-import { server } from "../index";
-import processes from "@/app/processes/";
+import { server } from "~/index";
+import processes from "~/app/processes";
 import * as z from "zod";
-import { Process, ProcessParameters } from "@/lib/types/process.type";
+import { Process, ProcessParameters } from "~/lib/types/process.type";
 
 export type ProcessType = keyof typeof processes;
 
@@ -24,7 +24,8 @@ export class ComputerProcess {
   }
 
   public async load(data?: Table) {
-    this.process = data ||
+    this.process =
+      data ||
       (await server.prisma.process.findFirstOrThrow({
         where: {
           id: this.processId,
@@ -90,9 +91,10 @@ export const getProcessZodObject = async (
   await Promise.all(
     Object.keys(settingsParameters).map(async (key) => {
       if (key === "custom" || key === "sessionId") return;
-      let result = await zodObjects?.[key as keyof ProcessParameters]?.(
-        settingsParameters,
-      );
+      let result =
+        await zodObjects?.[key as keyof ProcessParameters]?.(
+          settingsParameters,
+        );
       obj[key] = result;
     }),
   );

@@ -7,16 +7,16 @@ import express, {
 import path from "node:path";
 import { glob } from "glob";
 import { Route } from "./lib/types/route.type";
-import { PrismaClient } from "@/db/client";
+import { PrismaClient } from "~/db/client";
 import helmet from "helmet";
-import morgan from "morgan";
+import logger from "~/logger";
 import compression from "compression";
 import expressSession from "express-session";
 import cors from "cors";
 import dotenv from "dotenv";
-import errorMiddleware from "./middleware/error.middleware";
+import errorMiddleware from "~/middleware/error.middleware";
 import bodyparse from "body-parser";
-import authMiddleware from "./middleware/auth.middleware";
+import authMiddleware from "~/middleware/auth.middleware";
 
 //to extend the express-session type
 import "./lib/types/session.type";
@@ -58,7 +58,7 @@ class Server {
    */
   private initialiseMiddleware(): void {
     this.server.use(helmet());
-    this.server.use(morgan("dev"));
+    this.server.use(logger);
     this.server.use(compression());
     this.server.use(
       cors({
@@ -97,93 +97,92 @@ class Server {
    */
   private async initialiseRoutes(): Promise<void> {
     let files = await glob(path.join(__dirname, "routes", "**/*.js"));
-    
+
     await Promise.all(
       files.map(async (file) => {
         const normalizedFile = file.replace(/\\/g, "/");
-        
-        if (normalizedFile.endsWith(".d.ts") || normalizedFile.endsWith(".map")) 
+
+        if (normalizedFile.endsWith(".d.ts") || normalizedFile.endsWith(".map"))
           return;
-        
+
         const relativePath = path.relative(path.join(__dirname), file);
-        let route = (await require(path.join(__dirname, relativePath))) as 
-        Route;
+        let route = (await require(
+          path.join(__dirname, relativePath),
+        )) as Route;
         route = (route as any).default || (route as any).route;
-        
+
         if (route?.settings == null) {
           route.settings = {};
         }
-        
+
         if (route.settings?.route === undefined) {
           const parsedPath = path.parse(file);
-          
+
           // Calculate route path relative to "routes" dir
           const relativeToRoutes = path.relative(
             path.join(__dirname, "routes"),
-                                                 file,
+            file,
           );
-          
+
           route.settings.route =
-          "/" +
-          relativeToRoutes
-          .replace(parsedPath.ext, "")
-          .split(path.sep)
-          .join("/");
+            "/" +
+            relativeToRoutes
+              .replace(parsedPath.ext, "")
+              .split(path.sep)
+              .join("/");
         }
-        
+
         const newRoute = this.server.route(route.settings.route);
         (newRoute as any).settings = route.settings;
         (newRoute as any).source = route;
-        
+
         if (route.get) {
           newRoute.get(
             (req: Request, res: Response, next: any) => next(route),
-                       authMiddleware,
-                       async (req: Request, res: Response, next: any) => {
-                         try {
-                           if (route.get) await route.get(req, res, next);
-                         } catch (error) {
-                           if (!(error instanceof GameException)) throw error;
-                           next(error, route);
-                         }
-                       },
-                       errorMiddleware,
+            authMiddleware,
+            async (req: Request, res: Response, next: any) => {
+              try {
+                if (route.get) await route.get(req, res, next);
+              } catch (error) {
+                if (!(error instanceof GameException)) throw error;
+                next(error, route);
+              }
+            },
+            errorMiddleware,
           );
         }
-        
+
         if (route.post) {
           newRoute.post(
             (req: Request, res: Response, next: any) => next(route),
-                        authMiddleware,
-                        async (req: Request, res: Response, next: any) => {
-                          try {
-                            if (route.post) await route.post(req, res, next);
-                          } catch (error) {
-                            if (!(error instanceof GameException)) throw error;
-                            next(error, route);
-                          }
-                        },
-                        errorMiddleware,
+            authMiddleware,
+            async (req: Request, res: Response, next: any) => {
+              try {
+                if (route.post) await route.post(req, res, next);
+              } catch (error) {
+                if (!(error instanceof GameException)) throw error;
+                next(error, route);
+              }
+            },
+            errorMiddleware,
           );
         }
-        
+
         this.routes.push(newRoute);
       }),
     );
-    
+
     console.table(
       this.routes.map((route) => {
         const settings = { ...(route as any).settings };
         return {
           ...settings,
           get: !!(route as any).source?.get,
-                      post: !!(route as any).source?.post,
+          post: !!(route as any).source?.post,
         };
       }),
-  );
+    );
+  }
 }
-}
-
-
 
 export default Server;

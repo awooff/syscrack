@@ -1,5 +1,5 @@
-import { AccessLevel, User } from "@/db/client";
-import { server } from "../index";
+import { AccessLevel, User } from "~/db/client";
+import { server } from "~/index";
 import { Computer } from "./computer";
 import { Software } from "./software";
 

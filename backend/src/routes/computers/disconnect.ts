@@ -1,7 +1,7 @@
-import { Route } from "../../lib/types/route.type";
-import { Groups } from "@/db/client";
-import { getComputer } from "@/app/computer";
-import { computerIdSchema } from "@/lib/schemas/computer.schema";
+import { Route } from "~/lib/types/route.type";
+import { Groups } from "~/db/client";
+import { getComputer } from "~/app/computer";
+import { computerIdSchema } from "~/lib/schemas/computer.schema";
 
 const connect = {
   settings: {

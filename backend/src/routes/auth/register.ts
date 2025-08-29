@@ -1,9 +1,9 @@
-import { Route } from "../../lib/types/route.type";
-import { Groups } from "@/db/client";
-import { registerSchema } from "../../lib/schemas/register.schema";
-import { server } from "../../index";
+import { Route } from "~/lib/types/route.type";
+import { Groups } from "~/db/client";
+import { registerSchema } from "~/lib/schemas/register.schema";
+import { server } from "~/index";
 import bcrypt from "bcrypt";
-import { ProfileData } from "@/lib/types/profile.type";
+import { ProfileData } from "~/lib/types/profile.type";
 
 const register = {
   settings: {

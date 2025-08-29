@@ -1,4 +1,4 @@
-import { Computer, getComputer } from "@/app/computer";
+import { Computer, getComputer } from "~/app/computer";
 import { Request } from "express";
 
 export const removeFromObject = (obj: any, keys: any[]) => {

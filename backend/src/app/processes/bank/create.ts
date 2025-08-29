@@ -1,11 +1,5 @@
-import {
-  Process,
-  ProcessData,
-  ProcessSettings,
-} from "@/lib/types/process.type";
-import { Computer } from "@/app/computer";
-import GameException from "@/lib/exceptions/game.exception";
-import settings from "../../../settings";
+import { Process, ProcessData } from "~/lib/types/process.type";
+import { Computer } from "~/app/computer";
 
 const create = {
   settings: {
@@ -29,7 +23,6 @@ const create = {
     computer: Computer | null,
     executor: Computer,
     data: ProcessData,
-  ) => {
-  },
+  ) => {},
 } satisfies Process;
 export default create;

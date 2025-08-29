@@ -1,12 +1,7 @@
-import {
-  Process,
-  ProcessData,
-  ProcessSettings,
-} from "@/lib/types/process.type";
-import { Computer } from "@/app/computer";
-import GameException from "@/lib/exceptions/game.exception";
-import settings from "../../../settings";
-import { getBankAccount } from "@/app/finance";
+import { Process, ProcessData } from "~/lib/types/process.type";
+import { Computer } from "~/app/computer";
+import GameException from "~/lib/exceptions/game.exception";
+import { getBankAccount } from "~/app/finance";
 
 export type TransferData = {
   custom: {
@@ -46,7 +41,6 @@ const transfer = {
     computer: Computer | null,
     executor: Computer,
     data: ProcessData,
-  ) => {
-  },
+  ) => {},
 } satisfies Process;
 export default transfer;

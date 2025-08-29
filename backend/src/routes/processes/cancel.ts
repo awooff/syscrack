@@ -1,13 +1,7 @@
-import { Route } from "../../lib/types/route.type";
-import { Groups } from "@/db/client";
-import { processCompleteSchema } from "@/lib/schemas/process.schema";
-import { getProcessZodObject, ProcessType } from "@/app/process";
-import processes from "@/app/processes";
-import { Computer, findComputer, getComputer } from "@/app/computer";
-import { server } from "../../index";
-import GameException from "@/lib/exceptions/game.exception";
-import { ProcessSettings } from "@/lib/types/process.type";
-import { isConnectedToMachine } from "@/lib/helpers";
+import { Route } from "~/lib/types/route.type";
+import { Groups } from "~/db/client";
+import { processCompleteSchema } from "~/lib/schemas/process.schema";
+import { server } from "~/index";
 
 const cancel = {
   settings: {
