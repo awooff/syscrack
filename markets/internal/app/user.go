@@ -1,8 +1,9 @@
 package app
 
 import (
-	"errors"
 	"time"
+
+	"gorm.io/gorm"
 )
 
 /**
@@ -12,13 +13,14 @@ import (
  * @param Email {string} - unique, autoincremented
  */
 type User struct {
+	gorm.Model
 	ID            uint   `gorm:"primaryKey;autoIncrement"`
 	Email         string `gorm:"unique"`
 	Name          string `gorm:"default:'User'"`
 	Password      string
 	Salt          string
-	LastAction    time.Time       `gorm:"default:CURRENT_TIMESTAMP"`
-	Created       time.Time       `gorm:"default:CURRENT_TIMESTAMP"`
+	LastAction    *time.Time      `gorm:"default:CURRENT_TIMESTAMP"`
+	Created       *time.Time      `gorm:"autoCreateTime:"`
 	RefreshToken  *string         `gorm:"default:null"`
 	Group         Groups          `gorm:"default:'User'"`
 	AccountBook   []AccountBook   `gorm:"foreignKey:UserID"`
