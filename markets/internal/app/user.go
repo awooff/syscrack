@@ -8,20 +8,20 @@ import (
 )
 
 type User struct {
-	ID           ID        `gorm:"primaryKey;autoIncrement"`
-	Name         string    `gorm:"uniqueIndex;not null;size:255"`
-	Email        string    `gorm:"uniqueIndex;not null;size:255"`
-	AccountValue uint64    `gorm:"not null;default:0"`
-	IsActive     bool      `gorm:"not null;default:true"`
-	CreatedAt    time.Time `gorm:"autoCreateTime"`
-	UpdatedAt    time.Time `gorm:"autoUpdateTime"`
+	ID           uint `gorm:"primaryKey"`
+	Name         string
+	Email        string `gorm:"uniqueIndex"`
+	AccountValue float64
+	IsActive     bool
+	CreatedAt    time.Time
+	UpdatedAt    time.Time
 
-	ManagedFunds     []Fund          `gorm:"foreignKey:FundManagerID"`
-	InvestedFunds    []Fund          `gorm:"many2many:fund_investors;"`
-	SentPayments     []PaymentDB     `gorm:"foreignKey:UserSenderID"`
-	ReceivedPayments []PaymentDB     `gorm:"foreignKey:RecipientID"`
-	Transactions     []TransactionDB `gorm:"foreignKey:UserID"`
-	Portfolios       []Portfolio     `gorm:"foreignKey:UserID"`
+	Portfolios       []Portfolio `gorm:"foreignKey:UserID"`
+	Trades           []Trade     `gorm:"foreignKey:UserID"`
+	ManagedFunds     []Fund      `gorm:"foreignKey:ManagerID"`
+	InvestedFunds    []Fund      `gorm:"many2many:user_funds"`
+	SentPayments     []PaymentDB `gorm:"foreignKey:FromUserID"`
+	ReceivedPayments []PaymentDB `gorm:"foreignKey:ToUserID"`
 }
 
 func (User) TableName() string {
@@ -40,10 +40,6 @@ type TransactionDB struct {
 
 	User User  `gorm:"foreignKey:UserID"`
 	Fund *Fund `gorm:"foreignKey:FundID"`
-}
-
-func (TransactionDB) TableName() string {
-	return "transactions"
 }
 
 func GetAllUsers() ([]User, error) {

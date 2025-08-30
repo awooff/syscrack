@@ -6,6 +6,7 @@ import (
 	"os"
 	"strings"
 
+	"markets/internal/app"
 	"markets/internal/logx"
 	"markets/internal/middleware"
 	"markets/internal/routes"
@@ -19,6 +20,15 @@ func main() {
 		port = ":2700"
 	}
 
+	// initialise our db conn
+	app.InitialiseDbConnection() // whatever initializes your *gorm.DB
+
+	// run migrations
+	if err := app.Migrate(app.DB); err != nil {
+		logx.Logger.Fatal().Msgf("migration error: %v", err)
+	}
+
+	// Set up our router
 	r := chi.NewRouter()
 
 	middleware.Init(r)
