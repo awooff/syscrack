@@ -10,6 +10,7 @@ require (
 	github.com/aarondl/inflect v0.0.2 // indirect
 	github.com/aarondl/sqlboiler/v4 v4.19.5 // indirect
 	github.com/aarondl/strmangle v0.0.9 // indirect
+	github.com/confluentinc/confluent-kafka-go/v2 v2.11.1 // indirect
 	github.com/friendsofgo/errors v0.9.2 // indirect
 	github.com/fsnotify/fsnotify v1.9.0 // indirect
 	github.com/go-chi/chi/v5 v5.2.3 // indirect

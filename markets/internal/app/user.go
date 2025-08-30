@@ -1,10 +1,16 @@
 package app
 
 import (
+	"errors"
 	"time"
 )
 
-// User model
+/**
+ * This is how we're going to refactor the main database.
+ * Anything changed here *must* and will be changed in the javascript API.
+ * @param ID {uint} - primaryKey, autoincremented
+ * @param Email {string} - unique, autoincremented
+ */
 type User struct {
 	ID            uint   `gorm:"primaryKey;autoIncrement"`
 	Email         string `gorm:"unique"`
@@ -27,11 +33,6 @@ type User struct {
 	Session       []Session       `gorm:"foreignKey:UserID"`
 	Software      []Software      `gorm:"foreignKey:UserID"`
 	UserQuests    []UserQuests    `gorm:"foreignKey:UserID"`
-	AccountValue  uint64          `gorm:not null:default:0`
-}
-
-func (u User) TakeFundCharge(fund Fund) string {
-	charge := float64(u.AccountValue) * fund.TotalFundCharge.ToFloat()
-	u.AccountValue -= uint64(charge)
-	return "yes"
+	AccountValue  uint64          `gorm:"not null"`
+	TradeQueue    []Trade         `gorm:"foreignKey:UserID"`
 }
