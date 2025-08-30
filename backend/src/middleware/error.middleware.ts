@@ -1,6 +1,6 @@
-import ExpressError from "@/lib/exceptions/express.exception";
-import GameException from "@/lib/exceptions/game.exception";
-import type HttpException from "@/lib/exceptions/http.exception";
+import ExpressError from "~/lib/exceptions/express.exception";
+import GameException from "~/lib/exceptions/game.exception";
+import type HttpException from "~/lib/exceptions/http.exception";
 import { Request, Response } from "express";
 
 export default function errorMiddleware(

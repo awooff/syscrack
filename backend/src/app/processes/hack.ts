@@ -1,7 +1,7 @@
-import { Process, ProcessData } from "@/lib/types/process.type";
-import { Computer } from "../computer";
-import settings from "../../settings";
-import GameException from "@/lib/exceptions/game.exception";
+import { Process, ProcessData } from "~/lib/types/process.type";
+import { Computer } from "~/app/computer";
+import settings from "~/settings";
+import GameException from "~/lib/exceptions/game.exception";
 
 const hack = {
   settings: {

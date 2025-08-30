@@ -1,0 +1,12 @@
+{
+  "name": "syscrack",
+  "version": "1.0.0",
+  "description": "Virtual hacking simulator",
+  "scripts": {
+    "build:manual": "cd manual/; ENABLE_PDF_EXPORT=1 uv run mkdocs build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.13.1"
+}

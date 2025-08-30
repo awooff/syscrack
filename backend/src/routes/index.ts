@@ -1,6 +1,6 @@
-import { type Route } from "../lib/types/route.type";
-import { routes } from "../index";
-import { Groups } from "@/db/client";
+import { type Route } from "~/lib/types/route.type";
+import { routes } from "~/index";
+import { Groups } from "~/db/client";
 
 const index = {
   settings: {

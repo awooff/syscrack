@@ -1,6 +1,6 @@
-import { SoftwareAction } from "@/lib/types/software.type";
-import { removeFromObject } from "@/lib/helpers";
-import GameException from "@/lib/exceptions/game.exception";
+import { SoftwareAction } from "~/lib/types/software.type";
+import { removeFromObject } from "~/lib/helpers";
+import GameException from "~/lib/exceptions/game.exception";
 
 const defaultSoftware = {
   preDownload: async (software, computer, executor) => {
@@ -14,7 +14,7 @@ const defaultSoftware = {
     // if the executor is full do not download
     if (
       size + software.software.size >
-        executor.getCombinedHardwareStrength("HDD")
+      executor.getCombinedHardwareStrength("HDD")
     ) {
       return false;
     }
@@ -46,7 +46,7 @@ const defaultSoftware = {
     // if the computer is full do not download
     if (
       size + software.software.size >
-        computer.getCombinedHardwareStrength("HDD")
+      computer.getCombinedHardwareStrength("HDD")
     ) {
       return false;
     }
@@ -164,7 +164,7 @@ const defaultSoftware = {
     // if the computer RAM is full do not download
     if (
       size + (software?.software?.size || 0) >
-        executor.getCombinedHardwareStrength("RAM")
+      executor.getCombinedHardwareStrength("RAM")
     ) {
       return false;
     }

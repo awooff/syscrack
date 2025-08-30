@@ -1,4 +1,4 @@
-import { Computer, Groups } from "@/db/client";
+import { Computer, Groups } from "~/db/client";
 
 // extend the session data object with our stuff
 declare module "express-session" {

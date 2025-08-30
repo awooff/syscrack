@@ -1,5 +1,5 @@
-import { Memory, User } from "@/db/client";
-import { server } from "../index";
+import { Memory, User } from "~/db/client";
+import { server } from "~/index";
 import { Computer } from "./computer";
 
 export class AccountBook {

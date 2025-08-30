@@ -1,6 +1,6 @@
-import { Computer } from "@/app/computer";
+import { Computer } from "~/app/computer";
 import * as zod from "zod";
-import { HardwareTypes } from "@/db/client";
+import { HardwareTypes } from "~/db/client";
 
 export interface ProcessData {
   custom: Record<string, any>;

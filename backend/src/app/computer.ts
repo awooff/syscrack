@@ -1,14 +1,9 @@
-import {
-  HardwareTypes as HardwareType,
-  Logs,
-  Memory,
-  Prisma,
-} from "@/db/client";
+import { HardwareTypes as HardwareType, Logs, Prisma } from "~/db/client";
 import { server } from "../index";
 import { Software } from "./software";
 import { ComputerProcess } from "./process";
 import { AddressBook } from "./addressbook";
-import { removeFromObject } from "@/lib/helpers";
+import { removeFromObject } from "~/lib/helpers";
 
 export interface ComputerData {
   title?: string;
@@ -183,14 +178,14 @@ export class Computer {
     await server.prisma.logs.deleteMany({
       where: (indexes as Logs)?.id
         ? {
-          id: (indexes as Logs)?.id,
-        }
+            id: (indexes as Logs)?.id,
+          }
         : (indexes as any).reduce((prev: Logs, current: Logs) => {
-          return {
-            id: current.id,
-            AND: prev,
-          };
-        }),
+            return {
+              id: current.id,
+              AND: prev,
+            };
+          }),
     });
   }
 
@@ -251,7 +246,8 @@ export class Computer {
       };
     }>,
   ) {
-    this.computer = data ||
+    this.computer =
+      data ||
       (await server.prisma.computer.findFirstOrThrow({
         where: {
           id: this.computerId,
@@ -309,9 +305,8 @@ export class Computer {
     software: Software | string,
     installed: boolean = false,
   ) {
-    software = typeof software === "string"
-      ? this.getSoftware(software)
-      : software;
+    software =
+      typeof software === "string" ? this.getSoftware(software) : software;
 
     if (!software.software) throw new Error("software class is not loaded");
 

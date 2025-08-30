@@ -1,5 +1,13 @@
-# pnpm-workspace.yaml
 packages:
   - dev
   - backend
   - frontend
+
+onlyBuiltDependencies:
+  - '@prisma/client'
+  - '@prisma/engines'
+  - '@swc/core'
+  - bcrypt
+  - core-js
+  - esbuild
+  - prisma

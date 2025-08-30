@@ -1,9 +1,9 @@
-import { Route } from "../../lib/types/route.type";
-import { Groups } from "@/db/client";
-import { Computer, findComputer, getComputer } from "@/app/computer";
-import { connectionSchema } from "@/lib/schemas/connection.schema";
-import { isConnectedToMachine } from "@/lib/helpers";
-import { paginationSchema } from "@/lib/schemas/pagination.schema";
+import { Route } from "~/lib/types/route.type";
+import { Groups } from "~/db/client";
+import { Computer, findComputer, getComputer } from "~/app/computer";
+import { connectionSchema } from "~/lib/schemas/connection.schema";
+import { isConnectedToMachine } from "~/lib/helpers";
+import { paginationSchema } from "~/lib/schemas/pagination.schema";
 
 const fetch = {
   settings: {

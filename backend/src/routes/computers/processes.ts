@@ -1,9 +1,9 @@
-import { Route } from "../../lib/types/route.type";
-import { Groups, Prisma } from "@/db/client";
-import { getComputer } from "@/app/computer";
-import { computerIdSchema } from "@/lib/schemas/computer.schema";
-import { paginationSchema } from "@/lib/schemas/pagination.schema";
-import { server } from "../../index";
+import { Route } from "~/lib/types/route.type";
+import { Groups, Prisma } from "~/db/client";
+import { getComputer } from "~/app/computer";
+import { computerIdSchema } from "~/lib/schemas/computer.schema";
+import { paginationSchema } from "~/lib/schemas/pagination.schema";
+import { server } from "~/index";
 
 const processes = {
   settings: {
@@ -35,7 +35,7 @@ const processes = {
     if (
       !req.session.connections ||
       req.session.connections.filter((that) => that.id === computer.computerId)
-          .length === 0
+        .length === 0
     ) {
       return error("not connected to this computer");
     }

@@ -1,6 +1,6 @@
-import { SoftwareAction } from "@/lib/types/software.type";
+import { SoftwareAction } from "~/lib/types/software.type";
 import defaultSoftware from "./generic";
-import { AddressBook } from "../addressbook";
+import { AddressBook } from "~/app/addressbook";
 
 const spammer = {
   settings: {

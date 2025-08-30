@@ -1,12 +1,12 @@
-import { SoftwareAction } from "@/lib/types/software.type";
-import { deposit, getBankAccount } from "../finance";
-import { ProcessData } from "@/lib/types/process.type";
-import GameException from "@/lib/exceptions/game.exception";
-import { AddressBook } from "../addressbook";
-import { getComputer } from "../computer";
-import { AddressBook as Table, Software } from "@/db/client";
-import settings from "../../settings";
-import { server } from "../../index";
+import { SoftwareAction } from "~/lib/types/software.type";
+import { deposit, getBankAccount } from "~/app/finance";
+import { ProcessData } from "~/lib/types/process.type";
+import GameException from "~/lib/exceptions/game.exception";
+import { AddressBook } from "~/app/addressbook";
+import { getComputer } from "~/app/computer";
+import { AddressBook as Table, Software } from "~/db/client";
+import settings from "~/settings";
+import { server } from "~/index";
 
 export type CollectorData = {
   custom: {
@@ -66,7 +66,8 @@ const collector = {
     viruses.forEach((res) => {
       let virus = res.virus;
       if (!virus) return;
-      let total = software.level *
+      let total =
+        software.level *
         (virus.level *
           (0.1 * (Date.now() - new Date(virus.executed).getTime())));
 

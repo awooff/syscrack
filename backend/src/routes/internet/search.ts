@@ -1,8 +1,8 @@
-import { Route } from "../../lib/types/route.type";
-import { server } from "../../index";
-import { Groups } from "@/db/client";
-import { homepageSchema } from "@/lib/schemas/homepage.schema";
-import { paginationSchema } from "@/lib/schemas/pagination.schema";
+import { Route } from "~/lib/types/route.type";
+import { server } from "~/index";
+import { Groups } from "~/db/client";
+import { homepageSchema } from "~/lib/schemas/homepage.schema";
+import { paginationSchema } from "~/lib/schemas/pagination.schema";
 
 const logout = {
   settings: {
@@ -48,23 +48,24 @@ const logout = {
       skip: page * 32,
     });
 
-    let count = dns.length !== 0
-      ? await server.prisma.dNS.count({
-        where: {
-          OR: [
-            {
-              tags: { contains: domain },
+    let count =
+      dns.length !== 0
+        ? await server.prisma.dNS.count({
+            where: {
+              OR: [
+                {
+                  tags: { contains: domain },
+                },
+                {
+                  website: { contains: domain },
+                },
+                {
+                  description: { contains: domain },
+                },
+              ],
             },
-            {
-              website: { contains: domain },
-            },
-            {
-              description: { contains: domain },
-            },
-          ],
-        },
-      })
-      : 0;
+          })
+        : 0;
 
     return res.send({
       results: dns,

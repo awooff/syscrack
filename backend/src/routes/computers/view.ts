@@ -1,8 +1,7 @@
-import { Route } from "../../lib/types/route.type";
-import { server } from "../../index";
-import { Groups, Prisma } from "@/db/client";
-import { getComputer } from "@/app/computer";
-import { computerIdSchema } from "@/lib/schemas/computer.schema";
+import { Route } from "~/lib/types/route.type";
+import { Groups, Prisma } from "~/db/client";
+import { getComputer } from "~/app/computer";
+import { computerIdSchema } from "~/lib/schemas/computer.schema";
 
 const connect = {
   settings: {
@@ -28,7 +27,7 @@ const connect = {
     if (
       !req.session.connections ||
       req.session.connections.filter((that) => that.id === computer.computerId)
-          .length === 0
+        .length === 0
     ) {
       return error("not connected to this computer");
     }

@@ -1,4 +1,4 @@
-import { Groups } from "@/db/client";
+import { Groups } from "~/db/client";
 import type { RequestHandler } from "express";
 
 export interface Route {

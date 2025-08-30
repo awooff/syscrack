@@ -1,4 +1,4 @@
-import { SoftwareAction } from "@/lib/types/software.type";
+import { SoftwareAction } from "~/lib/types/software.type";
 
 const ftpr = {
   settings: {

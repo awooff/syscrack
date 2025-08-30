@@ -1,7 +1,7 @@
-import { Route } from "../../lib/types/route.type";
-import { server } from "../../index";
-import { Groups, User } from "@/db/client";
-import { removeFromObject } from "@/lib/helpers";
+import { Route } from "~/lib/types/route.type";
+import { server } from "~/index";
+import { Groups, User } from "~/db/client";
+import { removeFromObject } from "~/lib/helpers";
 
 const user = {
   settings: {

@@ -1,8 +1,8 @@
-import { Route } from "../../lib/types/route.type";
-import { Groups, Prisma } from "@/db/client";
-import { getComputer } from "@/app/computer";
-import { computerIdSchema } from "@/lib/schemas/computer.schema";
-import { removeFromObject } from "@/lib/helpers";
+import { Route } from "~/lib/types/route.type";
+import { Groups, Prisma } from "~/db/client";
+import { getComputer } from "~/app/computer";
+import { computerIdSchema } from "~/lib/schemas/computer.schema";
+import { removeFromObject } from "~/lib/helpers";
 
 const connect = {
   settings: {
@@ -29,8 +29,8 @@ const connect = {
     if (
       req.session?.connections &&
       req.session?.connections?.filter(
-          (that) => that.id === computer.computerId,
-        ).length !== 0
+        (that) => that.id === computer.computerId,
+      ).length !== 0
     ) {
       return error("already connected to this computer");
     }

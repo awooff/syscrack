@@ -1,8 +1,8 @@
-import { Route } from "../../lib/types/route.type";
-import { Groups, Logs, Prisma } from "@/db/client";
-import { Computer, findComputer, getComputer } from "@/app/computer";
-import { isConnectedToMachine, removeFromObject } from "@/lib/helpers";
-import { connectionSchema } from "@/lib/schemas/connection.schema";
+import { Route } from "~/lib/types/route.type";
+import { Groups, Logs, Prisma } from "~/db/client";
+import { Computer, findComputer, getComputer } from "~/app/computer";
+import { isConnectedToMachine, removeFromObject } from "~/lib/helpers";
+import { connectionSchema } from "~/lib/schemas/connection.schema";
 
 const fetch = {
   settings: {

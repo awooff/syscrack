@@ -1,12 +1,8 @@
-import {
-  Process,
-  ProcessData,
-  ProcessSettings,
-} from "@/lib/types/process.type";
-import { SoftwareAction } from "@/lib/types/software.type";
-import { Computer } from "../computer";
-import settings from "../../settings";
-import GameException from "@/lib/exceptions/game.exception";
+import { Process, ProcessData } from "~/lib/types/process.type";
+import { SoftwareAction } from "~/lib/types/software.type";
+import { Computer } from "~/app/computer";
+import settings from "~/settings";
+import GameException from "~/lib/exceptions/game.exception";
 
 export type ExecuteData = {
   custom: {
