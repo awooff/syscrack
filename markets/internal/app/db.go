@@ -114,13 +114,13 @@ func seedInitialData(db *gorm.DB) {
 	if userCount == 0 {
 		users := []User{
 			{
-				Username:     "admin",
+				Name:     "admin",
 				Email:        "admin@example.com",
 				AccountValue: 1000000,
 				IsActive:     true,
 			},
 			{
-				Username:     "demo_user",
+				Name:     "demo_user",
 				Email:        "demo@example.com",
 				AccountValue: 50000,
 				IsActive:     true,
@@ -129,7 +129,7 @@ func seedInitialData(db *gorm.DB) {
 
 		for _, user := range users {
 			if err := db.Create(&user).Error; err != nil {
-				fmt.Printf("Warning: Failed to seed user %s: %v\n", user.Username, err)
+				fmt.Printf("Warning: Failed to seed user %s: %v\n", user.Name, err)
 			}
 		}
 	}
