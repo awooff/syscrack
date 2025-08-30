@@ -1,7 +1,10 @@
 package app
 
 import (
+	"errors"
 	"time"
+
+	"gorm.io/gorm"
 )
 
 type Portfolio struct {
@@ -36,4 +39,41 @@ type PortfolioHoldingDB struct {
 
 func (PortfolioHoldingDB) TableName() string {
 	return "portfolio_holdings"
+}
+
+func GetPortfoliosByUser(userID ID) ([]Portfolio, error) {
+	var portfolios []Portfolio
+	if err := DB.Where("user_id = ?", userID).Find(&portfolios).Error; err != nil {
+		return nil, err
+	}
+	return portfolios, nil
+}
+
+func GetPortfolioByID(id ID) (*Portfolio, error) {
+	var portfolio Portfolio
+	if err := DB.First(&portfolio, id).Error; err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			return nil, err
+		}
+		return nil, err
+	}
+	return &portfolio, nil
+}
+
+func CreatePortfolio(p *Portfolio) (*Portfolio, error) {
+	if err := DB.Create(p).Error; err != nil {
+		return nil, err
+	}
+	return p, nil
+}
+
+func UpdatePortfolio(p *Portfolio) (*Portfolio, error) {
+	if err := DB.Save(p).Error; err != nil {
+		return nil, err
+	}
+	return p, nil
+}
+
+func DeletePortfolio(id ID) error {
+	return DB.Delete(&Portfolio{}, id).Error
 }

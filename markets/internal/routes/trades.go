@@ -6,7 +6,6 @@ import (
 )
 
 func TradeRoutes(r chi.Router) {
-	r.Post("/buy", handlers.PlaceBuyTradeHandler)     // POST /api/trades/buy
-	r.Post("/sell", handlers.PlaceSellTradeHandler)   // POST /api/trades/sell
+	r.Post("/", handlers.CreateTradeHandler)          // POST /api/trades
 	r.Get("/{tradeID}", handlers.GetTradeByIDHandler) // GET /api/trades/{tradeID}
 }

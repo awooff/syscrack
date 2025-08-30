@@ -3,57 +3,79 @@ package middleware
 import (
 	"context"
 	"encoding/json"
+	"errors"
 	"net/http"
 	"os"
+	"time"
 )
 
-type SessionValidationResponse struct {
-	Valid  bool `json:"valid"`
-	UserID uint `json:"user_id"`
+type AuthUser struct {
+	ID      uint64 `json:"id"`
+	Name    string `json:"name"`
+	Email   string `json:"email"`
+	Group   string `json:"group"`
+	Created string `json:"created"`
 }
 
-var host string = os.Getenv("HOST")
-var port string = os.Getenv("PORT")
+type AuthResponse struct {
+	User    AuthUser    `json:"user"`
+	Session interface{} `json:"session"`
+}
 
-func SessionMiddleware(apiURL string, next http.Handler) http.Handler {
-	if host == "" {
-		host = "http://localhost"
-	}
+type ctxKey string
 
-	apiURL = host + port
+const userCtxKey ctxKey = "authUser"
 
+func AuthMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		// TODO: we need to actually send a cookie to the server and verify it
-		// server-side, this needs to be implemented in the JS side!
-		// Otherwise, doing this will be a pain going forward!
-		cookie, err := r.Cookie("session_token")
+		cookie, err := r.Cookie("connect.sid")
 		if err != nil {
-			http.Error(w, "Unauthorized: No session token provided", http.StatusUnauthorized)
+			http.Error(w, "unauthorized: missing session cookie", http.StatusUnauthorized)
 			return
 		}
 
-		resp, err := http.Get(apiURL + "?token=" + cookie.Value)
-		if err != nil || resp.StatusCode != http.StatusOK {
-			http.Error(w, "Unauthorized: Invalid session token", http.StatusUnauthorized)
+		baseURL := os.Getenv("AUTH_API_URL")
+		if baseURL == "" {
+			http.Error(w, "server misconfigured: AUTH_API_URL not set", http.StatusInternalServerError)
+			return
+		}
+
+		client := &http.Client{Timeout: 5 * time.Second}
+		req, _ := http.NewRequest("GET", baseURL+"/auth/valid", nil)
+		req.Header.Set("Cookie", cookie.Name+"="+cookie.Value)
+
+		resp, err := client.Do(req)
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusServiceUnavailable)
 			return
 		}
 		defer resp.Body.Close()
 
-		var validationResponse SessionValidationResponse
-		if err := json.NewDecoder(resp.Body).Decode(&validationResponse); err != nil {
-			http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		if resp.StatusCode != http.StatusOK {
+			http.Error(w, "unauthorized", http.StatusUnauthorized)
 			return
 		}
 
-		if !validationResponse.Valid {
-			http.Error(w, "Unauthorized: Invalid session token", http.StatusUnauthorized)
+		var auth AuthResponse
+		if err := json.NewDecoder(resp.Body).Decode(&auth); err != nil {
+			http.Error(w, "failed to parse auth response", http.StatusUnauthorized)
 			return
 		}
 
-		ctx := r.Context()
-		ctx = context.WithValue(ctx, "userID", validationResponse.UserID)
-		r = r.WithContext(ctx)
+		if auth.User.ID == 0 {
+			http.Error(w, "unauthorized: no user", http.StatusUnauthorized)
+			return
+		}
 
-		next.ServeHTTP(w, r)
+		ctx := context.WithValue(r.Context(), userCtxKey, auth.User)
+		next.ServeHTTP(w, r.WithContext(ctx))
 	})
+}
+
+func FromContext(ctx context.Context) (AuthUser, error) {
+	user, ok := ctx.Value(userCtxKey).(AuthUser)
+	if !ok {
+		return AuthUser{}, errors.New("no user in context")
+	}
+	return user, nil
 }
