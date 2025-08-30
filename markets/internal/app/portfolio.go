@@ -1,41 +1,39 @@
 package app
 
-import "errors"
+import (
+	"time"
+)
 
 type Portfolio struct {
-	Id            ID
-	Owner         User
-	Value         int64
-	OngoingTrades []Trade
-	Funds         []Fund
-	Models        []Model
+	ID         ID        `gorm:"primaryKey;autoIncrement"`
+	UserID     ID        `gorm:"not null;index"`
+	Name       string    `gorm:"not null;size:255"`
+	TotalValue uint64    `gorm:"not null;default:0"`
+	IsActive   bool      `gorm:"not null;default:true"`
+	CreatedAt  time.Time `gorm:"autoCreateTime"`
+	UpdatedAt  time.Time `gorm:"autoUpdateTime"`
+
+	User     User                 `gorm:"foreignKey:UserID"`
+	Holdings []PortfolioHoldingDB `gorm:"foreignKey:PortfolioID"`
 }
 
-func (p Portfolio) CreateNewPortfolio(pf Portfolio) (*Portfolio, error) {
-	if pf.Id == 0 {
-		return nil, errors.New("Can't create a portfolio with ID 0!")
-	}
-
-	if pf.Owner.ID == 0 {
-		return nil, errors.New("Owner ID of the portfolio cannot be 0!")
-	}
-
-	// more disgusting hardcoded values
-	return &Portfolio{
-			Id:            3884444,
-			Owner:         User{},
-			Value:         120_000_000,
-			OngoingTrades: []Trade{},
-			Funds:         []Fund{},
-			Models:        []Model{},
-		},
-		nil
+func (Portfolio) TableName() string {
+	return "portfolios"
 }
 
-func (p Portfolio) DeletePortfolio(pf []*Portfolio) error {
-	for i := range pf {
-		pf[i] = nil
-	}
+type PortfolioHoldingDB struct {
+	ID           ID        `gorm:"primaryKey;autoIncrement"`
+	PortfolioID  ID        `gorm:"not null;index"`
+	MarketID     ID        `gorm:"not null;index"`
+	Quantity     uint64    `gorm:"not null"`
+	AveragePrice uint64    `gorm:"not null"`
+	CreatedAt    time.Time `gorm:"autoCreateTime"`
+	UpdatedAt    time.Time `gorm:"autoUpdateTime"`
 
-	return nil
+	Portfolio Portfolio `gorm:"foreignKey:PortfolioID"`
+	Market    Market    `gorm:"foreignKey:MarketID"`
+}
+
+func (PortfolioHoldingDB) TableName() string {
+	return "portfolio_holdings"
 }

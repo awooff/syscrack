@@ -27,7 +27,7 @@ func (d DIM) ShareWith(hedgeFund HedgeFund) {
 
 func (d DIM) Edit(user User) error {
 	for _, manager := range d.InvestmentManagers {
-		if manager.Id == user.Id {
+		if manager.ID == user.ID {
 			log.Printf("DIM %s edited by investment manager %s\n", d.Name, user.Name)
 			return nil
 		}

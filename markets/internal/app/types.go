@@ -1,252 +1,102 @@
 package app
 
 import (
-	"time"
+	"errors"
+	"fmt"
 )
 
-// DNS model
-type DNS struct {
-	ID          uint   `gorm:"primaryKey;autoIncrement"`
-	UserID      uint   `gorm:"not null"`
-	ComputerID  string `gorm:"not null"`
-	GameID      string `gorm:"not null"`
-	Website     string
-	Tags        string
-	Description string    `gorm:"default:'No description available'"`
-	Updated     time.Time `gorm:"default:CURRENT_TIMESTAMP"`
-	Created     time.Time `gorm:"default:CURRENT_TIMESTAMP"`
-	Computer    Computer  `gorm:"foreignKey:ComputerID"`
-	Game        Game      `gorm:"foreignKey:GameID"`
-	User        User      `gorm:"foreignKey:UserID"`
-}
-
-// AccountBook model
-type AccountBook struct {
-	ID         uint     `gorm:"primaryKey;autoIncrement"`
-	UserID     uint     `gorm:"not null"`
-	ComputerID string   `gorm:"not null"`
-	MemoryID   string   `gorm:"not null"`
-	Data       string   `gorm:"default:'{}'"`
-	GameID     string   `gorm:"not null"`
-	Computer   Computer `gorm:"foreignKey:ComputerID"`
-	Game       Game     `gorm:"foreignKey:GameID"`
-	Memory     Memory   `gorm:"foreignKey:MemoryID"`
-	User       User     `gorm:"foreignKey:UserID"`
-}
-
-// Memory model
-type Memory struct {
-	ID          string `gorm:"primaryKey;type:uuid;default:uuid_generate_v4()"`
-	ComputerID  string `gorm:"not null"`
-	GameID      string `gorm:"not null"`
-	UserID      uint   `gorm:"not null"`
-	Type        string
-	Key         string
-	Value       *float64
-	Data        string        `gorm:"default:'{}'"`
-	AccountBook []AccountBook `gorm:"foreignKey:MemoryID"`
-	Computer    Computer      `gorm:"foreignKey:ComputerID"`
-	Game        Game          `gorm:"foreignKey:GameID"`
-	User        User          `gorm:"foreignKey:UserID"`
-}
-
-// Game model
-type Game struct {
-	ID          string `gorm:"primaryKey;type:uuid;default:uuid_generate_v4()"`
-	Name        string
-	Started     time.Time `gorm:"default:CURRENT_TIMESTAMP"`
-	Ended       *time.Time
-	AccountBook []AccountBook `gorm:"foreignKey:GameID"`
-	AddressBook []AddressBook `gorm:"foreignKey:GameID"`
-	Computer    []Computer    `gorm:"foreignKey:GameID"`
-	DNS         []DNS         `gorm:"foreignKey:GameID"`
-	Hardware    []Hardware    `gorm:"foreignKey:GameID"`
-	Logs        []Logs        `gorm:"foreignKey:GameID"`
-	Memory      []Memory      `gorm:"foreignKey:GameID"`
-	Process     []Process     `gorm:"foreignKey:GameID"`
-	Profile     []Profile     `gorm:"foreignKey:GameID"`
-	Quests      []Quests      `gorm:"foreignKey:GameID"`
-	Software    []Software    `gorm:"foreignKey:GameID"`
-	UserQuests  []UserQuests  `gorm:"foreignKey:GameID"`
-}
-
-// Profile model
-type Profile struct {
-	ID     uint   `gorm:"primaryKey;autoIncrement"`
-	UserID uint   `gorm:"not null"`
-	GameID string `gorm:"not null"`
-	Data   string `gorm:"default:'{}'"`
-	Game   Game   `gorm:"foreignKey:GameID"`
-	User   User   `gorm:"foreignKey:UserID"`
-}
-
-// Quests model
-type Quests struct {
-	ID         string `gorm:"primaryKey;type:uuid;default:uuid_generate_v4()"`
-	GameID     string `gorm:"not null"`
-	Type       string
-	Title      string
-	Reward     *string
-	Open       bool
-	Game       Game         `gorm:"foreignKey:GameID"`
-	UserQuests []UserQuests `gorm:"foreignKey:QuestID"`
-}
-
-// Session model
-type Session struct {
-	ID         string `gorm:"primaryKey;type:uuid"`
-	UserID     uint   `gorm:"not null"`
-	Token      string
-	LastAction time.Time
-	Created    time.Time `gorm:"default:CURRENT_TIMESTAMP"`
-	Expires    time.Time
-	User       User `gorm:"foreignKey:UserID"`
-}
-
-// Hardware model
-type Hardware struct {
-	ID         uint          `gorm:"primaryKey;autoIncrement"`
-	ComputerID string        `gorm:"not null"`
-	GameID     string        `gorm:"not null"`
-	Type       HardwareTypes `gorm:"not null"`
-	Strength   float64
-	Computer   Computer `gorm:"foreignKey:ComputerID"`
-	Game       Game     `gorm:"foreignKey:GameID"`
-}
-
-// AddressBook model
-type AddressBook struct {
-	ID         uint        `gorm:"primaryKey;autoIncrement"`
-	UserID     uint        `gorm:"not null"`
-	Access     AccessLevel `gorm:"not null"`
-	ComputerID string      `gorm:"not null"`
-	IP         string
-	Data       string   `gorm:"default:'{}'"`
-	GameID     string   `gorm:"not null"`
-	Computer   Computer `gorm:"foreignKey:ComputerID"`
-	Game       Game     `gorm:"foreignKey:GameID"`
-	User       User     `gorm:"foreignKey:UserID"`
-}
-
-// UserQuests model
-type UserQuests struct {
-	ID        string `gorm:"primaryKey;type:uuid;default:uuid_generate_v4()"`
-	QuestsID  string `gorm:"not null"`
-	UserID    uint   `gorm:"not null"`
-	GameID    string `gorm:"not null"`
-	Completed bool
-	Created   time.Time `gorm:"default:CURRENT_TIMESTAMP"`
-	Updated   time.Time `gorm:"default:CURRENT_TIMESTAMP;autoUpdateTime"`
-	Game      Game      `gorm:"foreignKey:GameID"`
-	Quest     Quests    `gorm:"foreignKey:QuestsID"`
-	User      User      `gorm:"foreignKey:UserID"`
-}
-
-// Computer model
-type Computer struct {
-	ID          string `gorm:"primaryKey;type:uuid;default:uuid_generate_v4()"`
-	UserID      uint   `gorm:"not null"`
-	Type        string `gorm:"default:'npc'"`
-	GameID      string `gorm:"not null"`
-	IP          string
-	Data        string        `gorm:"default:'{}'"`
-	Created     time.Time     `gorm:"default:CURRENT_TIMESTAMP"`
-	Updated     time.Time     `gorm:"default:CURRENT_TIMESTAMP;autoUpdateTime"`
-	AccountBook []AccountBook `gorm:"foreignKey:ComputerID"`
-	AddressBook []AddressBook `gorm:"foreignKey:ComputerID"`
-	Game        Game          `gorm:"foreignKey:GameID"`
-	User        User          `gorm:"foreignKey:UserID"`
-	DNS         []DNS         `gorm:"foreignKey:ComputerID"`
-	Hardware    []Hardware    `gorm:"foreignKey:ComputerID"`
-	Logs        []Logs        `gorm:"foreignKey:ComputerID"`
-	Memory      []Memory      `gorm:"foreignKey:ComputerID"`
-	Process     []Process     `gorm:"foreignKey:ComputerID"`
-	Software    []Software    `gorm:"foreignKey:ComputerID"`
-}
-
-// Software model
-type Software struct {
-	ID         string `gorm:"primaryKey;type:uuid;default:uuid_generate_v4()"`
-	UserID     uint   `gorm:"not null"`
-	ComputerID string `gorm:"not null"`
-	GameID     string `gorm:"not null"`
-	Type       string
-	Level      float64
-	Size       float64
-	Opacity    float64
-	Installed  bool
-	Executed   time.Time `gorm:"default:CURRENT_TIMESTAMP"`
-	Created    time.Time `gorm:"default:CURRENT_TIMESTAMP"`
-	Updated    time.Time `gorm:"default:CURRENT_TIMESTAMP;autoUpdateTime"`
-	Data       string    `gorm:"default:'{}'"`
-	Computer   Computer  `gorm:"foreignKey:ComputerID"`
-	Game       Game      `gorm:"foreignKey:GameID"`
-	User       User      `gorm:"foreignKey:UserID"`
-}
-
-// Process model
-type Process struct {
-	ID         string `gorm:"primaryKey;type:uuid;default:uuid_generate_v4()"`
-	UserID     uint   `gorm:"not null"`
-	ComputerID string `gorm:"not null"`
-	IP         *string
-	GameID     string `gorm:"not null"`
-	Type       string
-	Started    time.Time `gorm:"default:CURRENT_TIMESTAMP"`
-	Completion time.Time
-	Data       string
-	Computer   Computer `gorm:"foreignKey:ComputerID"`
-	Game       Game     `gorm:"foreignKey:GameID"`
-	User       User     `gorm:"foreignKey:UserID"`
-}
-
-// Notifications model
-type Notifications struct {
-	ID      uint `gorm:"primaryKey;autoIncrement"`
-	UserID  uint `gorm:"not null"`
-	Type    string
-	Content string
-	Read    bool `gorm:"default:false"`
-	User    User `gorm:"foreignKey:UserID"`
-}
-
-// Logs model
-type Logs struct {
-	ID         uint   `gorm:"primaryKey;autoIncrement"`
-	UserID     uint   `gorm:"not null"`
-	ComputerID string `gorm:"not null"`
-	SenderID   string
-	SenderIP   string
-	GameID     string `gorm:"not null"`
-	Message    string
-	Created    time.Time `gorm:"default:CURRENT_TIMESTAMP"`
-	Computer   Computer  `gorm:"foreignKey:ComputerID"`
-	Game       Game      `gorm:"foreignKey:GameID"`
-	User       User      `gorm:"foreignKey:UserID"`
-}
-
-// Define Enums
-type Groups string
+type ID uint32
 
 const (
-	Guest Groups = "Guest"
-	Admin Groups = "Admin"
+	InstructionTypeTransfer InstructionNamedType = "transfer"
+	InstructionTypeDeposit  InstructionNamedType = "deposit"
+	InstructionTypeWithdraw InstructionNamedType = "withdraw"
+	InstructionTypeRefund   InstructionNamedType = "refund"
 )
 
-type HardwareTypes string
+type Percentage struct {
+	value float64
+}
 
-const (
-	CPU      HardwareTypes = "CPU"
-	GPU      HardwareTypes = "GPU"
-	RAM      HardwareTypes = "RAM"
-	HDD      HardwareTypes = "HDD"
-	Upload   HardwareTypes = "Upload"
-	Download HardwareTypes = "Download"
-)
+func NewPercentage(value float64) Percentage {
+	if value < 0 {
+		return Percentage{value: 0}
+	}
+	if value > 100 {
+		return Percentage{value: 100}
+	}
+	return Percentage{value: value}
+}
 
-type AccessLevel string
+func NewPercentageFromDecimal(decimal float64) Percentage {
+	return NewPercentage(decimal * 100)
+}
 
-const (
-	GOD AccessLevel = "GOD"
-	FTP AccessLevel = "FTP"
-)
+func (p Percentage) Value() float64 {
+	return p.value
+}
+
+func (p Percentage) String() string {
+	return fmt.Sprintf("%.2f%%", p.value)
+}
+
+func (p Percentage) ToFloat() float64 {
+	return p.value / 100.0
+}
+
+func (p Percentage) ToDecimal() float64 {
+	return p.ToFloat()
+}
+
+func (p Percentage) Add(other Percentage) Percentage {
+	return NewPercentage(p.value + other.value)
+}
+
+func (p Percentage) Subtract(other Percentage) Percentage {
+	return NewPercentage(p.value - other.value)
+}
+
+func (p Percentage) Multiply(factor float64) Percentage {
+	return NewPercentage(p.value * factor)
+}
+
+func (p Percentage) IsZero() bool {
+	return p.value == 0
+}
+
+func (p Percentage) IsGreaterThan(other Percentage) bool {
+	return p.value > other.value
+}
+
+func (p Percentage) IsLessThan(other Percentage) bool {
+	return p.value < other.value
+}
+
+func (p Percentage) Equals(other Percentage) bool {
+	return p.value == other.value
+}
+
+func (p *Percentage) Scan(value interface{}) error {
+	if value == nil {
+		p.value = 0
+		return nil
+	}
+
+	switch v := value.(type) {
+	case float64:
+		p.value = v
+	case float32:
+		p.value = float64(v)
+	case int64:
+		p.value = float64(v)
+	case string:
+		var f float64
+		if _, err := fmt.Sscanf(v, "%f", &f); err != nil {
+			return err
+		}
+		p.value = f
+	default:
+		return errors.New("cannot scan into Percentage")
+	}
+	return nil
+}
