@@ -27,6 +27,7 @@ nav:
   - Getting Started: getting-started.md
   - Workspaces: workspaces.md
   - Development Guide: development.md
+  - The Market: market.md
 
 markdown_extensions:
   - lantana
