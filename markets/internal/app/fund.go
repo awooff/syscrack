@@ -2,66 +2,89 @@ package app
 
 import (
 	"errors"
-	"fmt"
-	"sync"
+	"time"
+
+	"gorm.io/gorm"
 )
 
-type ID uint32
-
 type Fund struct {
-	Id                      ID
-	FundManager             User
-	Name                    string
-	MinimumInvestmentAmount uint64
-	TotalFundCharge         Percentage
-	TotalFundCost           Percentage
-	Investors               []User
+	ID                      ID         `gorm:"primaryKey;autoIncrement"`
+	FundManagerID           ID         `gorm:"not null;index"`
+	Name                    string     `gorm:"not null;size:255"`
+	MinimumInvestmentAmount uint64     `gorm:"not null;default:0"`
+	TotalFundCharge         Percentage `gorm:"type:decimal(5,4);not null;default:0"`
+	TotalFundCost           Percentage `gorm:"type:decimal(5,4);not null;default:0"`
+	TotalAssets             uint64     `gorm:"not null;default:0"`
+	IsActive                bool       `gorm:"not null;default:true"`
+	MaxInvestors            int        `gorm:"not null;default:0"`
+	CreatedAt               time.Time  `gorm:"autoCreateTime"`
+	UpdatedAt               time.Time  `gorm:"autoUpdateTime"`
+
+	FundManager        User                  `gorm:"foreignKey:FundManagerID"`
+	Investors          []User                `gorm:"many2many:fund_investors;"`
+	PerformanceHistory []PerformanceRecordDB `gorm:"foreignKey:FundID"`
 }
 
-func (f Fund) CreateFund(opts Fund) (*Fund, error) {
-	if opts.Id == 0 {
-		return nil, errors.New("The ID of the fund cannot be 0!")
-	}
-
-	if opts.Name == "" {
-		return nil, errors.New("Name of the fund cannot be empty!")
-	}
-
-	return &opts, nil
+func (Fund) TableName() string {
+	return "funds"
 }
 
-func DeleteFund(funds []Fund, id ID) ([]Fund, error) {
-	for i, fund := range funds {
-		if fund.Id == id {
-			return append(funds[:i], funds[i+1:]...), nil
-		}
-	}
+type PerformanceRecordDB struct {
+	ID        ID         `gorm:"primaryKey;autoIncrement"`
+	FundID    ID         `gorm:"not null;index"`
+	Date      time.Time  `gorm:"not null;index"`
+	Value     uint64     `gorm:"not null"`
+	Return    Percentage `gorm:"type:decimal(8,4);not null;default:0"`
+	CreatedAt time.Time  `gorm:"autoCreateTime"`
 
-	return funds, errors.New("Fund not found")
+	Fund Fund `gorm:"foreignKey:FundID"`
 }
 
-func (f Fund) Invest(amount uint64, fund Fund) (*Fund, error) {
-
-	if amount < fund.MinimumInvestmentAmount {
-		return nil, errors.New("You cannot invest less than the minimum investment amount!")
-	}
-
-	return &fund, nil
+func (PerformanceRecordDB) TableName() string {
+	return "performance_records"
 }
 
-func (f *Fund) TakeCharges(wg *sync.WaitGroup, results chan<- string) {
-	defer wg.Done()
+type FundInvestorDB struct {
+	FundID         ID        `gorm:"primaryKey"`
+	UserID         ID        `gorm:"primaryKey"`
+	InvestmentDate time.Time `gorm:"not null;default:CURRENT_TIMESTAMP"`
+	InvestedAmount uint64    `gorm:"not null;default:0"`
 
-	var mu sync.Mutex
-	for i := range f.Investors {
-		wg.Add(1)
-		go func(inv *User) {
-			defer wg.Done() // Signal that this goroutine is done
-			charge := float64(inv.AccountValue) * f.TotalFundCharge.ToFloat()
-			mu.Lock()                          // Lock to prevent race conditions
-			inv.AccountValue -= uint64(charge) // Deduct the charge from the user's account value
-			results <- fmt.Sprintf("Charged %d: %.2f, New Account Value: %.2f", inv.Id, charge, float64(inv.AccountValue))
-			mu.Unlock() // Unlock after sending the result
-		}(&f.Investors[i]) // Pass the address of the current investor
-	}
+	Fund Fund `gorm:"foreignKey:FundID"`
+	User User `gorm:"foreignKey:UserID"`
 }
+
+func (FundInvestorDB) TableName() string {
+	return "fund_investors"
+}
+
+func GetActiveFunds() ([]Fund, error) {
+	var funds []Fund
+	result := DB.Where("is_active = ?", true).Find(&funds)
+	return funds, result.Error
+}
+
+func GetFundByID(id ID) (*Fund, error) {
+	var fund Fund
+	result := DB.First(&fund, id)
+	if errors.Is(result.Error, gorm.ErrRecordNotFound) {
+		return nil, errors.New("fund not found")
+	}
+	return &fund, result.Error
+}
+
+func CreateFund(fund *Fund) (*Fund, error) {
+	result := DB.Create(fund)
+	return fund, result.Error
+}
+
+func UpdateFund(fund *Fund) (*Fund, error) {
+	result := DB.Save(fund)
+	return fund, result.Error
+}
+
+func DeleteFund(id ID) error {
+	result := DB.Delete(&Fund{}, id)
+	return result.Error
+}
+

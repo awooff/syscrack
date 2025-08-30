@@ -1,38 +1,44 @@
 package app
 
 import (
-	"errors"
 	"time"
 )
 
-/**
- * This is how we're going to refactor the main database.
- * Anything changed here *must* and will be changed in the javascript API.
- * @param ID {uint} - primaryKey, autoincremented
- * @param Email {string} - unique, autoincremented
- */
 type User struct {
-	ID            uint   `gorm:"primaryKey;autoIncrement"`
-	Email         string `gorm:"unique"`
-	Name          string `gorm:"default:'User'"`
-	Password      string
-	Salt          string
-	LastAction    time.Time       `gorm:"default:CURRENT_TIMESTAMP"`
-	Created       time.Time       `gorm:"default:CURRENT_TIMESTAMP"`
-	RefreshToken  *string         `gorm:"default:null"`
-	Group         Groups          `gorm:"default:'User'"`
-	AccountBook   []AccountBook   `gorm:"foreignKey:UserID"`
-	AddressBook   []AddressBook   `gorm:"foreignKey:UserID"`
-	Computer      []Computer      `gorm:"foreignKey:UserID"`
-	DNS           []DNS           `gorm:"foreignKey:UserID"`
-	Logs          []Logs          `gorm:"foreignKey:UserID"`
-	Memory        []Memory        `gorm:"foreignKey:UserID"`
-	Notifications []Notifications `gorm:"foreignKey:UserID"`
-	Process       []Process       `gorm:"foreignKey:UserID"`
-	Profile       []Profile       `gorm:"foreignKey:UserID"`
-	Session       []Session       `gorm:"foreignKey:UserID"`
-	Software      []Software      `gorm:"foreignKey:UserID"`
-	UserQuests    []UserQuests    `gorm:"foreignKey:UserID"`
-	AccountValue  uint64          `gorm:"not null"`
-	TradeQueue    []Trade         `gorm:"foreignKey:UserID"`
+	ID           ID        `gorm:"primaryKey;autoIncrement"`
+	Username     string    `gorm:"uniqueIndex;not null;size:255"`
+	Email        string    `gorm:"uniqueIndex;not null;size:255"`
+	AccountValue uint64    `gorm:"not null;default:0"`
+	IsActive     bool      `gorm:"not null;default:true"`
+	CreatedAt    time.Time `gorm:"autoCreateTime"`
+	UpdatedAt    time.Time `gorm:"autoUpdateTime"`
+
+	ManagedFunds     []Fund          `gorm:"foreignKey:FundManagerID"`
+	InvestedFunds    []Fund          `gorm:"many2many:fund_investors;"`
+	SentPayments     []PaymentDB     `gorm:"foreignKey:UserSenderID"`
+	ReceivedPayments []PaymentDB     `gorm:"foreignKey:RecipientID"`
+	Transactions     []TransactionDB `gorm:"foreignKey:UserID"`
+	Portfolios       []Portfolio     `gorm:"foreignKey:UserID"`
+}
+
+func (User) TableName() string {
+	return "users"
+}
+
+type TransactionDB struct {
+	ID          ID        `gorm:"primaryKey;autoIncrement"`
+	UserID      ID        `gorm:"not null;index"`
+	FundID      *ID       `gorm:"index"`
+	Type        string    `gorm:"not null;size:50"`
+	Amount      uint64    `gorm:"not null"`
+	Description string    `gorm:"size:500"`
+	Status      string    `gorm:"not null;default:'completed';size:50"`
+	CreatedAt   time.Time `gorm:"autoCreateTime"`
+
+	User User  `gorm:"foreignKey:UserID"`
+	Fund *Fund `gorm:"foreignKey:FundID"`
+}
+
+func (TransactionDB) TableName() string {
+	return "transactions"
 }

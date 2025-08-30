@@ -26,17 +26,17 @@ func main() {
 	r.Mount("/api", routes.InitializeRoutes())
 
 	// start to intialise the kafka consumer
-	kafkaConsumer, err := InitialiseKafkaConsumerEntity()
-	if err != nil {
-		panic(err)
-	}
+	//kafkaConsumer, err := InitialiseKafkaConsumerEntity()
+	//if err != nil {
+	//	panic(err)
+	//}
 
-	err = RunKafkaConsumerEntity(kafkaConsumer)
-	if err != nil {
-		panic(err)
-	}
+	//err = RunKafkaConsumerEntity(kafkaConsumer)
+	//if err != nil {
+	//	panic(err)
+	//}
 
-	log.Println("Kafka consumer is up and running! let's go :)")
+	//log.Println("Kafka consumer is up and running! let's go :)")
 	log.Printf("Hey :) Listening onhttp://localhost%s", port)
 
 	http.ListenAndServe(port, r)

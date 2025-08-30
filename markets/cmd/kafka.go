@@ -26,6 +26,7 @@ func InitialiseKafkaConsumerEntity() (*kafka.Consumer, error) {
 		"group.id":          kafkaGroupID,
 		"auto.offset.reset": "earliest",
 	})
+
 	if err != nil {
 		return nil, errors.New("failed to initialise Kafka consumer")
 	}

@@ -1,252 +1,156 @@
 package app
 
 import (
+	"fmt"
+	"log"
+	"os"
 	"time"
+
+	"gorm.io/driver/postgres"
+	"gorm.io/gorm"
+	"gorm.io/gorm/logger"
 )
 
-// DNS model
-type DNS struct {
-	ID          uint   `gorm:"primaryKey;autoIncrement"`
-	UserID      uint   `gorm:"not null"`
-	ComputerID  string `gorm:"not null"`
-	GameID      string `gorm:"not null"`
-	Website     string
-	Tags        string
-	Description string    `gorm:"default:'No description available'"`
-	Updated     time.Time `gorm:"default:CURRENT_TIMESTAMP"`
-	Created     time.Time `gorm:"default:CURRENT_TIMESTAMP"`
-	Computer    Computer  `gorm:"foreignKey:ComputerID"`
-	Game        Game      `gorm:"foreignKey:GameID"`
-	User        User      `gorm:"foreignKey:UserID"`
+var DB *gorm.DB
+
+func InitialiseDbConnection() {
+	var err error
+
+	databaseURL := os.Getenv("DATABASE_URL")
+	if databaseURL == "" {
+		log.Fatal("DATABASE_URL environment variable is not set")
+	}
+
+	DB, err = gorm.Open(postgres.Open(databaseURL), &gorm.Config{
+		Logger: logger.Default.LogMode(logger.Info),
+	})
+	if err != nil {
+		log.Fatalf("Failed to connect to database: %v", err)
+	}
+
+	sqlDB, err := DB.DB()
+	if err != nil {
+		log.Fatalf("Failed to get database instance: %v", err)
+	}
+
+	if err := sqlDB.Ping(); err != nil {
+		log.Fatalf("Failed to ping database: %v", err)
+	}
+
+	log.Println("Database connection established successfully")
 }
 
-// AccountBook model
-type AccountBook struct {
-	ID         uint     `gorm:"primaryKey;autoIncrement"`
-	UserID     uint     `gorm:"not null"`
-	ComputerID string   `gorm:"not null"`
-	MemoryID   string   `gorm:"not null"`
-	Data       string   `gorm:"default:'{}'"`
-	GameID     string   `gorm:"not null"`
-	Computer   Computer `gorm:"foreignKey:ComputerID"`
-	Game       Game     `gorm:"foreignKey:GameID"`
-	Memory     Memory   `gorm:"foreignKey:MemoryID"`
-	User       User     `gorm:"foreignKey:UserID"`
+func GetDB() *gorm.DB {
+	if DB == nil {
+		log.Fatal("Database not initialized. Call InitialiseDbConnection() first")
+	}
+	return DB
 }
 
-// Memory model
-type Memory struct {
-	ID          string `gorm:"primaryKey;type:uuid;default:uuid_generate_v4()"`
-	ComputerID  string `gorm:"not null"`
-	GameID      string `gorm:"not null"`
-	UserID      uint   `gorm:"not null"`
-	Type        string
-	Key         string
-	Value       *float64
-	Data        string        `gorm:"default:'{}'"`
-	AccountBook []AccountBook `gorm:"foreignKey:MemoryID"`
-	Computer    Computer      `gorm:"foreignKey:ComputerID"`
-	Game        Game          `gorm:"foreignKey:GameID"`
-	User        User          `gorm:"foreignKey:UserID"`
+func CloseDB() {
+	if DB != nil {
+		sqlDB, err := DB.DB()
+		if err != nil {
+			log.Printf("Error getting database instance: %v", err)
+			return
+		}
+		if err := sqlDB.Close(); err != nil {
+			log.Printf("Error closing database: %v", err)
+		} else {
+			log.Println("Database connection closed")
+		}
+	}
 }
 
-// Game model
-type Game struct {
-	ID          string `gorm:"primaryKey;type:uuid;default:uuid_generate_v4()"`
-	Name        string
-	Started     time.Time `gorm:"default:CURRENT_TIMESTAMP"`
-	Ended       *time.Time
-	AccountBook []AccountBook `gorm:"foreignKey:GameID"`
-	AddressBook []AddressBook `gorm:"foreignKey:GameID"`
-	Computer    []Computer    `gorm:"foreignKey:GameID"`
-	DNS         []DNS         `gorm:"foreignKey:GameID"`
-	Hardware    []Hardware    `gorm:"foreignKey:GameID"`
-	Logs        []Logs        `gorm:"foreignKey:GameID"`
-	Memory      []Memory      `gorm:"foreignKey:GameID"`
-	Process     []Process     `gorm:"foreignKey:GameID"`
-	Profile     []Profile     `gorm:"foreignKey:GameID"`
-	Quests      []Quests      `gorm:"foreignKey:GameID"`
-	Software    []Software    `gorm:"foreignKey:GameID"`
-	UserQuests  []UserQuests  `gorm:"foreignKey:GameID"`
+func SetupDatabase() {
+	InitialiseDbConnection()
+
+	db := GetDB()
+
+	err := db.AutoMigrate(
+		&User{},
+		&Fund{},
+		&PerformanceRecordDB{},
+		&FundInvestorDB{},
+		&Payment{},
+		&Market{},
+		&TransactionDB{},
+		&Portfolio{},
+		&PortfolioHoldingDB{},
+		&Trade{},
+		&HedgeFund{},
+	)
+
+	if err != nil {
+		panic(fmt.Sprintf("Failed to migrate database: %v", err))
+	}
+
+	createIndexes(db)
+	seedInitialData(db)
 }
 
-// Profile model
-type Profile struct {
-	ID     uint   `gorm:"primaryKey;autoIncrement"`
-	UserID uint   `gorm:"not null"`
-	GameID string `gorm:"not null"`
-	Data   string `gorm:"default:'{}'"`
-	Game   Game   `gorm:"foreignKey:GameID"`
-	User   User   `gorm:"foreignKey:UserID"`
+func createIndexes(db *gorm.DB) {
+	indexes := []string{
+		"CREATE INDEX IF NOT EXISTS idx_payments_status_created ON payments(status, created_at)",
+		"CREATE INDEX IF NOT EXISTS idx_performance_fund_date ON performance_records(fund_id, date DESC)",
+		"CREATE INDEX IF NOT EXISTS idx_transactions_user_created ON transactions(user_id, created_at DESC)",
+		"CREATE INDEX IF NOT EXISTS idx_funds_active_assets ON funds(is_active, total_assets DESC)",
+		"CREATE INDEX IF NOT EXISTS idx_trades_user_created ON trades(user_id, created_at DESC)",
+		"CREATE INDEX IF NOT EXISTS idx_trades_market_executed ON trades(market_id, executed_at DESC)",
+		"CREATE INDEX IF NOT EXISTS idx_portfolio_holdings_portfolio ON portfolio_holdings(portfolio_id)",
+	}
+
+	for _, index := range indexes {
+		if err := db.Exec(index).Error; err != nil {
+			fmt.Printf("Warning: Failed to create index: %v\n", err)
+		}
+	}
 }
 
-// Quests model
-type Quests struct {
-	ID         string `gorm:"primaryKey;type:uuid;default:uuid_generate_v4()"`
-	GameID     string `gorm:"not null"`
-	Type       string
-	Title      string
-	Reward     *string
-	Open       bool
-	Game       Game         `gorm:"foreignKey:GameID"`
-	UserQuests []UserQuests `gorm:"foreignKey:QuestID"`
+func seedInitialData(db *gorm.DB) {
+	var userCount int64
+	db.Model(&User{}).Count(&userCount)
+
+	if userCount == 0 {
+		users := []User{
+			{
+				Username:     "admin",
+				Email:        "admin@example.com",
+				AccountValue: 1000000,
+				IsActive:     true,
+			},
+			{
+				Username:     "demo_user",
+				Email:        "demo@example.com",
+				AccountValue: 50000,
+				IsActive:     true,
+			},
+		}
+
+		for _, user := range users {
+			if err := db.Create(&user).Error; err != nil {
+				fmt.Printf("Warning: Failed to seed user %s: %v\n", user.Username, err)
+			}
+		}
+	}
+
+	var marketCount int64
+	db.Model(&Market{}).Count(&marketCount)
+
+	if marketCount == 0 {
+		markets := []Market{
+			{Name: "S&P 500", Symbol: "SPY", Price: 45000, IsActive: true, OpenTime: time.Now(), CloseTime: time.Now().Add(8 * time.Hour)},
+			{Name: "NASDAQ", Symbol: "QQQ", Price: 38000, IsActive: true, OpenTime: time.Now(), CloseTime: time.Now().Add(8 * time.Hour)},
+			{Name: "Bitcoin", Symbol: "BTC", Price: 4500000, IsActive: true, OpenTime: time.Now(), CloseTime: time.Now().Add(24 * time.Hour)},
+			{Name: "Apple Inc", Symbol: "AAPL", Price: 15000, IsActive: true, OpenTime: time.Now(), CloseTime: time.Now().Add(8 * time.Hour)},
+			{Name: "Tesla Inc", Symbol: "TSLA", Price: 25000, IsActive: true, OpenTime: time.Now(), CloseTime: time.Now().Add(8 * time.Hour)},
+		}
+
+		for _, market := range markets {
+			if err := db.Create(&market).Error; err != nil {
+				fmt.Printf("Warning: Failed to seed market %s: %v\n", market.Symbol, err)
+			}
+		}
+	}
 }
 
-// Session model
-type Session struct {
-	ID         string `gorm:"primaryKey;type:uuid"`
-	UserID     uint   `gorm:"not null"`
-	Token      string
-	LastAction time.Time
-	Created    time.Time `gorm:"default:CURRENT_TIMESTAMP"`
-	Expires    time.Time
-	User       User `gorm:"foreignKey:UserID"`
-}
-
-// Hardware model
-type Hardware struct {
-	ID         uint          `gorm:"primaryKey;autoIncrement"`
-	ComputerID string        `gorm:"not null"`
-	GameID     string        `gorm:"not null"`
-	Type       HardwareTypes `gorm:"not null"`
-	Strength   float64
-	Computer   Computer `gorm:"foreignKey:ComputerID"`
-	Game       Game     `gorm:"foreignKey:GameID"`
-}
-
-// AddressBook model
-type AddressBook struct {
-	ID         uint        `gorm:"primaryKey;autoIncrement"`
-	UserID     uint        `gorm:"not null"`
-	Access     AccessLevel `gorm:"not null"`
-	ComputerID string      `gorm:"not null"`
-	IP         string
-	Data       string   `gorm:"default:'{}'"`
-	GameID     string   `gorm:"not null"`
-	Computer   Computer `gorm:"foreignKey:ComputerID"`
-	Game       Game     `gorm:"foreignKey:GameID"`
-	User       User     `gorm:"foreignKey:UserID"`
-}
-
-// UserQuests model
-type UserQuests struct {
-	ID        string `gorm:"primaryKey;type:uuid;default:uuid_generate_v4()"`
-	QuestsID  string `gorm:"not null"`
-	UserID    uint   `gorm:"not null"`
-	GameID    string `gorm:"not null"`
-	Completed bool
-	Created   time.Time `gorm:"default:CURRENT_TIMESTAMP"`
-	Updated   time.Time `gorm:"default:CURRENT_TIMESTAMP;autoUpdateTime"`
-	Game      Game      `gorm:"foreignKey:GameID"`
-	Quest     Quests    `gorm:"foreignKey:QuestsID"`
-	User      User      `gorm:"foreignKey:UserID"`
-}
-
-// Computer model
-type Computer struct {
-	ID          string `gorm:"primaryKey;type:uuid;default:uuid_generate_v4()"`
-	UserID      uint   `gorm:"not null"`
-	Type        string `gorm:"default:'npc'"`
-	GameID      string `gorm:"not null"`
-	IP          string
-	Data        string        `gorm:"default:'{}'"`
-	Created     time.Time     `gorm:"default:CURRENT_TIMESTAMP"`
-	Updated     time.Time     `gorm:"default:CURRENT_TIMESTAMP;autoUpdateTime"`
-	AccountBook []AccountBook `gorm:"foreignKey:ComputerID"`
-	AddressBook []AddressBook `gorm:"foreignKey:ComputerID"`
-	Game        Game          `gorm:"foreignKey:GameID"`
-	User        User          `gorm:"foreignKey:UserID"`
-	DNS         []DNS         `gorm:"foreignKey:ComputerID"`
-	Hardware    []Hardware    `gorm:"foreignKey:ComputerID"`
-	Logs        []Logs        `gorm:"foreignKey:ComputerID"`
-	Memory      []Memory      `gorm:"foreignKey:ComputerID"`
-	Process     []Process     `gorm:"foreignKey:ComputerID"`
-	Software    []Software    `gorm:"foreignKey:ComputerID"`
-}
-
-// Software model
-type Software struct {
-	ID         string `gorm:"primaryKey;type:uuid;default:uuid_generate_v4()"`
-	UserID     uint   `gorm:"not null"`
-	ComputerID string `gorm:"not null"`
-	GameID     string `gorm:"not null"`
-	Type       string
-	Level      float64
-	Size       float64
-	Opacity    float64
-	Installed  bool
-	Executed   time.Time `gorm:"default:CURRENT_TIMESTAMP"`
-	Created    time.Time `gorm:"default:CURRENT_TIMESTAMP"`
-	Updated    time.Time `gorm:"default:CURRENT_TIMESTAMP;autoUpdateTime"`
-	Data       string    `gorm:"default:'{}'"`
-	Computer   Computer  `gorm:"foreignKey:ComputerID"`
-	Game       Game      `gorm:"foreignKey:GameID"`
-	User       User      `gorm:"foreignKey:UserID"`
-}
-
-// Process model
-type Process struct {
-	ID         string `gorm:"primaryKey;type:uuid;default:uuid_generate_v4()"`
-	UserID     uint   `gorm:"not null"`
-	ComputerID string `gorm:"not null"`
-	IP         *string
-	GameID     string `gorm:"not null"`
-	Type       string
-	Started    time.Time `gorm:"default:CURRENT_TIMESTAMP"`
-	Completion time.Time
-	Data       string
-	Computer   Computer `gorm:"foreignKey:ComputerID"`
-	Game       Game     `gorm:"foreignKey:GameID"`
-	User       User     `gorm:"foreignKey:UserID"`
-}
-
-// Notifications model
-type Notifications struct {
-	ID      uint `gorm:"primaryKey;autoIncrement"`
-	UserID  uint `gorm:"not null"`
-	Type    string
-	Content string
-	Read    bool `gorm:"default:false"`
-	User    User `gorm:"foreignKey:UserID"`
-}
-
-// Logs model
-type Logs struct {
-	ID         uint   `gorm:"primaryKey;autoIncrement"`
-	UserID     uint   `gorm:"not null"`
-	ComputerID string `gorm:"not null"`
-	SenderID   string
-	SenderIP   string
-	GameID     string `gorm:"not null"`
-	Message    string
-	Created    time.Time `gorm:"default:CURRENT_TIMESTAMP"`
-	Computer   Computer  `gorm:"foreignKey:ComputerID"`
-	Game       Game      `gorm:"foreignKey:GameID"`
-	User       User      `gorm:"foreignKey:UserID"`
-}
-
-// Define Enums
-type Groups string
-
-const (
-	Guest Groups = "Guest"
-	Admin Groups = "Admin"
-)
-
-type HardwareTypes string
-
-const (
-	CPU      HardwareTypes = "CPU"
-	GPU      HardwareTypes = "GPU"
-	RAM      HardwareTypes = "RAM"
-	HDD      HardwareTypes = "HDD"
-	Upload   HardwareTypes = "Upload"
-	Download HardwareTypes = "Download"
-)
-
-type AccessLevel string
-
-const (
-	GOD AccessLevel = "GOD"
-	FTP AccessLevel = "FTP"
-)
