@@ -1,0 +1,5 @@
+sqlboiler.toml
+.env
+*.log
+*.db
+
