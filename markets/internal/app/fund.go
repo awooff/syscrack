@@ -8,21 +8,21 @@ import (
 )
 
 type Fund struct {
-	ID                      ID         `gorm:"primaryKey;autoIncrement"`
-	FundManagerID           ID         `gorm:"not null;index"`
-	Name                    string     `gorm:"not null;size:255"`
-	MinimumInvestmentAmount uint64     `gorm:"not null;default:0"`
-	TotalFundCharge         Percentage `gorm:"type:decimal(5,4);not null;default:0"`
-	TotalFundCost           Percentage `gorm:"type:decimal(5,4);not null;default:0"`
-	TotalAssets             uint64     `gorm:"not null;default:0"`
-	IsActive                bool       `gorm:"not null;default:true"`
-	MaxInvestors            int        `gorm:"not null;default:0"`
-	CreatedAt               time.Time  `gorm:"autoCreateTime"`
-	UpdatedAt               time.Time  `gorm:"autoUpdateTime"`
+    ID                      ID         `gorm:"primaryKey;autoIncrement"`
+    FundManagerID           ID         `gorm:"not null;index"`
+    Name                    string     `gorm:"not null;size:255"`
+    MinimumInvestmentAmount uint64     `gorm:"not null;default:0"`
+    TotalFundCharge         Percentage `gorm:"type:decimal(5,4);not null;default:0"`
+    TotalFundCost           Percentage `gorm:"type:decimal(5,4);not null;default:0"`
+    TotalAssets             uint64     `gorm:"not null;default:0"`
+    IsActive                bool       `gorm:"not null;default:true"`
+    MaxInvestors            int        `gorm:"not null;default:0"`
+    CreatedAt               time.Time  `gorm:"autoCreateTime"`
+    UpdatedAt               time.Time  `gorm:"autoUpdateTime"`
 
-	FundManager        User                  `gorm:"foreignKey:FundManagerID"`
-	Investors          []User                `gorm:"many2many:fund_investors;"`
-	PerformanceHistory []PerformanceRecordDB `gorm:"foreignKey:FundID"`
+    FundManager        User                  `gorm:"foreignKey:FundManagerID;constraint:OnUpdate:CASCADE,OnDelete:SET NULL;"`
+    Investors          []User                `gorm:"many2many:fund_investors;"`
+    PerformanceHistory []PerformanceRecordDB `gorm:"foreignKey:FundID"`
 }
 
 func (Fund) TableName() string {

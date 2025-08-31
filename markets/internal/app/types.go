@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-type ID uint32
+type ID = uint
 
 const (
 	InstructionTypeTransfer InstructionNamedType = "transfer"

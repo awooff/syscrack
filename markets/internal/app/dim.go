@@ -6,13 +6,13 @@ import (
 )
 
 type DIM struct {
-	Id                 uint32
+	Id                 ID
 	Name               string
 	InvestmentManagers []User
 	SharedWith         []HedgeFund
 }
 
-func NewDIM(id uint32, name string, managers []User, sharedWith []HedgeFund) DIM {
+func NewDIM(id ID, name string, managers []User, sharedWith []HedgeFund) DIM {
 	return DIM{
 		Id:                 id,
 		Name:               name,
