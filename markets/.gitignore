@@ -1,6 +1,6 @@
 # this one is secret
-run.sh
-.env*
+vars.sh
+
 !.env.example
 *.log
 *.db
