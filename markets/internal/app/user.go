@@ -18,8 +18,8 @@ type User struct {
 
 	Portfolios       []Portfolio `gorm:"foreignKey:UserID"`
 	Trades           []Trade     `gorm:"foreignKey:UserID"`
-	ManagedFunds     []Fund      `gorm:"foreignKey:ManagerID"`
-	InvestedFunds    []Fund      `gorm:"many2many:user_funds"` // optional join table
+	ManagedFunds     []Fund      `gorm:"one2many:user_funds"`
+	InvestedFunds    []Fund      `gorm:"many2many:user_funds"`
 	SentPayments     []Payment   `gorm:"foreignKey:FromUserID"`
 	ReceivedPayments []Payment   `gorm:"foreignKey:ToUserID"`
 }
