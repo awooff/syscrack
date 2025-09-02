@@ -22,14 +22,14 @@ type Fund struct {
 
 	FundManager        User                  `gorm:"foreignKey:FundManagerID"`
 	Investors          []User                `gorm:"many2many:fund_investors;"`
-	PerformanceHistory []PerformanceRecordDB `gorm:"foreignKey:FundID"`
+	PerformanceHistory []PerformanceRecord `gorm:"foreignKey:FundID"`
 }
 
 func (Fund) TableName() string {
 	return "funds"
 }
 
-type PerformanceRecordDB struct {
+type PerformanceRecord struct {
 	ID        ID         `gorm:"primaryKey;autoIncrement"`
 	FundID    ID         `gorm:"not null;index"`
 	Date      time.Time  `gorm:"not null;index"`
@@ -40,11 +40,11 @@ type PerformanceRecordDB struct {
 	Fund Fund `gorm:"foreignKey:FundID"`
 }
 
-func (PerformanceRecordDB) TableName() string {
+func (PerformanceRecord) TableName() string {
 	return "performance_records"
 }
 
-type FundInvestorDB struct {
+type FundInvestor struct {
 	FundID         ID        `gorm:"primaryKey"`
 	UserID         ID        `gorm:"primaryKey"`
 	InvestmentDate time.Time `gorm:"not null;default:CURRENT_TIMESTAMP"`
@@ -54,7 +54,7 @@ type FundInvestorDB struct {
 	User User `gorm:"foreignKey:UserID"`
 }
 
-func (FundInvestorDB) TableName() string {
+func (FundInvestor) TableName() string {
 	return "fund_investors"
 }
 

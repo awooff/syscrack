@@ -30,6 +30,14 @@ model User {
   session       Session[]
   software      Software[]
   userQuests    UserQuests[]
+
+  Portfolio Portfolio[]
+
+  FundInvestor FundInvestor[]
+
+  Fund Fund[]
+
+  Trade Trade[]
 }
 
 model Game {
@@ -257,3 +265,153 @@ enum AccessLevel {
   GOD
   FTP
 }
+
+//
+// Market related structs now
+// ----------------------------------------
+//
+
+enum InstructionNamedType {
+  BUY
+  SELL
+  REBALANCE
+  WITHDRAW
+  DEPOSIT
+}
+
+
+model Trade {
+  id                Int                   @id @default(autoincrement())
+  userId            Int
+  marketId          Int
+  portfolioId       Int
+  type              String
+  quantity          Int
+  price             BigInt
+  totalValue        Int
+  status            String
+  executedAt        DateTime
+  createdAt         DateTime              @default(now())
+  buyIntoTargetFund Fund @relation(fields: [buyIntoTargetFundid], references: [id])
+  buyIntoTargetFundid Int
+  instructionType   InstructionNamedType
+
+  user      User       @relation(fields: [userId], references: [id])
+  market    Market     @relation(fields: [marketId], references: [id])
+  portfolio Portfolio  @relation(fields: [portfolioId], references: [id])
+}
+
+model Fund {
+  id                      Int                 @id @default(autoincrement())
+  fundManagerId           Int
+  name                    String              @db.VarChar(255)
+  minimumInvestmentAmount BigInt              @default(0)
+  totalFundCharge         Decimal             @db.Decimal(5, 4) @default(0)
+  totalFundCost           Decimal             @db.Decimal(5, 4) @default(0)
+  totalAssets             BigInt              @default(0)
+  isActive                Boolean             @default(true)
+  maxInvestors            Int                 @default(0)
+  createdAt               DateTime            @default(now())
+  updatedAt               DateTime            @updatedAt
+
+  fundManager        User                @relation(fields: [fundManagerId], references: [id])
+  investors          FundInvestor[]
+  performanceHistory PerformanceRecord[]
+  trades             Trade[]
+
+  HedgeFund HedgeFund[]
+}
+
+model PerformanceRecord {
+  id        Int      @id @default(autoincrement())
+  fundId    Int
+  date      DateTime
+  value     BigInt
+  return    Decimal  @db.Decimal(8, 4) @default(0)
+  createdAt DateTime @default(now())
+
+  fund Fund @relation(fields: [fundId], references: [id])
+}
+
+model FundInvestor {
+  fundId         Int
+  userId         Int
+  investmentDate DateTime @default(now())
+  investedAmount BigInt   @default(0)
+
+  fund Fund @relation(fields: [fundId], references: [id])
+  user User @relation(fields: [userId], references: [id])
+
+  @@id([fundId, userId])
+}
+
+
+enum Volatility {
+  STABLE
+  FLUCTUATING
+  DANGEROUS
+}
+
+model Market {
+  id          Int       @id @default(autoincrement())
+  name        String    @db.VarChar(255)
+  symbol      String    @unique @db.VarChar(10)
+  price       BigInt
+  marketCap   BigInt    @default(0)
+  bidAsk      Decimal   @db.Decimal(8, 4) @default(0)
+  buyers      BigInt    @default(0)
+  sellers     BigInt    @default(0)
+  isActive    Boolean   @default(true)
+  isClosed    Boolean   @default(false)
+  openTime    DateTime
+  closeTime   DateTime
+  lastUpdated DateTime  @updatedAt
+  createdAt   DateTime  @default(now())
+
+  trades Trade[]
+
+  PortfolioHolding PortfolioHolding[]
+}
+
+model Portfolio {
+  id         Int                @id @default(autoincrement())
+  userId     Int
+  name       String             @db.VarChar(255)
+  totalValue BigInt             @default(0)
+  isActive   Boolean            @default(true)
+  createdAt  DateTime           @default(now())
+  updatedAt  DateTime           @updatedAt
+
+  user     User                @relation(fields: [userId], references: [id])
+  holdings PortfolioHolding[]
+  trades   Trade[]
+}
+
+model PortfolioHolding {
+  id           Int       @id @default(autoincrement())
+  portfolioId  Int
+  marketId     Int
+  quantity     BigInt
+  averagePrice BigInt
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  portfolio Portfolio @relation(fields: [portfolioId], references: [id])
+  market    Market    @relation(fields: [marketId], references: [id])
+}
+
+model HedgeFund {
+  id                Int       @id @default(autoincrement())
+  fundId            Int       @unique
+  strategy          String    @db.VarChar(100)
+  riskLevel         String    @db.VarChar(20)
+  minimumLockPeriod Int       @default(0)
+  managementFee     Decimal   @db.Decimal(5, 4) @default(0)
+  performanceFee    Decimal   @db.Decimal(5, 4) @default(0)
+  highWaterMark     BigInt    @default(0)
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  fund Fund @relation(fields: [fundId], references: [id])
+}
+

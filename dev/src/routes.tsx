@@ -16,6 +16,8 @@ import ProcessDashboard from "./pages/processes/Dashboard";
 import PuzzleTest from "./pages/dev/PuzzleTest";
 import AddressBook from "./pages/internet/AddressBook";
 import AccountBook from "./pages/internet/AccountBook";
+import TradesPage, { loader as tradesLoader } from "./pages/market/trades/View";
+import { ErrorBoundary as TradesErrorBoundary } from './components/market/trades/View'
 
 const router = createBrowserRouter([
   {
@@ -150,6 +152,12 @@ const router = createBrowserRouter([
     path: "/dev/puzzletest",
     element: <PuzzleTest />,
   },
+  {
+    path: "/economy/trades",
+    element: <TradesPage />,
+    loader: tradesLoader,
+    errorElement: <TradesErrorBoundary />
+  }
 ]);
 
 export default router;

@@ -8,7 +8,7 @@ import (
 )
 
 type User struct {
-	ID           uint `gorm:"primaryKey"`
+	ID           ID `gorm:"primaryKey"`
 	Name         string
 	Email        string `gorm:"uniqueIndex"`
 	AccountValue float64
@@ -20,15 +20,15 @@ type User struct {
 	Trades           []Trade     `gorm:"foreignKey:UserID"`
 	ManagedFunds     []Fund      `gorm:"foreignKey:ManagerID"`
 	InvestedFunds    []Fund      `gorm:"many2many:user_funds"`
-	SentPayments     []PaymentDB `gorm:"foreignKey:FromUserID"`
-	ReceivedPayments []PaymentDB `gorm:"foreignKey:ToUserID"`
+	SentPayments     []Payment `gorm:"foreignKey:FromUserID"`
+	ReceivedPayments []Payment `gorm:"foreignKey:ToUserID"`
 }
 
 func (User) TableName() string {
 	return "users"
 }
 
-type TransactionDB struct {
+type Transaction struct {
 	ID          ID        `gorm:"primaryKey;autoIncrement"`
 	UserID      ID        `gorm:"not null;index"`
 	FundID      *ID       `gorm:"index"`

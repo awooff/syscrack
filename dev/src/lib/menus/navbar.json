@@ -57,7 +57,7 @@
         {
             "image": "/nav_icons/stocks.jpg",
             "text": "Stocks",
-            "url": "/internet/addressbook"
+            "url": "/economy/trades"
         },
         {
             "image": "/nav_icons/real_estate.jpg",
