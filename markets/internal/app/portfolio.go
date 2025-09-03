@@ -8,14 +8,22 @@ import (
 )
 
 type Portfolio struct {
-	ID         ID        `gorm:"primaryKey;autoIncrement"`
-	UserID     ID        `gorm:"not null;index"`
-	Name       string    `gorm:"not null;size:255"`
-	TotalValue uint64    `gorm:"not null;default:0"`
-	IsActive   bool      `gorm:"not null;default:true"`
-	CreatedAt  time.Time `gorm:"autoCreateTime"`
-	UpdatedAt  time.Time `gorm:"autoUpdateTime"`
+	ID         ID `gorm:"primaryKey"`
+	UserID     ID
+	Name       string
+	TotalValue float64
+	IsActive   bool
+	CreatedAt  time.Time
+	UpdatedAt  time.Time
 
+	Holdings []Holding `gorm:"foreignKey:PortfolioID"`
+}
+
+type Holding struct {
+	ID          ID `gorm:"primaryKey"`
+	PortfolioID ID
+	FundID      ID
+	Amount      float64
 	User     User                 `gorm:"foreignKey:UserID"`
 	Holdings []PortfolioHolding `gorm:"foreignKey:PortfolioID"`
 }
