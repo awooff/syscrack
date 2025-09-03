@@ -8,7 +8,7 @@ import (
 	"github.com/go-chi/chi/v5"
 )
 
-func Init() http.Handler {
+func Init() chi.Router {
 	r := chi.NewRouter()
 
 	// On our index route, let's just display the routes we have.

@@ -16,7 +16,6 @@ type User struct {
 	CreatedAt    time.Time
 	UpdatedAt    time.Time
 
-<<<<<<< HEAD
 	Portfolios    []Portfolio `gorm:"foreignKey:UserID"`
 	Trades        []Trade     `gorm:"foreignKey:UserID"`
 	ManagedFunds  []Fund      `gorm:"foreignKey:ManagerID"`
@@ -24,36 +23,19 @@ type User struct {
 
 	SentPayments     []Payment `gorm:"foreignKey:SenderID"`
 	ReceivedPayments []Payment `gorm:"foreignKey:RecipientID"`
-=======
-	Portfolios       []Portfolio `gorm:"foreignKey:UserID"`
-	Trades           []Trade     `gorm:"foreignKey:UserID"`
-	ManagedFunds     []Fund      `gorm:"foreignKey:ManagerID"`
-	InvestedFunds    []Fund      `gorm:"many2many:user_funds"`
-	SentPayments     []Payment `gorm:"foreignKey:FromUserID"`
-	ReceivedPayments []Payment `gorm:"foreignKey:ToUserID"`
->>>>>>> 73bba826655655c71cbabb95ead56e27cf93402c
+
 }
 
 func (User) TableName() string {
 	return "users"
 }
 
-<<<<<<< HEAD
-type TransactionDB struct {
-	ID     ID     `gorm:"primaryKey;autoIncrement"`
-	UserID ID     `gorm:"not null;index"`
-	FundID *ID    `gorm:"index"`
-	Type   string `gorm:"not null;size:50"`
-	Amount uint64 `gorm:"not null"`
-
-=======
 type Transaction struct {
 	ID          ID        `gorm:"primaryKey;autoIncrement"`
 	UserID      ID        `gorm:"not null;index"`
 	FundID      *ID       `gorm:"index"`
 	Type        string    `gorm:"not null;size:50"`
 	Amount      uint64    `gorm:"not null"`
->>>>>>> 73bba826655655c71cbabb95ead56e27cf93402c
 	Description string    `gorm:"size:500"`
 	Status      string    `gorm:"not null;default:'completed';size:50"`
 	CreatedAt   time.Time `gorm:"autoCreateTime"`

@@ -20,16 +20,10 @@ type Fund struct {
 	CreatedAt               time.Time  `gorm:"autoCreateTime"`
 	UpdatedAt               time.Time  `gorm:"autoUpdateTime"`
 
-<<<<<<< HEAD
 	Manager   User   `gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;"`
 	Investors []User `gorm:"many2many:user_invested_funds;joinForeignKey:FundID;joinReferences:UserID"`
 
-	PerformanceHistory []PerformanceRecordDB `gorm:"foreignKey:FundID"`
-=======
-	FundManager        User                  `gorm:"foreignKey:FundManagerID"`
-	Investors          []User                `gorm:"many2many:fund_investors;"`
 	PerformanceHistory []PerformanceRecord `gorm:"foreignKey:FundID"`
->>>>>>> 73bba826655655c71cbabb95ead56e27cf93402c
 }
 
 func (Fund) TableName() string {

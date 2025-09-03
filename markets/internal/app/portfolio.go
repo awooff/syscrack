@@ -16,7 +16,6 @@ type Portfolio struct {
 	CreatedAt  time.Time
 	UpdatedAt  time.Time
 
-<<<<<<< HEAD
 	Holdings []Holding `gorm:"foreignKey:PortfolioID"`
 }
 
@@ -25,10 +24,8 @@ type Holding struct {
 	PortfolioID ID
 	FundID      ID
 	Amount      float64
-=======
 	User     User                 `gorm:"foreignKey:UserID"`
 	Holdings []PortfolioHolding `gorm:"foreignKey:PortfolioID"`
->>>>>>> 73bba826655655c71cbabb95ead56e27cf93402c
 }
 
 func (Portfolio) TableName() string {

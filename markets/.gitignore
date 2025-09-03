@@ -1,5 +1,6 @@
 # this one is secret
 vars.sh
+.env
 
 !.env.example
 *.log
