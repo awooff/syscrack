@@ -284,6 +284,102 @@ exports.Prisma.LogsScalarFieldEnum = {
   created: 'created'
 };
 
+exports.Prisma.TradeScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  marketId: 'marketId',
+  portfolioId: 'portfolioId',
+  type: 'type',
+  quantity: 'quantity',
+  price: 'price',
+  totalValue: 'totalValue',
+  status: 'status',
+  executedAt: 'executedAt',
+  createdAt: 'createdAt',
+  buyIntoTargetFundid: 'buyIntoTargetFundid',
+  instructionType: 'instructionType'
+};
+
+exports.Prisma.FundScalarFieldEnum = {
+  id: 'id',
+  fundManagerId: 'fundManagerId',
+  name: 'name',
+  minimumInvestmentAmount: 'minimumInvestmentAmount',
+  totalFundCharge: 'totalFundCharge',
+  totalFundCost: 'totalFundCost',
+  totalAssets: 'totalAssets',
+  isActive: 'isActive',
+  maxInvestors: 'maxInvestors',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.PerformanceRecordScalarFieldEnum = {
+  id: 'id',
+  fundId: 'fundId',
+  date: 'date',
+  value: 'value',
+  return: 'return',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.FundInvestorScalarFieldEnum = {
+  fundId: 'fundId',
+  userId: 'userId',
+  investmentDate: 'investmentDate',
+  investedAmount: 'investedAmount'
+};
+
+exports.Prisma.MarketScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  symbol: 'symbol',
+  price: 'price',
+  marketCap: 'marketCap',
+  bidAsk: 'bidAsk',
+  buyers: 'buyers',
+  sellers: 'sellers',
+  isActive: 'isActive',
+  isClosed: 'isClosed',
+  openTime: 'openTime',
+  closeTime: 'closeTime',
+  lastUpdated: 'lastUpdated',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.PortfolioScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  name: 'name',
+  totalValue: 'totalValue',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.PortfolioHoldingScalarFieldEnum = {
+  id: 'id',
+  portfolioId: 'portfolioId',
+  marketId: 'marketId',
+  quantity: 'quantity',
+  averagePrice: 'averagePrice',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.HedgeFundScalarFieldEnum = {
+  id: 'id',
+  fundId: 'fundId',
+  strategy: 'strategy',
+  riskLevel: 'riskLevel',
+  minimumLockPeriod: 'minimumLockPeriod',
+  managementFee: 'managementFee',
+  performanceFee: 'performanceFee',
+  highWaterMark: 'highWaterMark',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -333,6 +429,14 @@ exports.AccessLevel = exports.$Enums.AccessLevel = {
   FTP: 'FTP'
 };
 
+exports.InstructionNamedType = exports.$Enums.InstructionNamedType = {
+  BUY: 'BUY',
+  SELL: 'SELL',
+  REBALANCE: 'REBALANCE',
+  WITHDRAW: 'WITHDRAW',
+  DEPOSIT: 'DEPOSIT'
+};
+
 exports.Prisma.ModelName = {
   User: 'User',
   Game: 'Game',
@@ -349,7 +453,15 @@ exports.Prisma.ModelName = {
   Software: 'Software',
   Process: 'Process',
   Notifications: 'Notifications',
-  Logs: 'Logs'
+  Logs: 'Logs',
+  Trade: 'Trade',
+  Fund: 'Fund',
+  PerformanceRecord: 'PerformanceRecord',
+  FundInvestor: 'FundInvestor',
+  Market: 'Market',
+  Portfolio: 'Portfolio',
+  PortfolioHolding: 'PortfolioHolding',
+  HedgeFund: 'HedgeFund'
 };
 
 /**

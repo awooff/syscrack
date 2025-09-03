@@ -2,7 +2,7 @@ package app
 
 import (
 	"fmt"
-	"log"
+	"markets/internal/logx"
 	"os"
 	"time"
 
@@ -14,35 +14,35 @@ import (
 var DB *gorm.DB
 
 func InitialiseDbConnection() {
-	var err error
-
 	databaseURL := os.Getenv("DATABASE_URL")
 	if databaseURL == "" {
-		log.Fatal("DATABASE_URL environment variable is not set")
+		logx.Logger.Fatal().Msg("DATABASE_URL not set! Aborting.")
 	}
+
+	var err error
 
 	DB, err = gorm.Open(postgres.Open(databaseURL), &gorm.Config{
 		Logger: logger.Default.LogMode(logger.Info),
 	})
 	if err != nil {
-		log.Fatalf("Failed to connect to database: %v", err)
+		logx.Logger.Fatal().Msgf("Failed to connect to database: %v", err)
 	}
 
 	sqlDB, err := DB.DB()
 	if err != nil {
-		log.Fatalf("Failed to get database instance: %v", err)
+		logx.Logger.Fatal().Msgf("Failed to get database instance: %v", err)
 	}
 
 	if err := sqlDB.Ping(); err != nil {
-		log.Fatalf("Failed to ping database: %v", err)
+		logx.Logger.Fatal().Msgf("Failed to ping database: %v", err)
 	}
 
-	log.Println("Database connection established successfully")
+	logx.Logger.Debug().Msg("Database connection established successfully")
 }
 
 func GetDB() *gorm.DB {
 	if DB == nil {
-		log.Fatal("Database not initialized. Call InitialiseDbConnection() first")
+		logx.Logger.Fatal().Msgf("Database not initialized. Call InitialiseDbConnection() first")
 	}
 	return DB
 }
@@ -51,13 +51,13 @@ func CloseDB() {
 	if DB != nil {
 		sqlDB, err := DB.DB()
 		if err != nil {
-			log.Printf("Error getting database instance: %v", err)
+			logx.Logger.Fatal().Msgf("Error getting database instance: %v", err)
 			return
 		}
 		if err := sqlDB.Close(); err != nil {
-			log.Printf("Error closing database: %v", err)
+			logx.Logger.Fatal().Msgf("Error closing database: %v", err)
 		} else {
-			log.Println("Database connection closed")
+			logx.Logger.Fatal().Msg("Database connection closed")
 		}
 	}
 }
@@ -70,13 +70,13 @@ func SetupDatabase() {
 	err := db.AutoMigrate(
 		&User{},
 		&Fund{},
-		&PerformanceRecordDB{},
-		&FundInvestorDB{},
+		&PerformanceRecord{},
+		&FundInvestor{},
 		&Payment{},
 		&Market{},
-		&TransactionDB{},
+		&Transaction{},
 		&Portfolio{},
-		&PortfolioHoldingDB{},
+		&PortfolioHolding{},
 		&Trade{},
 		&HedgeFund{},
 	)
@@ -114,13 +114,13 @@ func seedInitialData(db *gorm.DB) {
 	if userCount == 0 {
 		users := []User{
 			{
-				Name:     "admin",
+				Name:         "admin",
 				Email:        "admin@example.com",
 				AccountValue: 1000000,
 				IsActive:     true,
 			},
 			{
-				Name:     "demo_user",
+				Name:         "demo_user",
 				Email:        "demo@example.com",
 				AccountValue: 50000,
 				IsActive:     true,
@@ -153,4 +153,3 @@ func seedInitialData(db *gorm.DB) {
 		}
 	}
 }
-

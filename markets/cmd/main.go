@@ -12,7 +12,18 @@ import (
 	"markets/internal/routes"
 
 	"github.com/go-chi/chi/v5"
+	dotenv "github.com/joho/godotenv"
 )
+
+
+func init() {
+	if os.Getenv("ENV") == "dev" {
+		if err := dotenv.Load(".env"); err != nil {
+			logx.Logger.Warn().Msg("No .env file found, skipping")
+			 _ = dotenv.Load(".env")
+		}
+	}
+}
 
 func main() {
 	port := ":" + os.Getenv("PORT")
@@ -24,9 +35,9 @@ func main() {
 	app.InitialiseDbConnection() // whatever initializes your *gorm.DB
 
 	// run migrations
-	if err := app.Migrate(app.DB); err != nil {
-		logx.Logger.Fatal().Msgf("migration error: %v", err)
-	}
+	// if err := app.Migrate(app.DB); err != nil {
+	// 	logx.Logger.Fatal().Msgf("migration error: %v", err)
+	// }
 
 	// Set up our router
 	r := chi.NewRouter()

@@ -16,6 +16,7 @@ type Portfolio struct {
 	CreatedAt  time.Time
 	UpdatedAt  time.Time
 
+<<<<<<< HEAD
 	Holdings []Holding `gorm:"foreignKey:PortfolioID"`
 }
 
@@ -24,13 +25,17 @@ type Holding struct {
 	PortfolioID ID
 	FundID      ID
 	Amount      float64
+=======
+	User     User                 `gorm:"foreignKey:UserID"`
+	Holdings []PortfolioHolding `gorm:"foreignKey:PortfolioID"`
+>>>>>>> 73bba826655655c71cbabb95ead56e27cf93402c
 }
 
 func (Portfolio) TableName() string {
 	return "portfolios"
 }
 
-type PortfolioHoldingDB struct {
+type PortfolioHolding struct {
 	ID           ID        `gorm:"primaryKey;autoIncrement"`
 	PortfolioID  ID        `gorm:"not null;index"`
 	MarketID     ID        `gorm:"not null;index"`
@@ -43,7 +48,7 @@ type PortfolioHoldingDB struct {
 	Market    Market    `gorm:"foreignKey:MarketID"`
 }
 
-func (PortfolioHoldingDB) TableName() string {
+func (PortfolioHolding) TableName() string {
 	return "portfolio_holdings"
 }
 
