@@ -17,7 +17,6 @@ const (
 )
 
 type Trade struct {
-<<<<<<< HEAD
 	ID                  ID                   `gorm:"primaryKey;autoIncrement"`
 	UserID              ID                   `gorm:"not null;index"`
 	MarketID            ID                   `gorm:"not null;index"`
@@ -35,31 +34,9 @@ type Trade struct {
 
 	Portfolio *Portfolio `gorm:"foreignKey:PortfolioID"`
 	Market    Market     `gorm:"foreignKey:MarketID"`
-=======
-	ID          uint `gorm:"primaryKey"`
-	UserID      uint
-	PortfolioID *uint
-	MarketID    uint
-	FundID      *uint
-
-	Type       string
-	Quantity   float64
-	Price      float64
-	TotalValue float64
-	Status     string
-	ExecutedAt *time.Time
-	CreatedAt  time.Time
-	UpdatedAt  time.Time
-
-	User   User   `gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;"`
-	Fund   *Fund  `gorm:"foreignKey:FundID;constraint:OnUpdate:CASCADE,OnDelete:SET NULL;"`
-	Market Market `gorm:"foreignKey:MarketID;constraint:OnUpdate:CASCADE,OnDelete:SET NULL;"`
-
-	InstructionType InstructionNamedType `gorm:"-:all"`
->>>>>>> 7af74f88d5bb9c9aa6642ec7bed83cdda6664d7d
 }
 
-func GetTradeByID(id uint) (*Trade, error) {
+func GetTradeByID(id ID) (*Trade, error) {
 	var t Trade
 	if err := DB.First(&t, id).Error; err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
@@ -67,58 +44,46 @@ func GetTradeByID(id uint) (*Trade, error) {
 		}
 		return nil, err
 	}
-<<<<<<< HEAD
-
 	if t.BuyIntoTargetFund.ID == 0 {
 		return nil, errors.New("can't buy into fund ID 0")
 	}
-
-	return &Trade{
-		ID:                id,
-		BuyIntoTargetFund: fund,
-		InstructionType:   instructionType,
-	}, nil
-=======
 	return &t, nil
->>>>>>> 7af74f88d5bb9c9aa6642ec7bed83cdda6664d7d
 }
 
-func PlaceBuyTrade(userID, marketID uint, fundID *uint, quantity, price float64) (*Trade, error) {
+func PlaceBuyTrade(userID, marketID, portfolioID, fundID ID, quantity, price uint64) (*Trade, error) {
 	trade := &Trade{
-		UserID:          userID,
-		MarketID:        marketID,
-		FundID:          fundID,
-		Type:            "buy",
-		Quantity:        quantity,
-		Price:           price,
-		TotalValue:      quantity * price,
-		Status:          "pending",
-		InstructionType: Buy,
-		CreatedAt:       time.Now(),
-		UpdatedAt:       time.Now(),
+		UserID:              userID,
+		MarketID:            marketID,
+		PortfolioID:         portfolioID,
+		BuyIntoTargetFundID: fundID,
+		Type:                "buy",
+		Quantity:            quantity,
+		Price:               price,
+		TotalValue:          quantity * price,
+		Status:              "pending",
+		InstructionType:     Buy,
+		CreatedAt:           time.Now(),
 	}
-
 	if err := DB.Create(trade).Error; err != nil {
 		return nil, err
 	}
 	return trade, nil
 }
 
-func PlaceSellTrade(userID, marketID uint, fundID *uint, quantity, price float64) (*Trade, error) {
+func PlaceSellTrade(userID, marketID, portfolioID, fundID ID, quantity, price uint64) (*Trade, error) {
 	trade := &Trade{
-		UserID:          userID,
-		MarketID:        marketID,
-		FundID:          fundID,
-		Type:            "sell",
-		Quantity:        quantity,
-		Price:           price,
-		TotalValue:      quantity * price,
-		Status:          "pending",
-		InstructionType: Sell,
-		CreatedAt:       time.Now(),
-		UpdatedAt:       time.Now(),
+		UserID:              userID,
+		MarketID:            marketID,
+		PortfolioID:         portfolioID,
+		BuyIntoTargetFundID: fundID,
+		Type:                "sell",
+		Quantity:            quantity,
+		Price:               price,
+		TotalValue:          quantity * price,
+		Status:              "pending",
+		InstructionType:     Sell,
+		CreatedAt:           time.Now(),
 	}
-
 	if err := DB.Create(trade).Error; err != nil {
 		return nil, err
 	}
@@ -139,17 +104,16 @@ func (t *Trade) ExecuteTrade() error {
 }
 
 func (t *Trade) executeBuy() error {
-	fmt.Printf("Executing buy for fund: %v\n", t.Fund)
+	fmt.Printf("Executing buy for fund: %v\n", t.BuyIntoTargetFund)
 	return nil
 }
 
 func (t *Trade) executeSell() error {
-	fmt.Printf("Executing sell for fund: %v\n", t.Fund)
+	fmt.Printf("Executing sell for fund: %v\n", t.BuyIntoTargetFund)
 	return nil
 }
 
 func (t *Trade) executeTransfer() error {
-	fmt.Printf("Executing transfer for fund: %v\n", t.Fund)
+	fmt.Printf("Executing transfer for fund: %v\n", t.BuyIntoTargetFund)
 	return nil
 }
-

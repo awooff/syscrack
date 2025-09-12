@@ -11,12 +11,13 @@ import (
 )
 
 type TradeRequest struct {
-	UserID   uint   `json:"user_id"`
-	MarketID uint   `json:"market_id"`
-	FundID   uint   `json:"fund_id"`
-	Quantity uint   `json:"quantity"`
-	Price    uint   `json:"price"`
-	Type     string `json:"type"` // "buy" | "sell" | "transfer"
+	UserID      uint   `json:"user_id"`
+	MarketID    uint   `json:"market_id"`
+	PortfolioID uint   `json:"portfolio_id"`
+	FundID      uint   `json:"fund_id"`
+	Quantity    uint64 `json:"quantity"`
+	Price       uint64 `json:"price"`
+	Type        string `json:"type"` // "buy" | "sell" | "transfer"
 }
 
 type TradeResponse struct {
@@ -40,24 +41,30 @@ func CreateTradeHandler(w http.ResponseWriter, r *http.Request) {
 		err   error
 	)
 
-	var fundIDPtr *uint
-	if req.FundID != 0 {
-		fundIDPtr = &req.FundID
-	}
-
-	quantity := float64(req.Quantity)
-	price := float64(req.Price)
-
-	switch req.Type {
-	case "buy":
-		trade, err = app.PlaceBuyTrade(app.ID(req.UserID), app.ID(req.MarketID), fundIDPtr, quantity, price)
-	case "sell":
-		trade, err = app.PlaceSellTrade(app.ID(req.UserID), app.ID(req.MarketID), fundIDPtr, quantity, price)
-	case "transfer":
-		w.WriteHeader(http.StatusNotImplemented)
-		json.NewEncoder(w).Encode(TradeResponse{Success: false, Error: "transfer not implemented yet"})
-		return
-	default:
+	   switch req.Type {
+	   case "buy":
+		   trade, err = app.PlaceBuyTrade(
+			   app.ID(req.UserID),
+			   app.ID(req.MarketID),
+			   app.ID(req.PortfolioID),
+			   app.ID(req.FundID),
+			   req.Quantity,
+			   req.Price,
+		   )
+	   case "sell":
+		   trade, err = app.PlaceSellTrade(
+			   app.ID(req.UserID),
+			   app.ID(req.MarketID),
+			   app.ID(req.PortfolioID),
+			   app.ID(req.FundID),
+			   req.Quantity,
+			   req.Price,
+		   )
+	   case "transfer":
+		   w.WriteHeader(http.StatusNotImplemented)
+		   json.NewEncoder(w).Encode(TradeResponse{Success: false, Error: "transfer not implemented yet"})
+		   return
+	   default:
 		w.WriteHeader(http.StatusBadRequest)
 		json.NewEncoder(w).Encode(TradeResponse{Success: false, Error: "invalid trade type"})
 		return
@@ -84,7 +91,7 @@ func GetTradeByIDHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	trade, err := app.GetTradeByID(uint(id))
+		trade, err := app.GetTradeByID(app.ID(id))
 	if err != nil {
 		w.WriteHeader(http.StatusNotFound)
 		json.NewEncoder(w).Encode(TradeResponse{Success: false, Error: "trade not found"})

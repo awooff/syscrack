@@ -12,26 +12,14 @@ import (
  * It can contain multiple holdings in different markets.
  */
 type Portfolio struct {
-	ID         ID `gorm:"primaryKey"`
-	UserID     ID
-	Name       string
-	TotalValue float64
-	IsActive   bool
-	CreatedAt  time.Time
-	UpdatedAt  time.Time
+	ID         ID        `gorm:"primaryKey;autoIncrement"`
+	UserID     ID        `gorm:"not null;index"`
+	Name       string    `gorm:"not null;size:255"`
+	TotalValue uint64    `gorm:"not null;default:0"`
+	IsActive   bool      `gorm:"not null;default:true"`
+	CreatedAt  time.Time `gorm:"autoCreateTime"`
+	UpdatedAt  time.Time `gorm:"autoUpdateTime"`
 
-<<<<<<< HEAD
-=======
-	Holdings []Holding `gorm:"foreignKey:PortfolioID"`
-}
-
-type Holding struct {
-	ID          ID `gorm:"primaryKey"`
-	PortfolioID ID
-	FundID      ID
-	Amount      float64
-	User     User                 `gorm:"foreignKey:UserID"`
->>>>>>> 7af74f88d5bb9c9aa6642ec7bed83cdda6664d7d
 	Holdings []PortfolioHolding `gorm:"foreignKey:PortfolioID"`
 }
 
