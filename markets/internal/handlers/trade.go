@@ -10,13 +10,12 @@ import (
 	"github.com/go-chi/chi/v5"
 )
 
-// keep it simple: one DTO for all trade types
 type TradeRequest struct {
-	UserID   uint64 `json:"user_id"`
-	MarketID uint64 `json:"market_id"`
-	FundID   uint64 `json:"fund_id"`
-	Quantity uint64 `json:"quantity"`
-	Price    uint64 `json:"price"`
+	UserID   uint   `json:"user_id"`
+	MarketID uint   `json:"market_id"`
+	FundID   uint   `json:"fund_id"`
+	Quantity uint   `json:"quantity"`
+	Price    uint   `json:"price"`
 	Type     string `json:"type"` // "buy" | "sell" | "transfer"
 }
 
@@ -41,11 +40,19 @@ func CreateTradeHandler(w http.ResponseWriter, r *http.Request) {
 		err   error
 	)
 
+	var fundIDPtr *uint
+	if req.FundID != 0 {
+		fundIDPtr = &req.FundID
+	}
+
+	quantity := float64(req.Quantity)
+	price := float64(req.Price)
+
 	switch req.Type {
 	case "buy":
-		trade, err = app.PlaceBuyTrade(app.ID(req.UserID), app.ID(req.MarketID), app.ID(req.FundID), req.Quantity, req.Price)
+		trade, err = app.PlaceBuyTrade(app.ID(req.UserID), app.ID(req.MarketID), fundIDPtr, quantity, price)
 	case "sell":
-		trade, err = app.PlaceSellTrade(app.ID(req.UserID), app.ID(req.MarketID), app.ID(req.FundID), req.Quantity, req.Price)
+		trade, err = app.PlaceSellTrade(app.ID(req.UserID), app.ID(req.MarketID), fundIDPtr, quantity, price)
 	case "transfer":
 		w.WriteHeader(http.StatusNotImplemented)
 		json.NewEncoder(w).Encode(TradeResponse{Success: false, Error: "transfer not implemented yet"})
@@ -77,7 +84,7 @@ func GetTradeByIDHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	trade, err := app.GetTradeByID(app.ID(id)) // see app helper below
+	trade, err := app.GetTradeByID(uint(id))
 	if err != nil {
 		w.WriteHeader(http.StatusNotFound)
 		json.NewEncoder(w).Encode(TradeResponse{Success: false, Error: "trade not found"})
@@ -86,4 +93,3 @@ func GetTradeByIDHandler(w http.ResponseWriter, r *http.Request) {
 
 	json.NewEncoder(w).Encode(TradeResponse{Success: true, Data: trade})
 }
-

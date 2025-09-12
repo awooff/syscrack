@@ -5,8 +5,12 @@ import (
 	"fmt"
 )
 
+<<<<<<< HEAD
 type ID uint32
 type UserID uint32
+=======
+type ID = uint
+>>>>>>> 7af74f88d5bb9c9aa6642ec7bed83cdda6664d7d
 
 const (
 	InstructionTypeTransfer InstructionNamedType = "transfer"

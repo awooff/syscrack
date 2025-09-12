@@ -10,8 +10,6 @@ import (
 
 type InstructionNamedType string
 
-type TradeQueue []*Trade
-
 const (
 	Buy      InstructionNamedType = "buy"
 	Sell     InstructionNamedType = "sell"
@@ -19,6 +17,7 @@ const (
 )
 
 type Trade struct {
+<<<<<<< HEAD
 	ID                  ID                   `gorm:"primaryKey;autoIncrement"`
 	UserID              ID                   `gorm:"not null;index"`
 	MarketID            ID                   `gorm:"not null;index"`
@@ -36,17 +35,39 @@ type Trade struct {
 
 	Portfolio *Portfolio `gorm:"foreignKey:PortfolioID"`
 	Market    Market     `gorm:"foreignKey:MarketID"`
+=======
+	ID          uint `gorm:"primaryKey"`
+	UserID      uint
+	PortfolioID *uint
+	MarketID    uint
+	FundID      *uint
+
+	Type       string
+	Quantity   float64
+	Price      float64
+	TotalValue float64
+	Status     string
+	ExecutedAt *time.Time
+	CreatedAt  time.Time
+	UpdatedAt  time.Time
+
+	User   User   `gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;"`
+	Fund   *Fund  `gorm:"foreignKey:FundID;constraint:OnUpdate:CASCADE,OnDelete:SET NULL;"`
+	Market Market `gorm:"foreignKey:MarketID;constraint:OnUpdate:CASCADE,OnDelete:SET NULL;"`
+
+	InstructionType InstructionNamedType `gorm:"-:all"`
+>>>>>>> 7af74f88d5bb9c9aa6642ec7bed83cdda6664d7d
 }
 
-// Error implements error.
-func (t Trade) Error() string {
-	panic("unimplemented")
-}
-
-func (t Trade) CreateNewTrade(id ID, fund Fund, instructionType InstructionNamedType) (*Trade, error) {
-	if !isValidInstructionType(instructionType) {
-		return nil, errors.New("invalid instruction type")
+func GetTradeByID(id uint) (*Trade, error) {
+	var t Trade
+	if err := DB.First(&t, id).Error; err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			return nil, err
+		}
+		return nil, err
 	}
+<<<<<<< HEAD
 
 	if t.BuyIntoTargetFund.ID == 0 {
 		return nil, errors.New("can't buy into fund ID 0")
@@ -57,116 +78,53 @@ func (t Trade) CreateNewTrade(id ID, fund Fund, instructionType InstructionNamed
 		BuyIntoTargetFund: fund,
 		InstructionType:   instructionType,
 	}, nil
+=======
+	return &t, nil
+>>>>>>> 7af74f88d5bb9c9aa6642ec7bed83cdda6664d7d
 }
 
-/**
- * In the real game, cancelling a trade needs to be a message that gets distributed
- * among the kafka brokers.
- */
-func (t Trade) CancelPendingTrade(trade *Trade) error {
-	if !isValidInstructionType(t.InstructionType) {
-		return errors.New("The type of this sell isn't even valid, what the hell")
-	}
-
-	// delete it
-	trade = nil
-
-	return nil
-}
-
-func (t Trade) Info() Trade {
-	return t
-}
-
-func isValidInstructionType(instructionType InstructionNamedType) bool {
-	switch instructionType {
-	case Buy, Sell, Transfer:
-		return true
-	}
-
-	return false
-}
-
-func (t *Trade) executeBuy() error {
-	fmt.Printf("Executing buy for fund: %v\n", t.BuyIntoTargetFund)
-	return nil
-}
-
-func (t *Trade) executeSell() error {
-	fmt.Printf("Executing sell for fund: %v\n", t.BuyIntoTargetFund)
-	return nil
-}
-
-func (t *Trade) executeTransfer() error {
-	fmt.Printf("Executing transfer for fund: %v\n", t.BuyIntoTargetFund)
-	return nil
-}
-
-func (t Trade) String() string {
-	return fmt.Sprintf("Trade ID: %v, Instruction: %s, Fund: %v", t.ID, t.InstructionType, t.BuyIntoTargetFund)
-}
-
-func (tq TradeQueue) DequeueTrade(trade Trade) error {
-	if tq[trade.ID].ID == trade.ID {
-		tq[trade.ID] = nil
-	}
-
-	return errors.New("Trade wasn't found")
-}
-
-func (tq TradeQueue) QueueTrade(trade *Trade) (*TradeQueue, error) {
-	err := append(tq, trade)
-	if err != nil {
-		return nil, errors.New("failed adding trade to queue!")
-	}
-
-	return &tq, nil
-
-}
-
-// PlaceBuyTrade allows a user to buy into a fund or a market item
-func PlaceBuyTrade(userID, marketID, fundID ID, quantity, price uint64) (*Trade, error) {
+func PlaceBuyTrade(userID, marketID uint, fundID *uint, quantity, price float64) (*Trade, error) {
 	trade := &Trade{
-		UserID:            userID,
-		MarketID:          marketID,
-		BuyIntoTargetFund: Fund{ID: fundID},
-		Type:              "buy",
-		Quantity:          quantity,
-		Price:             price,
-		TotalValue:        quantity * price,
-		Status:            "pending",
-		InstructionType:   Buy,
+		UserID:          userID,
+		MarketID:        marketID,
+		FundID:          fundID,
+		Type:            "buy",
+		Quantity:        quantity,
+		Price:           price,
+		TotalValue:      quantity * price,
+		Status:          "pending",
+		InstructionType: Buy,
+		CreatedAt:       time.Now(),
+		UpdatedAt:       time.Now(),
 	}
 
 	if err := DB.Create(trade).Error; err != nil {
 		return nil, err
 	}
-
 	return trade, nil
 }
 
-// PlaceSellTrade allows a user to sell out of a fund/market
-func PlaceSellTrade(userID, marketID, fundID ID, quantity, price uint64) (*Trade, error) {
+func PlaceSellTrade(userID, marketID uint, fundID *uint, quantity, price float64) (*Trade, error) {
 	trade := &Trade{
-		UserID:            userID,
-		MarketID:          marketID,
-		BuyIntoTargetFund: Fund{ID: fundID},
-		Type:              "sell",
-		Quantity:          quantity,
-		Price:             price,
-		TotalValue:        quantity * price,
-		Status:            "pending",
-		InstructionType:   Sell,
+		UserID:          userID,
+		MarketID:        marketID,
+		FundID:          fundID,
+		Type:            "sell",
+		Quantity:        quantity,
+		Price:           price,
+		TotalValue:      quantity * price,
+		Status:          "pending",
+		InstructionType: Sell,
+		CreatedAt:       time.Now(),
+		UpdatedAt:       time.Now(),
 	}
 
 	if err := DB.Create(trade).Error; err != nil {
 		return nil, err
 	}
-
 	return trade, nil
 }
 
-// ExecuteTrade will call the correct execution method
 func (t *Trade) ExecuteTrade() error {
 	switch t.InstructionType {
 	case Buy:
@@ -180,13 +138,18 @@ func (t *Trade) ExecuteTrade() error {
 	}
 }
 
-func GetTradeByID(id ID) (*Trade, error) {
-	var t Trade
-	if err := DB.First(&t, id).Error; err != nil {
-		if err == gorm.ErrRecordNotFound {
-			return nil, err
-		}
-		return nil, err
-	}
-	return &t, nil
+func (t *Trade) executeBuy() error {
+	fmt.Printf("Executing buy for fund: %v\n", t.Fund)
+	return nil
 }
+
+func (t *Trade) executeSell() error {
+	fmt.Printf("Executing sell for fund: %v\n", t.Fund)
+	return nil
+}
+
+func (t *Trade) executeTransfer() error {
+	fmt.Printf("Executing transfer for fund: %v\n", t.Fund)
+	return nil
+}
+
