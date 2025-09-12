@@ -7,6 +7,10 @@ import (
 	"gorm.io/gorm"
 )
 
+/**
+ * A portfolio is a collection of investments owned by a user.
+ * It can contain multiple holdings in different markets.
+ */
 type Portfolio struct {
 	ID         ID        `gorm:"primaryKey;autoIncrement"`
 	UserID     ID        `gorm:"not null;index"`
@@ -16,7 +20,6 @@ type Portfolio struct {
 	CreatedAt  time.Time `gorm:"autoCreateTime"`
 	UpdatedAt  time.Time `gorm:"autoUpdateTime"`
 
-	User     User                 `gorm:"foreignKey:UserID"`
 	Holdings []PortfolioHolding `gorm:"foreignKey:PortfolioID"`
 }
 
@@ -27,14 +30,14 @@ func (Portfolio) TableName() string {
 type PortfolioHolding struct {
 	ID           ID        `gorm:"primaryKey;autoIncrement"`
 	PortfolioID  ID        `gorm:"not null;index"`
-	MarketID     ID        `gorm:"not null;index"`
+	FundID       ID        `gorm:"not null;index"`
 	Quantity     uint64    `gorm:"not null"`
 	AveragePrice uint64    `gorm:"not null"`
 	CreatedAt    time.Time `gorm:"autoCreateTime"`
 	UpdatedAt    time.Time `gorm:"autoUpdateTime"`
 
 	Portfolio Portfolio `gorm:"foreignKey:PortfolioID"`
-	Market    Market    `gorm:"foreignKey:MarketID"`
+	Fund      Fund      `gorm:"foreignKey:FundID"`
 }
 
 func (PortfolioHolding) TableName() string {

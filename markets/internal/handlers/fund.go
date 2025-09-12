@@ -266,16 +266,3 @@ func DeleteFund(w http.ResponseWriter, r *http.Request) {
 
 	json.NewEncoder(w).Encode(response)
 }
-
-// HealthCheck - simple health check endpoint
-func HealthCheck(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusOK)
-
-	response := map[string]interface{}{
-		"success": true,
-		"message": "API is healthy",
-	}
-
-	json.NewEncoder(w).Encode(response)
-}

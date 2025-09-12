@@ -2,11 +2,9 @@ package middleware
 
 import (
 	"context"
-	"encoding/json"
 	"errors"
 	"net/http"
-	"os"
-	"time"
+	"strings"
 )
 
 type AuthUser struct {
@@ -28,47 +26,15 @@ const userCtxKey ctxKey = "authUser"
 
 func AuthMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		cookie, err := r.Cookie("connect.sid")
-		if err != nil {
-			http.Error(w, "unauthorized: missing session cookie", http.StatusUnauthorized)
-			return
-		}
-
-		baseURL := os.Getenv("AUTH_API_URL")
-		if baseURL == "" {
-			http.Error(w, "server misconfigured: AUTH_API_URL not set", http.StatusInternalServerError)
-			return
-		}
-
-		client := &http.Client{Timeout: 5 * time.Second}
-		req, _ := http.NewRequest("GET", baseURL+"/auth/valid", nil)
-		req.Header.Set("Cookie", cookie.Name+"="+cookie.Value)
-
-		resp, err := client.Do(req)
-		if err != nil {
-			http.Error(w, err.Error(), http.StatusServiceUnavailable)
-			return
-		}
-		defer resp.Body.Close()
-
-		if resp.StatusCode != http.StatusOK {
+		authHeader := r.Header.Get("Authorization")
+		if authHeader == "" || !strings.HasPrefix(authHeader, "Bearer ") {
 			http.Error(w, "unauthorized", http.StatusUnauthorized)
 			return
 		}
+		token := strings.TrimPrefix(authHeader, "Bearer ")
+		token = strings.TrimSpace(token)
 
-		var auth AuthResponse
-		if err := json.NewDecoder(resp.Body).Decode(&auth); err != nil {
-			http.Error(w, "failed to parse auth response", http.StatusUnauthorized)
-			return
-		}
-
-		if auth.User.ID == 0 {
-			http.Error(w, "unauthorized: no user", http.StatusUnauthorized)
-			return
-		}
-
-		ctx := context.WithValue(r.Context(), userCtxKey, auth.User)
-		next.ServeHTTP(w, r.WithContext(ctx))
+		next.ServeHTTP(w, r)
 	})
 }
 

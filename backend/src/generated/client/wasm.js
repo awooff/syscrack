@@ -314,39 +314,6 @@ exports.Prisma.FundScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
-exports.Prisma.PerformanceRecordScalarFieldEnum = {
-  id: 'id',
-  fundId: 'fundId',
-  date: 'date',
-  value: 'value',
-  return: 'return',
-  createdAt: 'createdAt'
-};
-
-exports.Prisma.FundInvestorScalarFieldEnum = {
-  fundId: 'fundId',
-  userId: 'userId',
-  investmentDate: 'investmentDate',
-  investedAmount: 'investedAmount'
-};
-
-exports.Prisma.MarketScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  symbol: 'symbol',
-  price: 'price',
-  marketCap: 'marketCap',
-  bidAsk: 'bidAsk',
-  buyers: 'buyers',
-  sellers: 'sellers',
-  isActive: 'isActive',
-  isClosed: 'isClosed',
-  openTime: 'openTime',
-  closeTime: 'closeTime',
-  lastUpdated: 'lastUpdated',
-  createdAt: 'createdAt'
-};
-
 exports.Prisma.PortfolioScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
@@ -360,7 +327,7 @@ exports.Prisma.PortfolioScalarFieldEnum = {
 exports.Prisma.PortfolioHoldingScalarFieldEnum = {
   id: 'id',
   portfolioId: 'portfolioId',
-  marketId: 'marketId',
+  fundId: 'fundId',
   quantity: 'quantity',
   averagePrice: 'averagePrice',
   createdAt: 'createdAt',
@@ -456,9 +423,6 @@ exports.Prisma.ModelName = {
   Logs: 'Logs',
   Trade: 'Trade',
   Fund: 'Fund',
-  PerformanceRecord: 'PerformanceRecord',
-  FundInvestor: 'FundInvestor',
-  Market: 'Market',
   Portfolio: 'Portfolio',
   PortfolioHolding: 'PortfolioHolding',
   HedgeFund: 'HedgeFund'

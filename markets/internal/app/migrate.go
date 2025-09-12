@@ -9,7 +9,6 @@ import (
 
 func Migrate(db *gorm.DB) error {
 	models := []interface{}{
-		&User{},
 		&Trade{},
 		&Fund{},
 		&Portfolio{},

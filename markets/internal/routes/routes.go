@@ -29,7 +29,6 @@ func Init() http.Handler {
 
 		protected.Route("/funds", FundRoutes)
 		protected.Route("/trades", TradeRoutes)
-		protected.Route("/users", UserRoutes)
 	})
 
 	// errors and stuff

@@ -47,7 +47,7 @@ func (Market) TableName() string {
 // Business logic methods
 func (m Market) CloseForBusiness(currentTime time.Time) (*Market, error) {
 	if currentTime != m.CloseTime {
-		return nil, errors.New("This is not yet the close of business!")
+		return nil, errors.New("this is not yet the close of business!")
 	}
 	m.IsClosed = true
 	return &m, nil
@@ -55,7 +55,7 @@ func (m Market) CloseForBusiness(currentTime time.Time) (*Market, error) {
 
 func (m Market) OpenForBusiness(currentTime time.Time) (*Market, error) {
 	if currentTime != m.OpenTime {
-		return nil, errors.New("It's not yet time for business to open!")
+		return nil, errors.New("it's not yet time for business to open")
 	}
 	m.IsClosed = false
 	return &m, nil

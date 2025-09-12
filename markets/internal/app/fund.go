@@ -20,9 +20,8 @@ type Fund struct {
 	CreatedAt               time.Time  `gorm:"autoCreateTime"`
 	UpdatedAt               time.Time  `gorm:"autoUpdateTime"`
 
-	FundManager        User                  `gorm:"foreignKey:FundManagerID"`
-	Investors          []User                `gorm:"many2many:fund_investors;"`
 	PerformanceHistory []PerformanceRecord `gorm:"foreignKey:FundID"`
+	Holdings           []PortfolioHolding  `gorm:"foreignKey:FundID"`
 }
 
 func (Fund) TableName() string {
@@ -44,19 +43,6 @@ func (PerformanceRecord) TableName() string {
 	return "performance_records"
 }
 
-type FundInvestor struct {
-	FundID         ID        `gorm:"primaryKey"`
-	UserID         ID        `gorm:"primaryKey"`
-	InvestmentDate time.Time `gorm:"not null;default:CURRENT_TIMESTAMP"`
-	InvestedAmount uint64    `gorm:"not null;default:0"`
-
-	Fund Fund `gorm:"foreignKey:FundID"`
-	User User `gorm:"foreignKey:UserID"`
-}
-
-func (FundInvestor) TableName() string {
-	return "fund_investors"
-}
 
 func GetActiveFunds() ([]Fund, error) {
 	var funds []Fund
@@ -87,4 +73,3 @@ func DeleteFund(id ID) error {
 	result := DB.Delete(&Fund{}, id)
 	return result.Error
 }
-

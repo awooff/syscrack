@@ -68,13 +68,10 @@ func SetupDatabase() {
 	db := GetDB()
 
 	err := db.AutoMigrate(
-		&User{},
 		&Fund{},
 		&PerformanceRecord{},
-		&FundInvestor{},
 		&Payment{},
 		&Market{},
-		&Transaction{},
 		&Portfolio{},
 		&PortfolioHolding{},
 		&Trade{},
@@ -108,31 +105,6 @@ func createIndexes(db *gorm.DB) {
 }
 
 func seedInitialData(db *gorm.DB) {
-	var userCount int64
-	db.Model(&User{}).Count(&userCount)
-
-	if userCount == 0 {
-		users := []User{
-			{
-				Name:         "admin",
-				Email:        "admin@example.com",
-				AccountValue: 1000000,
-				IsActive:     true,
-			},
-			{
-				Name:         "demo_user",
-				Email:        "demo@example.com",
-				AccountValue: 50000,
-				IsActive:     true,
-			},
-		}
-
-		for _, user := range users {
-			if err := db.Create(&user).Error; err != nil {
-				fmt.Printf("Warning: Failed to seed user %s: %v\n", user.Name, err)
-			}
-		}
-	}
 
 	var marketCount int64
 	db.Model(&Market{}).Count(&marketCount)

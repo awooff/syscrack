@@ -19,23 +19,23 @@ const (
 )
 
 type Trade struct {
-	ID                ID                   `gorm:"primaryKey;autoIncrement"`
-	UserID            ID                   `gorm:"not null;index"`
-	MarketID          ID                   `gorm:"not null;index"`
-	PortfolioID       *ID                  `gorm:"index"`
-	Type              string               `gorm:"not null;size:10"`
-	Quantity          uint64               `gorm:"not null"`
-	Price             uint64               `gorm:"not null"`
-	TotalValue        uint64               `gorm:"not null"`
-	Status            string               `gorm:"not null;default:'pending';size:20"`
-	ExecutedAt        *time.Time           `gorm:"index"`
-	CreatedAt         time.Time            `gorm:"autoCreateTime"`
-	BuyIntoTargetFund Fund                 `gorm:"foreignKey:FundID"`
-	InstructionType   InstructionNamedType `gorm:"not null"`
+	ID                  ID                   `gorm:"primaryKey;autoIncrement"`
+	UserID              ID                   `gorm:"not null;index"`
+	MarketID            ID                   `gorm:"not null;index"`
+	PortfolioID         ID                   `gorm:"index"`
+	BuyIntoTargetFundID ID                   `gorm:"not null;index"`
+	Type                string               `gorm:"not null;size:10"`
+	Quantity            uint64               `gorm:"not null"`
+	Price               uint64               `gorm:"not null"`
+	TotalValue          uint64               `gorm:"not null"`
+	Status              string               `gorm:"not null;default:'pending';size:20"`
+	ExecutedAt          *time.Time           `gorm:"index"`
+	CreatedAt           time.Time            `gorm:"autoCreateTime"`
+	BuyIntoTargetFund   Fund                 `gorm:"foreignKey:BuyIntoTargetFundID;references:ID"`
+	InstructionType     InstructionNamedType `gorm:"not null"`
 
-	User      User       `gorm:"foreignKey:UserID"`
-	Market    Market     `gorm:"foreignKey:MarketID"`
 	Portfolio *Portfolio `gorm:"foreignKey:PortfolioID"`
+	Market    Market     `gorm:"foreignKey:MarketID"`
 }
 
 // Error implements error.
@@ -49,7 +49,7 @@ func (t Trade) CreateNewTrade(id ID, fund Fund, instructionType InstructionNamed
 	}
 
 	if t.BuyIntoTargetFund.ID == 0 {
-		return nil, errors.New("Can't buy into fund ID 0!")
+		return nil, errors.New("can't buy into fund ID 0")
 	}
 
 	return &Trade{

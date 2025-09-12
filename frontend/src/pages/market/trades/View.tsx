@@ -2,11 +2,18 @@ import { Suspense } from "react";
 import { Await, useLoaderData } from "react-router-dom";
 import toast from "react-hot-toast";
 import { LoadingFallback, TradeList } from "../../../components/market/trades";
-import { Trade } from "backend/src/generated/client";
 
 export async function loader() {
   try {
-    const res = await fetch("/api/trades");
+    const res = await fetch("http://localhost:2700/api/funds", {
+      method: "GET",
+      credentials: "include",
+      headers: {
+        "Authorization": `Bearer ${localStorage.getItem("authToken")}`,
+        "Content-Type": "application/json",
+      },
+
+    });
     if (!res.ok) {
       throw new Error(`Failed to fetch trades (${res.status})`);
     }
@@ -21,7 +28,7 @@ export async function loader() {
 }
 
 export default function TradesPage() {
-  const { trades } = useLoaderData() as { trades: Trade[] };
+  const { trades } = useLoaderData() as { trades: any[] };
 
   return (
     <Suspense fallback={<LoadingFallback />}>

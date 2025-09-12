@@ -6,6 +6,7 @@ import (
 )
 
 type ID uint32
+type UserID uint32
 
 const (
 	InstructionTypeTransfer InstructionNamedType = "transfer"
