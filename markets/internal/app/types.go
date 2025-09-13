@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-type ID uint32
+type ID int
 type UserID uint32
 
 const (

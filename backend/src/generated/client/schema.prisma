@@ -30,10 +30,7 @@ model User {
   session       Session[]
   software      Software[]
   userQuests    UserQuests[]
-
-  portfolios    Portfolio[]
-  ongoingTrades Trade[]
-  managedFunds  Fund[]      @relation("ManagedFunds")
+  portfolioID   Int?
 }
 
 model Game {
@@ -260,98 +257,4 @@ enum HardwareTypes {
 enum AccessLevel {
   GOD
   FTP
-}
-
-//
-// Market related structs now
-// ----------------------------------------
-//
-
-enum InstructionNamedType {
-  BUY
-  SELL
-  REBALANCE
-  WITHDRAW
-  DEPOSIT
-}
-
-model Trade {
-  id                  Int                  @id @default(autoincrement())
-  userId              Int
-  marketId            Int
-  portfolioId         Int
-  type                String
-  quantity            Int
-  price               BigInt
-  totalValue          Int
-  status              String
-  executedAt          DateTime
-  createdAt           DateTime             @default(now())
-  buyIntoTargetFund   Fund                 @relation(fields: [buyIntoTargetFundid], references: [id])
-  buyIntoTargetFundid Int
-  instructionType     InstructionNamedType
-
-  user      User      @relation(fields: [userId], references: [id])
-  portfolio Portfolio @relation(fields: [portfolioId], references: [id])
-}
-
-model Fund {
-  id                      Int      @id @default(autoincrement())
-  fundManagerId           Int
-  name                    String   @db.VarChar(255)
-  minimumInvestmentAmount BigInt   @default(0)
-  totalFundCharge         Decimal  @default(0) @db.Decimal(5, 4)
-  totalFundCost           Decimal  @default(0) @db.Decimal(5, 4)
-  totalAssets             BigInt   @default(0)
-  isActive                Boolean  @default(true)
-  maxInvestors            Int      @default(0)
-  createdAt               DateTime @default(now())
-  updatedAt               DateTime @updatedAt
-
-  fundManager User               @relation("ManagedFunds", fields: [fundManagerId], references: [id])
-  trades      Trade[]
-  holdings    PortfolioHolding[]
-  hedgeFunds  HedgeFund[]
-}
-
-model Portfolio {
-  id         Int      @id @default(autoincrement())
-  userId     Int
-  name       String   @db.VarChar(255)
-  totalValue BigInt   @default(0)
-  isActive   Boolean  @default(true)
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-
-  user     User               @relation(fields: [userId], references: [id])
-  holdings PortfolioHolding[]
-  trades   Trade[]
-}
-
-model PortfolioHolding {
-  id           Int      @id @default(autoincrement())
-  portfolioId  Int
-  fundId       Int
-  quantity     BigInt
-  averagePrice BigInt
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
-
-  portfolio Portfolio @relation(fields: [portfolioId], references: [id])
-  fund      Fund      @relation(fields: [fundId], references: [id])
-}
-
-model HedgeFund {
-  id                Int      @id @default(autoincrement())
-  fundId            Int      @unique
-  strategy          String   @db.VarChar(100)
-  riskLevel         String   @db.VarChar(20)
-  minimumLockPeriod Int      @default(0)
-  managementFee     Decimal  @default(0) @db.Decimal(5, 4)
-  performanceFee    Decimal  @default(0) @db.Decimal(5, 4)
-  highWaterMark     BigInt   @default(0)
-  createdAt         DateTime @default(now())
-  updatedAt         DateTime @updatedAt
-
-  fund Fund @relation(fields: [fundId], references: [id])
 }

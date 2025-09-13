@@ -8,20 +8,20 @@ import (
 )
 
 type Fund struct {
-	ID                      ID         `gorm:"primaryKey;autoIncrement"`
-	FundManagerID           ID         `gorm:"not null;index"`
-	Name                    string     `gorm:"not null;size:255"`
-	MinimumInvestmentAmount uint64     `gorm:"not null;default:0"`
-	TotalFundCharge         Percentage `gorm:"type:decimal(5,4);not null;default:0"`
-	TotalFundCost           Percentage `gorm:"type:decimal(5,4);not null;default:0"`
-	TotalAssets             uint64     `gorm:"not null;default:0"`
-	IsActive                bool       `gorm:"not null;default:true"`
-	MaxInvestors            int        `gorm:"not null;default:0"`
-	CreatedAt               time.Time  `gorm:"autoCreateTime"`
-	UpdatedAt               time.Time  `gorm:"autoUpdateTime"`
+	ID                      ID        `gorm:"primaryKey;autoIncrement"`
+	FundManagerID           ID        `gorm:"not null;index"`
+	Name                    string    `gorm:"not null;size:255"`
+	MinimumInvestmentAmount uint64    `gorm:"not null;default:0"`
+	TotalFundCharge         float64   `gorm:"type:decimal(5,4);not null;default:0"`
+	TotalFundCost           float64   `gorm:"type:decimal(5,4);not null;default:0"`
+	TotalAssets             uint64    `gorm:"not null;default:0"`
+	IsActive                bool      `gorm:"not null;default:true"`
+	MaxInvestors            int       `gorm:"not null;default:0"`
+	CreatedAt               time.Time `gorm:"autoCreateTime"`
+	UpdatedAt               time.Time `gorm:"autoUpdateTime"`
 
-	PerformanceHistory []PerformanceRecord `gorm:"foreignKey:FundID"`
-	Holdings           []PortfolioHolding  `gorm:"foreignKey:FundID"`
+	Holdings []PortfolioHolding `gorm:"foreignKey:FundID"`
+	// Add other relations as needed
 }
 
 func (Fund) TableName() string {
@@ -46,6 +46,15 @@ func (PerformanceRecord) TableName() string {
 func GetActiveFunds() ([]Fund, error) {
 	var funds []Fund
 	result := DB.Where("is_active = ?", true).Find(&funds)
+
+	if result.Error != nil {
+		return nil, result.Error
+	}
+
+	if len(funds) == 0 {
+		return nil, errors.New("no active funds found")
+	}
+
 	return funds, result.Error
 }
 
@@ -55,6 +64,7 @@ func GetFundByID(id ID) (*Fund, error) {
 	if errors.Is(result.Error, gorm.ErrRecordNotFound) {
 		return nil, errors.New("fund not found")
 	}
+
 	return &fund, result.Error
 }
 

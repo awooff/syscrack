@@ -131,7 +131,8 @@ exports.Prisma.UserScalarFieldEnum = {
   lastAction: 'lastAction',
   created: 'created',
   refreshToken: 'refreshToken',
-  group: 'group'
+  group: 'group',
+  portfolioID: 'portfolioID'
 };
 
 exports.Prisma.GameScalarFieldEnum = {
@@ -284,69 +285,6 @@ exports.Prisma.LogsScalarFieldEnum = {
   created: 'created'
 };
 
-exports.Prisma.TradeScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  marketId: 'marketId',
-  portfolioId: 'portfolioId',
-  type: 'type',
-  quantity: 'quantity',
-  price: 'price',
-  totalValue: 'totalValue',
-  status: 'status',
-  executedAt: 'executedAt',
-  createdAt: 'createdAt',
-  buyIntoTargetFundid: 'buyIntoTargetFundid',
-  instructionType: 'instructionType'
-};
-
-exports.Prisma.FundScalarFieldEnum = {
-  id: 'id',
-  fundManagerId: 'fundManagerId',
-  name: 'name',
-  minimumInvestmentAmount: 'minimumInvestmentAmount',
-  totalFundCharge: 'totalFundCharge',
-  totalFundCost: 'totalFundCost',
-  totalAssets: 'totalAssets',
-  isActive: 'isActive',
-  maxInvestors: 'maxInvestors',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
-exports.Prisma.PortfolioScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  name: 'name',
-  totalValue: 'totalValue',
-  isActive: 'isActive',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
-exports.Prisma.PortfolioHoldingScalarFieldEnum = {
-  id: 'id',
-  portfolioId: 'portfolioId',
-  fundId: 'fundId',
-  quantity: 'quantity',
-  averagePrice: 'averagePrice',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
-exports.Prisma.HedgeFundScalarFieldEnum = {
-  id: 'id',
-  fundId: 'fundId',
-  strategy: 'strategy',
-  riskLevel: 'riskLevel',
-  minimumLockPeriod: 'minimumLockPeriod',
-  managementFee: 'managementFee',
-  performanceFee: 'performanceFee',
-  highWaterMark: 'highWaterMark',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -396,14 +334,6 @@ exports.AccessLevel = exports.$Enums.AccessLevel = {
   FTP: 'FTP'
 };
 
-exports.InstructionNamedType = exports.$Enums.InstructionNamedType = {
-  BUY: 'BUY',
-  SELL: 'SELL',
-  REBALANCE: 'REBALANCE',
-  WITHDRAW: 'WITHDRAW',
-  DEPOSIT: 'DEPOSIT'
-};
-
 exports.Prisma.ModelName = {
   User: 'User',
   Game: 'Game',
@@ -420,12 +350,7 @@ exports.Prisma.ModelName = {
   Software: 'Software',
   Process: 'Process',
   Notifications: 'Notifications',
-  Logs: 'Logs',
-  Trade: 'Trade',
-  Fund: 'Fund',
-  Portfolio: 'Portfolio',
-  PortfolioHolding: 'PortfolioHolding',
-  HedgeFund: 'HedgeFund'
+  Logs: 'Logs'
 };
 
 /**

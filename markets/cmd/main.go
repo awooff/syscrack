@@ -35,9 +35,9 @@ func main() {
 	app.InitialiseDbConnection() // whatever initializes your *gorm.DB
 
 	// run migrations
-	// if err := app.Migrate(app.DB); err != nil {
-	// 	logx.Logger.Fatal().Msgf("migration error: %v", err)
-	// }
+	if err := app.Migrate(app.DB); err != nil {
+		logx.Logger.Fatal().Msgf("migration error: %v", err)
+	}
 
 	// Set up our router
 	r := chi.NewRouter()

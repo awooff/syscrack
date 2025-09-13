@@ -93,31 +93,6 @@ export type Notifications = $Result.DefaultSelection<Prisma.$NotificationsPayloa
  * 
  */
 export type Logs = $Result.DefaultSelection<Prisma.$LogsPayload>
-/**
- * Model Trade
- * 
- */
-export type Trade = $Result.DefaultSelection<Prisma.$TradePayload>
-/**
- * Model Fund
- * 
- */
-export type Fund = $Result.DefaultSelection<Prisma.$FundPayload>
-/**
- * Model Portfolio
- * 
- */
-export type Portfolio = $Result.DefaultSelection<Prisma.$PortfolioPayload>
-/**
- * Model PortfolioHolding
- * 
- */
-export type PortfolioHolding = $Result.DefaultSelection<Prisma.$PortfolioHoldingPayload>
-/**
- * Model HedgeFund
- * 
- */
-export type HedgeFund = $Result.DefaultSelection<Prisma.$HedgeFundPayload>
 
 /**
  * Enums
@@ -151,17 +126,6 @@ export const AccessLevel: {
 
 export type AccessLevel = (typeof AccessLevel)[keyof typeof AccessLevel]
 
-
-export const InstructionNamedType: {
-  BUY: 'BUY',
-  SELL: 'SELL',
-  REBALANCE: 'REBALANCE',
-  WITHDRAW: 'WITHDRAW',
-  DEPOSIT: 'DEPOSIT'
-};
-
-export type InstructionNamedType = (typeof InstructionNamedType)[keyof typeof InstructionNamedType]
-
 }
 
 export type Groups = $Enums.Groups
@@ -175,10 +139,6 @@ export const HardwareTypes: typeof $Enums.HardwareTypes
 export type AccessLevel = $Enums.AccessLevel
 
 export const AccessLevel: typeof $Enums.AccessLevel
-
-export type InstructionNamedType = $Enums.InstructionNamedType
-
-export const InstructionNamedType: typeof $Enums.InstructionNamedType
 
 /**
  * ##  Prisma Client ʲˢ
@@ -462,56 +422,6 @@ export class PrismaClient<
     * ```
     */
   get logs(): Prisma.LogsDelegate<ExtArgs>;
-
-  /**
-   * `prisma.trade`: Exposes CRUD operations for the **Trade** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Trades
-    * const trades = await prisma.trade.findMany()
-    * ```
-    */
-  get trade(): Prisma.TradeDelegate<ExtArgs>;
-
-  /**
-   * `prisma.fund`: Exposes CRUD operations for the **Fund** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Funds
-    * const funds = await prisma.fund.findMany()
-    * ```
-    */
-  get fund(): Prisma.FundDelegate<ExtArgs>;
-
-  /**
-   * `prisma.portfolio`: Exposes CRUD operations for the **Portfolio** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Portfolios
-    * const portfolios = await prisma.portfolio.findMany()
-    * ```
-    */
-  get portfolio(): Prisma.PortfolioDelegate<ExtArgs>;
-
-  /**
-   * `prisma.portfolioHolding`: Exposes CRUD operations for the **PortfolioHolding** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more PortfolioHoldings
-    * const portfolioHoldings = await prisma.portfolioHolding.findMany()
-    * ```
-    */
-  get portfolioHolding(): Prisma.PortfolioHoldingDelegate<ExtArgs>;
-
-  /**
-   * `prisma.hedgeFund`: Exposes CRUD operations for the **HedgeFund** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more HedgeFunds
-    * const hedgeFunds = await prisma.hedgeFund.findMany()
-    * ```
-    */
-  get hedgeFund(): Prisma.HedgeFundDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -968,12 +878,7 @@ export namespace Prisma {
     Software: 'Software',
     Process: 'Process',
     Notifications: 'Notifications',
-    Logs: 'Logs',
-    Trade: 'Trade',
-    Fund: 'Fund',
-    Portfolio: 'Portfolio',
-    PortfolioHolding: 'PortfolioHolding',
-    HedgeFund: 'HedgeFund'
+    Logs: 'Logs'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -989,7 +894,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "user" | "game" | "session" | "hardware" | "addressBook" | "dNS" | "accountBook" | "profile" | "memory" | "computer" | "quests" | "userQuests" | "software" | "process" | "notifications" | "logs" | "trade" | "fund" | "portfolio" | "portfolioHolding" | "hedgeFund"
+      modelProps: "user" | "game" | "session" | "hardware" | "addressBook" | "dNS" | "accountBook" | "profile" | "memory" | "computer" | "quests" | "userQuests" | "software" | "process" | "notifications" | "logs"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2113,356 +2018,6 @@ export namespace Prisma {
           }
         }
       }
-      Trade: {
-        payload: Prisma.$TradePayload<ExtArgs>
-        fields: Prisma.TradeFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.TradeFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TradePayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.TradeFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TradePayload>
-          }
-          findFirst: {
-            args: Prisma.TradeFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TradePayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.TradeFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TradePayload>
-          }
-          findMany: {
-            args: Prisma.TradeFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TradePayload>[]
-          }
-          create: {
-            args: Prisma.TradeCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TradePayload>
-          }
-          createMany: {
-            args: Prisma.TradeCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.TradeCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TradePayload>[]
-          }
-          delete: {
-            args: Prisma.TradeDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TradePayload>
-          }
-          update: {
-            args: Prisma.TradeUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TradePayload>
-          }
-          deleteMany: {
-            args: Prisma.TradeDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.TradeUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          upsert: {
-            args: Prisma.TradeUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TradePayload>
-          }
-          aggregate: {
-            args: Prisma.TradeAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateTrade>
-          }
-          groupBy: {
-            args: Prisma.TradeGroupByArgs<ExtArgs>
-            result: $Utils.Optional<TradeGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.TradeCountArgs<ExtArgs>
-            result: $Utils.Optional<TradeCountAggregateOutputType> | number
-          }
-        }
-      }
-      Fund: {
-        payload: Prisma.$FundPayload<ExtArgs>
-        fields: Prisma.FundFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.FundFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FundPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.FundFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FundPayload>
-          }
-          findFirst: {
-            args: Prisma.FundFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FundPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.FundFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FundPayload>
-          }
-          findMany: {
-            args: Prisma.FundFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FundPayload>[]
-          }
-          create: {
-            args: Prisma.FundCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FundPayload>
-          }
-          createMany: {
-            args: Prisma.FundCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.FundCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FundPayload>[]
-          }
-          delete: {
-            args: Prisma.FundDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FundPayload>
-          }
-          update: {
-            args: Prisma.FundUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FundPayload>
-          }
-          deleteMany: {
-            args: Prisma.FundDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.FundUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          upsert: {
-            args: Prisma.FundUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FundPayload>
-          }
-          aggregate: {
-            args: Prisma.FundAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateFund>
-          }
-          groupBy: {
-            args: Prisma.FundGroupByArgs<ExtArgs>
-            result: $Utils.Optional<FundGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.FundCountArgs<ExtArgs>
-            result: $Utils.Optional<FundCountAggregateOutputType> | number
-          }
-        }
-      }
-      Portfolio: {
-        payload: Prisma.$PortfolioPayload<ExtArgs>
-        fields: Prisma.PortfolioFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.PortfolioFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PortfolioPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.PortfolioFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PortfolioPayload>
-          }
-          findFirst: {
-            args: Prisma.PortfolioFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PortfolioPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.PortfolioFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PortfolioPayload>
-          }
-          findMany: {
-            args: Prisma.PortfolioFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PortfolioPayload>[]
-          }
-          create: {
-            args: Prisma.PortfolioCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PortfolioPayload>
-          }
-          createMany: {
-            args: Prisma.PortfolioCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.PortfolioCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PortfolioPayload>[]
-          }
-          delete: {
-            args: Prisma.PortfolioDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PortfolioPayload>
-          }
-          update: {
-            args: Prisma.PortfolioUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PortfolioPayload>
-          }
-          deleteMany: {
-            args: Prisma.PortfolioDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.PortfolioUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          upsert: {
-            args: Prisma.PortfolioUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PortfolioPayload>
-          }
-          aggregate: {
-            args: Prisma.PortfolioAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregatePortfolio>
-          }
-          groupBy: {
-            args: Prisma.PortfolioGroupByArgs<ExtArgs>
-            result: $Utils.Optional<PortfolioGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.PortfolioCountArgs<ExtArgs>
-            result: $Utils.Optional<PortfolioCountAggregateOutputType> | number
-          }
-        }
-      }
-      PortfolioHolding: {
-        payload: Prisma.$PortfolioHoldingPayload<ExtArgs>
-        fields: Prisma.PortfolioHoldingFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.PortfolioHoldingFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PortfolioHoldingPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.PortfolioHoldingFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PortfolioHoldingPayload>
-          }
-          findFirst: {
-            args: Prisma.PortfolioHoldingFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PortfolioHoldingPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.PortfolioHoldingFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PortfolioHoldingPayload>
-          }
-          findMany: {
-            args: Prisma.PortfolioHoldingFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PortfolioHoldingPayload>[]
-          }
-          create: {
-            args: Prisma.PortfolioHoldingCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PortfolioHoldingPayload>
-          }
-          createMany: {
-            args: Prisma.PortfolioHoldingCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.PortfolioHoldingCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PortfolioHoldingPayload>[]
-          }
-          delete: {
-            args: Prisma.PortfolioHoldingDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PortfolioHoldingPayload>
-          }
-          update: {
-            args: Prisma.PortfolioHoldingUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PortfolioHoldingPayload>
-          }
-          deleteMany: {
-            args: Prisma.PortfolioHoldingDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.PortfolioHoldingUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          upsert: {
-            args: Prisma.PortfolioHoldingUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PortfolioHoldingPayload>
-          }
-          aggregate: {
-            args: Prisma.PortfolioHoldingAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregatePortfolioHolding>
-          }
-          groupBy: {
-            args: Prisma.PortfolioHoldingGroupByArgs<ExtArgs>
-            result: $Utils.Optional<PortfolioHoldingGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.PortfolioHoldingCountArgs<ExtArgs>
-            result: $Utils.Optional<PortfolioHoldingCountAggregateOutputType> | number
-          }
-        }
-      }
-      HedgeFund: {
-        payload: Prisma.$HedgeFundPayload<ExtArgs>
-        fields: Prisma.HedgeFundFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.HedgeFundFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$HedgeFundPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.HedgeFundFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$HedgeFundPayload>
-          }
-          findFirst: {
-            args: Prisma.HedgeFundFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$HedgeFundPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.HedgeFundFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$HedgeFundPayload>
-          }
-          findMany: {
-            args: Prisma.HedgeFundFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$HedgeFundPayload>[]
-          }
-          create: {
-            args: Prisma.HedgeFundCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$HedgeFundPayload>
-          }
-          createMany: {
-            args: Prisma.HedgeFundCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.HedgeFundCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$HedgeFundPayload>[]
-          }
-          delete: {
-            args: Prisma.HedgeFundDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$HedgeFundPayload>
-          }
-          update: {
-            args: Prisma.HedgeFundUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$HedgeFundPayload>
-          }
-          deleteMany: {
-            args: Prisma.HedgeFundDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.HedgeFundUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          upsert: {
-            args: Prisma.HedgeFundUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$HedgeFundPayload>
-          }
-          aggregate: {
-            args: Prisma.HedgeFundAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateHedgeFund>
-          }
-          groupBy: {
-            args: Prisma.HedgeFundGroupByArgs<ExtArgs>
-            result: $Utils.Optional<HedgeFundGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.HedgeFundCountArgs<ExtArgs>
-            result: $Utils.Optional<HedgeFundCountAggregateOutputType> | number
-          }
-        }
-      }
     }
   } & {
     other: {
@@ -2636,9 +2191,6 @@ export namespace Prisma {
     session: number
     software: number
     userQuests: number
-    portfolios: number
-    ongoingTrades: number
-    managedFunds: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2654,9 +2206,6 @@ export namespace Prisma {
     session?: boolean | UserCountOutputTypeCountSessionArgs
     software?: boolean | UserCountOutputTypeCountSoftwareArgs
     userQuests?: boolean | UserCountOutputTypeCountUserQuestsArgs
-    portfolios?: boolean | UserCountOutputTypeCountPortfoliosArgs
-    ongoingTrades?: boolean | UserCountOutputTypeCountOngoingTradesArgs
-    managedFunds?: boolean | UserCountOutputTypeCountManagedFundsArgs
   }
 
   // Custom InputTypes
@@ -2752,27 +2301,6 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountUserQuestsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: UserQuestsWhereInput
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountPortfoliosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: PortfolioWhereInput
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountOngoingTradesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: TradeWhereInput
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountManagedFundsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: FundWhereInput
   }
 
 
@@ -3063,95 +2591,6 @@ export namespace Prisma {
 
 
   /**
-   * Count Type FundCountOutputType
-   */
-
-  export type FundCountOutputType = {
-    trades: number
-    holdings: number
-    hedgeFunds: number
-  }
-
-  export type FundCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    trades?: boolean | FundCountOutputTypeCountTradesArgs
-    holdings?: boolean | FundCountOutputTypeCountHoldingsArgs
-    hedgeFunds?: boolean | FundCountOutputTypeCountHedgeFundsArgs
-  }
-
-  // Custom InputTypes
-  /**
-   * FundCountOutputType without action
-   */
-  export type FundCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the FundCountOutputType
-     */
-    select?: FundCountOutputTypeSelect<ExtArgs> | null
-  }
-
-  /**
-   * FundCountOutputType without action
-   */
-  export type FundCountOutputTypeCountTradesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: TradeWhereInput
-  }
-
-  /**
-   * FundCountOutputType without action
-   */
-  export type FundCountOutputTypeCountHoldingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: PortfolioHoldingWhereInput
-  }
-
-  /**
-   * FundCountOutputType without action
-   */
-  export type FundCountOutputTypeCountHedgeFundsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: HedgeFundWhereInput
-  }
-
-
-  /**
-   * Count Type PortfolioCountOutputType
-   */
-
-  export type PortfolioCountOutputType = {
-    holdings: number
-    trades: number
-  }
-
-  export type PortfolioCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    holdings?: boolean | PortfolioCountOutputTypeCountHoldingsArgs
-    trades?: boolean | PortfolioCountOutputTypeCountTradesArgs
-  }
-
-  // Custom InputTypes
-  /**
-   * PortfolioCountOutputType without action
-   */
-  export type PortfolioCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PortfolioCountOutputType
-     */
-    select?: PortfolioCountOutputTypeSelect<ExtArgs> | null
-  }
-
-  /**
-   * PortfolioCountOutputType without action
-   */
-  export type PortfolioCountOutputTypeCountHoldingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: PortfolioHoldingWhereInput
-  }
-
-  /**
-   * PortfolioCountOutputType without action
-   */
-  export type PortfolioCountOutputTypeCountTradesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: TradeWhereInput
-  }
-
-
-  /**
    * Models
    */
 
@@ -3169,10 +2608,12 @@ export namespace Prisma {
 
   export type UserAvgAggregateOutputType = {
     id: number | null
+    portfolioID: number | null
   }
 
   export type UserSumAggregateOutputType = {
     id: number | null
+    portfolioID: number | null
   }
 
   export type UserMinAggregateOutputType = {
@@ -3185,6 +2626,7 @@ export namespace Prisma {
     created: Date | null
     refreshToken: string | null
     group: $Enums.Groups | null
+    portfolioID: number | null
   }
 
   export type UserMaxAggregateOutputType = {
@@ -3197,6 +2639,7 @@ export namespace Prisma {
     created: Date | null
     refreshToken: string | null
     group: $Enums.Groups | null
+    portfolioID: number | null
   }
 
   export type UserCountAggregateOutputType = {
@@ -3209,16 +2652,19 @@ export namespace Prisma {
     created: number
     refreshToken: number
     group: number
+    portfolioID: number
     _all: number
   }
 
 
   export type UserAvgAggregateInputType = {
     id?: true
+    portfolioID?: true
   }
 
   export type UserSumAggregateInputType = {
     id?: true
+    portfolioID?: true
   }
 
   export type UserMinAggregateInputType = {
@@ -3231,6 +2677,7 @@ export namespace Prisma {
     created?: true
     refreshToken?: true
     group?: true
+    portfolioID?: true
   }
 
   export type UserMaxAggregateInputType = {
@@ -3243,6 +2690,7 @@ export namespace Prisma {
     created?: true
     refreshToken?: true
     group?: true
+    portfolioID?: true
   }
 
   export type UserCountAggregateInputType = {
@@ -3255,6 +2703,7 @@ export namespace Prisma {
     created?: true
     refreshToken?: true
     group?: true
+    portfolioID?: true
     _all?: true
   }
 
@@ -3354,6 +2803,7 @@ export namespace Prisma {
     created: Date
     refreshToken: string | null
     group: $Enums.Groups
+    portfolioID: number | null
     _count: UserCountAggregateOutputType | null
     _avg: UserAvgAggregateOutputType | null
     _sum: UserSumAggregateOutputType | null
@@ -3385,6 +2835,7 @@ export namespace Prisma {
     created?: boolean
     refreshToken?: boolean
     group?: boolean
+    portfolioID?: boolean
     accountBook?: boolean | User$accountBookArgs<ExtArgs>
     addressBook?: boolean | User$addressBookArgs<ExtArgs>
     computer?: boolean | User$computerArgs<ExtArgs>
@@ -3397,9 +2848,6 @@ export namespace Prisma {
     session?: boolean | User$sessionArgs<ExtArgs>
     software?: boolean | User$softwareArgs<ExtArgs>
     userQuests?: boolean | User$userQuestsArgs<ExtArgs>
-    portfolios?: boolean | User$portfoliosArgs<ExtArgs>
-    ongoingTrades?: boolean | User$ongoingTradesArgs<ExtArgs>
-    managedFunds?: boolean | User$managedFundsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -3413,6 +2861,7 @@ export namespace Prisma {
     created?: boolean
     refreshToken?: boolean
     group?: boolean
+    portfolioID?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectScalar = {
@@ -3425,6 +2874,7 @@ export namespace Prisma {
     created?: boolean
     refreshToken?: boolean
     group?: boolean
+    portfolioID?: boolean
   }
 
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3440,9 +2890,6 @@ export namespace Prisma {
     session?: boolean | User$sessionArgs<ExtArgs>
     software?: boolean | User$softwareArgs<ExtArgs>
     userQuests?: boolean | User$userQuestsArgs<ExtArgs>
-    portfolios?: boolean | User$portfoliosArgs<ExtArgs>
-    ongoingTrades?: boolean | User$ongoingTradesArgs<ExtArgs>
-    managedFunds?: boolean | User$managedFundsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -3462,9 +2909,6 @@ export namespace Prisma {
       session: Prisma.$SessionPayload<ExtArgs>[]
       software: Prisma.$SoftwarePayload<ExtArgs>[]
       userQuests: Prisma.$UserQuestsPayload<ExtArgs>[]
-      portfolios: Prisma.$PortfolioPayload<ExtArgs>[]
-      ongoingTrades: Prisma.$TradePayload<ExtArgs>[]
-      managedFunds: Prisma.$FundPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -3476,6 +2920,7 @@ export namespace Prisma {
       created: Date
       refreshToken: string | null
       group: $Enums.Groups
+      portfolioID: number | null
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -3852,9 +3297,6 @@ export namespace Prisma {
     session<T extends User$sessionArgs<ExtArgs> = {}>(args?: Subset<T, User$sessionArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany"> | Null>
     software<T extends User$softwareArgs<ExtArgs> = {}>(args?: Subset<T, User$softwareArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SoftwarePayload<ExtArgs>, T, "findMany"> | Null>
     userQuests<T extends User$userQuestsArgs<ExtArgs> = {}>(args?: Subset<T, User$userQuestsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserQuestsPayload<ExtArgs>, T, "findMany"> | Null>
-    portfolios<T extends User$portfoliosArgs<ExtArgs> = {}>(args?: Subset<T, User$portfoliosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PortfolioPayload<ExtArgs>, T, "findMany"> | Null>
-    ongoingTrades<T extends User$ongoingTradesArgs<ExtArgs> = {}>(args?: Subset<T, User$ongoingTradesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TradePayload<ExtArgs>, T, "findMany"> | Null>
-    managedFunds<T extends User$managedFundsArgs<ExtArgs> = {}>(args?: Subset<T, User$managedFundsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FundPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3893,6 +3335,7 @@ export namespace Prisma {
     readonly created: FieldRef<"User", 'DateTime'>
     readonly refreshToken: FieldRef<"User", 'String'>
     readonly group: FieldRef<"User", 'Groups'>
+    readonly portfolioID: FieldRef<"User", 'Int'>
   }
     
 
@@ -4444,66 +3887,6 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: UserQuestsScalarFieldEnum | UserQuestsScalarFieldEnum[]
-  }
-
-  /**
-   * User.portfolios
-   */
-  export type User$portfoliosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Portfolio
-     */
-    select?: PortfolioSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PortfolioInclude<ExtArgs> | null
-    where?: PortfolioWhereInput
-    orderBy?: PortfolioOrderByWithRelationInput | PortfolioOrderByWithRelationInput[]
-    cursor?: PortfolioWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: PortfolioScalarFieldEnum | PortfolioScalarFieldEnum[]
-  }
-
-  /**
-   * User.ongoingTrades
-   */
-  export type User$ongoingTradesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Trade
-     */
-    select?: TradeSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TradeInclude<ExtArgs> | null
-    where?: TradeWhereInput
-    orderBy?: TradeOrderByWithRelationInput | TradeOrderByWithRelationInput[]
-    cursor?: TradeWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: TradeScalarFieldEnum | TradeScalarFieldEnum[]
-  }
-
-  /**
-   * User.managedFunds
-   */
-  export type User$managedFundsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Fund
-     */
-    select?: FundSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: FundInclude<ExtArgs> | null
-    where?: FundWhereInput
-    orderBy?: FundOrderByWithRelationInput | FundOrderByWithRelationInput[]
-    cursor?: FundWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: FundScalarFieldEnum | FundScalarFieldEnum[]
   }
 
   /**
@@ -19972,5355 +19355,6 @@ export namespace Prisma {
 
 
   /**
-   * Model Trade
-   */
-
-  export type AggregateTrade = {
-    _count: TradeCountAggregateOutputType | null
-    _avg: TradeAvgAggregateOutputType | null
-    _sum: TradeSumAggregateOutputType | null
-    _min: TradeMinAggregateOutputType | null
-    _max: TradeMaxAggregateOutputType | null
-  }
-
-  export type TradeAvgAggregateOutputType = {
-    id: number | null
-    userId: number | null
-    marketId: number | null
-    portfolioId: number | null
-    quantity: number | null
-    price: number | null
-    totalValue: number | null
-    buyIntoTargetFundid: number | null
-  }
-
-  export type TradeSumAggregateOutputType = {
-    id: number | null
-    userId: number | null
-    marketId: number | null
-    portfolioId: number | null
-    quantity: number | null
-    price: bigint | null
-    totalValue: number | null
-    buyIntoTargetFundid: number | null
-  }
-
-  export type TradeMinAggregateOutputType = {
-    id: number | null
-    userId: number | null
-    marketId: number | null
-    portfolioId: number | null
-    type: string | null
-    quantity: number | null
-    price: bigint | null
-    totalValue: number | null
-    status: string | null
-    executedAt: Date | null
-    createdAt: Date | null
-    buyIntoTargetFundid: number | null
-    instructionType: $Enums.InstructionNamedType | null
-  }
-
-  export type TradeMaxAggregateOutputType = {
-    id: number | null
-    userId: number | null
-    marketId: number | null
-    portfolioId: number | null
-    type: string | null
-    quantity: number | null
-    price: bigint | null
-    totalValue: number | null
-    status: string | null
-    executedAt: Date | null
-    createdAt: Date | null
-    buyIntoTargetFundid: number | null
-    instructionType: $Enums.InstructionNamedType | null
-  }
-
-  export type TradeCountAggregateOutputType = {
-    id: number
-    userId: number
-    marketId: number
-    portfolioId: number
-    type: number
-    quantity: number
-    price: number
-    totalValue: number
-    status: number
-    executedAt: number
-    createdAt: number
-    buyIntoTargetFundid: number
-    instructionType: number
-    _all: number
-  }
-
-
-  export type TradeAvgAggregateInputType = {
-    id?: true
-    userId?: true
-    marketId?: true
-    portfolioId?: true
-    quantity?: true
-    price?: true
-    totalValue?: true
-    buyIntoTargetFundid?: true
-  }
-
-  export type TradeSumAggregateInputType = {
-    id?: true
-    userId?: true
-    marketId?: true
-    portfolioId?: true
-    quantity?: true
-    price?: true
-    totalValue?: true
-    buyIntoTargetFundid?: true
-  }
-
-  export type TradeMinAggregateInputType = {
-    id?: true
-    userId?: true
-    marketId?: true
-    portfolioId?: true
-    type?: true
-    quantity?: true
-    price?: true
-    totalValue?: true
-    status?: true
-    executedAt?: true
-    createdAt?: true
-    buyIntoTargetFundid?: true
-    instructionType?: true
-  }
-
-  export type TradeMaxAggregateInputType = {
-    id?: true
-    userId?: true
-    marketId?: true
-    portfolioId?: true
-    type?: true
-    quantity?: true
-    price?: true
-    totalValue?: true
-    status?: true
-    executedAt?: true
-    createdAt?: true
-    buyIntoTargetFundid?: true
-    instructionType?: true
-  }
-
-  export type TradeCountAggregateInputType = {
-    id?: true
-    userId?: true
-    marketId?: true
-    portfolioId?: true
-    type?: true
-    quantity?: true
-    price?: true
-    totalValue?: true
-    status?: true
-    executedAt?: true
-    createdAt?: true
-    buyIntoTargetFundid?: true
-    instructionType?: true
-    _all?: true
-  }
-
-  export type TradeAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Trade to aggregate.
-     */
-    where?: TradeWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Trades to fetch.
-     */
-    orderBy?: TradeOrderByWithRelationInput | TradeOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: TradeWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Trades from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Trades.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned Trades
-    **/
-    _count?: true | TradeCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: TradeAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: TradeSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: TradeMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: TradeMaxAggregateInputType
-  }
-
-  export type GetTradeAggregateType<T extends TradeAggregateArgs> = {
-        [P in keyof T & keyof AggregateTrade]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateTrade[P]>
-      : GetScalarType<T[P], AggregateTrade[P]>
-  }
-
-
-
-
-  export type TradeGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: TradeWhereInput
-    orderBy?: TradeOrderByWithAggregationInput | TradeOrderByWithAggregationInput[]
-    by: TradeScalarFieldEnum[] | TradeScalarFieldEnum
-    having?: TradeScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: TradeCountAggregateInputType | true
-    _avg?: TradeAvgAggregateInputType
-    _sum?: TradeSumAggregateInputType
-    _min?: TradeMinAggregateInputType
-    _max?: TradeMaxAggregateInputType
-  }
-
-  export type TradeGroupByOutputType = {
-    id: number
-    userId: number
-    marketId: number
-    portfolioId: number
-    type: string
-    quantity: number
-    price: bigint
-    totalValue: number
-    status: string
-    executedAt: Date
-    createdAt: Date
-    buyIntoTargetFundid: number
-    instructionType: $Enums.InstructionNamedType
-    _count: TradeCountAggregateOutputType | null
-    _avg: TradeAvgAggregateOutputType | null
-    _sum: TradeSumAggregateOutputType | null
-    _min: TradeMinAggregateOutputType | null
-    _max: TradeMaxAggregateOutputType | null
-  }
-
-  type GetTradeGroupByPayload<T extends TradeGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<TradeGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof TradeGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], TradeGroupByOutputType[P]>
-            : GetScalarType<T[P], TradeGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type TradeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    userId?: boolean
-    marketId?: boolean
-    portfolioId?: boolean
-    type?: boolean
-    quantity?: boolean
-    price?: boolean
-    totalValue?: boolean
-    status?: boolean
-    executedAt?: boolean
-    createdAt?: boolean
-    buyIntoTargetFundid?: boolean
-    instructionType?: boolean
-    buyIntoTargetFund?: boolean | FundDefaultArgs<ExtArgs>
-    user?: boolean | UserDefaultArgs<ExtArgs>
-    portfolio?: boolean | PortfolioDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["trade"]>
-
-  export type TradeSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    userId?: boolean
-    marketId?: boolean
-    portfolioId?: boolean
-    type?: boolean
-    quantity?: boolean
-    price?: boolean
-    totalValue?: boolean
-    status?: boolean
-    executedAt?: boolean
-    createdAt?: boolean
-    buyIntoTargetFundid?: boolean
-    instructionType?: boolean
-    buyIntoTargetFund?: boolean | FundDefaultArgs<ExtArgs>
-    user?: boolean | UserDefaultArgs<ExtArgs>
-    portfolio?: boolean | PortfolioDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["trade"]>
-
-  export type TradeSelectScalar = {
-    id?: boolean
-    userId?: boolean
-    marketId?: boolean
-    portfolioId?: boolean
-    type?: boolean
-    quantity?: boolean
-    price?: boolean
-    totalValue?: boolean
-    status?: boolean
-    executedAt?: boolean
-    createdAt?: boolean
-    buyIntoTargetFundid?: boolean
-    instructionType?: boolean
-  }
-
-  export type TradeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    buyIntoTargetFund?: boolean | FundDefaultArgs<ExtArgs>
-    user?: boolean | UserDefaultArgs<ExtArgs>
-    portfolio?: boolean | PortfolioDefaultArgs<ExtArgs>
-  }
-  export type TradeIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    buyIntoTargetFund?: boolean | FundDefaultArgs<ExtArgs>
-    user?: boolean | UserDefaultArgs<ExtArgs>
-    portfolio?: boolean | PortfolioDefaultArgs<ExtArgs>
-  }
-
-  export type $TradePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Trade"
-    objects: {
-      buyIntoTargetFund: Prisma.$FundPayload<ExtArgs>
-      user: Prisma.$UserPayload<ExtArgs>
-      portfolio: Prisma.$PortfolioPayload<ExtArgs>
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: number
-      userId: number
-      marketId: number
-      portfolioId: number
-      type: string
-      quantity: number
-      price: bigint
-      totalValue: number
-      status: string
-      executedAt: Date
-      createdAt: Date
-      buyIntoTargetFundid: number
-      instructionType: $Enums.InstructionNamedType
-    }, ExtArgs["result"]["trade"]>
-    composites: {}
-  }
-
-  type TradeGetPayload<S extends boolean | null | undefined | TradeDefaultArgs> = $Result.GetResult<Prisma.$TradePayload, S>
-
-  type TradeCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<TradeFindManyArgs, 'select' | 'include' | 'distinct'> & {
-      select?: TradeCountAggregateInputType | true
-    }
-
-  export interface TradeDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Trade'], meta: { name: 'Trade' } }
-    /**
-     * Find zero or one Trade that matches the filter.
-     * @param {TradeFindUniqueArgs} args - Arguments to find a Trade
-     * @example
-     * // Get one Trade
-     * const trade = await prisma.trade.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends TradeFindUniqueArgs>(args: SelectSubset<T, TradeFindUniqueArgs<ExtArgs>>): Prisma__TradeClient<$Result.GetResult<Prisma.$TradePayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
-
-    /**
-     * Find one Trade that matches the filter or throw an error with `error.code='P2025'` 
-     * if no matches were found.
-     * @param {TradeFindUniqueOrThrowArgs} args - Arguments to find a Trade
-     * @example
-     * // Get one Trade
-     * const trade = await prisma.trade.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends TradeFindUniqueOrThrowArgs>(args: SelectSubset<T, TradeFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TradeClient<$Result.GetResult<Prisma.$TradePayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
-
-    /**
-     * Find the first Trade that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {TradeFindFirstArgs} args - Arguments to find a Trade
-     * @example
-     * // Get one Trade
-     * const trade = await prisma.trade.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends TradeFindFirstArgs>(args?: SelectSubset<T, TradeFindFirstArgs<ExtArgs>>): Prisma__TradeClient<$Result.GetResult<Prisma.$TradePayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
-
-    /**
-     * Find the first Trade that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {TradeFindFirstOrThrowArgs} args - Arguments to find a Trade
-     * @example
-     * // Get one Trade
-     * const trade = await prisma.trade.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends TradeFindFirstOrThrowArgs>(args?: SelectSubset<T, TradeFindFirstOrThrowArgs<ExtArgs>>): Prisma__TradeClient<$Result.GetResult<Prisma.$TradePayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
-
-    /**
-     * Find zero or more Trades that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {TradeFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all Trades
-     * const trades = await prisma.trade.findMany()
-     * 
-     * // Get first 10 Trades
-     * const trades = await prisma.trade.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const tradeWithIdOnly = await prisma.trade.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends TradeFindManyArgs>(args?: SelectSubset<T, TradeFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TradePayload<ExtArgs>, T, "findMany">>
-
-    /**
-     * Create a Trade.
-     * @param {TradeCreateArgs} args - Arguments to create a Trade.
-     * @example
-     * // Create one Trade
-     * const Trade = await prisma.trade.create({
-     *   data: {
-     *     // ... data to create a Trade
-     *   }
-     * })
-     * 
-     */
-    create<T extends TradeCreateArgs>(args: SelectSubset<T, TradeCreateArgs<ExtArgs>>): Prisma__TradeClient<$Result.GetResult<Prisma.$TradePayload<ExtArgs>, T, "create">, never, ExtArgs>
-
-    /**
-     * Create many Trades.
-     * @param {TradeCreateManyArgs} args - Arguments to create many Trades.
-     * @example
-     * // Create many Trades
-     * const trade = await prisma.trade.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends TradeCreateManyArgs>(args?: SelectSubset<T, TradeCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many Trades and returns the data saved in the database.
-     * @param {TradeCreateManyAndReturnArgs} args - Arguments to create many Trades.
-     * @example
-     * // Create many Trades
-     * const trade = await prisma.trade.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many Trades and only return the `id`
-     * const tradeWithIdOnly = await prisma.trade.createManyAndReturn({ 
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends TradeCreateManyAndReturnArgs>(args?: SelectSubset<T, TradeCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TradePayload<ExtArgs>, T, "createManyAndReturn">>
-
-    /**
-     * Delete a Trade.
-     * @param {TradeDeleteArgs} args - Arguments to delete one Trade.
-     * @example
-     * // Delete one Trade
-     * const Trade = await prisma.trade.delete({
-     *   where: {
-     *     // ... filter to delete one Trade
-     *   }
-     * })
-     * 
-     */
-    delete<T extends TradeDeleteArgs>(args: SelectSubset<T, TradeDeleteArgs<ExtArgs>>): Prisma__TradeClient<$Result.GetResult<Prisma.$TradePayload<ExtArgs>, T, "delete">, never, ExtArgs>
-
-    /**
-     * Update one Trade.
-     * @param {TradeUpdateArgs} args - Arguments to update one Trade.
-     * @example
-     * // Update one Trade
-     * const trade = await prisma.trade.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends TradeUpdateArgs>(args: SelectSubset<T, TradeUpdateArgs<ExtArgs>>): Prisma__TradeClient<$Result.GetResult<Prisma.$TradePayload<ExtArgs>, T, "update">, never, ExtArgs>
-
-    /**
-     * Delete zero or more Trades.
-     * @param {TradeDeleteManyArgs} args - Arguments to filter Trades to delete.
-     * @example
-     * // Delete a few Trades
-     * const { count } = await prisma.trade.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends TradeDeleteManyArgs>(args?: SelectSubset<T, TradeDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Trades.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {TradeUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many Trades
-     * const trade = await prisma.trade.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends TradeUpdateManyArgs>(args: SelectSubset<T, TradeUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create or update one Trade.
-     * @param {TradeUpsertArgs} args - Arguments to update or create a Trade.
-     * @example
-     * // Update or create a Trade
-     * const trade = await prisma.trade.upsert({
-     *   create: {
-     *     // ... data to create a Trade
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the Trade we want to update
-     *   }
-     * })
-     */
-    upsert<T extends TradeUpsertArgs>(args: SelectSubset<T, TradeUpsertArgs<ExtArgs>>): Prisma__TradeClient<$Result.GetResult<Prisma.$TradePayload<ExtArgs>, T, "upsert">, never, ExtArgs>
-
-
-    /**
-     * Count the number of Trades.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {TradeCountArgs} args - Arguments to filter Trades to count.
-     * @example
-     * // Count the number of Trades
-     * const count = await prisma.trade.count({
-     *   where: {
-     *     // ... the filter for the Trades we want to count
-     *   }
-     * })
-    **/
-    count<T extends TradeCountArgs>(
-      args?: Subset<T, TradeCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], TradeCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a Trade.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {TradeAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends TradeAggregateArgs>(args: Subset<T, TradeAggregateArgs>): Prisma.PrismaPromise<GetTradeAggregateType<T>>
-
-    /**
-     * Group by Trade.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {TradeGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends TradeGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: TradeGroupByArgs['orderBy'] }
-        : { orderBy?: TradeGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, TradeGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTradeGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the Trade model
-   */
-  readonly fields: TradeFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for Trade.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__TradeClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    buyIntoTargetFund<T extends FundDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FundDefaultArgs<ExtArgs>>): Prisma__FundClient<$Result.GetResult<Prisma.$FundPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
-    portfolio<T extends PortfolioDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PortfolioDefaultArgs<ExtArgs>>): Prisma__PortfolioClient<$Result.GetResult<Prisma.$PortfolioPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the Trade model
-   */ 
-  interface TradeFieldRefs {
-    readonly id: FieldRef<"Trade", 'Int'>
-    readonly userId: FieldRef<"Trade", 'Int'>
-    readonly marketId: FieldRef<"Trade", 'Int'>
-    readonly portfolioId: FieldRef<"Trade", 'Int'>
-    readonly type: FieldRef<"Trade", 'String'>
-    readonly quantity: FieldRef<"Trade", 'Int'>
-    readonly price: FieldRef<"Trade", 'BigInt'>
-    readonly totalValue: FieldRef<"Trade", 'Int'>
-    readonly status: FieldRef<"Trade", 'String'>
-    readonly executedAt: FieldRef<"Trade", 'DateTime'>
-    readonly createdAt: FieldRef<"Trade", 'DateTime'>
-    readonly buyIntoTargetFundid: FieldRef<"Trade", 'Int'>
-    readonly instructionType: FieldRef<"Trade", 'InstructionNamedType'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * Trade findUnique
-   */
-  export type TradeFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Trade
-     */
-    select?: TradeSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TradeInclude<ExtArgs> | null
-    /**
-     * Filter, which Trade to fetch.
-     */
-    where: TradeWhereUniqueInput
-  }
-
-  /**
-   * Trade findUniqueOrThrow
-   */
-  export type TradeFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Trade
-     */
-    select?: TradeSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TradeInclude<ExtArgs> | null
-    /**
-     * Filter, which Trade to fetch.
-     */
-    where: TradeWhereUniqueInput
-  }
-
-  /**
-   * Trade findFirst
-   */
-  export type TradeFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Trade
-     */
-    select?: TradeSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TradeInclude<ExtArgs> | null
-    /**
-     * Filter, which Trade to fetch.
-     */
-    where?: TradeWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Trades to fetch.
-     */
-    orderBy?: TradeOrderByWithRelationInput | TradeOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Trades.
-     */
-    cursor?: TradeWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Trades from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Trades.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Trades.
-     */
-    distinct?: TradeScalarFieldEnum | TradeScalarFieldEnum[]
-  }
-
-  /**
-   * Trade findFirstOrThrow
-   */
-  export type TradeFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Trade
-     */
-    select?: TradeSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TradeInclude<ExtArgs> | null
-    /**
-     * Filter, which Trade to fetch.
-     */
-    where?: TradeWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Trades to fetch.
-     */
-    orderBy?: TradeOrderByWithRelationInput | TradeOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Trades.
-     */
-    cursor?: TradeWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Trades from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Trades.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Trades.
-     */
-    distinct?: TradeScalarFieldEnum | TradeScalarFieldEnum[]
-  }
-
-  /**
-   * Trade findMany
-   */
-  export type TradeFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Trade
-     */
-    select?: TradeSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TradeInclude<ExtArgs> | null
-    /**
-     * Filter, which Trades to fetch.
-     */
-    where?: TradeWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Trades to fetch.
-     */
-    orderBy?: TradeOrderByWithRelationInput | TradeOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing Trades.
-     */
-    cursor?: TradeWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Trades from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Trades.
-     */
-    skip?: number
-    distinct?: TradeScalarFieldEnum | TradeScalarFieldEnum[]
-  }
-
-  /**
-   * Trade create
-   */
-  export type TradeCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Trade
-     */
-    select?: TradeSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TradeInclude<ExtArgs> | null
-    /**
-     * The data needed to create a Trade.
-     */
-    data: XOR<TradeCreateInput, TradeUncheckedCreateInput>
-  }
-
-  /**
-   * Trade createMany
-   */
-  export type TradeCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many Trades.
-     */
-    data: TradeCreateManyInput | TradeCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * Trade createManyAndReturn
-   */
-  export type TradeCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Trade
-     */
-    select?: TradeSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * The data used to create many Trades.
-     */
-    data: TradeCreateManyInput | TradeCreateManyInput[]
-    skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TradeIncludeCreateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * Trade update
-   */
-  export type TradeUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Trade
-     */
-    select?: TradeSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TradeInclude<ExtArgs> | null
-    /**
-     * The data needed to update a Trade.
-     */
-    data: XOR<TradeUpdateInput, TradeUncheckedUpdateInput>
-    /**
-     * Choose, which Trade to update.
-     */
-    where: TradeWhereUniqueInput
-  }
-
-  /**
-   * Trade updateMany
-   */
-  export type TradeUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update Trades.
-     */
-    data: XOR<TradeUpdateManyMutationInput, TradeUncheckedUpdateManyInput>
-    /**
-     * Filter which Trades to update
-     */
-    where?: TradeWhereInput
-  }
-
-  /**
-   * Trade upsert
-   */
-  export type TradeUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Trade
-     */
-    select?: TradeSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TradeInclude<ExtArgs> | null
-    /**
-     * The filter to search for the Trade to update in case it exists.
-     */
-    where: TradeWhereUniqueInput
-    /**
-     * In case the Trade found by the `where` argument doesn't exist, create a new Trade with this data.
-     */
-    create: XOR<TradeCreateInput, TradeUncheckedCreateInput>
-    /**
-     * In case the Trade was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<TradeUpdateInput, TradeUncheckedUpdateInput>
-  }
-
-  /**
-   * Trade delete
-   */
-  export type TradeDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Trade
-     */
-    select?: TradeSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TradeInclude<ExtArgs> | null
-    /**
-     * Filter which Trade to delete.
-     */
-    where: TradeWhereUniqueInput
-  }
-
-  /**
-   * Trade deleteMany
-   */
-  export type TradeDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Trades to delete
-     */
-    where?: TradeWhereInput
-  }
-
-  /**
-   * Trade without action
-   */
-  export type TradeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Trade
-     */
-    select?: TradeSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TradeInclude<ExtArgs> | null
-  }
-
-
-  /**
-   * Model Fund
-   */
-
-  export type AggregateFund = {
-    _count: FundCountAggregateOutputType | null
-    _avg: FundAvgAggregateOutputType | null
-    _sum: FundSumAggregateOutputType | null
-    _min: FundMinAggregateOutputType | null
-    _max: FundMaxAggregateOutputType | null
-  }
-
-  export type FundAvgAggregateOutputType = {
-    id: number | null
-    fundManagerId: number | null
-    minimumInvestmentAmount: number | null
-    totalFundCharge: Decimal | null
-    totalFundCost: Decimal | null
-    totalAssets: number | null
-    maxInvestors: number | null
-  }
-
-  export type FundSumAggregateOutputType = {
-    id: number | null
-    fundManagerId: number | null
-    minimumInvestmentAmount: bigint | null
-    totalFundCharge: Decimal | null
-    totalFundCost: Decimal | null
-    totalAssets: bigint | null
-    maxInvestors: number | null
-  }
-
-  export type FundMinAggregateOutputType = {
-    id: number | null
-    fundManagerId: number | null
-    name: string | null
-    minimumInvestmentAmount: bigint | null
-    totalFundCharge: Decimal | null
-    totalFundCost: Decimal | null
-    totalAssets: bigint | null
-    isActive: boolean | null
-    maxInvestors: number | null
-    createdAt: Date | null
-    updatedAt: Date | null
-  }
-
-  export type FundMaxAggregateOutputType = {
-    id: number | null
-    fundManagerId: number | null
-    name: string | null
-    minimumInvestmentAmount: bigint | null
-    totalFundCharge: Decimal | null
-    totalFundCost: Decimal | null
-    totalAssets: bigint | null
-    isActive: boolean | null
-    maxInvestors: number | null
-    createdAt: Date | null
-    updatedAt: Date | null
-  }
-
-  export type FundCountAggregateOutputType = {
-    id: number
-    fundManagerId: number
-    name: number
-    minimumInvestmentAmount: number
-    totalFundCharge: number
-    totalFundCost: number
-    totalAssets: number
-    isActive: number
-    maxInvestors: number
-    createdAt: number
-    updatedAt: number
-    _all: number
-  }
-
-
-  export type FundAvgAggregateInputType = {
-    id?: true
-    fundManagerId?: true
-    minimumInvestmentAmount?: true
-    totalFundCharge?: true
-    totalFundCost?: true
-    totalAssets?: true
-    maxInvestors?: true
-  }
-
-  export type FundSumAggregateInputType = {
-    id?: true
-    fundManagerId?: true
-    minimumInvestmentAmount?: true
-    totalFundCharge?: true
-    totalFundCost?: true
-    totalAssets?: true
-    maxInvestors?: true
-  }
-
-  export type FundMinAggregateInputType = {
-    id?: true
-    fundManagerId?: true
-    name?: true
-    minimumInvestmentAmount?: true
-    totalFundCharge?: true
-    totalFundCost?: true
-    totalAssets?: true
-    isActive?: true
-    maxInvestors?: true
-    createdAt?: true
-    updatedAt?: true
-  }
-
-  export type FundMaxAggregateInputType = {
-    id?: true
-    fundManagerId?: true
-    name?: true
-    minimumInvestmentAmount?: true
-    totalFundCharge?: true
-    totalFundCost?: true
-    totalAssets?: true
-    isActive?: true
-    maxInvestors?: true
-    createdAt?: true
-    updatedAt?: true
-  }
-
-  export type FundCountAggregateInputType = {
-    id?: true
-    fundManagerId?: true
-    name?: true
-    minimumInvestmentAmount?: true
-    totalFundCharge?: true
-    totalFundCost?: true
-    totalAssets?: true
-    isActive?: true
-    maxInvestors?: true
-    createdAt?: true
-    updatedAt?: true
-    _all?: true
-  }
-
-  export type FundAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Fund to aggregate.
-     */
-    where?: FundWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Funds to fetch.
-     */
-    orderBy?: FundOrderByWithRelationInput | FundOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: FundWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Funds from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Funds.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned Funds
-    **/
-    _count?: true | FundCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: FundAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: FundSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: FundMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: FundMaxAggregateInputType
-  }
-
-  export type GetFundAggregateType<T extends FundAggregateArgs> = {
-        [P in keyof T & keyof AggregateFund]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateFund[P]>
-      : GetScalarType<T[P], AggregateFund[P]>
-  }
-
-
-
-
-  export type FundGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: FundWhereInput
-    orderBy?: FundOrderByWithAggregationInput | FundOrderByWithAggregationInput[]
-    by: FundScalarFieldEnum[] | FundScalarFieldEnum
-    having?: FundScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: FundCountAggregateInputType | true
-    _avg?: FundAvgAggregateInputType
-    _sum?: FundSumAggregateInputType
-    _min?: FundMinAggregateInputType
-    _max?: FundMaxAggregateInputType
-  }
-
-  export type FundGroupByOutputType = {
-    id: number
-    fundManagerId: number
-    name: string
-    minimumInvestmentAmount: bigint
-    totalFundCharge: Decimal
-    totalFundCost: Decimal
-    totalAssets: bigint
-    isActive: boolean
-    maxInvestors: number
-    createdAt: Date
-    updatedAt: Date
-    _count: FundCountAggregateOutputType | null
-    _avg: FundAvgAggregateOutputType | null
-    _sum: FundSumAggregateOutputType | null
-    _min: FundMinAggregateOutputType | null
-    _max: FundMaxAggregateOutputType | null
-  }
-
-  type GetFundGroupByPayload<T extends FundGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<FundGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof FundGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], FundGroupByOutputType[P]>
-            : GetScalarType<T[P], FundGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type FundSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    fundManagerId?: boolean
-    name?: boolean
-    minimumInvestmentAmount?: boolean
-    totalFundCharge?: boolean
-    totalFundCost?: boolean
-    totalAssets?: boolean
-    isActive?: boolean
-    maxInvestors?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    fundManager?: boolean | UserDefaultArgs<ExtArgs>
-    trades?: boolean | Fund$tradesArgs<ExtArgs>
-    holdings?: boolean | Fund$holdingsArgs<ExtArgs>
-    hedgeFunds?: boolean | Fund$hedgeFundsArgs<ExtArgs>
-    _count?: boolean | FundCountOutputTypeDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["fund"]>
-
-  export type FundSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    fundManagerId?: boolean
-    name?: boolean
-    minimumInvestmentAmount?: boolean
-    totalFundCharge?: boolean
-    totalFundCost?: boolean
-    totalAssets?: boolean
-    isActive?: boolean
-    maxInvestors?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    fundManager?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["fund"]>
-
-  export type FundSelectScalar = {
-    id?: boolean
-    fundManagerId?: boolean
-    name?: boolean
-    minimumInvestmentAmount?: boolean
-    totalFundCharge?: boolean
-    totalFundCost?: boolean
-    totalAssets?: boolean
-    isActive?: boolean
-    maxInvestors?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-  }
-
-  export type FundInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    fundManager?: boolean | UserDefaultArgs<ExtArgs>
-    trades?: boolean | Fund$tradesArgs<ExtArgs>
-    holdings?: boolean | Fund$holdingsArgs<ExtArgs>
-    hedgeFunds?: boolean | Fund$hedgeFundsArgs<ExtArgs>
-    _count?: boolean | FundCountOutputTypeDefaultArgs<ExtArgs>
-  }
-  export type FundIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    fundManager?: boolean | UserDefaultArgs<ExtArgs>
-  }
-
-  export type $FundPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Fund"
-    objects: {
-      fundManager: Prisma.$UserPayload<ExtArgs>
-      trades: Prisma.$TradePayload<ExtArgs>[]
-      holdings: Prisma.$PortfolioHoldingPayload<ExtArgs>[]
-      hedgeFunds: Prisma.$HedgeFundPayload<ExtArgs>[]
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: number
-      fundManagerId: number
-      name: string
-      minimumInvestmentAmount: bigint
-      totalFundCharge: Prisma.Decimal
-      totalFundCost: Prisma.Decimal
-      totalAssets: bigint
-      isActive: boolean
-      maxInvestors: number
-      createdAt: Date
-      updatedAt: Date
-    }, ExtArgs["result"]["fund"]>
-    composites: {}
-  }
-
-  type FundGetPayload<S extends boolean | null | undefined | FundDefaultArgs> = $Result.GetResult<Prisma.$FundPayload, S>
-
-  type FundCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<FundFindManyArgs, 'select' | 'include' | 'distinct'> & {
-      select?: FundCountAggregateInputType | true
-    }
-
-  export interface FundDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Fund'], meta: { name: 'Fund' } }
-    /**
-     * Find zero or one Fund that matches the filter.
-     * @param {FundFindUniqueArgs} args - Arguments to find a Fund
-     * @example
-     * // Get one Fund
-     * const fund = await prisma.fund.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends FundFindUniqueArgs>(args: SelectSubset<T, FundFindUniqueArgs<ExtArgs>>): Prisma__FundClient<$Result.GetResult<Prisma.$FundPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
-
-    /**
-     * Find one Fund that matches the filter or throw an error with `error.code='P2025'` 
-     * if no matches were found.
-     * @param {FundFindUniqueOrThrowArgs} args - Arguments to find a Fund
-     * @example
-     * // Get one Fund
-     * const fund = await prisma.fund.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends FundFindUniqueOrThrowArgs>(args: SelectSubset<T, FundFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FundClient<$Result.GetResult<Prisma.$FundPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
-
-    /**
-     * Find the first Fund that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {FundFindFirstArgs} args - Arguments to find a Fund
-     * @example
-     * // Get one Fund
-     * const fund = await prisma.fund.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends FundFindFirstArgs>(args?: SelectSubset<T, FundFindFirstArgs<ExtArgs>>): Prisma__FundClient<$Result.GetResult<Prisma.$FundPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
-
-    /**
-     * Find the first Fund that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {FundFindFirstOrThrowArgs} args - Arguments to find a Fund
-     * @example
-     * // Get one Fund
-     * const fund = await prisma.fund.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends FundFindFirstOrThrowArgs>(args?: SelectSubset<T, FundFindFirstOrThrowArgs<ExtArgs>>): Prisma__FundClient<$Result.GetResult<Prisma.$FundPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
-
-    /**
-     * Find zero or more Funds that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {FundFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all Funds
-     * const funds = await prisma.fund.findMany()
-     * 
-     * // Get first 10 Funds
-     * const funds = await prisma.fund.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const fundWithIdOnly = await prisma.fund.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends FundFindManyArgs>(args?: SelectSubset<T, FundFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FundPayload<ExtArgs>, T, "findMany">>
-
-    /**
-     * Create a Fund.
-     * @param {FundCreateArgs} args - Arguments to create a Fund.
-     * @example
-     * // Create one Fund
-     * const Fund = await prisma.fund.create({
-     *   data: {
-     *     // ... data to create a Fund
-     *   }
-     * })
-     * 
-     */
-    create<T extends FundCreateArgs>(args: SelectSubset<T, FundCreateArgs<ExtArgs>>): Prisma__FundClient<$Result.GetResult<Prisma.$FundPayload<ExtArgs>, T, "create">, never, ExtArgs>
-
-    /**
-     * Create many Funds.
-     * @param {FundCreateManyArgs} args - Arguments to create many Funds.
-     * @example
-     * // Create many Funds
-     * const fund = await prisma.fund.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends FundCreateManyArgs>(args?: SelectSubset<T, FundCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many Funds and returns the data saved in the database.
-     * @param {FundCreateManyAndReturnArgs} args - Arguments to create many Funds.
-     * @example
-     * // Create many Funds
-     * const fund = await prisma.fund.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many Funds and only return the `id`
-     * const fundWithIdOnly = await prisma.fund.createManyAndReturn({ 
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends FundCreateManyAndReturnArgs>(args?: SelectSubset<T, FundCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FundPayload<ExtArgs>, T, "createManyAndReturn">>
-
-    /**
-     * Delete a Fund.
-     * @param {FundDeleteArgs} args - Arguments to delete one Fund.
-     * @example
-     * // Delete one Fund
-     * const Fund = await prisma.fund.delete({
-     *   where: {
-     *     // ... filter to delete one Fund
-     *   }
-     * })
-     * 
-     */
-    delete<T extends FundDeleteArgs>(args: SelectSubset<T, FundDeleteArgs<ExtArgs>>): Prisma__FundClient<$Result.GetResult<Prisma.$FundPayload<ExtArgs>, T, "delete">, never, ExtArgs>
-
-    /**
-     * Update one Fund.
-     * @param {FundUpdateArgs} args - Arguments to update one Fund.
-     * @example
-     * // Update one Fund
-     * const fund = await prisma.fund.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends FundUpdateArgs>(args: SelectSubset<T, FundUpdateArgs<ExtArgs>>): Prisma__FundClient<$Result.GetResult<Prisma.$FundPayload<ExtArgs>, T, "update">, never, ExtArgs>
-
-    /**
-     * Delete zero or more Funds.
-     * @param {FundDeleteManyArgs} args - Arguments to filter Funds to delete.
-     * @example
-     * // Delete a few Funds
-     * const { count } = await prisma.fund.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends FundDeleteManyArgs>(args?: SelectSubset<T, FundDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Funds.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {FundUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many Funds
-     * const fund = await prisma.fund.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends FundUpdateManyArgs>(args: SelectSubset<T, FundUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create or update one Fund.
-     * @param {FundUpsertArgs} args - Arguments to update or create a Fund.
-     * @example
-     * // Update or create a Fund
-     * const fund = await prisma.fund.upsert({
-     *   create: {
-     *     // ... data to create a Fund
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the Fund we want to update
-     *   }
-     * })
-     */
-    upsert<T extends FundUpsertArgs>(args: SelectSubset<T, FundUpsertArgs<ExtArgs>>): Prisma__FundClient<$Result.GetResult<Prisma.$FundPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
-
-
-    /**
-     * Count the number of Funds.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {FundCountArgs} args - Arguments to filter Funds to count.
-     * @example
-     * // Count the number of Funds
-     * const count = await prisma.fund.count({
-     *   where: {
-     *     // ... the filter for the Funds we want to count
-     *   }
-     * })
-    **/
-    count<T extends FundCountArgs>(
-      args?: Subset<T, FundCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], FundCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a Fund.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {FundAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends FundAggregateArgs>(args: Subset<T, FundAggregateArgs>): Prisma.PrismaPromise<GetFundAggregateType<T>>
-
-    /**
-     * Group by Fund.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {FundGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends FundGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: FundGroupByArgs['orderBy'] }
-        : { orderBy?: FundGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, FundGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFundGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the Fund model
-   */
-  readonly fields: FundFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for Fund.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__FundClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    fundManager<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
-    trades<T extends Fund$tradesArgs<ExtArgs> = {}>(args?: Subset<T, Fund$tradesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TradePayload<ExtArgs>, T, "findMany"> | Null>
-    holdings<T extends Fund$holdingsArgs<ExtArgs> = {}>(args?: Subset<T, Fund$holdingsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PortfolioHoldingPayload<ExtArgs>, T, "findMany"> | Null>
-    hedgeFunds<T extends Fund$hedgeFundsArgs<ExtArgs> = {}>(args?: Subset<T, Fund$hedgeFundsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HedgeFundPayload<ExtArgs>, T, "findMany"> | Null>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the Fund model
-   */ 
-  interface FundFieldRefs {
-    readonly id: FieldRef<"Fund", 'Int'>
-    readonly fundManagerId: FieldRef<"Fund", 'Int'>
-    readonly name: FieldRef<"Fund", 'String'>
-    readonly minimumInvestmentAmount: FieldRef<"Fund", 'BigInt'>
-    readonly totalFundCharge: FieldRef<"Fund", 'Decimal'>
-    readonly totalFundCost: FieldRef<"Fund", 'Decimal'>
-    readonly totalAssets: FieldRef<"Fund", 'BigInt'>
-    readonly isActive: FieldRef<"Fund", 'Boolean'>
-    readonly maxInvestors: FieldRef<"Fund", 'Int'>
-    readonly createdAt: FieldRef<"Fund", 'DateTime'>
-    readonly updatedAt: FieldRef<"Fund", 'DateTime'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * Fund findUnique
-   */
-  export type FundFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Fund
-     */
-    select?: FundSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: FundInclude<ExtArgs> | null
-    /**
-     * Filter, which Fund to fetch.
-     */
-    where: FundWhereUniqueInput
-  }
-
-  /**
-   * Fund findUniqueOrThrow
-   */
-  export type FundFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Fund
-     */
-    select?: FundSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: FundInclude<ExtArgs> | null
-    /**
-     * Filter, which Fund to fetch.
-     */
-    where: FundWhereUniqueInput
-  }
-
-  /**
-   * Fund findFirst
-   */
-  export type FundFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Fund
-     */
-    select?: FundSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: FundInclude<ExtArgs> | null
-    /**
-     * Filter, which Fund to fetch.
-     */
-    where?: FundWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Funds to fetch.
-     */
-    orderBy?: FundOrderByWithRelationInput | FundOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Funds.
-     */
-    cursor?: FundWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Funds from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Funds.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Funds.
-     */
-    distinct?: FundScalarFieldEnum | FundScalarFieldEnum[]
-  }
-
-  /**
-   * Fund findFirstOrThrow
-   */
-  export type FundFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Fund
-     */
-    select?: FundSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: FundInclude<ExtArgs> | null
-    /**
-     * Filter, which Fund to fetch.
-     */
-    where?: FundWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Funds to fetch.
-     */
-    orderBy?: FundOrderByWithRelationInput | FundOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Funds.
-     */
-    cursor?: FundWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Funds from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Funds.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Funds.
-     */
-    distinct?: FundScalarFieldEnum | FundScalarFieldEnum[]
-  }
-
-  /**
-   * Fund findMany
-   */
-  export type FundFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Fund
-     */
-    select?: FundSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: FundInclude<ExtArgs> | null
-    /**
-     * Filter, which Funds to fetch.
-     */
-    where?: FundWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Funds to fetch.
-     */
-    orderBy?: FundOrderByWithRelationInput | FundOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing Funds.
-     */
-    cursor?: FundWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Funds from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Funds.
-     */
-    skip?: number
-    distinct?: FundScalarFieldEnum | FundScalarFieldEnum[]
-  }
-
-  /**
-   * Fund create
-   */
-  export type FundCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Fund
-     */
-    select?: FundSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: FundInclude<ExtArgs> | null
-    /**
-     * The data needed to create a Fund.
-     */
-    data: XOR<FundCreateInput, FundUncheckedCreateInput>
-  }
-
-  /**
-   * Fund createMany
-   */
-  export type FundCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many Funds.
-     */
-    data: FundCreateManyInput | FundCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * Fund createManyAndReturn
-   */
-  export type FundCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Fund
-     */
-    select?: FundSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * The data used to create many Funds.
-     */
-    data: FundCreateManyInput | FundCreateManyInput[]
-    skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: FundIncludeCreateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * Fund update
-   */
-  export type FundUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Fund
-     */
-    select?: FundSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: FundInclude<ExtArgs> | null
-    /**
-     * The data needed to update a Fund.
-     */
-    data: XOR<FundUpdateInput, FundUncheckedUpdateInput>
-    /**
-     * Choose, which Fund to update.
-     */
-    where: FundWhereUniqueInput
-  }
-
-  /**
-   * Fund updateMany
-   */
-  export type FundUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update Funds.
-     */
-    data: XOR<FundUpdateManyMutationInput, FundUncheckedUpdateManyInput>
-    /**
-     * Filter which Funds to update
-     */
-    where?: FundWhereInput
-  }
-
-  /**
-   * Fund upsert
-   */
-  export type FundUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Fund
-     */
-    select?: FundSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: FundInclude<ExtArgs> | null
-    /**
-     * The filter to search for the Fund to update in case it exists.
-     */
-    where: FundWhereUniqueInput
-    /**
-     * In case the Fund found by the `where` argument doesn't exist, create a new Fund with this data.
-     */
-    create: XOR<FundCreateInput, FundUncheckedCreateInput>
-    /**
-     * In case the Fund was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<FundUpdateInput, FundUncheckedUpdateInput>
-  }
-
-  /**
-   * Fund delete
-   */
-  export type FundDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Fund
-     */
-    select?: FundSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: FundInclude<ExtArgs> | null
-    /**
-     * Filter which Fund to delete.
-     */
-    where: FundWhereUniqueInput
-  }
-
-  /**
-   * Fund deleteMany
-   */
-  export type FundDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Funds to delete
-     */
-    where?: FundWhereInput
-  }
-
-  /**
-   * Fund.trades
-   */
-  export type Fund$tradesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Trade
-     */
-    select?: TradeSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TradeInclude<ExtArgs> | null
-    where?: TradeWhereInput
-    orderBy?: TradeOrderByWithRelationInput | TradeOrderByWithRelationInput[]
-    cursor?: TradeWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: TradeScalarFieldEnum | TradeScalarFieldEnum[]
-  }
-
-  /**
-   * Fund.holdings
-   */
-  export type Fund$holdingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PortfolioHolding
-     */
-    select?: PortfolioHoldingSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PortfolioHoldingInclude<ExtArgs> | null
-    where?: PortfolioHoldingWhereInput
-    orderBy?: PortfolioHoldingOrderByWithRelationInput | PortfolioHoldingOrderByWithRelationInput[]
-    cursor?: PortfolioHoldingWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: PortfolioHoldingScalarFieldEnum | PortfolioHoldingScalarFieldEnum[]
-  }
-
-  /**
-   * Fund.hedgeFunds
-   */
-  export type Fund$hedgeFundsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the HedgeFund
-     */
-    select?: HedgeFundSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HedgeFundInclude<ExtArgs> | null
-    where?: HedgeFundWhereInput
-    orderBy?: HedgeFundOrderByWithRelationInput | HedgeFundOrderByWithRelationInput[]
-    cursor?: HedgeFundWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: HedgeFundScalarFieldEnum | HedgeFundScalarFieldEnum[]
-  }
-
-  /**
-   * Fund without action
-   */
-  export type FundDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Fund
-     */
-    select?: FundSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: FundInclude<ExtArgs> | null
-  }
-
-
-  /**
-   * Model Portfolio
-   */
-
-  export type AggregatePortfolio = {
-    _count: PortfolioCountAggregateOutputType | null
-    _avg: PortfolioAvgAggregateOutputType | null
-    _sum: PortfolioSumAggregateOutputType | null
-    _min: PortfolioMinAggregateOutputType | null
-    _max: PortfolioMaxAggregateOutputType | null
-  }
-
-  export type PortfolioAvgAggregateOutputType = {
-    id: number | null
-    userId: number | null
-    totalValue: number | null
-  }
-
-  export type PortfolioSumAggregateOutputType = {
-    id: number | null
-    userId: number | null
-    totalValue: bigint | null
-  }
-
-  export type PortfolioMinAggregateOutputType = {
-    id: number | null
-    userId: number | null
-    name: string | null
-    totalValue: bigint | null
-    isActive: boolean | null
-    createdAt: Date | null
-    updatedAt: Date | null
-  }
-
-  export type PortfolioMaxAggregateOutputType = {
-    id: number | null
-    userId: number | null
-    name: string | null
-    totalValue: bigint | null
-    isActive: boolean | null
-    createdAt: Date | null
-    updatedAt: Date | null
-  }
-
-  export type PortfolioCountAggregateOutputType = {
-    id: number
-    userId: number
-    name: number
-    totalValue: number
-    isActive: number
-    createdAt: number
-    updatedAt: number
-    _all: number
-  }
-
-
-  export type PortfolioAvgAggregateInputType = {
-    id?: true
-    userId?: true
-    totalValue?: true
-  }
-
-  export type PortfolioSumAggregateInputType = {
-    id?: true
-    userId?: true
-    totalValue?: true
-  }
-
-  export type PortfolioMinAggregateInputType = {
-    id?: true
-    userId?: true
-    name?: true
-    totalValue?: true
-    isActive?: true
-    createdAt?: true
-    updatedAt?: true
-  }
-
-  export type PortfolioMaxAggregateInputType = {
-    id?: true
-    userId?: true
-    name?: true
-    totalValue?: true
-    isActive?: true
-    createdAt?: true
-    updatedAt?: true
-  }
-
-  export type PortfolioCountAggregateInputType = {
-    id?: true
-    userId?: true
-    name?: true
-    totalValue?: true
-    isActive?: true
-    createdAt?: true
-    updatedAt?: true
-    _all?: true
-  }
-
-  export type PortfolioAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Portfolio to aggregate.
-     */
-    where?: PortfolioWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Portfolios to fetch.
-     */
-    orderBy?: PortfolioOrderByWithRelationInput | PortfolioOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: PortfolioWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Portfolios from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Portfolios.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned Portfolios
-    **/
-    _count?: true | PortfolioCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: PortfolioAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: PortfolioSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: PortfolioMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: PortfolioMaxAggregateInputType
-  }
-
-  export type GetPortfolioAggregateType<T extends PortfolioAggregateArgs> = {
-        [P in keyof T & keyof AggregatePortfolio]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregatePortfolio[P]>
-      : GetScalarType<T[P], AggregatePortfolio[P]>
-  }
-
-
-
-
-  export type PortfolioGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: PortfolioWhereInput
-    orderBy?: PortfolioOrderByWithAggregationInput | PortfolioOrderByWithAggregationInput[]
-    by: PortfolioScalarFieldEnum[] | PortfolioScalarFieldEnum
-    having?: PortfolioScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: PortfolioCountAggregateInputType | true
-    _avg?: PortfolioAvgAggregateInputType
-    _sum?: PortfolioSumAggregateInputType
-    _min?: PortfolioMinAggregateInputType
-    _max?: PortfolioMaxAggregateInputType
-  }
-
-  export type PortfolioGroupByOutputType = {
-    id: number
-    userId: number
-    name: string
-    totalValue: bigint
-    isActive: boolean
-    createdAt: Date
-    updatedAt: Date
-    _count: PortfolioCountAggregateOutputType | null
-    _avg: PortfolioAvgAggregateOutputType | null
-    _sum: PortfolioSumAggregateOutputType | null
-    _min: PortfolioMinAggregateOutputType | null
-    _max: PortfolioMaxAggregateOutputType | null
-  }
-
-  type GetPortfolioGroupByPayload<T extends PortfolioGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<PortfolioGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof PortfolioGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], PortfolioGroupByOutputType[P]>
-            : GetScalarType<T[P], PortfolioGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type PortfolioSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    userId?: boolean
-    name?: boolean
-    totalValue?: boolean
-    isActive?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
-    holdings?: boolean | Portfolio$holdingsArgs<ExtArgs>
-    trades?: boolean | Portfolio$tradesArgs<ExtArgs>
-    _count?: boolean | PortfolioCountOutputTypeDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["portfolio"]>
-
-  export type PortfolioSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    userId?: boolean
-    name?: boolean
-    totalValue?: boolean
-    isActive?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["portfolio"]>
-
-  export type PortfolioSelectScalar = {
-    id?: boolean
-    userId?: boolean
-    name?: boolean
-    totalValue?: boolean
-    isActive?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-  }
-
-  export type PortfolioInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-    holdings?: boolean | Portfolio$holdingsArgs<ExtArgs>
-    trades?: boolean | Portfolio$tradesArgs<ExtArgs>
-    _count?: boolean | PortfolioCountOutputTypeDefaultArgs<ExtArgs>
-  }
-  export type PortfolioIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }
-
-  export type $PortfolioPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Portfolio"
-    objects: {
-      user: Prisma.$UserPayload<ExtArgs>
-      holdings: Prisma.$PortfolioHoldingPayload<ExtArgs>[]
-      trades: Prisma.$TradePayload<ExtArgs>[]
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: number
-      userId: number
-      name: string
-      totalValue: bigint
-      isActive: boolean
-      createdAt: Date
-      updatedAt: Date
-    }, ExtArgs["result"]["portfolio"]>
-    composites: {}
-  }
-
-  type PortfolioGetPayload<S extends boolean | null | undefined | PortfolioDefaultArgs> = $Result.GetResult<Prisma.$PortfolioPayload, S>
-
-  type PortfolioCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<PortfolioFindManyArgs, 'select' | 'include' | 'distinct'> & {
-      select?: PortfolioCountAggregateInputType | true
-    }
-
-  export interface PortfolioDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Portfolio'], meta: { name: 'Portfolio' } }
-    /**
-     * Find zero or one Portfolio that matches the filter.
-     * @param {PortfolioFindUniqueArgs} args - Arguments to find a Portfolio
-     * @example
-     * // Get one Portfolio
-     * const portfolio = await prisma.portfolio.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends PortfolioFindUniqueArgs>(args: SelectSubset<T, PortfolioFindUniqueArgs<ExtArgs>>): Prisma__PortfolioClient<$Result.GetResult<Prisma.$PortfolioPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
-
-    /**
-     * Find one Portfolio that matches the filter or throw an error with `error.code='P2025'` 
-     * if no matches were found.
-     * @param {PortfolioFindUniqueOrThrowArgs} args - Arguments to find a Portfolio
-     * @example
-     * // Get one Portfolio
-     * const portfolio = await prisma.portfolio.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends PortfolioFindUniqueOrThrowArgs>(args: SelectSubset<T, PortfolioFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PortfolioClient<$Result.GetResult<Prisma.$PortfolioPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
-
-    /**
-     * Find the first Portfolio that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PortfolioFindFirstArgs} args - Arguments to find a Portfolio
-     * @example
-     * // Get one Portfolio
-     * const portfolio = await prisma.portfolio.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends PortfolioFindFirstArgs>(args?: SelectSubset<T, PortfolioFindFirstArgs<ExtArgs>>): Prisma__PortfolioClient<$Result.GetResult<Prisma.$PortfolioPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
-
-    /**
-     * Find the first Portfolio that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PortfolioFindFirstOrThrowArgs} args - Arguments to find a Portfolio
-     * @example
-     * // Get one Portfolio
-     * const portfolio = await prisma.portfolio.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends PortfolioFindFirstOrThrowArgs>(args?: SelectSubset<T, PortfolioFindFirstOrThrowArgs<ExtArgs>>): Prisma__PortfolioClient<$Result.GetResult<Prisma.$PortfolioPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
-
-    /**
-     * Find zero or more Portfolios that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PortfolioFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all Portfolios
-     * const portfolios = await prisma.portfolio.findMany()
-     * 
-     * // Get first 10 Portfolios
-     * const portfolios = await prisma.portfolio.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const portfolioWithIdOnly = await prisma.portfolio.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends PortfolioFindManyArgs>(args?: SelectSubset<T, PortfolioFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PortfolioPayload<ExtArgs>, T, "findMany">>
-
-    /**
-     * Create a Portfolio.
-     * @param {PortfolioCreateArgs} args - Arguments to create a Portfolio.
-     * @example
-     * // Create one Portfolio
-     * const Portfolio = await prisma.portfolio.create({
-     *   data: {
-     *     // ... data to create a Portfolio
-     *   }
-     * })
-     * 
-     */
-    create<T extends PortfolioCreateArgs>(args: SelectSubset<T, PortfolioCreateArgs<ExtArgs>>): Prisma__PortfolioClient<$Result.GetResult<Prisma.$PortfolioPayload<ExtArgs>, T, "create">, never, ExtArgs>
-
-    /**
-     * Create many Portfolios.
-     * @param {PortfolioCreateManyArgs} args - Arguments to create many Portfolios.
-     * @example
-     * // Create many Portfolios
-     * const portfolio = await prisma.portfolio.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends PortfolioCreateManyArgs>(args?: SelectSubset<T, PortfolioCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many Portfolios and returns the data saved in the database.
-     * @param {PortfolioCreateManyAndReturnArgs} args - Arguments to create many Portfolios.
-     * @example
-     * // Create many Portfolios
-     * const portfolio = await prisma.portfolio.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many Portfolios and only return the `id`
-     * const portfolioWithIdOnly = await prisma.portfolio.createManyAndReturn({ 
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends PortfolioCreateManyAndReturnArgs>(args?: SelectSubset<T, PortfolioCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PortfolioPayload<ExtArgs>, T, "createManyAndReturn">>
-
-    /**
-     * Delete a Portfolio.
-     * @param {PortfolioDeleteArgs} args - Arguments to delete one Portfolio.
-     * @example
-     * // Delete one Portfolio
-     * const Portfolio = await prisma.portfolio.delete({
-     *   where: {
-     *     // ... filter to delete one Portfolio
-     *   }
-     * })
-     * 
-     */
-    delete<T extends PortfolioDeleteArgs>(args: SelectSubset<T, PortfolioDeleteArgs<ExtArgs>>): Prisma__PortfolioClient<$Result.GetResult<Prisma.$PortfolioPayload<ExtArgs>, T, "delete">, never, ExtArgs>
-
-    /**
-     * Update one Portfolio.
-     * @param {PortfolioUpdateArgs} args - Arguments to update one Portfolio.
-     * @example
-     * // Update one Portfolio
-     * const portfolio = await prisma.portfolio.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends PortfolioUpdateArgs>(args: SelectSubset<T, PortfolioUpdateArgs<ExtArgs>>): Prisma__PortfolioClient<$Result.GetResult<Prisma.$PortfolioPayload<ExtArgs>, T, "update">, never, ExtArgs>
-
-    /**
-     * Delete zero or more Portfolios.
-     * @param {PortfolioDeleteManyArgs} args - Arguments to filter Portfolios to delete.
-     * @example
-     * // Delete a few Portfolios
-     * const { count } = await prisma.portfolio.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends PortfolioDeleteManyArgs>(args?: SelectSubset<T, PortfolioDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Portfolios.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PortfolioUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many Portfolios
-     * const portfolio = await prisma.portfolio.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends PortfolioUpdateManyArgs>(args: SelectSubset<T, PortfolioUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create or update one Portfolio.
-     * @param {PortfolioUpsertArgs} args - Arguments to update or create a Portfolio.
-     * @example
-     * // Update or create a Portfolio
-     * const portfolio = await prisma.portfolio.upsert({
-     *   create: {
-     *     // ... data to create a Portfolio
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the Portfolio we want to update
-     *   }
-     * })
-     */
-    upsert<T extends PortfolioUpsertArgs>(args: SelectSubset<T, PortfolioUpsertArgs<ExtArgs>>): Prisma__PortfolioClient<$Result.GetResult<Prisma.$PortfolioPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
-
-
-    /**
-     * Count the number of Portfolios.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PortfolioCountArgs} args - Arguments to filter Portfolios to count.
-     * @example
-     * // Count the number of Portfolios
-     * const count = await prisma.portfolio.count({
-     *   where: {
-     *     // ... the filter for the Portfolios we want to count
-     *   }
-     * })
-    **/
-    count<T extends PortfolioCountArgs>(
-      args?: Subset<T, PortfolioCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], PortfolioCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a Portfolio.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PortfolioAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends PortfolioAggregateArgs>(args: Subset<T, PortfolioAggregateArgs>): Prisma.PrismaPromise<GetPortfolioAggregateType<T>>
-
-    /**
-     * Group by Portfolio.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PortfolioGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends PortfolioGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: PortfolioGroupByArgs['orderBy'] }
-        : { orderBy?: PortfolioGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, PortfolioGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPortfolioGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the Portfolio model
-   */
-  readonly fields: PortfolioFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for Portfolio.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__PortfolioClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
-    holdings<T extends Portfolio$holdingsArgs<ExtArgs> = {}>(args?: Subset<T, Portfolio$holdingsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PortfolioHoldingPayload<ExtArgs>, T, "findMany"> | Null>
-    trades<T extends Portfolio$tradesArgs<ExtArgs> = {}>(args?: Subset<T, Portfolio$tradesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TradePayload<ExtArgs>, T, "findMany"> | Null>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the Portfolio model
-   */ 
-  interface PortfolioFieldRefs {
-    readonly id: FieldRef<"Portfolio", 'Int'>
-    readonly userId: FieldRef<"Portfolio", 'Int'>
-    readonly name: FieldRef<"Portfolio", 'String'>
-    readonly totalValue: FieldRef<"Portfolio", 'BigInt'>
-    readonly isActive: FieldRef<"Portfolio", 'Boolean'>
-    readonly createdAt: FieldRef<"Portfolio", 'DateTime'>
-    readonly updatedAt: FieldRef<"Portfolio", 'DateTime'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * Portfolio findUnique
-   */
-  export type PortfolioFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Portfolio
-     */
-    select?: PortfolioSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PortfolioInclude<ExtArgs> | null
-    /**
-     * Filter, which Portfolio to fetch.
-     */
-    where: PortfolioWhereUniqueInput
-  }
-
-  /**
-   * Portfolio findUniqueOrThrow
-   */
-  export type PortfolioFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Portfolio
-     */
-    select?: PortfolioSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PortfolioInclude<ExtArgs> | null
-    /**
-     * Filter, which Portfolio to fetch.
-     */
-    where: PortfolioWhereUniqueInput
-  }
-
-  /**
-   * Portfolio findFirst
-   */
-  export type PortfolioFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Portfolio
-     */
-    select?: PortfolioSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PortfolioInclude<ExtArgs> | null
-    /**
-     * Filter, which Portfolio to fetch.
-     */
-    where?: PortfolioWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Portfolios to fetch.
-     */
-    orderBy?: PortfolioOrderByWithRelationInput | PortfolioOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Portfolios.
-     */
-    cursor?: PortfolioWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Portfolios from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Portfolios.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Portfolios.
-     */
-    distinct?: PortfolioScalarFieldEnum | PortfolioScalarFieldEnum[]
-  }
-
-  /**
-   * Portfolio findFirstOrThrow
-   */
-  export type PortfolioFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Portfolio
-     */
-    select?: PortfolioSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PortfolioInclude<ExtArgs> | null
-    /**
-     * Filter, which Portfolio to fetch.
-     */
-    where?: PortfolioWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Portfolios to fetch.
-     */
-    orderBy?: PortfolioOrderByWithRelationInput | PortfolioOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Portfolios.
-     */
-    cursor?: PortfolioWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Portfolios from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Portfolios.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Portfolios.
-     */
-    distinct?: PortfolioScalarFieldEnum | PortfolioScalarFieldEnum[]
-  }
-
-  /**
-   * Portfolio findMany
-   */
-  export type PortfolioFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Portfolio
-     */
-    select?: PortfolioSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PortfolioInclude<ExtArgs> | null
-    /**
-     * Filter, which Portfolios to fetch.
-     */
-    where?: PortfolioWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Portfolios to fetch.
-     */
-    orderBy?: PortfolioOrderByWithRelationInput | PortfolioOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing Portfolios.
-     */
-    cursor?: PortfolioWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Portfolios from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Portfolios.
-     */
-    skip?: number
-    distinct?: PortfolioScalarFieldEnum | PortfolioScalarFieldEnum[]
-  }
-
-  /**
-   * Portfolio create
-   */
-  export type PortfolioCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Portfolio
-     */
-    select?: PortfolioSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PortfolioInclude<ExtArgs> | null
-    /**
-     * The data needed to create a Portfolio.
-     */
-    data: XOR<PortfolioCreateInput, PortfolioUncheckedCreateInput>
-  }
-
-  /**
-   * Portfolio createMany
-   */
-  export type PortfolioCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many Portfolios.
-     */
-    data: PortfolioCreateManyInput | PortfolioCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * Portfolio createManyAndReturn
-   */
-  export type PortfolioCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Portfolio
-     */
-    select?: PortfolioSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * The data used to create many Portfolios.
-     */
-    data: PortfolioCreateManyInput | PortfolioCreateManyInput[]
-    skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PortfolioIncludeCreateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * Portfolio update
-   */
-  export type PortfolioUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Portfolio
-     */
-    select?: PortfolioSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PortfolioInclude<ExtArgs> | null
-    /**
-     * The data needed to update a Portfolio.
-     */
-    data: XOR<PortfolioUpdateInput, PortfolioUncheckedUpdateInput>
-    /**
-     * Choose, which Portfolio to update.
-     */
-    where: PortfolioWhereUniqueInput
-  }
-
-  /**
-   * Portfolio updateMany
-   */
-  export type PortfolioUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update Portfolios.
-     */
-    data: XOR<PortfolioUpdateManyMutationInput, PortfolioUncheckedUpdateManyInput>
-    /**
-     * Filter which Portfolios to update
-     */
-    where?: PortfolioWhereInput
-  }
-
-  /**
-   * Portfolio upsert
-   */
-  export type PortfolioUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Portfolio
-     */
-    select?: PortfolioSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PortfolioInclude<ExtArgs> | null
-    /**
-     * The filter to search for the Portfolio to update in case it exists.
-     */
-    where: PortfolioWhereUniqueInput
-    /**
-     * In case the Portfolio found by the `where` argument doesn't exist, create a new Portfolio with this data.
-     */
-    create: XOR<PortfolioCreateInput, PortfolioUncheckedCreateInput>
-    /**
-     * In case the Portfolio was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<PortfolioUpdateInput, PortfolioUncheckedUpdateInput>
-  }
-
-  /**
-   * Portfolio delete
-   */
-  export type PortfolioDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Portfolio
-     */
-    select?: PortfolioSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PortfolioInclude<ExtArgs> | null
-    /**
-     * Filter which Portfolio to delete.
-     */
-    where: PortfolioWhereUniqueInput
-  }
-
-  /**
-   * Portfolio deleteMany
-   */
-  export type PortfolioDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Portfolios to delete
-     */
-    where?: PortfolioWhereInput
-  }
-
-  /**
-   * Portfolio.holdings
-   */
-  export type Portfolio$holdingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PortfolioHolding
-     */
-    select?: PortfolioHoldingSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PortfolioHoldingInclude<ExtArgs> | null
-    where?: PortfolioHoldingWhereInput
-    orderBy?: PortfolioHoldingOrderByWithRelationInput | PortfolioHoldingOrderByWithRelationInput[]
-    cursor?: PortfolioHoldingWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: PortfolioHoldingScalarFieldEnum | PortfolioHoldingScalarFieldEnum[]
-  }
-
-  /**
-   * Portfolio.trades
-   */
-  export type Portfolio$tradesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Trade
-     */
-    select?: TradeSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TradeInclude<ExtArgs> | null
-    where?: TradeWhereInput
-    orderBy?: TradeOrderByWithRelationInput | TradeOrderByWithRelationInput[]
-    cursor?: TradeWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: TradeScalarFieldEnum | TradeScalarFieldEnum[]
-  }
-
-  /**
-   * Portfolio without action
-   */
-  export type PortfolioDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Portfolio
-     */
-    select?: PortfolioSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PortfolioInclude<ExtArgs> | null
-  }
-
-
-  /**
-   * Model PortfolioHolding
-   */
-
-  export type AggregatePortfolioHolding = {
-    _count: PortfolioHoldingCountAggregateOutputType | null
-    _avg: PortfolioHoldingAvgAggregateOutputType | null
-    _sum: PortfolioHoldingSumAggregateOutputType | null
-    _min: PortfolioHoldingMinAggregateOutputType | null
-    _max: PortfolioHoldingMaxAggregateOutputType | null
-  }
-
-  export type PortfolioHoldingAvgAggregateOutputType = {
-    id: number | null
-    portfolioId: number | null
-    fundId: number | null
-    quantity: number | null
-    averagePrice: number | null
-  }
-
-  export type PortfolioHoldingSumAggregateOutputType = {
-    id: number | null
-    portfolioId: number | null
-    fundId: number | null
-    quantity: bigint | null
-    averagePrice: bigint | null
-  }
-
-  export type PortfolioHoldingMinAggregateOutputType = {
-    id: number | null
-    portfolioId: number | null
-    fundId: number | null
-    quantity: bigint | null
-    averagePrice: bigint | null
-    createdAt: Date | null
-    updatedAt: Date | null
-  }
-
-  export type PortfolioHoldingMaxAggregateOutputType = {
-    id: number | null
-    portfolioId: number | null
-    fundId: number | null
-    quantity: bigint | null
-    averagePrice: bigint | null
-    createdAt: Date | null
-    updatedAt: Date | null
-  }
-
-  export type PortfolioHoldingCountAggregateOutputType = {
-    id: number
-    portfolioId: number
-    fundId: number
-    quantity: number
-    averagePrice: number
-    createdAt: number
-    updatedAt: number
-    _all: number
-  }
-
-
-  export type PortfolioHoldingAvgAggregateInputType = {
-    id?: true
-    portfolioId?: true
-    fundId?: true
-    quantity?: true
-    averagePrice?: true
-  }
-
-  export type PortfolioHoldingSumAggregateInputType = {
-    id?: true
-    portfolioId?: true
-    fundId?: true
-    quantity?: true
-    averagePrice?: true
-  }
-
-  export type PortfolioHoldingMinAggregateInputType = {
-    id?: true
-    portfolioId?: true
-    fundId?: true
-    quantity?: true
-    averagePrice?: true
-    createdAt?: true
-    updatedAt?: true
-  }
-
-  export type PortfolioHoldingMaxAggregateInputType = {
-    id?: true
-    portfolioId?: true
-    fundId?: true
-    quantity?: true
-    averagePrice?: true
-    createdAt?: true
-    updatedAt?: true
-  }
-
-  export type PortfolioHoldingCountAggregateInputType = {
-    id?: true
-    portfolioId?: true
-    fundId?: true
-    quantity?: true
-    averagePrice?: true
-    createdAt?: true
-    updatedAt?: true
-    _all?: true
-  }
-
-  export type PortfolioHoldingAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which PortfolioHolding to aggregate.
-     */
-    where?: PortfolioHoldingWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of PortfolioHoldings to fetch.
-     */
-    orderBy?: PortfolioHoldingOrderByWithRelationInput | PortfolioHoldingOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: PortfolioHoldingWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` PortfolioHoldings from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` PortfolioHoldings.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned PortfolioHoldings
-    **/
-    _count?: true | PortfolioHoldingCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: PortfolioHoldingAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: PortfolioHoldingSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: PortfolioHoldingMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: PortfolioHoldingMaxAggregateInputType
-  }
-
-  export type GetPortfolioHoldingAggregateType<T extends PortfolioHoldingAggregateArgs> = {
-        [P in keyof T & keyof AggregatePortfolioHolding]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregatePortfolioHolding[P]>
-      : GetScalarType<T[P], AggregatePortfolioHolding[P]>
-  }
-
-
-
-
-  export type PortfolioHoldingGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: PortfolioHoldingWhereInput
-    orderBy?: PortfolioHoldingOrderByWithAggregationInput | PortfolioHoldingOrderByWithAggregationInput[]
-    by: PortfolioHoldingScalarFieldEnum[] | PortfolioHoldingScalarFieldEnum
-    having?: PortfolioHoldingScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: PortfolioHoldingCountAggregateInputType | true
-    _avg?: PortfolioHoldingAvgAggregateInputType
-    _sum?: PortfolioHoldingSumAggregateInputType
-    _min?: PortfolioHoldingMinAggregateInputType
-    _max?: PortfolioHoldingMaxAggregateInputType
-  }
-
-  export type PortfolioHoldingGroupByOutputType = {
-    id: number
-    portfolioId: number
-    fundId: number
-    quantity: bigint
-    averagePrice: bigint
-    createdAt: Date
-    updatedAt: Date
-    _count: PortfolioHoldingCountAggregateOutputType | null
-    _avg: PortfolioHoldingAvgAggregateOutputType | null
-    _sum: PortfolioHoldingSumAggregateOutputType | null
-    _min: PortfolioHoldingMinAggregateOutputType | null
-    _max: PortfolioHoldingMaxAggregateOutputType | null
-  }
-
-  type GetPortfolioHoldingGroupByPayload<T extends PortfolioHoldingGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<PortfolioHoldingGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof PortfolioHoldingGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], PortfolioHoldingGroupByOutputType[P]>
-            : GetScalarType<T[P], PortfolioHoldingGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type PortfolioHoldingSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    portfolioId?: boolean
-    fundId?: boolean
-    quantity?: boolean
-    averagePrice?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    portfolio?: boolean | PortfolioDefaultArgs<ExtArgs>
-    fund?: boolean | FundDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["portfolioHolding"]>
-
-  export type PortfolioHoldingSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    portfolioId?: boolean
-    fundId?: boolean
-    quantity?: boolean
-    averagePrice?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    portfolio?: boolean | PortfolioDefaultArgs<ExtArgs>
-    fund?: boolean | FundDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["portfolioHolding"]>
-
-  export type PortfolioHoldingSelectScalar = {
-    id?: boolean
-    portfolioId?: boolean
-    fundId?: boolean
-    quantity?: boolean
-    averagePrice?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-  }
-
-  export type PortfolioHoldingInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    portfolio?: boolean | PortfolioDefaultArgs<ExtArgs>
-    fund?: boolean | FundDefaultArgs<ExtArgs>
-  }
-  export type PortfolioHoldingIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    portfolio?: boolean | PortfolioDefaultArgs<ExtArgs>
-    fund?: boolean | FundDefaultArgs<ExtArgs>
-  }
-
-  export type $PortfolioHoldingPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "PortfolioHolding"
-    objects: {
-      portfolio: Prisma.$PortfolioPayload<ExtArgs>
-      fund: Prisma.$FundPayload<ExtArgs>
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: number
-      portfolioId: number
-      fundId: number
-      quantity: bigint
-      averagePrice: bigint
-      createdAt: Date
-      updatedAt: Date
-    }, ExtArgs["result"]["portfolioHolding"]>
-    composites: {}
-  }
-
-  type PortfolioHoldingGetPayload<S extends boolean | null | undefined | PortfolioHoldingDefaultArgs> = $Result.GetResult<Prisma.$PortfolioHoldingPayload, S>
-
-  type PortfolioHoldingCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<PortfolioHoldingFindManyArgs, 'select' | 'include' | 'distinct'> & {
-      select?: PortfolioHoldingCountAggregateInputType | true
-    }
-
-  export interface PortfolioHoldingDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PortfolioHolding'], meta: { name: 'PortfolioHolding' } }
-    /**
-     * Find zero or one PortfolioHolding that matches the filter.
-     * @param {PortfolioHoldingFindUniqueArgs} args - Arguments to find a PortfolioHolding
-     * @example
-     * // Get one PortfolioHolding
-     * const portfolioHolding = await prisma.portfolioHolding.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends PortfolioHoldingFindUniqueArgs>(args: SelectSubset<T, PortfolioHoldingFindUniqueArgs<ExtArgs>>): Prisma__PortfolioHoldingClient<$Result.GetResult<Prisma.$PortfolioHoldingPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
-
-    /**
-     * Find one PortfolioHolding that matches the filter or throw an error with `error.code='P2025'` 
-     * if no matches were found.
-     * @param {PortfolioHoldingFindUniqueOrThrowArgs} args - Arguments to find a PortfolioHolding
-     * @example
-     * // Get one PortfolioHolding
-     * const portfolioHolding = await prisma.portfolioHolding.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends PortfolioHoldingFindUniqueOrThrowArgs>(args: SelectSubset<T, PortfolioHoldingFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PortfolioHoldingClient<$Result.GetResult<Prisma.$PortfolioHoldingPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
-
-    /**
-     * Find the first PortfolioHolding that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PortfolioHoldingFindFirstArgs} args - Arguments to find a PortfolioHolding
-     * @example
-     * // Get one PortfolioHolding
-     * const portfolioHolding = await prisma.portfolioHolding.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends PortfolioHoldingFindFirstArgs>(args?: SelectSubset<T, PortfolioHoldingFindFirstArgs<ExtArgs>>): Prisma__PortfolioHoldingClient<$Result.GetResult<Prisma.$PortfolioHoldingPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
-
-    /**
-     * Find the first PortfolioHolding that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PortfolioHoldingFindFirstOrThrowArgs} args - Arguments to find a PortfolioHolding
-     * @example
-     * // Get one PortfolioHolding
-     * const portfolioHolding = await prisma.portfolioHolding.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends PortfolioHoldingFindFirstOrThrowArgs>(args?: SelectSubset<T, PortfolioHoldingFindFirstOrThrowArgs<ExtArgs>>): Prisma__PortfolioHoldingClient<$Result.GetResult<Prisma.$PortfolioHoldingPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
-
-    /**
-     * Find zero or more PortfolioHoldings that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PortfolioHoldingFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all PortfolioHoldings
-     * const portfolioHoldings = await prisma.portfolioHolding.findMany()
-     * 
-     * // Get first 10 PortfolioHoldings
-     * const portfolioHoldings = await prisma.portfolioHolding.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const portfolioHoldingWithIdOnly = await prisma.portfolioHolding.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends PortfolioHoldingFindManyArgs>(args?: SelectSubset<T, PortfolioHoldingFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PortfolioHoldingPayload<ExtArgs>, T, "findMany">>
-
-    /**
-     * Create a PortfolioHolding.
-     * @param {PortfolioHoldingCreateArgs} args - Arguments to create a PortfolioHolding.
-     * @example
-     * // Create one PortfolioHolding
-     * const PortfolioHolding = await prisma.portfolioHolding.create({
-     *   data: {
-     *     // ... data to create a PortfolioHolding
-     *   }
-     * })
-     * 
-     */
-    create<T extends PortfolioHoldingCreateArgs>(args: SelectSubset<T, PortfolioHoldingCreateArgs<ExtArgs>>): Prisma__PortfolioHoldingClient<$Result.GetResult<Prisma.$PortfolioHoldingPayload<ExtArgs>, T, "create">, never, ExtArgs>
-
-    /**
-     * Create many PortfolioHoldings.
-     * @param {PortfolioHoldingCreateManyArgs} args - Arguments to create many PortfolioHoldings.
-     * @example
-     * // Create many PortfolioHoldings
-     * const portfolioHolding = await prisma.portfolioHolding.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends PortfolioHoldingCreateManyArgs>(args?: SelectSubset<T, PortfolioHoldingCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many PortfolioHoldings and returns the data saved in the database.
-     * @param {PortfolioHoldingCreateManyAndReturnArgs} args - Arguments to create many PortfolioHoldings.
-     * @example
-     * // Create many PortfolioHoldings
-     * const portfolioHolding = await prisma.portfolioHolding.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many PortfolioHoldings and only return the `id`
-     * const portfolioHoldingWithIdOnly = await prisma.portfolioHolding.createManyAndReturn({ 
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends PortfolioHoldingCreateManyAndReturnArgs>(args?: SelectSubset<T, PortfolioHoldingCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PortfolioHoldingPayload<ExtArgs>, T, "createManyAndReturn">>
-
-    /**
-     * Delete a PortfolioHolding.
-     * @param {PortfolioHoldingDeleteArgs} args - Arguments to delete one PortfolioHolding.
-     * @example
-     * // Delete one PortfolioHolding
-     * const PortfolioHolding = await prisma.portfolioHolding.delete({
-     *   where: {
-     *     // ... filter to delete one PortfolioHolding
-     *   }
-     * })
-     * 
-     */
-    delete<T extends PortfolioHoldingDeleteArgs>(args: SelectSubset<T, PortfolioHoldingDeleteArgs<ExtArgs>>): Prisma__PortfolioHoldingClient<$Result.GetResult<Prisma.$PortfolioHoldingPayload<ExtArgs>, T, "delete">, never, ExtArgs>
-
-    /**
-     * Update one PortfolioHolding.
-     * @param {PortfolioHoldingUpdateArgs} args - Arguments to update one PortfolioHolding.
-     * @example
-     * // Update one PortfolioHolding
-     * const portfolioHolding = await prisma.portfolioHolding.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends PortfolioHoldingUpdateArgs>(args: SelectSubset<T, PortfolioHoldingUpdateArgs<ExtArgs>>): Prisma__PortfolioHoldingClient<$Result.GetResult<Prisma.$PortfolioHoldingPayload<ExtArgs>, T, "update">, never, ExtArgs>
-
-    /**
-     * Delete zero or more PortfolioHoldings.
-     * @param {PortfolioHoldingDeleteManyArgs} args - Arguments to filter PortfolioHoldings to delete.
-     * @example
-     * // Delete a few PortfolioHoldings
-     * const { count } = await prisma.portfolioHolding.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends PortfolioHoldingDeleteManyArgs>(args?: SelectSubset<T, PortfolioHoldingDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more PortfolioHoldings.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PortfolioHoldingUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many PortfolioHoldings
-     * const portfolioHolding = await prisma.portfolioHolding.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends PortfolioHoldingUpdateManyArgs>(args: SelectSubset<T, PortfolioHoldingUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create or update one PortfolioHolding.
-     * @param {PortfolioHoldingUpsertArgs} args - Arguments to update or create a PortfolioHolding.
-     * @example
-     * // Update or create a PortfolioHolding
-     * const portfolioHolding = await prisma.portfolioHolding.upsert({
-     *   create: {
-     *     // ... data to create a PortfolioHolding
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the PortfolioHolding we want to update
-     *   }
-     * })
-     */
-    upsert<T extends PortfolioHoldingUpsertArgs>(args: SelectSubset<T, PortfolioHoldingUpsertArgs<ExtArgs>>): Prisma__PortfolioHoldingClient<$Result.GetResult<Prisma.$PortfolioHoldingPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
-
-
-    /**
-     * Count the number of PortfolioHoldings.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PortfolioHoldingCountArgs} args - Arguments to filter PortfolioHoldings to count.
-     * @example
-     * // Count the number of PortfolioHoldings
-     * const count = await prisma.portfolioHolding.count({
-     *   where: {
-     *     // ... the filter for the PortfolioHoldings we want to count
-     *   }
-     * })
-    **/
-    count<T extends PortfolioHoldingCountArgs>(
-      args?: Subset<T, PortfolioHoldingCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], PortfolioHoldingCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a PortfolioHolding.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PortfolioHoldingAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends PortfolioHoldingAggregateArgs>(args: Subset<T, PortfolioHoldingAggregateArgs>): Prisma.PrismaPromise<GetPortfolioHoldingAggregateType<T>>
-
-    /**
-     * Group by PortfolioHolding.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PortfolioHoldingGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends PortfolioHoldingGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: PortfolioHoldingGroupByArgs['orderBy'] }
-        : { orderBy?: PortfolioHoldingGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, PortfolioHoldingGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPortfolioHoldingGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the PortfolioHolding model
-   */
-  readonly fields: PortfolioHoldingFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for PortfolioHolding.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__PortfolioHoldingClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    portfolio<T extends PortfolioDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PortfolioDefaultArgs<ExtArgs>>): Prisma__PortfolioClient<$Result.GetResult<Prisma.$PortfolioPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
-    fund<T extends FundDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FundDefaultArgs<ExtArgs>>): Prisma__FundClient<$Result.GetResult<Prisma.$FundPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the PortfolioHolding model
-   */ 
-  interface PortfolioHoldingFieldRefs {
-    readonly id: FieldRef<"PortfolioHolding", 'Int'>
-    readonly portfolioId: FieldRef<"PortfolioHolding", 'Int'>
-    readonly fundId: FieldRef<"PortfolioHolding", 'Int'>
-    readonly quantity: FieldRef<"PortfolioHolding", 'BigInt'>
-    readonly averagePrice: FieldRef<"PortfolioHolding", 'BigInt'>
-    readonly createdAt: FieldRef<"PortfolioHolding", 'DateTime'>
-    readonly updatedAt: FieldRef<"PortfolioHolding", 'DateTime'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * PortfolioHolding findUnique
-   */
-  export type PortfolioHoldingFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PortfolioHolding
-     */
-    select?: PortfolioHoldingSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PortfolioHoldingInclude<ExtArgs> | null
-    /**
-     * Filter, which PortfolioHolding to fetch.
-     */
-    where: PortfolioHoldingWhereUniqueInput
-  }
-
-  /**
-   * PortfolioHolding findUniqueOrThrow
-   */
-  export type PortfolioHoldingFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PortfolioHolding
-     */
-    select?: PortfolioHoldingSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PortfolioHoldingInclude<ExtArgs> | null
-    /**
-     * Filter, which PortfolioHolding to fetch.
-     */
-    where: PortfolioHoldingWhereUniqueInput
-  }
-
-  /**
-   * PortfolioHolding findFirst
-   */
-  export type PortfolioHoldingFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PortfolioHolding
-     */
-    select?: PortfolioHoldingSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PortfolioHoldingInclude<ExtArgs> | null
-    /**
-     * Filter, which PortfolioHolding to fetch.
-     */
-    where?: PortfolioHoldingWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of PortfolioHoldings to fetch.
-     */
-    orderBy?: PortfolioHoldingOrderByWithRelationInput | PortfolioHoldingOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for PortfolioHoldings.
-     */
-    cursor?: PortfolioHoldingWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` PortfolioHoldings from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` PortfolioHoldings.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of PortfolioHoldings.
-     */
-    distinct?: PortfolioHoldingScalarFieldEnum | PortfolioHoldingScalarFieldEnum[]
-  }
-
-  /**
-   * PortfolioHolding findFirstOrThrow
-   */
-  export type PortfolioHoldingFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PortfolioHolding
-     */
-    select?: PortfolioHoldingSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PortfolioHoldingInclude<ExtArgs> | null
-    /**
-     * Filter, which PortfolioHolding to fetch.
-     */
-    where?: PortfolioHoldingWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of PortfolioHoldings to fetch.
-     */
-    orderBy?: PortfolioHoldingOrderByWithRelationInput | PortfolioHoldingOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for PortfolioHoldings.
-     */
-    cursor?: PortfolioHoldingWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` PortfolioHoldings from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` PortfolioHoldings.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of PortfolioHoldings.
-     */
-    distinct?: PortfolioHoldingScalarFieldEnum | PortfolioHoldingScalarFieldEnum[]
-  }
-
-  /**
-   * PortfolioHolding findMany
-   */
-  export type PortfolioHoldingFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PortfolioHolding
-     */
-    select?: PortfolioHoldingSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PortfolioHoldingInclude<ExtArgs> | null
-    /**
-     * Filter, which PortfolioHoldings to fetch.
-     */
-    where?: PortfolioHoldingWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of PortfolioHoldings to fetch.
-     */
-    orderBy?: PortfolioHoldingOrderByWithRelationInput | PortfolioHoldingOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing PortfolioHoldings.
-     */
-    cursor?: PortfolioHoldingWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` PortfolioHoldings from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` PortfolioHoldings.
-     */
-    skip?: number
-    distinct?: PortfolioHoldingScalarFieldEnum | PortfolioHoldingScalarFieldEnum[]
-  }
-
-  /**
-   * PortfolioHolding create
-   */
-  export type PortfolioHoldingCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PortfolioHolding
-     */
-    select?: PortfolioHoldingSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PortfolioHoldingInclude<ExtArgs> | null
-    /**
-     * The data needed to create a PortfolioHolding.
-     */
-    data: XOR<PortfolioHoldingCreateInput, PortfolioHoldingUncheckedCreateInput>
-  }
-
-  /**
-   * PortfolioHolding createMany
-   */
-  export type PortfolioHoldingCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many PortfolioHoldings.
-     */
-    data: PortfolioHoldingCreateManyInput | PortfolioHoldingCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * PortfolioHolding createManyAndReturn
-   */
-  export type PortfolioHoldingCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PortfolioHolding
-     */
-    select?: PortfolioHoldingSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * The data used to create many PortfolioHoldings.
-     */
-    data: PortfolioHoldingCreateManyInput | PortfolioHoldingCreateManyInput[]
-    skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PortfolioHoldingIncludeCreateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * PortfolioHolding update
-   */
-  export type PortfolioHoldingUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PortfolioHolding
-     */
-    select?: PortfolioHoldingSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PortfolioHoldingInclude<ExtArgs> | null
-    /**
-     * The data needed to update a PortfolioHolding.
-     */
-    data: XOR<PortfolioHoldingUpdateInput, PortfolioHoldingUncheckedUpdateInput>
-    /**
-     * Choose, which PortfolioHolding to update.
-     */
-    where: PortfolioHoldingWhereUniqueInput
-  }
-
-  /**
-   * PortfolioHolding updateMany
-   */
-  export type PortfolioHoldingUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update PortfolioHoldings.
-     */
-    data: XOR<PortfolioHoldingUpdateManyMutationInput, PortfolioHoldingUncheckedUpdateManyInput>
-    /**
-     * Filter which PortfolioHoldings to update
-     */
-    where?: PortfolioHoldingWhereInput
-  }
-
-  /**
-   * PortfolioHolding upsert
-   */
-  export type PortfolioHoldingUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PortfolioHolding
-     */
-    select?: PortfolioHoldingSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PortfolioHoldingInclude<ExtArgs> | null
-    /**
-     * The filter to search for the PortfolioHolding to update in case it exists.
-     */
-    where: PortfolioHoldingWhereUniqueInput
-    /**
-     * In case the PortfolioHolding found by the `where` argument doesn't exist, create a new PortfolioHolding with this data.
-     */
-    create: XOR<PortfolioHoldingCreateInput, PortfolioHoldingUncheckedCreateInput>
-    /**
-     * In case the PortfolioHolding was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<PortfolioHoldingUpdateInput, PortfolioHoldingUncheckedUpdateInput>
-  }
-
-  /**
-   * PortfolioHolding delete
-   */
-  export type PortfolioHoldingDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PortfolioHolding
-     */
-    select?: PortfolioHoldingSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PortfolioHoldingInclude<ExtArgs> | null
-    /**
-     * Filter which PortfolioHolding to delete.
-     */
-    where: PortfolioHoldingWhereUniqueInput
-  }
-
-  /**
-   * PortfolioHolding deleteMany
-   */
-  export type PortfolioHoldingDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which PortfolioHoldings to delete
-     */
-    where?: PortfolioHoldingWhereInput
-  }
-
-  /**
-   * PortfolioHolding without action
-   */
-  export type PortfolioHoldingDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PortfolioHolding
-     */
-    select?: PortfolioHoldingSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PortfolioHoldingInclude<ExtArgs> | null
-  }
-
-
-  /**
-   * Model HedgeFund
-   */
-
-  export type AggregateHedgeFund = {
-    _count: HedgeFundCountAggregateOutputType | null
-    _avg: HedgeFundAvgAggregateOutputType | null
-    _sum: HedgeFundSumAggregateOutputType | null
-    _min: HedgeFundMinAggregateOutputType | null
-    _max: HedgeFundMaxAggregateOutputType | null
-  }
-
-  export type HedgeFundAvgAggregateOutputType = {
-    id: number | null
-    fundId: number | null
-    minimumLockPeriod: number | null
-    managementFee: Decimal | null
-    performanceFee: Decimal | null
-    highWaterMark: number | null
-  }
-
-  export type HedgeFundSumAggregateOutputType = {
-    id: number | null
-    fundId: number | null
-    minimumLockPeriod: number | null
-    managementFee: Decimal | null
-    performanceFee: Decimal | null
-    highWaterMark: bigint | null
-  }
-
-  export type HedgeFundMinAggregateOutputType = {
-    id: number | null
-    fundId: number | null
-    strategy: string | null
-    riskLevel: string | null
-    minimumLockPeriod: number | null
-    managementFee: Decimal | null
-    performanceFee: Decimal | null
-    highWaterMark: bigint | null
-    createdAt: Date | null
-    updatedAt: Date | null
-  }
-
-  export type HedgeFundMaxAggregateOutputType = {
-    id: number | null
-    fundId: number | null
-    strategy: string | null
-    riskLevel: string | null
-    minimumLockPeriod: number | null
-    managementFee: Decimal | null
-    performanceFee: Decimal | null
-    highWaterMark: bigint | null
-    createdAt: Date | null
-    updatedAt: Date | null
-  }
-
-  export type HedgeFundCountAggregateOutputType = {
-    id: number
-    fundId: number
-    strategy: number
-    riskLevel: number
-    minimumLockPeriod: number
-    managementFee: number
-    performanceFee: number
-    highWaterMark: number
-    createdAt: number
-    updatedAt: number
-    _all: number
-  }
-
-
-  export type HedgeFundAvgAggregateInputType = {
-    id?: true
-    fundId?: true
-    minimumLockPeriod?: true
-    managementFee?: true
-    performanceFee?: true
-    highWaterMark?: true
-  }
-
-  export type HedgeFundSumAggregateInputType = {
-    id?: true
-    fundId?: true
-    minimumLockPeriod?: true
-    managementFee?: true
-    performanceFee?: true
-    highWaterMark?: true
-  }
-
-  export type HedgeFundMinAggregateInputType = {
-    id?: true
-    fundId?: true
-    strategy?: true
-    riskLevel?: true
-    minimumLockPeriod?: true
-    managementFee?: true
-    performanceFee?: true
-    highWaterMark?: true
-    createdAt?: true
-    updatedAt?: true
-  }
-
-  export type HedgeFundMaxAggregateInputType = {
-    id?: true
-    fundId?: true
-    strategy?: true
-    riskLevel?: true
-    minimumLockPeriod?: true
-    managementFee?: true
-    performanceFee?: true
-    highWaterMark?: true
-    createdAt?: true
-    updatedAt?: true
-  }
-
-  export type HedgeFundCountAggregateInputType = {
-    id?: true
-    fundId?: true
-    strategy?: true
-    riskLevel?: true
-    minimumLockPeriod?: true
-    managementFee?: true
-    performanceFee?: true
-    highWaterMark?: true
-    createdAt?: true
-    updatedAt?: true
-    _all?: true
-  }
-
-  export type HedgeFundAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which HedgeFund to aggregate.
-     */
-    where?: HedgeFundWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of HedgeFunds to fetch.
-     */
-    orderBy?: HedgeFundOrderByWithRelationInput | HedgeFundOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: HedgeFundWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` HedgeFunds from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` HedgeFunds.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned HedgeFunds
-    **/
-    _count?: true | HedgeFundCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: HedgeFundAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: HedgeFundSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: HedgeFundMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: HedgeFundMaxAggregateInputType
-  }
-
-  export type GetHedgeFundAggregateType<T extends HedgeFundAggregateArgs> = {
-        [P in keyof T & keyof AggregateHedgeFund]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateHedgeFund[P]>
-      : GetScalarType<T[P], AggregateHedgeFund[P]>
-  }
-
-
-
-
-  export type HedgeFundGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: HedgeFundWhereInput
-    orderBy?: HedgeFundOrderByWithAggregationInput | HedgeFundOrderByWithAggregationInput[]
-    by: HedgeFundScalarFieldEnum[] | HedgeFundScalarFieldEnum
-    having?: HedgeFundScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: HedgeFundCountAggregateInputType | true
-    _avg?: HedgeFundAvgAggregateInputType
-    _sum?: HedgeFundSumAggregateInputType
-    _min?: HedgeFundMinAggregateInputType
-    _max?: HedgeFundMaxAggregateInputType
-  }
-
-  export type HedgeFundGroupByOutputType = {
-    id: number
-    fundId: number
-    strategy: string
-    riskLevel: string
-    minimumLockPeriod: number
-    managementFee: Decimal
-    performanceFee: Decimal
-    highWaterMark: bigint
-    createdAt: Date
-    updatedAt: Date
-    _count: HedgeFundCountAggregateOutputType | null
-    _avg: HedgeFundAvgAggregateOutputType | null
-    _sum: HedgeFundSumAggregateOutputType | null
-    _min: HedgeFundMinAggregateOutputType | null
-    _max: HedgeFundMaxAggregateOutputType | null
-  }
-
-  type GetHedgeFundGroupByPayload<T extends HedgeFundGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<HedgeFundGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof HedgeFundGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], HedgeFundGroupByOutputType[P]>
-            : GetScalarType<T[P], HedgeFundGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type HedgeFundSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    fundId?: boolean
-    strategy?: boolean
-    riskLevel?: boolean
-    minimumLockPeriod?: boolean
-    managementFee?: boolean
-    performanceFee?: boolean
-    highWaterMark?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    fund?: boolean | FundDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["hedgeFund"]>
-
-  export type HedgeFundSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    fundId?: boolean
-    strategy?: boolean
-    riskLevel?: boolean
-    minimumLockPeriod?: boolean
-    managementFee?: boolean
-    performanceFee?: boolean
-    highWaterMark?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    fund?: boolean | FundDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["hedgeFund"]>
-
-  export type HedgeFundSelectScalar = {
-    id?: boolean
-    fundId?: boolean
-    strategy?: boolean
-    riskLevel?: boolean
-    minimumLockPeriod?: boolean
-    managementFee?: boolean
-    performanceFee?: boolean
-    highWaterMark?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-  }
-
-  export type HedgeFundInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    fund?: boolean | FundDefaultArgs<ExtArgs>
-  }
-  export type HedgeFundIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    fund?: boolean | FundDefaultArgs<ExtArgs>
-  }
-
-  export type $HedgeFundPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "HedgeFund"
-    objects: {
-      fund: Prisma.$FundPayload<ExtArgs>
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: number
-      fundId: number
-      strategy: string
-      riskLevel: string
-      minimumLockPeriod: number
-      managementFee: Prisma.Decimal
-      performanceFee: Prisma.Decimal
-      highWaterMark: bigint
-      createdAt: Date
-      updatedAt: Date
-    }, ExtArgs["result"]["hedgeFund"]>
-    composites: {}
-  }
-
-  type HedgeFundGetPayload<S extends boolean | null | undefined | HedgeFundDefaultArgs> = $Result.GetResult<Prisma.$HedgeFundPayload, S>
-
-  type HedgeFundCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<HedgeFundFindManyArgs, 'select' | 'include' | 'distinct'> & {
-      select?: HedgeFundCountAggregateInputType | true
-    }
-
-  export interface HedgeFundDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['HedgeFund'], meta: { name: 'HedgeFund' } }
-    /**
-     * Find zero or one HedgeFund that matches the filter.
-     * @param {HedgeFundFindUniqueArgs} args - Arguments to find a HedgeFund
-     * @example
-     * // Get one HedgeFund
-     * const hedgeFund = await prisma.hedgeFund.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends HedgeFundFindUniqueArgs>(args: SelectSubset<T, HedgeFundFindUniqueArgs<ExtArgs>>): Prisma__HedgeFundClient<$Result.GetResult<Prisma.$HedgeFundPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
-
-    /**
-     * Find one HedgeFund that matches the filter or throw an error with `error.code='P2025'` 
-     * if no matches were found.
-     * @param {HedgeFundFindUniqueOrThrowArgs} args - Arguments to find a HedgeFund
-     * @example
-     * // Get one HedgeFund
-     * const hedgeFund = await prisma.hedgeFund.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends HedgeFundFindUniqueOrThrowArgs>(args: SelectSubset<T, HedgeFundFindUniqueOrThrowArgs<ExtArgs>>): Prisma__HedgeFundClient<$Result.GetResult<Prisma.$HedgeFundPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
-
-    /**
-     * Find the first HedgeFund that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {HedgeFundFindFirstArgs} args - Arguments to find a HedgeFund
-     * @example
-     * // Get one HedgeFund
-     * const hedgeFund = await prisma.hedgeFund.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends HedgeFundFindFirstArgs>(args?: SelectSubset<T, HedgeFundFindFirstArgs<ExtArgs>>): Prisma__HedgeFundClient<$Result.GetResult<Prisma.$HedgeFundPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
-
-    /**
-     * Find the first HedgeFund that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {HedgeFundFindFirstOrThrowArgs} args - Arguments to find a HedgeFund
-     * @example
-     * // Get one HedgeFund
-     * const hedgeFund = await prisma.hedgeFund.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends HedgeFundFindFirstOrThrowArgs>(args?: SelectSubset<T, HedgeFundFindFirstOrThrowArgs<ExtArgs>>): Prisma__HedgeFundClient<$Result.GetResult<Prisma.$HedgeFundPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
-
-    /**
-     * Find zero or more HedgeFunds that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {HedgeFundFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all HedgeFunds
-     * const hedgeFunds = await prisma.hedgeFund.findMany()
-     * 
-     * // Get first 10 HedgeFunds
-     * const hedgeFunds = await prisma.hedgeFund.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const hedgeFundWithIdOnly = await prisma.hedgeFund.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends HedgeFundFindManyArgs>(args?: SelectSubset<T, HedgeFundFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HedgeFundPayload<ExtArgs>, T, "findMany">>
-
-    /**
-     * Create a HedgeFund.
-     * @param {HedgeFundCreateArgs} args - Arguments to create a HedgeFund.
-     * @example
-     * // Create one HedgeFund
-     * const HedgeFund = await prisma.hedgeFund.create({
-     *   data: {
-     *     // ... data to create a HedgeFund
-     *   }
-     * })
-     * 
-     */
-    create<T extends HedgeFundCreateArgs>(args: SelectSubset<T, HedgeFundCreateArgs<ExtArgs>>): Prisma__HedgeFundClient<$Result.GetResult<Prisma.$HedgeFundPayload<ExtArgs>, T, "create">, never, ExtArgs>
-
-    /**
-     * Create many HedgeFunds.
-     * @param {HedgeFundCreateManyArgs} args - Arguments to create many HedgeFunds.
-     * @example
-     * // Create many HedgeFunds
-     * const hedgeFund = await prisma.hedgeFund.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends HedgeFundCreateManyArgs>(args?: SelectSubset<T, HedgeFundCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many HedgeFunds and returns the data saved in the database.
-     * @param {HedgeFundCreateManyAndReturnArgs} args - Arguments to create many HedgeFunds.
-     * @example
-     * // Create many HedgeFunds
-     * const hedgeFund = await prisma.hedgeFund.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many HedgeFunds and only return the `id`
-     * const hedgeFundWithIdOnly = await prisma.hedgeFund.createManyAndReturn({ 
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends HedgeFundCreateManyAndReturnArgs>(args?: SelectSubset<T, HedgeFundCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HedgeFundPayload<ExtArgs>, T, "createManyAndReturn">>
-
-    /**
-     * Delete a HedgeFund.
-     * @param {HedgeFundDeleteArgs} args - Arguments to delete one HedgeFund.
-     * @example
-     * // Delete one HedgeFund
-     * const HedgeFund = await prisma.hedgeFund.delete({
-     *   where: {
-     *     // ... filter to delete one HedgeFund
-     *   }
-     * })
-     * 
-     */
-    delete<T extends HedgeFundDeleteArgs>(args: SelectSubset<T, HedgeFundDeleteArgs<ExtArgs>>): Prisma__HedgeFundClient<$Result.GetResult<Prisma.$HedgeFundPayload<ExtArgs>, T, "delete">, never, ExtArgs>
-
-    /**
-     * Update one HedgeFund.
-     * @param {HedgeFundUpdateArgs} args - Arguments to update one HedgeFund.
-     * @example
-     * // Update one HedgeFund
-     * const hedgeFund = await prisma.hedgeFund.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends HedgeFundUpdateArgs>(args: SelectSubset<T, HedgeFundUpdateArgs<ExtArgs>>): Prisma__HedgeFundClient<$Result.GetResult<Prisma.$HedgeFundPayload<ExtArgs>, T, "update">, never, ExtArgs>
-
-    /**
-     * Delete zero or more HedgeFunds.
-     * @param {HedgeFundDeleteManyArgs} args - Arguments to filter HedgeFunds to delete.
-     * @example
-     * // Delete a few HedgeFunds
-     * const { count } = await prisma.hedgeFund.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends HedgeFundDeleteManyArgs>(args?: SelectSubset<T, HedgeFundDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more HedgeFunds.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {HedgeFundUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many HedgeFunds
-     * const hedgeFund = await prisma.hedgeFund.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends HedgeFundUpdateManyArgs>(args: SelectSubset<T, HedgeFundUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create or update one HedgeFund.
-     * @param {HedgeFundUpsertArgs} args - Arguments to update or create a HedgeFund.
-     * @example
-     * // Update or create a HedgeFund
-     * const hedgeFund = await prisma.hedgeFund.upsert({
-     *   create: {
-     *     // ... data to create a HedgeFund
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the HedgeFund we want to update
-     *   }
-     * })
-     */
-    upsert<T extends HedgeFundUpsertArgs>(args: SelectSubset<T, HedgeFundUpsertArgs<ExtArgs>>): Prisma__HedgeFundClient<$Result.GetResult<Prisma.$HedgeFundPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
-
-
-    /**
-     * Count the number of HedgeFunds.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {HedgeFundCountArgs} args - Arguments to filter HedgeFunds to count.
-     * @example
-     * // Count the number of HedgeFunds
-     * const count = await prisma.hedgeFund.count({
-     *   where: {
-     *     // ... the filter for the HedgeFunds we want to count
-     *   }
-     * })
-    **/
-    count<T extends HedgeFundCountArgs>(
-      args?: Subset<T, HedgeFundCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], HedgeFundCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a HedgeFund.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {HedgeFundAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends HedgeFundAggregateArgs>(args: Subset<T, HedgeFundAggregateArgs>): Prisma.PrismaPromise<GetHedgeFundAggregateType<T>>
-
-    /**
-     * Group by HedgeFund.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {HedgeFundGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends HedgeFundGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: HedgeFundGroupByArgs['orderBy'] }
-        : { orderBy?: HedgeFundGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, HedgeFundGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetHedgeFundGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the HedgeFund model
-   */
-  readonly fields: HedgeFundFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for HedgeFund.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__HedgeFundClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    fund<T extends FundDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FundDefaultArgs<ExtArgs>>): Prisma__FundClient<$Result.GetResult<Prisma.$FundPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the HedgeFund model
-   */ 
-  interface HedgeFundFieldRefs {
-    readonly id: FieldRef<"HedgeFund", 'Int'>
-    readonly fundId: FieldRef<"HedgeFund", 'Int'>
-    readonly strategy: FieldRef<"HedgeFund", 'String'>
-    readonly riskLevel: FieldRef<"HedgeFund", 'String'>
-    readonly minimumLockPeriod: FieldRef<"HedgeFund", 'Int'>
-    readonly managementFee: FieldRef<"HedgeFund", 'Decimal'>
-    readonly performanceFee: FieldRef<"HedgeFund", 'Decimal'>
-    readonly highWaterMark: FieldRef<"HedgeFund", 'BigInt'>
-    readonly createdAt: FieldRef<"HedgeFund", 'DateTime'>
-    readonly updatedAt: FieldRef<"HedgeFund", 'DateTime'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * HedgeFund findUnique
-   */
-  export type HedgeFundFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the HedgeFund
-     */
-    select?: HedgeFundSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HedgeFundInclude<ExtArgs> | null
-    /**
-     * Filter, which HedgeFund to fetch.
-     */
-    where: HedgeFundWhereUniqueInput
-  }
-
-  /**
-   * HedgeFund findUniqueOrThrow
-   */
-  export type HedgeFundFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the HedgeFund
-     */
-    select?: HedgeFundSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HedgeFundInclude<ExtArgs> | null
-    /**
-     * Filter, which HedgeFund to fetch.
-     */
-    where: HedgeFundWhereUniqueInput
-  }
-
-  /**
-   * HedgeFund findFirst
-   */
-  export type HedgeFundFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the HedgeFund
-     */
-    select?: HedgeFundSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HedgeFundInclude<ExtArgs> | null
-    /**
-     * Filter, which HedgeFund to fetch.
-     */
-    where?: HedgeFundWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of HedgeFunds to fetch.
-     */
-    orderBy?: HedgeFundOrderByWithRelationInput | HedgeFundOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for HedgeFunds.
-     */
-    cursor?: HedgeFundWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` HedgeFunds from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` HedgeFunds.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of HedgeFunds.
-     */
-    distinct?: HedgeFundScalarFieldEnum | HedgeFundScalarFieldEnum[]
-  }
-
-  /**
-   * HedgeFund findFirstOrThrow
-   */
-  export type HedgeFundFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the HedgeFund
-     */
-    select?: HedgeFundSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HedgeFundInclude<ExtArgs> | null
-    /**
-     * Filter, which HedgeFund to fetch.
-     */
-    where?: HedgeFundWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of HedgeFunds to fetch.
-     */
-    orderBy?: HedgeFundOrderByWithRelationInput | HedgeFundOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for HedgeFunds.
-     */
-    cursor?: HedgeFundWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` HedgeFunds from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` HedgeFunds.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of HedgeFunds.
-     */
-    distinct?: HedgeFundScalarFieldEnum | HedgeFundScalarFieldEnum[]
-  }
-
-  /**
-   * HedgeFund findMany
-   */
-  export type HedgeFundFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the HedgeFund
-     */
-    select?: HedgeFundSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HedgeFundInclude<ExtArgs> | null
-    /**
-     * Filter, which HedgeFunds to fetch.
-     */
-    where?: HedgeFundWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of HedgeFunds to fetch.
-     */
-    orderBy?: HedgeFundOrderByWithRelationInput | HedgeFundOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing HedgeFunds.
-     */
-    cursor?: HedgeFundWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` HedgeFunds from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` HedgeFunds.
-     */
-    skip?: number
-    distinct?: HedgeFundScalarFieldEnum | HedgeFundScalarFieldEnum[]
-  }
-
-  /**
-   * HedgeFund create
-   */
-  export type HedgeFundCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the HedgeFund
-     */
-    select?: HedgeFundSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HedgeFundInclude<ExtArgs> | null
-    /**
-     * The data needed to create a HedgeFund.
-     */
-    data: XOR<HedgeFundCreateInput, HedgeFundUncheckedCreateInput>
-  }
-
-  /**
-   * HedgeFund createMany
-   */
-  export type HedgeFundCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many HedgeFunds.
-     */
-    data: HedgeFundCreateManyInput | HedgeFundCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * HedgeFund createManyAndReturn
-   */
-  export type HedgeFundCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the HedgeFund
-     */
-    select?: HedgeFundSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * The data used to create many HedgeFunds.
-     */
-    data: HedgeFundCreateManyInput | HedgeFundCreateManyInput[]
-    skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HedgeFundIncludeCreateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * HedgeFund update
-   */
-  export type HedgeFundUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the HedgeFund
-     */
-    select?: HedgeFundSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HedgeFundInclude<ExtArgs> | null
-    /**
-     * The data needed to update a HedgeFund.
-     */
-    data: XOR<HedgeFundUpdateInput, HedgeFundUncheckedUpdateInput>
-    /**
-     * Choose, which HedgeFund to update.
-     */
-    where: HedgeFundWhereUniqueInput
-  }
-
-  /**
-   * HedgeFund updateMany
-   */
-  export type HedgeFundUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update HedgeFunds.
-     */
-    data: XOR<HedgeFundUpdateManyMutationInput, HedgeFundUncheckedUpdateManyInput>
-    /**
-     * Filter which HedgeFunds to update
-     */
-    where?: HedgeFundWhereInput
-  }
-
-  /**
-   * HedgeFund upsert
-   */
-  export type HedgeFundUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the HedgeFund
-     */
-    select?: HedgeFundSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HedgeFundInclude<ExtArgs> | null
-    /**
-     * The filter to search for the HedgeFund to update in case it exists.
-     */
-    where: HedgeFundWhereUniqueInput
-    /**
-     * In case the HedgeFund found by the `where` argument doesn't exist, create a new HedgeFund with this data.
-     */
-    create: XOR<HedgeFundCreateInput, HedgeFundUncheckedCreateInput>
-    /**
-     * In case the HedgeFund was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<HedgeFundUpdateInput, HedgeFundUncheckedUpdateInput>
-  }
-
-  /**
-   * HedgeFund delete
-   */
-  export type HedgeFundDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the HedgeFund
-     */
-    select?: HedgeFundSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HedgeFundInclude<ExtArgs> | null
-    /**
-     * Filter which HedgeFund to delete.
-     */
-    where: HedgeFundWhereUniqueInput
-  }
-
-  /**
-   * HedgeFund deleteMany
-   */
-  export type HedgeFundDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which HedgeFunds to delete
-     */
-    where?: HedgeFundWhereInput
-  }
-
-  /**
-   * HedgeFund without action
-   */
-  export type HedgeFundDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the HedgeFund
-     */
-    select?: HedgeFundSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HedgeFundInclude<ExtArgs> | null
-  }
-
-
-  /**
    * Enums
    */
 
@@ -25343,7 +19377,8 @@ export namespace Prisma {
     lastAction: 'lastAction',
     created: 'created',
     refreshToken: 'refreshToken',
-    group: 'group'
+    group: 'group',
+    portfolioID: 'portfolioID'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -25544,84 +19579,6 @@ export namespace Prisma {
   export type LogsScalarFieldEnum = (typeof LogsScalarFieldEnum)[keyof typeof LogsScalarFieldEnum]
 
 
-  export const TradeScalarFieldEnum: {
-    id: 'id',
-    userId: 'userId',
-    marketId: 'marketId',
-    portfolioId: 'portfolioId',
-    type: 'type',
-    quantity: 'quantity',
-    price: 'price',
-    totalValue: 'totalValue',
-    status: 'status',
-    executedAt: 'executedAt',
-    createdAt: 'createdAt',
-    buyIntoTargetFundid: 'buyIntoTargetFundid',
-    instructionType: 'instructionType'
-  };
-
-  export type TradeScalarFieldEnum = (typeof TradeScalarFieldEnum)[keyof typeof TradeScalarFieldEnum]
-
-
-  export const FundScalarFieldEnum: {
-    id: 'id',
-    fundManagerId: 'fundManagerId',
-    name: 'name',
-    minimumInvestmentAmount: 'minimumInvestmentAmount',
-    totalFundCharge: 'totalFundCharge',
-    totalFundCost: 'totalFundCost',
-    totalAssets: 'totalAssets',
-    isActive: 'isActive',
-    maxInvestors: 'maxInvestors',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
-  };
-
-  export type FundScalarFieldEnum = (typeof FundScalarFieldEnum)[keyof typeof FundScalarFieldEnum]
-
-
-  export const PortfolioScalarFieldEnum: {
-    id: 'id',
-    userId: 'userId',
-    name: 'name',
-    totalValue: 'totalValue',
-    isActive: 'isActive',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
-  };
-
-  export type PortfolioScalarFieldEnum = (typeof PortfolioScalarFieldEnum)[keyof typeof PortfolioScalarFieldEnum]
-
-
-  export const PortfolioHoldingScalarFieldEnum: {
-    id: 'id',
-    portfolioId: 'portfolioId',
-    fundId: 'fundId',
-    quantity: 'quantity',
-    averagePrice: 'averagePrice',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
-  };
-
-  export type PortfolioHoldingScalarFieldEnum = (typeof PortfolioHoldingScalarFieldEnum)[keyof typeof PortfolioHoldingScalarFieldEnum]
-
-
-  export const HedgeFundScalarFieldEnum: {
-    id: 'id',
-    fundId: 'fundId',
-    strategy: 'strategy',
-    riskLevel: 'riskLevel',
-    minimumLockPeriod: 'minimumLockPeriod',
-    managementFee: 'managementFee',
-    performanceFee: 'performanceFee',
-    highWaterMark: 'highWaterMark',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
-  };
-
-  export type HedgeFundScalarFieldEnum = (typeof HedgeFundScalarFieldEnum)[keyof typeof HedgeFundScalarFieldEnum]
-
-
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -25785,48 +19742,6 @@ export namespace Prisma {
    */
   export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
-
-
-  /**
-   * Reference to a field of type 'BigInt'
-   */
-  export type BigIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BigInt'>
-    
-
-
-  /**
-   * Reference to a field of type 'BigInt[]'
-   */
-  export type ListBigIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BigInt[]'>
-    
-
-
-  /**
-   * Reference to a field of type 'InstructionNamedType'
-   */
-  export type EnumInstructionNamedTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'InstructionNamedType'>
-    
-
-
-  /**
-   * Reference to a field of type 'InstructionNamedType[]'
-   */
-  export type ListEnumInstructionNamedTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'InstructionNamedType[]'>
-    
-
-
-  /**
-   * Reference to a field of type 'Decimal'
-   */
-  export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal'>
-    
-
-
-  /**
-   * Reference to a field of type 'Decimal[]'
-   */
-  export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal[]'>
-    
   /**
    * Deep Input Types
    */
@@ -25845,6 +19760,7 @@ export namespace Prisma {
     created?: DateTimeFilter<"User"> | Date | string
     refreshToken?: StringNullableFilter<"User"> | string | null
     group?: EnumGroupsFilter<"User"> | $Enums.Groups
+    portfolioID?: IntNullableFilter<"User"> | number | null
     accountBook?: AccountBookListRelationFilter
     addressBook?: AddressBookListRelationFilter
     computer?: ComputerListRelationFilter
@@ -25857,9 +19773,6 @@ export namespace Prisma {
     session?: SessionListRelationFilter
     software?: SoftwareListRelationFilter
     userQuests?: UserQuestsListRelationFilter
-    portfolios?: PortfolioListRelationFilter
-    ongoingTrades?: TradeListRelationFilter
-    managedFunds?: FundListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -25872,6 +19785,7 @@ export namespace Prisma {
     created?: SortOrder
     refreshToken?: SortOrderInput | SortOrder
     group?: SortOrder
+    portfolioID?: SortOrderInput | SortOrder
     accountBook?: AccountBookOrderByRelationAggregateInput
     addressBook?: AddressBookOrderByRelationAggregateInput
     computer?: ComputerOrderByRelationAggregateInput
@@ -25884,9 +19798,6 @@ export namespace Prisma {
     session?: SessionOrderByRelationAggregateInput
     software?: SoftwareOrderByRelationAggregateInput
     userQuests?: UserQuestsOrderByRelationAggregateInput
-    portfolios?: PortfolioOrderByRelationAggregateInput
-    ongoingTrades?: TradeOrderByRelationAggregateInput
-    managedFunds?: FundOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -25902,6 +19813,7 @@ export namespace Prisma {
     created?: DateTimeFilter<"User"> | Date | string
     refreshToken?: StringNullableFilter<"User"> | string | null
     group?: EnumGroupsFilter<"User"> | $Enums.Groups
+    portfolioID?: IntNullableFilter<"User"> | number | null
     accountBook?: AccountBookListRelationFilter
     addressBook?: AddressBookListRelationFilter
     computer?: ComputerListRelationFilter
@@ -25914,9 +19826,6 @@ export namespace Prisma {
     session?: SessionListRelationFilter
     software?: SoftwareListRelationFilter
     userQuests?: UserQuestsListRelationFilter
-    portfolios?: PortfolioListRelationFilter
-    ongoingTrades?: TradeListRelationFilter
-    managedFunds?: FundListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -25929,6 +19838,7 @@ export namespace Prisma {
     created?: SortOrder
     refreshToken?: SortOrderInput | SortOrder
     group?: SortOrder
+    portfolioID?: SortOrderInput | SortOrder
     _count?: UserCountOrderByAggregateInput
     _avg?: UserAvgOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
@@ -25949,6 +19859,7 @@ export namespace Prisma {
     created?: DateTimeWithAggregatesFilter<"User"> | Date | string
     refreshToken?: StringNullableWithAggregatesFilter<"User"> | string | null
     group?: EnumGroupsWithAggregatesFilter<"User"> | $Enums.Groups
+    portfolioID?: IntNullableWithAggregatesFilter<"User"> | number | null
   }
 
   export type GameWhereInput = {
@@ -27075,430 +20986,6 @@ export namespace Prisma {
     created?: DateTimeWithAggregatesFilter<"Logs"> | Date | string
   }
 
-  export type TradeWhereInput = {
-    AND?: TradeWhereInput | TradeWhereInput[]
-    OR?: TradeWhereInput[]
-    NOT?: TradeWhereInput | TradeWhereInput[]
-    id?: IntFilter<"Trade"> | number
-    userId?: IntFilter<"Trade"> | number
-    marketId?: IntFilter<"Trade"> | number
-    portfolioId?: IntFilter<"Trade"> | number
-    type?: StringFilter<"Trade"> | string
-    quantity?: IntFilter<"Trade"> | number
-    price?: BigIntFilter<"Trade"> | bigint | number
-    totalValue?: IntFilter<"Trade"> | number
-    status?: StringFilter<"Trade"> | string
-    executedAt?: DateTimeFilter<"Trade"> | Date | string
-    createdAt?: DateTimeFilter<"Trade"> | Date | string
-    buyIntoTargetFundid?: IntFilter<"Trade"> | number
-    instructionType?: EnumInstructionNamedTypeFilter<"Trade"> | $Enums.InstructionNamedType
-    buyIntoTargetFund?: XOR<FundRelationFilter, FundWhereInput>
-    user?: XOR<UserRelationFilter, UserWhereInput>
-    portfolio?: XOR<PortfolioRelationFilter, PortfolioWhereInput>
-  }
-
-  export type TradeOrderByWithRelationInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    marketId?: SortOrder
-    portfolioId?: SortOrder
-    type?: SortOrder
-    quantity?: SortOrder
-    price?: SortOrder
-    totalValue?: SortOrder
-    status?: SortOrder
-    executedAt?: SortOrder
-    createdAt?: SortOrder
-    buyIntoTargetFundid?: SortOrder
-    instructionType?: SortOrder
-    buyIntoTargetFund?: FundOrderByWithRelationInput
-    user?: UserOrderByWithRelationInput
-    portfolio?: PortfolioOrderByWithRelationInput
-  }
-
-  export type TradeWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
-    AND?: TradeWhereInput | TradeWhereInput[]
-    OR?: TradeWhereInput[]
-    NOT?: TradeWhereInput | TradeWhereInput[]
-    userId?: IntFilter<"Trade"> | number
-    marketId?: IntFilter<"Trade"> | number
-    portfolioId?: IntFilter<"Trade"> | number
-    type?: StringFilter<"Trade"> | string
-    quantity?: IntFilter<"Trade"> | number
-    price?: BigIntFilter<"Trade"> | bigint | number
-    totalValue?: IntFilter<"Trade"> | number
-    status?: StringFilter<"Trade"> | string
-    executedAt?: DateTimeFilter<"Trade"> | Date | string
-    createdAt?: DateTimeFilter<"Trade"> | Date | string
-    buyIntoTargetFundid?: IntFilter<"Trade"> | number
-    instructionType?: EnumInstructionNamedTypeFilter<"Trade"> | $Enums.InstructionNamedType
-    buyIntoTargetFund?: XOR<FundRelationFilter, FundWhereInput>
-    user?: XOR<UserRelationFilter, UserWhereInput>
-    portfolio?: XOR<PortfolioRelationFilter, PortfolioWhereInput>
-  }, "id">
-
-  export type TradeOrderByWithAggregationInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    marketId?: SortOrder
-    portfolioId?: SortOrder
-    type?: SortOrder
-    quantity?: SortOrder
-    price?: SortOrder
-    totalValue?: SortOrder
-    status?: SortOrder
-    executedAt?: SortOrder
-    createdAt?: SortOrder
-    buyIntoTargetFundid?: SortOrder
-    instructionType?: SortOrder
-    _count?: TradeCountOrderByAggregateInput
-    _avg?: TradeAvgOrderByAggregateInput
-    _max?: TradeMaxOrderByAggregateInput
-    _min?: TradeMinOrderByAggregateInput
-    _sum?: TradeSumOrderByAggregateInput
-  }
-
-  export type TradeScalarWhereWithAggregatesInput = {
-    AND?: TradeScalarWhereWithAggregatesInput | TradeScalarWhereWithAggregatesInput[]
-    OR?: TradeScalarWhereWithAggregatesInput[]
-    NOT?: TradeScalarWhereWithAggregatesInput | TradeScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"Trade"> | number
-    userId?: IntWithAggregatesFilter<"Trade"> | number
-    marketId?: IntWithAggregatesFilter<"Trade"> | number
-    portfolioId?: IntWithAggregatesFilter<"Trade"> | number
-    type?: StringWithAggregatesFilter<"Trade"> | string
-    quantity?: IntWithAggregatesFilter<"Trade"> | number
-    price?: BigIntWithAggregatesFilter<"Trade"> | bigint | number
-    totalValue?: IntWithAggregatesFilter<"Trade"> | number
-    status?: StringWithAggregatesFilter<"Trade"> | string
-    executedAt?: DateTimeWithAggregatesFilter<"Trade"> | Date | string
-    createdAt?: DateTimeWithAggregatesFilter<"Trade"> | Date | string
-    buyIntoTargetFundid?: IntWithAggregatesFilter<"Trade"> | number
-    instructionType?: EnumInstructionNamedTypeWithAggregatesFilter<"Trade"> | $Enums.InstructionNamedType
-  }
-
-  export type FundWhereInput = {
-    AND?: FundWhereInput | FundWhereInput[]
-    OR?: FundWhereInput[]
-    NOT?: FundWhereInput | FundWhereInput[]
-    id?: IntFilter<"Fund"> | number
-    fundManagerId?: IntFilter<"Fund"> | number
-    name?: StringFilter<"Fund"> | string
-    minimumInvestmentAmount?: BigIntFilter<"Fund"> | bigint | number
-    totalFundCharge?: DecimalFilter<"Fund"> | Decimal | DecimalJsLike | number | string
-    totalFundCost?: DecimalFilter<"Fund"> | Decimal | DecimalJsLike | number | string
-    totalAssets?: BigIntFilter<"Fund"> | bigint | number
-    isActive?: BoolFilter<"Fund"> | boolean
-    maxInvestors?: IntFilter<"Fund"> | number
-    createdAt?: DateTimeFilter<"Fund"> | Date | string
-    updatedAt?: DateTimeFilter<"Fund"> | Date | string
-    fundManager?: XOR<UserRelationFilter, UserWhereInput>
-    trades?: TradeListRelationFilter
-    holdings?: PortfolioHoldingListRelationFilter
-    hedgeFunds?: HedgeFundListRelationFilter
-  }
-
-  export type FundOrderByWithRelationInput = {
-    id?: SortOrder
-    fundManagerId?: SortOrder
-    name?: SortOrder
-    minimumInvestmentAmount?: SortOrder
-    totalFundCharge?: SortOrder
-    totalFundCost?: SortOrder
-    totalAssets?: SortOrder
-    isActive?: SortOrder
-    maxInvestors?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    fundManager?: UserOrderByWithRelationInput
-    trades?: TradeOrderByRelationAggregateInput
-    holdings?: PortfolioHoldingOrderByRelationAggregateInput
-    hedgeFunds?: HedgeFundOrderByRelationAggregateInput
-  }
-
-  export type FundWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
-    AND?: FundWhereInput | FundWhereInput[]
-    OR?: FundWhereInput[]
-    NOT?: FundWhereInput | FundWhereInput[]
-    fundManagerId?: IntFilter<"Fund"> | number
-    name?: StringFilter<"Fund"> | string
-    minimumInvestmentAmount?: BigIntFilter<"Fund"> | bigint | number
-    totalFundCharge?: DecimalFilter<"Fund"> | Decimal | DecimalJsLike | number | string
-    totalFundCost?: DecimalFilter<"Fund"> | Decimal | DecimalJsLike | number | string
-    totalAssets?: BigIntFilter<"Fund"> | bigint | number
-    isActive?: BoolFilter<"Fund"> | boolean
-    maxInvestors?: IntFilter<"Fund"> | number
-    createdAt?: DateTimeFilter<"Fund"> | Date | string
-    updatedAt?: DateTimeFilter<"Fund"> | Date | string
-    fundManager?: XOR<UserRelationFilter, UserWhereInput>
-    trades?: TradeListRelationFilter
-    holdings?: PortfolioHoldingListRelationFilter
-    hedgeFunds?: HedgeFundListRelationFilter
-  }, "id">
-
-  export type FundOrderByWithAggregationInput = {
-    id?: SortOrder
-    fundManagerId?: SortOrder
-    name?: SortOrder
-    minimumInvestmentAmount?: SortOrder
-    totalFundCharge?: SortOrder
-    totalFundCost?: SortOrder
-    totalAssets?: SortOrder
-    isActive?: SortOrder
-    maxInvestors?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    _count?: FundCountOrderByAggregateInput
-    _avg?: FundAvgOrderByAggregateInput
-    _max?: FundMaxOrderByAggregateInput
-    _min?: FundMinOrderByAggregateInput
-    _sum?: FundSumOrderByAggregateInput
-  }
-
-  export type FundScalarWhereWithAggregatesInput = {
-    AND?: FundScalarWhereWithAggregatesInput | FundScalarWhereWithAggregatesInput[]
-    OR?: FundScalarWhereWithAggregatesInput[]
-    NOT?: FundScalarWhereWithAggregatesInput | FundScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"Fund"> | number
-    fundManagerId?: IntWithAggregatesFilter<"Fund"> | number
-    name?: StringWithAggregatesFilter<"Fund"> | string
-    minimumInvestmentAmount?: BigIntWithAggregatesFilter<"Fund"> | bigint | number
-    totalFundCharge?: DecimalWithAggregatesFilter<"Fund"> | Decimal | DecimalJsLike | number | string
-    totalFundCost?: DecimalWithAggregatesFilter<"Fund"> | Decimal | DecimalJsLike | number | string
-    totalAssets?: BigIntWithAggregatesFilter<"Fund"> | bigint | number
-    isActive?: BoolWithAggregatesFilter<"Fund"> | boolean
-    maxInvestors?: IntWithAggregatesFilter<"Fund"> | number
-    createdAt?: DateTimeWithAggregatesFilter<"Fund"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"Fund"> | Date | string
-  }
-
-  export type PortfolioWhereInput = {
-    AND?: PortfolioWhereInput | PortfolioWhereInput[]
-    OR?: PortfolioWhereInput[]
-    NOT?: PortfolioWhereInput | PortfolioWhereInput[]
-    id?: IntFilter<"Portfolio"> | number
-    userId?: IntFilter<"Portfolio"> | number
-    name?: StringFilter<"Portfolio"> | string
-    totalValue?: BigIntFilter<"Portfolio"> | bigint | number
-    isActive?: BoolFilter<"Portfolio"> | boolean
-    createdAt?: DateTimeFilter<"Portfolio"> | Date | string
-    updatedAt?: DateTimeFilter<"Portfolio"> | Date | string
-    user?: XOR<UserRelationFilter, UserWhereInput>
-    holdings?: PortfolioHoldingListRelationFilter
-    trades?: TradeListRelationFilter
-  }
-
-  export type PortfolioOrderByWithRelationInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    name?: SortOrder
-    totalValue?: SortOrder
-    isActive?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    user?: UserOrderByWithRelationInput
-    holdings?: PortfolioHoldingOrderByRelationAggregateInput
-    trades?: TradeOrderByRelationAggregateInput
-  }
-
-  export type PortfolioWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
-    AND?: PortfolioWhereInput | PortfolioWhereInput[]
-    OR?: PortfolioWhereInput[]
-    NOT?: PortfolioWhereInput | PortfolioWhereInput[]
-    userId?: IntFilter<"Portfolio"> | number
-    name?: StringFilter<"Portfolio"> | string
-    totalValue?: BigIntFilter<"Portfolio"> | bigint | number
-    isActive?: BoolFilter<"Portfolio"> | boolean
-    createdAt?: DateTimeFilter<"Portfolio"> | Date | string
-    updatedAt?: DateTimeFilter<"Portfolio"> | Date | string
-    user?: XOR<UserRelationFilter, UserWhereInput>
-    holdings?: PortfolioHoldingListRelationFilter
-    trades?: TradeListRelationFilter
-  }, "id">
-
-  export type PortfolioOrderByWithAggregationInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    name?: SortOrder
-    totalValue?: SortOrder
-    isActive?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    _count?: PortfolioCountOrderByAggregateInput
-    _avg?: PortfolioAvgOrderByAggregateInput
-    _max?: PortfolioMaxOrderByAggregateInput
-    _min?: PortfolioMinOrderByAggregateInput
-    _sum?: PortfolioSumOrderByAggregateInput
-  }
-
-  export type PortfolioScalarWhereWithAggregatesInput = {
-    AND?: PortfolioScalarWhereWithAggregatesInput | PortfolioScalarWhereWithAggregatesInput[]
-    OR?: PortfolioScalarWhereWithAggregatesInput[]
-    NOT?: PortfolioScalarWhereWithAggregatesInput | PortfolioScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"Portfolio"> | number
-    userId?: IntWithAggregatesFilter<"Portfolio"> | number
-    name?: StringWithAggregatesFilter<"Portfolio"> | string
-    totalValue?: BigIntWithAggregatesFilter<"Portfolio"> | bigint | number
-    isActive?: BoolWithAggregatesFilter<"Portfolio"> | boolean
-    createdAt?: DateTimeWithAggregatesFilter<"Portfolio"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"Portfolio"> | Date | string
-  }
-
-  export type PortfolioHoldingWhereInput = {
-    AND?: PortfolioHoldingWhereInput | PortfolioHoldingWhereInput[]
-    OR?: PortfolioHoldingWhereInput[]
-    NOT?: PortfolioHoldingWhereInput | PortfolioHoldingWhereInput[]
-    id?: IntFilter<"PortfolioHolding"> | number
-    portfolioId?: IntFilter<"PortfolioHolding"> | number
-    fundId?: IntFilter<"PortfolioHolding"> | number
-    quantity?: BigIntFilter<"PortfolioHolding"> | bigint | number
-    averagePrice?: BigIntFilter<"PortfolioHolding"> | bigint | number
-    createdAt?: DateTimeFilter<"PortfolioHolding"> | Date | string
-    updatedAt?: DateTimeFilter<"PortfolioHolding"> | Date | string
-    portfolio?: XOR<PortfolioRelationFilter, PortfolioWhereInput>
-    fund?: XOR<FundRelationFilter, FundWhereInput>
-  }
-
-  export type PortfolioHoldingOrderByWithRelationInput = {
-    id?: SortOrder
-    portfolioId?: SortOrder
-    fundId?: SortOrder
-    quantity?: SortOrder
-    averagePrice?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    portfolio?: PortfolioOrderByWithRelationInput
-    fund?: FundOrderByWithRelationInput
-  }
-
-  export type PortfolioHoldingWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
-    AND?: PortfolioHoldingWhereInput | PortfolioHoldingWhereInput[]
-    OR?: PortfolioHoldingWhereInput[]
-    NOT?: PortfolioHoldingWhereInput | PortfolioHoldingWhereInput[]
-    portfolioId?: IntFilter<"PortfolioHolding"> | number
-    fundId?: IntFilter<"PortfolioHolding"> | number
-    quantity?: BigIntFilter<"PortfolioHolding"> | bigint | number
-    averagePrice?: BigIntFilter<"PortfolioHolding"> | bigint | number
-    createdAt?: DateTimeFilter<"PortfolioHolding"> | Date | string
-    updatedAt?: DateTimeFilter<"PortfolioHolding"> | Date | string
-    portfolio?: XOR<PortfolioRelationFilter, PortfolioWhereInput>
-    fund?: XOR<FundRelationFilter, FundWhereInput>
-  }, "id">
-
-  export type PortfolioHoldingOrderByWithAggregationInput = {
-    id?: SortOrder
-    portfolioId?: SortOrder
-    fundId?: SortOrder
-    quantity?: SortOrder
-    averagePrice?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    _count?: PortfolioHoldingCountOrderByAggregateInput
-    _avg?: PortfolioHoldingAvgOrderByAggregateInput
-    _max?: PortfolioHoldingMaxOrderByAggregateInput
-    _min?: PortfolioHoldingMinOrderByAggregateInput
-    _sum?: PortfolioHoldingSumOrderByAggregateInput
-  }
-
-  export type PortfolioHoldingScalarWhereWithAggregatesInput = {
-    AND?: PortfolioHoldingScalarWhereWithAggregatesInput | PortfolioHoldingScalarWhereWithAggregatesInput[]
-    OR?: PortfolioHoldingScalarWhereWithAggregatesInput[]
-    NOT?: PortfolioHoldingScalarWhereWithAggregatesInput | PortfolioHoldingScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"PortfolioHolding"> | number
-    portfolioId?: IntWithAggregatesFilter<"PortfolioHolding"> | number
-    fundId?: IntWithAggregatesFilter<"PortfolioHolding"> | number
-    quantity?: BigIntWithAggregatesFilter<"PortfolioHolding"> | bigint | number
-    averagePrice?: BigIntWithAggregatesFilter<"PortfolioHolding"> | bigint | number
-    createdAt?: DateTimeWithAggregatesFilter<"PortfolioHolding"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"PortfolioHolding"> | Date | string
-  }
-
-  export type HedgeFundWhereInput = {
-    AND?: HedgeFundWhereInput | HedgeFundWhereInput[]
-    OR?: HedgeFundWhereInput[]
-    NOT?: HedgeFundWhereInput | HedgeFundWhereInput[]
-    id?: IntFilter<"HedgeFund"> | number
-    fundId?: IntFilter<"HedgeFund"> | number
-    strategy?: StringFilter<"HedgeFund"> | string
-    riskLevel?: StringFilter<"HedgeFund"> | string
-    minimumLockPeriod?: IntFilter<"HedgeFund"> | number
-    managementFee?: DecimalFilter<"HedgeFund"> | Decimal | DecimalJsLike | number | string
-    performanceFee?: DecimalFilter<"HedgeFund"> | Decimal | DecimalJsLike | number | string
-    highWaterMark?: BigIntFilter<"HedgeFund"> | bigint | number
-    createdAt?: DateTimeFilter<"HedgeFund"> | Date | string
-    updatedAt?: DateTimeFilter<"HedgeFund"> | Date | string
-    fund?: XOR<FundRelationFilter, FundWhereInput>
-  }
-
-  export type HedgeFundOrderByWithRelationInput = {
-    id?: SortOrder
-    fundId?: SortOrder
-    strategy?: SortOrder
-    riskLevel?: SortOrder
-    minimumLockPeriod?: SortOrder
-    managementFee?: SortOrder
-    performanceFee?: SortOrder
-    highWaterMark?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    fund?: FundOrderByWithRelationInput
-  }
-
-  export type HedgeFundWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
-    fundId?: number
-    AND?: HedgeFundWhereInput | HedgeFundWhereInput[]
-    OR?: HedgeFundWhereInput[]
-    NOT?: HedgeFundWhereInput | HedgeFundWhereInput[]
-    strategy?: StringFilter<"HedgeFund"> | string
-    riskLevel?: StringFilter<"HedgeFund"> | string
-    minimumLockPeriod?: IntFilter<"HedgeFund"> | number
-    managementFee?: DecimalFilter<"HedgeFund"> | Decimal | DecimalJsLike | number | string
-    performanceFee?: DecimalFilter<"HedgeFund"> | Decimal | DecimalJsLike | number | string
-    highWaterMark?: BigIntFilter<"HedgeFund"> | bigint | number
-    createdAt?: DateTimeFilter<"HedgeFund"> | Date | string
-    updatedAt?: DateTimeFilter<"HedgeFund"> | Date | string
-    fund?: XOR<FundRelationFilter, FundWhereInput>
-  }, "id" | "fundId">
-
-  export type HedgeFundOrderByWithAggregationInput = {
-    id?: SortOrder
-    fundId?: SortOrder
-    strategy?: SortOrder
-    riskLevel?: SortOrder
-    minimumLockPeriod?: SortOrder
-    managementFee?: SortOrder
-    performanceFee?: SortOrder
-    highWaterMark?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    _count?: HedgeFundCountOrderByAggregateInput
-    _avg?: HedgeFundAvgOrderByAggregateInput
-    _max?: HedgeFundMaxOrderByAggregateInput
-    _min?: HedgeFundMinOrderByAggregateInput
-    _sum?: HedgeFundSumOrderByAggregateInput
-  }
-
-  export type HedgeFundScalarWhereWithAggregatesInput = {
-    AND?: HedgeFundScalarWhereWithAggregatesInput | HedgeFundScalarWhereWithAggregatesInput[]
-    OR?: HedgeFundScalarWhereWithAggregatesInput[]
-    NOT?: HedgeFundScalarWhereWithAggregatesInput | HedgeFundScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"HedgeFund"> | number
-    fundId?: IntWithAggregatesFilter<"HedgeFund"> | number
-    strategy?: StringWithAggregatesFilter<"HedgeFund"> | string
-    riskLevel?: StringWithAggregatesFilter<"HedgeFund"> | string
-    minimumLockPeriod?: IntWithAggregatesFilter<"HedgeFund"> | number
-    managementFee?: DecimalWithAggregatesFilter<"HedgeFund"> | Decimal | DecimalJsLike | number | string
-    performanceFee?: DecimalWithAggregatesFilter<"HedgeFund"> | Decimal | DecimalJsLike | number | string
-    highWaterMark?: BigIntWithAggregatesFilter<"HedgeFund"> | bigint | number
-    createdAt?: DateTimeWithAggregatesFilter<"HedgeFund"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"HedgeFund"> | Date | string
-  }
-
   export type UserCreateInput = {
     email: string
     name?: string
@@ -27508,6 +20995,7 @@ export namespace Prisma {
     created?: Date | string
     refreshToken?: string | null
     group?: $Enums.Groups
+    portfolioID?: number | null
     accountBook?: AccountBookCreateNestedManyWithoutUserInput
     addressBook?: AddressBookCreateNestedManyWithoutUserInput
     computer?: ComputerCreateNestedManyWithoutUserInput
@@ -27520,9 +21008,6 @@ export namespace Prisma {
     session?: SessionCreateNestedManyWithoutUserInput
     software?: SoftwareCreateNestedManyWithoutUserInput
     userQuests?: UserQuestsCreateNestedManyWithoutUserInput
-    portfolios?: PortfolioCreateNestedManyWithoutUserInput
-    ongoingTrades?: TradeCreateNestedManyWithoutUserInput
-    managedFunds?: FundCreateNestedManyWithoutFundManagerInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -27535,6 +21020,7 @@ export namespace Prisma {
     created?: Date | string
     refreshToken?: string | null
     group?: $Enums.Groups
+    portfolioID?: number | null
     accountBook?: AccountBookUncheckedCreateNestedManyWithoutUserInput
     addressBook?: AddressBookUncheckedCreateNestedManyWithoutUserInput
     computer?: ComputerUncheckedCreateNestedManyWithoutUserInput
@@ -27547,9 +21033,6 @@ export namespace Prisma {
     session?: SessionUncheckedCreateNestedManyWithoutUserInput
     software?: SoftwareUncheckedCreateNestedManyWithoutUserInput
     userQuests?: UserQuestsUncheckedCreateNestedManyWithoutUserInput
-    portfolios?: PortfolioUncheckedCreateNestedManyWithoutUserInput
-    ongoingTrades?: TradeUncheckedCreateNestedManyWithoutUserInput
-    managedFunds?: FundUncheckedCreateNestedManyWithoutFundManagerInput
   }
 
   export type UserUpdateInput = {
@@ -27561,6 +21044,7 @@ export namespace Prisma {
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     group?: EnumGroupsFieldUpdateOperationsInput | $Enums.Groups
+    portfolioID?: NullableIntFieldUpdateOperationsInput | number | null
     accountBook?: AccountBookUpdateManyWithoutUserNestedInput
     addressBook?: AddressBookUpdateManyWithoutUserNestedInput
     computer?: ComputerUpdateManyWithoutUserNestedInput
@@ -27573,9 +21057,6 @@ export namespace Prisma {
     session?: SessionUpdateManyWithoutUserNestedInput
     software?: SoftwareUpdateManyWithoutUserNestedInput
     userQuests?: UserQuestsUpdateManyWithoutUserNestedInput
-    portfolios?: PortfolioUpdateManyWithoutUserNestedInput
-    ongoingTrades?: TradeUpdateManyWithoutUserNestedInput
-    managedFunds?: FundUpdateManyWithoutFundManagerNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -27588,6 +21069,7 @@ export namespace Prisma {
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     group?: EnumGroupsFieldUpdateOperationsInput | $Enums.Groups
+    portfolioID?: NullableIntFieldUpdateOperationsInput | number | null
     accountBook?: AccountBookUncheckedUpdateManyWithoutUserNestedInput
     addressBook?: AddressBookUncheckedUpdateManyWithoutUserNestedInput
     computer?: ComputerUncheckedUpdateManyWithoutUserNestedInput
@@ -27600,9 +21082,6 @@ export namespace Prisma {
     session?: SessionUncheckedUpdateManyWithoutUserNestedInput
     software?: SoftwareUncheckedUpdateManyWithoutUserNestedInput
     userQuests?: UserQuestsUncheckedUpdateManyWithoutUserNestedInput
-    portfolios?: PortfolioUncheckedUpdateManyWithoutUserNestedInput
-    ongoingTrades?: TradeUncheckedUpdateManyWithoutUserNestedInput
-    managedFunds?: FundUncheckedUpdateManyWithoutFundManagerNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -27615,6 +21094,7 @@ export namespace Prisma {
     created?: Date | string
     refreshToken?: string | null
     group?: $Enums.Groups
+    portfolioID?: number | null
   }
 
   export type UserUpdateManyMutationInput = {
@@ -27626,6 +21106,7 @@ export namespace Prisma {
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     group?: EnumGroupsFieldUpdateOperationsInput | $Enums.Groups
+    portfolioID?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type UserUncheckedUpdateManyInput = {
@@ -27638,6 +21119,7 @@ export namespace Prisma {
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     group?: EnumGroupsFieldUpdateOperationsInput | $Enums.Groups
+    portfolioID?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type GameCreateInput = {
@@ -28723,444 +22205,6 @@ export namespace Prisma {
     created?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type TradeCreateInput = {
-    marketId: number
-    type: string
-    quantity: number
-    price: bigint | number
-    totalValue: number
-    status: string
-    executedAt: Date | string
-    createdAt?: Date | string
-    instructionType: $Enums.InstructionNamedType
-    buyIntoTargetFund: FundCreateNestedOneWithoutTradesInput
-    user: UserCreateNestedOneWithoutOngoingTradesInput
-    portfolio: PortfolioCreateNestedOneWithoutTradesInput
-  }
-
-  export type TradeUncheckedCreateInput = {
-    id?: number
-    userId: number
-    marketId: number
-    portfolioId: number
-    type: string
-    quantity: number
-    price: bigint | number
-    totalValue: number
-    status: string
-    executedAt: Date | string
-    createdAt?: Date | string
-    buyIntoTargetFundid: number
-    instructionType: $Enums.InstructionNamedType
-  }
-
-  export type TradeUpdateInput = {
-    marketId?: IntFieldUpdateOperationsInput | number
-    type?: StringFieldUpdateOperationsInput | string
-    quantity?: IntFieldUpdateOperationsInput | number
-    price?: BigIntFieldUpdateOperationsInput | bigint | number
-    totalValue?: IntFieldUpdateOperationsInput | number
-    status?: StringFieldUpdateOperationsInput | string
-    executedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    instructionType?: EnumInstructionNamedTypeFieldUpdateOperationsInput | $Enums.InstructionNamedType
-    buyIntoTargetFund?: FundUpdateOneRequiredWithoutTradesNestedInput
-    user?: UserUpdateOneRequiredWithoutOngoingTradesNestedInput
-    portfolio?: PortfolioUpdateOneRequiredWithoutTradesNestedInput
-  }
-
-  export type TradeUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
-    marketId?: IntFieldUpdateOperationsInput | number
-    portfolioId?: IntFieldUpdateOperationsInput | number
-    type?: StringFieldUpdateOperationsInput | string
-    quantity?: IntFieldUpdateOperationsInput | number
-    price?: BigIntFieldUpdateOperationsInput | bigint | number
-    totalValue?: IntFieldUpdateOperationsInput | number
-    status?: StringFieldUpdateOperationsInput | string
-    executedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    buyIntoTargetFundid?: IntFieldUpdateOperationsInput | number
-    instructionType?: EnumInstructionNamedTypeFieldUpdateOperationsInput | $Enums.InstructionNamedType
-  }
-
-  export type TradeCreateManyInput = {
-    id?: number
-    userId: number
-    marketId: number
-    portfolioId: number
-    type: string
-    quantity: number
-    price: bigint | number
-    totalValue: number
-    status: string
-    executedAt: Date | string
-    createdAt?: Date | string
-    buyIntoTargetFundid: number
-    instructionType: $Enums.InstructionNamedType
-  }
-
-  export type TradeUpdateManyMutationInput = {
-    marketId?: IntFieldUpdateOperationsInput | number
-    type?: StringFieldUpdateOperationsInput | string
-    quantity?: IntFieldUpdateOperationsInput | number
-    price?: BigIntFieldUpdateOperationsInput | bigint | number
-    totalValue?: IntFieldUpdateOperationsInput | number
-    status?: StringFieldUpdateOperationsInput | string
-    executedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    instructionType?: EnumInstructionNamedTypeFieldUpdateOperationsInput | $Enums.InstructionNamedType
-  }
-
-  export type TradeUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
-    marketId?: IntFieldUpdateOperationsInput | number
-    portfolioId?: IntFieldUpdateOperationsInput | number
-    type?: StringFieldUpdateOperationsInput | string
-    quantity?: IntFieldUpdateOperationsInput | number
-    price?: BigIntFieldUpdateOperationsInput | bigint | number
-    totalValue?: IntFieldUpdateOperationsInput | number
-    status?: StringFieldUpdateOperationsInput | string
-    executedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    buyIntoTargetFundid?: IntFieldUpdateOperationsInput | number
-    instructionType?: EnumInstructionNamedTypeFieldUpdateOperationsInput | $Enums.InstructionNamedType
-  }
-
-  export type FundCreateInput = {
-    name: string
-    minimumInvestmentAmount?: bigint | number
-    totalFundCharge?: Decimal | DecimalJsLike | number | string
-    totalFundCost?: Decimal | DecimalJsLike | number | string
-    totalAssets?: bigint | number
-    isActive?: boolean
-    maxInvestors?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    fundManager: UserCreateNestedOneWithoutManagedFundsInput
-    trades?: TradeCreateNestedManyWithoutBuyIntoTargetFundInput
-    holdings?: PortfolioHoldingCreateNestedManyWithoutFundInput
-    hedgeFunds?: HedgeFundCreateNestedManyWithoutFundInput
-  }
-
-  export type FundUncheckedCreateInput = {
-    id?: number
-    fundManagerId: number
-    name: string
-    minimumInvestmentAmount?: bigint | number
-    totalFundCharge?: Decimal | DecimalJsLike | number | string
-    totalFundCost?: Decimal | DecimalJsLike | number | string
-    totalAssets?: bigint | number
-    isActive?: boolean
-    maxInvestors?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    trades?: TradeUncheckedCreateNestedManyWithoutBuyIntoTargetFundInput
-    holdings?: PortfolioHoldingUncheckedCreateNestedManyWithoutFundInput
-    hedgeFunds?: HedgeFundUncheckedCreateNestedManyWithoutFundInput
-  }
-
-  export type FundUpdateInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    minimumInvestmentAmount?: BigIntFieldUpdateOperationsInput | bigint | number
-    totalFundCharge?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    totalFundCost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    totalAssets?: BigIntFieldUpdateOperationsInput | bigint | number
-    isActive?: BoolFieldUpdateOperationsInput | boolean
-    maxInvestors?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    fundManager?: UserUpdateOneRequiredWithoutManagedFundsNestedInput
-    trades?: TradeUpdateManyWithoutBuyIntoTargetFundNestedInput
-    holdings?: PortfolioHoldingUpdateManyWithoutFundNestedInput
-    hedgeFunds?: HedgeFundUpdateManyWithoutFundNestedInput
-  }
-
-  export type FundUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    fundManagerId?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    minimumInvestmentAmount?: BigIntFieldUpdateOperationsInput | bigint | number
-    totalFundCharge?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    totalFundCost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    totalAssets?: BigIntFieldUpdateOperationsInput | bigint | number
-    isActive?: BoolFieldUpdateOperationsInput | boolean
-    maxInvestors?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    trades?: TradeUncheckedUpdateManyWithoutBuyIntoTargetFundNestedInput
-    holdings?: PortfolioHoldingUncheckedUpdateManyWithoutFundNestedInput
-    hedgeFunds?: HedgeFundUncheckedUpdateManyWithoutFundNestedInput
-  }
-
-  export type FundCreateManyInput = {
-    id?: number
-    fundManagerId: number
-    name: string
-    minimumInvestmentAmount?: bigint | number
-    totalFundCharge?: Decimal | DecimalJsLike | number | string
-    totalFundCost?: Decimal | DecimalJsLike | number | string
-    totalAssets?: bigint | number
-    isActive?: boolean
-    maxInvestors?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type FundUpdateManyMutationInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    minimumInvestmentAmount?: BigIntFieldUpdateOperationsInput | bigint | number
-    totalFundCharge?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    totalFundCost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    totalAssets?: BigIntFieldUpdateOperationsInput | bigint | number
-    isActive?: BoolFieldUpdateOperationsInput | boolean
-    maxInvestors?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type FundUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    fundManagerId?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    minimumInvestmentAmount?: BigIntFieldUpdateOperationsInput | bigint | number
-    totalFundCharge?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    totalFundCost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    totalAssets?: BigIntFieldUpdateOperationsInput | bigint | number
-    isActive?: BoolFieldUpdateOperationsInput | boolean
-    maxInvestors?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type PortfolioCreateInput = {
-    name: string
-    totalValue?: bigint | number
-    isActive?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    user: UserCreateNestedOneWithoutPortfoliosInput
-    holdings?: PortfolioHoldingCreateNestedManyWithoutPortfolioInput
-    trades?: TradeCreateNestedManyWithoutPortfolioInput
-  }
-
-  export type PortfolioUncheckedCreateInput = {
-    id?: number
-    userId: number
-    name: string
-    totalValue?: bigint | number
-    isActive?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    holdings?: PortfolioHoldingUncheckedCreateNestedManyWithoutPortfolioInput
-    trades?: TradeUncheckedCreateNestedManyWithoutPortfolioInput
-  }
-
-  export type PortfolioUpdateInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    totalValue?: BigIntFieldUpdateOperationsInput | bigint | number
-    isActive?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutPortfoliosNestedInput
-    holdings?: PortfolioHoldingUpdateManyWithoutPortfolioNestedInput
-    trades?: TradeUpdateManyWithoutPortfolioNestedInput
-  }
-
-  export type PortfolioUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    totalValue?: BigIntFieldUpdateOperationsInput | bigint | number
-    isActive?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    holdings?: PortfolioHoldingUncheckedUpdateManyWithoutPortfolioNestedInput
-    trades?: TradeUncheckedUpdateManyWithoutPortfolioNestedInput
-  }
-
-  export type PortfolioCreateManyInput = {
-    id?: number
-    userId: number
-    name: string
-    totalValue?: bigint | number
-    isActive?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type PortfolioUpdateManyMutationInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    totalValue?: BigIntFieldUpdateOperationsInput | bigint | number
-    isActive?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type PortfolioUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    totalValue?: BigIntFieldUpdateOperationsInput | bigint | number
-    isActive?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type PortfolioHoldingCreateInput = {
-    quantity: bigint | number
-    averagePrice: bigint | number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    portfolio: PortfolioCreateNestedOneWithoutHoldingsInput
-    fund: FundCreateNestedOneWithoutHoldingsInput
-  }
-
-  export type PortfolioHoldingUncheckedCreateInput = {
-    id?: number
-    portfolioId: number
-    fundId: number
-    quantity: bigint | number
-    averagePrice: bigint | number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type PortfolioHoldingUpdateInput = {
-    quantity?: BigIntFieldUpdateOperationsInput | bigint | number
-    averagePrice?: BigIntFieldUpdateOperationsInput | bigint | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    portfolio?: PortfolioUpdateOneRequiredWithoutHoldingsNestedInput
-    fund?: FundUpdateOneRequiredWithoutHoldingsNestedInput
-  }
-
-  export type PortfolioHoldingUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    portfolioId?: IntFieldUpdateOperationsInput | number
-    fundId?: IntFieldUpdateOperationsInput | number
-    quantity?: BigIntFieldUpdateOperationsInput | bigint | number
-    averagePrice?: BigIntFieldUpdateOperationsInput | bigint | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type PortfolioHoldingCreateManyInput = {
-    id?: number
-    portfolioId: number
-    fundId: number
-    quantity: bigint | number
-    averagePrice: bigint | number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type PortfolioHoldingUpdateManyMutationInput = {
-    quantity?: BigIntFieldUpdateOperationsInput | bigint | number
-    averagePrice?: BigIntFieldUpdateOperationsInput | bigint | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type PortfolioHoldingUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    portfolioId?: IntFieldUpdateOperationsInput | number
-    fundId?: IntFieldUpdateOperationsInput | number
-    quantity?: BigIntFieldUpdateOperationsInput | bigint | number
-    averagePrice?: BigIntFieldUpdateOperationsInput | bigint | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type HedgeFundCreateInput = {
-    strategy: string
-    riskLevel: string
-    minimumLockPeriod?: number
-    managementFee?: Decimal | DecimalJsLike | number | string
-    performanceFee?: Decimal | DecimalJsLike | number | string
-    highWaterMark?: bigint | number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    fund: FundCreateNestedOneWithoutHedgeFundsInput
-  }
-
-  export type HedgeFundUncheckedCreateInput = {
-    id?: number
-    fundId: number
-    strategy: string
-    riskLevel: string
-    minimumLockPeriod?: number
-    managementFee?: Decimal | DecimalJsLike | number | string
-    performanceFee?: Decimal | DecimalJsLike | number | string
-    highWaterMark?: bigint | number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type HedgeFundUpdateInput = {
-    strategy?: StringFieldUpdateOperationsInput | string
-    riskLevel?: StringFieldUpdateOperationsInput | string
-    minimumLockPeriod?: IntFieldUpdateOperationsInput | number
-    managementFee?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    performanceFee?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    highWaterMark?: BigIntFieldUpdateOperationsInput | bigint | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    fund?: FundUpdateOneRequiredWithoutHedgeFundsNestedInput
-  }
-
-  export type HedgeFundUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    fundId?: IntFieldUpdateOperationsInput | number
-    strategy?: StringFieldUpdateOperationsInput | string
-    riskLevel?: StringFieldUpdateOperationsInput | string
-    minimumLockPeriod?: IntFieldUpdateOperationsInput | number
-    managementFee?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    performanceFee?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    highWaterMark?: BigIntFieldUpdateOperationsInput | bigint | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type HedgeFundCreateManyInput = {
-    id?: number
-    fundId: number
-    strategy: string
-    riskLevel: string
-    minimumLockPeriod?: number
-    managementFee?: Decimal | DecimalJsLike | number | string
-    performanceFee?: Decimal | DecimalJsLike | number | string
-    highWaterMark?: bigint | number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type HedgeFundUpdateManyMutationInput = {
-    strategy?: StringFieldUpdateOperationsInput | string
-    riskLevel?: StringFieldUpdateOperationsInput | string
-    minimumLockPeriod?: IntFieldUpdateOperationsInput | number
-    managementFee?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    performanceFee?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    highWaterMark?: BigIntFieldUpdateOperationsInput | bigint | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type HedgeFundUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    fundId?: IntFieldUpdateOperationsInput | number
-    strategy?: StringFieldUpdateOperationsInput | string
-    riskLevel?: StringFieldUpdateOperationsInput | string
-    minimumLockPeriod?: IntFieldUpdateOperationsInput | number
-    managementFee?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    performanceFee?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    highWaterMark?: BigIntFieldUpdateOperationsInput | bigint | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -29218,6 +22262,17 @@ export namespace Prisma {
     in?: $Enums.Groups[] | ListEnumGroupsFieldRefInput<$PrismaModel>
     notIn?: $Enums.Groups[] | ListEnumGroupsFieldRefInput<$PrismaModel>
     not?: NestedEnumGroupsFilter<$PrismaModel> | $Enums.Groups
+  }
+
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
   export type AccountBookListRelationFilter = {
@@ -29292,24 +22347,6 @@ export namespace Prisma {
     none?: UserQuestsWhereInput
   }
 
-  export type PortfolioListRelationFilter = {
-    every?: PortfolioWhereInput
-    some?: PortfolioWhereInput
-    none?: PortfolioWhereInput
-  }
-
-  export type TradeListRelationFilter = {
-    every?: TradeWhereInput
-    some?: TradeWhereInput
-    none?: TradeWhereInput
-  }
-
-  export type FundListRelationFilter = {
-    every?: FundWhereInput
-    some?: FundWhereInput
-    none?: FundWhereInput
-  }
-
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -29363,18 +22400,6 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
-  export type PortfolioOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type TradeOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type FundOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
   export type UserCountOrderByAggregateInput = {
     id?: SortOrder
     email?: SortOrder
@@ -29385,10 +22410,12 @@ export namespace Prisma {
     created?: SortOrder
     refreshToken?: SortOrder
     group?: SortOrder
+    portfolioID?: SortOrder
   }
 
   export type UserAvgOrderByAggregateInput = {
     id?: SortOrder
+    portfolioID?: SortOrder
   }
 
   export type UserMaxOrderByAggregateInput = {
@@ -29401,6 +22428,7 @@ export namespace Prisma {
     created?: SortOrder
     refreshToken?: SortOrder
     group?: SortOrder
+    portfolioID?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
@@ -29413,10 +22441,12 @@ export namespace Prisma {
     created?: SortOrder
     refreshToken?: SortOrder
     group?: SortOrder
+    portfolioID?: SortOrder
   }
 
   export type UserSumOrderByAggregateInput = {
     id?: SortOrder
+    portfolioID?: SortOrder
   }
 
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
@@ -29493,6 +22523,22 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumGroupsFilter<$PrismaModel>
     _max?: NestedEnumGroupsFilter<$PrismaModel>
+  }
+
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
   export type DateTimeNullableFilter<$PrismaModel = never> = {
@@ -30318,384 +23364,6 @@ export namespace Prisma {
     userId?: SortOrder
   }
 
-  export type BigIntFilter<$PrismaModel = never> = {
-    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
-    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
-    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    not?: NestedBigIntFilter<$PrismaModel> | bigint | number
-  }
-
-  export type EnumInstructionNamedTypeFilter<$PrismaModel = never> = {
-    equals?: $Enums.InstructionNamedType | EnumInstructionNamedTypeFieldRefInput<$PrismaModel>
-    in?: $Enums.InstructionNamedType[] | ListEnumInstructionNamedTypeFieldRefInput<$PrismaModel>
-    notIn?: $Enums.InstructionNamedType[] | ListEnumInstructionNamedTypeFieldRefInput<$PrismaModel>
-    not?: NestedEnumInstructionNamedTypeFilter<$PrismaModel> | $Enums.InstructionNamedType
-  }
-
-  export type FundRelationFilter = {
-    is?: FundWhereInput
-    isNot?: FundWhereInput
-  }
-
-  export type PortfolioRelationFilter = {
-    is?: PortfolioWhereInput
-    isNot?: PortfolioWhereInput
-  }
-
-  export type TradeCountOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    marketId?: SortOrder
-    portfolioId?: SortOrder
-    type?: SortOrder
-    quantity?: SortOrder
-    price?: SortOrder
-    totalValue?: SortOrder
-    status?: SortOrder
-    executedAt?: SortOrder
-    createdAt?: SortOrder
-    buyIntoTargetFundid?: SortOrder
-    instructionType?: SortOrder
-  }
-
-  export type TradeAvgOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    marketId?: SortOrder
-    portfolioId?: SortOrder
-    quantity?: SortOrder
-    price?: SortOrder
-    totalValue?: SortOrder
-    buyIntoTargetFundid?: SortOrder
-  }
-
-  export type TradeMaxOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    marketId?: SortOrder
-    portfolioId?: SortOrder
-    type?: SortOrder
-    quantity?: SortOrder
-    price?: SortOrder
-    totalValue?: SortOrder
-    status?: SortOrder
-    executedAt?: SortOrder
-    createdAt?: SortOrder
-    buyIntoTargetFundid?: SortOrder
-    instructionType?: SortOrder
-  }
-
-  export type TradeMinOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    marketId?: SortOrder
-    portfolioId?: SortOrder
-    type?: SortOrder
-    quantity?: SortOrder
-    price?: SortOrder
-    totalValue?: SortOrder
-    status?: SortOrder
-    executedAt?: SortOrder
-    createdAt?: SortOrder
-    buyIntoTargetFundid?: SortOrder
-    instructionType?: SortOrder
-  }
-
-  export type TradeSumOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    marketId?: SortOrder
-    portfolioId?: SortOrder
-    quantity?: SortOrder
-    price?: SortOrder
-    totalValue?: SortOrder
-    buyIntoTargetFundid?: SortOrder
-  }
-
-  export type BigIntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
-    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
-    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    not?: NestedBigIntWithAggregatesFilter<$PrismaModel> | bigint | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedBigIntFilter<$PrismaModel>
-    _min?: NestedBigIntFilter<$PrismaModel>
-    _max?: NestedBigIntFilter<$PrismaModel>
-  }
-
-  export type EnumInstructionNamedTypeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.InstructionNamedType | EnumInstructionNamedTypeFieldRefInput<$PrismaModel>
-    in?: $Enums.InstructionNamedType[] | ListEnumInstructionNamedTypeFieldRefInput<$PrismaModel>
-    notIn?: $Enums.InstructionNamedType[] | ListEnumInstructionNamedTypeFieldRefInput<$PrismaModel>
-    not?: NestedEnumInstructionNamedTypeWithAggregatesFilter<$PrismaModel> | $Enums.InstructionNamedType
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumInstructionNamedTypeFilter<$PrismaModel>
-    _max?: NestedEnumInstructionNamedTypeFilter<$PrismaModel>
-  }
-
-  export type DecimalFilter<$PrismaModel = never> = {
-    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
-    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
-    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
-  }
-
-  export type PortfolioHoldingListRelationFilter = {
-    every?: PortfolioHoldingWhereInput
-    some?: PortfolioHoldingWhereInput
-    none?: PortfolioHoldingWhereInput
-  }
-
-  export type HedgeFundListRelationFilter = {
-    every?: HedgeFundWhereInput
-    some?: HedgeFundWhereInput
-    none?: HedgeFundWhereInput
-  }
-
-  export type PortfolioHoldingOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type HedgeFundOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type FundCountOrderByAggregateInput = {
-    id?: SortOrder
-    fundManagerId?: SortOrder
-    name?: SortOrder
-    minimumInvestmentAmount?: SortOrder
-    totalFundCharge?: SortOrder
-    totalFundCost?: SortOrder
-    totalAssets?: SortOrder
-    isActive?: SortOrder
-    maxInvestors?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type FundAvgOrderByAggregateInput = {
-    id?: SortOrder
-    fundManagerId?: SortOrder
-    minimumInvestmentAmount?: SortOrder
-    totalFundCharge?: SortOrder
-    totalFundCost?: SortOrder
-    totalAssets?: SortOrder
-    maxInvestors?: SortOrder
-  }
-
-  export type FundMaxOrderByAggregateInput = {
-    id?: SortOrder
-    fundManagerId?: SortOrder
-    name?: SortOrder
-    minimumInvestmentAmount?: SortOrder
-    totalFundCharge?: SortOrder
-    totalFundCost?: SortOrder
-    totalAssets?: SortOrder
-    isActive?: SortOrder
-    maxInvestors?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type FundMinOrderByAggregateInput = {
-    id?: SortOrder
-    fundManagerId?: SortOrder
-    name?: SortOrder
-    minimumInvestmentAmount?: SortOrder
-    totalFundCharge?: SortOrder
-    totalFundCost?: SortOrder
-    totalAssets?: SortOrder
-    isActive?: SortOrder
-    maxInvestors?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type FundSumOrderByAggregateInput = {
-    id?: SortOrder
-    fundManagerId?: SortOrder
-    minimumInvestmentAmount?: SortOrder
-    totalFundCharge?: SortOrder
-    totalFundCost?: SortOrder
-    totalAssets?: SortOrder
-    maxInvestors?: SortOrder
-  }
-
-  export type DecimalWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
-    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
-    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    not?: NestedDecimalWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedDecimalFilter<$PrismaModel>
-    _sum?: NestedDecimalFilter<$PrismaModel>
-    _min?: NestedDecimalFilter<$PrismaModel>
-    _max?: NestedDecimalFilter<$PrismaModel>
-  }
-
-  export type PortfolioCountOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    name?: SortOrder
-    totalValue?: SortOrder
-    isActive?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type PortfolioAvgOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    totalValue?: SortOrder
-  }
-
-  export type PortfolioMaxOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    name?: SortOrder
-    totalValue?: SortOrder
-    isActive?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type PortfolioMinOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    name?: SortOrder
-    totalValue?: SortOrder
-    isActive?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type PortfolioSumOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    totalValue?: SortOrder
-  }
-
-  export type PortfolioHoldingCountOrderByAggregateInput = {
-    id?: SortOrder
-    portfolioId?: SortOrder
-    fundId?: SortOrder
-    quantity?: SortOrder
-    averagePrice?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type PortfolioHoldingAvgOrderByAggregateInput = {
-    id?: SortOrder
-    portfolioId?: SortOrder
-    fundId?: SortOrder
-    quantity?: SortOrder
-    averagePrice?: SortOrder
-  }
-
-  export type PortfolioHoldingMaxOrderByAggregateInput = {
-    id?: SortOrder
-    portfolioId?: SortOrder
-    fundId?: SortOrder
-    quantity?: SortOrder
-    averagePrice?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type PortfolioHoldingMinOrderByAggregateInput = {
-    id?: SortOrder
-    portfolioId?: SortOrder
-    fundId?: SortOrder
-    quantity?: SortOrder
-    averagePrice?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type PortfolioHoldingSumOrderByAggregateInput = {
-    id?: SortOrder
-    portfolioId?: SortOrder
-    fundId?: SortOrder
-    quantity?: SortOrder
-    averagePrice?: SortOrder
-  }
-
-  export type HedgeFundCountOrderByAggregateInput = {
-    id?: SortOrder
-    fundId?: SortOrder
-    strategy?: SortOrder
-    riskLevel?: SortOrder
-    minimumLockPeriod?: SortOrder
-    managementFee?: SortOrder
-    performanceFee?: SortOrder
-    highWaterMark?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type HedgeFundAvgOrderByAggregateInput = {
-    id?: SortOrder
-    fundId?: SortOrder
-    minimumLockPeriod?: SortOrder
-    managementFee?: SortOrder
-    performanceFee?: SortOrder
-    highWaterMark?: SortOrder
-  }
-
-  export type HedgeFundMaxOrderByAggregateInput = {
-    id?: SortOrder
-    fundId?: SortOrder
-    strategy?: SortOrder
-    riskLevel?: SortOrder
-    minimumLockPeriod?: SortOrder
-    managementFee?: SortOrder
-    performanceFee?: SortOrder
-    highWaterMark?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type HedgeFundMinOrderByAggregateInput = {
-    id?: SortOrder
-    fundId?: SortOrder
-    strategy?: SortOrder
-    riskLevel?: SortOrder
-    minimumLockPeriod?: SortOrder
-    managementFee?: SortOrder
-    performanceFee?: SortOrder
-    highWaterMark?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type HedgeFundSumOrderByAggregateInput = {
-    id?: SortOrder
-    fundId?: SortOrder
-    minimumLockPeriod?: SortOrder
-    managementFee?: SortOrder
-    performanceFee?: SortOrder
-    highWaterMark?: SortOrder
-  }
-
   export type AccountBookCreateNestedManyWithoutUserInput = {
     create?: XOR<AccountBookCreateWithoutUserInput, AccountBookUncheckedCreateWithoutUserInput> | AccountBookCreateWithoutUserInput[] | AccountBookUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountBookCreateOrConnectWithoutUserInput | AccountBookCreateOrConnectWithoutUserInput[]
@@ -30778,27 +23446,6 @@ export namespace Prisma {
     connectOrCreate?: UserQuestsCreateOrConnectWithoutUserInput | UserQuestsCreateOrConnectWithoutUserInput[]
     createMany?: UserQuestsCreateManyUserInputEnvelope
     connect?: UserQuestsWhereUniqueInput | UserQuestsWhereUniqueInput[]
-  }
-
-  export type PortfolioCreateNestedManyWithoutUserInput = {
-    create?: XOR<PortfolioCreateWithoutUserInput, PortfolioUncheckedCreateWithoutUserInput> | PortfolioCreateWithoutUserInput[] | PortfolioUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: PortfolioCreateOrConnectWithoutUserInput | PortfolioCreateOrConnectWithoutUserInput[]
-    createMany?: PortfolioCreateManyUserInputEnvelope
-    connect?: PortfolioWhereUniqueInput | PortfolioWhereUniqueInput[]
-  }
-
-  export type TradeCreateNestedManyWithoutUserInput = {
-    create?: XOR<TradeCreateWithoutUserInput, TradeUncheckedCreateWithoutUserInput> | TradeCreateWithoutUserInput[] | TradeUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: TradeCreateOrConnectWithoutUserInput | TradeCreateOrConnectWithoutUserInput[]
-    createMany?: TradeCreateManyUserInputEnvelope
-    connect?: TradeWhereUniqueInput | TradeWhereUniqueInput[]
-  }
-
-  export type FundCreateNestedManyWithoutFundManagerInput = {
-    create?: XOR<FundCreateWithoutFundManagerInput, FundUncheckedCreateWithoutFundManagerInput> | FundCreateWithoutFundManagerInput[] | FundUncheckedCreateWithoutFundManagerInput[]
-    connectOrCreate?: FundCreateOrConnectWithoutFundManagerInput | FundCreateOrConnectWithoutFundManagerInput[]
-    createMany?: FundCreateManyFundManagerInputEnvelope
-    connect?: FundWhereUniqueInput | FundWhereUniqueInput[]
   }
 
   export type AccountBookUncheckedCreateNestedManyWithoutUserInput = {
@@ -30885,27 +23532,6 @@ export namespace Prisma {
     connect?: UserQuestsWhereUniqueInput | UserQuestsWhereUniqueInput[]
   }
 
-  export type PortfolioUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<PortfolioCreateWithoutUserInput, PortfolioUncheckedCreateWithoutUserInput> | PortfolioCreateWithoutUserInput[] | PortfolioUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: PortfolioCreateOrConnectWithoutUserInput | PortfolioCreateOrConnectWithoutUserInput[]
-    createMany?: PortfolioCreateManyUserInputEnvelope
-    connect?: PortfolioWhereUniqueInput | PortfolioWhereUniqueInput[]
-  }
-
-  export type TradeUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<TradeCreateWithoutUserInput, TradeUncheckedCreateWithoutUserInput> | TradeCreateWithoutUserInput[] | TradeUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: TradeCreateOrConnectWithoutUserInput | TradeCreateOrConnectWithoutUserInput[]
-    createMany?: TradeCreateManyUserInputEnvelope
-    connect?: TradeWhereUniqueInput | TradeWhereUniqueInput[]
-  }
-
-  export type FundUncheckedCreateNestedManyWithoutFundManagerInput = {
-    create?: XOR<FundCreateWithoutFundManagerInput, FundUncheckedCreateWithoutFundManagerInput> | FundCreateWithoutFundManagerInput[] | FundUncheckedCreateWithoutFundManagerInput[]
-    connectOrCreate?: FundCreateOrConnectWithoutFundManagerInput | FundCreateOrConnectWithoutFundManagerInput[]
-    createMany?: FundCreateManyFundManagerInputEnvelope
-    connect?: FundWhereUniqueInput | FundWhereUniqueInput[]
-  }
-
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -30920,6 +23546,14 @@ export namespace Prisma {
 
   export type EnumGroupsFieldUpdateOperationsInput = {
     set?: $Enums.Groups
+  }
+
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type AccountBookUpdateManyWithoutUserNestedInput = {
@@ -31088,48 +23722,6 @@ export namespace Prisma {
     update?: UserQuestsUpdateWithWhereUniqueWithoutUserInput | UserQuestsUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: UserQuestsUpdateManyWithWhereWithoutUserInput | UserQuestsUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: UserQuestsScalarWhereInput | UserQuestsScalarWhereInput[]
-  }
-
-  export type PortfolioUpdateManyWithoutUserNestedInput = {
-    create?: XOR<PortfolioCreateWithoutUserInput, PortfolioUncheckedCreateWithoutUserInput> | PortfolioCreateWithoutUserInput[] | PortfolioUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: PortfolioCreateOrConnectWithoutUserInput | PortfolioCreateOrConnectWithoutUserInput[]
-    upsert?: PortfolioUpsertWithWhereUniqueWithoutUserInput | PortfolioUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: PortfolioCreateManyUserInputEnvelope
-    set?: PortfolioWhereUniqueInput | PortfolioWhereUniqueInput[]
-    disconnect?: PortfolioWhereUniqueInput | PortfolioWhereUniqueInput[]
-    delete?: PortfolioWhereUniqueInput | PortfolioWhereUniqueInput[]
-    connect?: PortfolioWhereUniqueInput | PortfolioWhereUniqueInput[]
-    update?: PortfolioUpdateWithWhereUniqueWithoutUserInput | PortfolioUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: PortfolioUpdateManyWithWhereWithoutUserInput | PortfolioUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: PortfolioScalarWhereInput | PortfolioScalarWhereInput[]
-  }
-
-  export type TradeUpdateManyWithoutUserNestedInput = {
-    create?: XOR<TradeCreateWithoutUserInput, TradeUncheckedCreateWithoutUserInput> | TradeCreateWithoutUserInput[] | TradeUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: TradeCreateOrConnectWithoutUserInput | TradeCreateOrConnectWithoutUserInput[]
-    upsert?: TradeUpsertWithWhereUniqueWithoutUserInput | TradeUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: TradeCreateManyUserInputEnvelope
-    set?: TradeWhereUniqueInput | TradeWhereUniqueInput[]
-    disconnect?: TradeWhereUniqueInput | TradeWhereUniqueInput[]
-    delete?: TradeWhereUniqueInput | TradeWhereUniqueInput[]
-    connect?: TradeWhereUniqueInput | TradeWhereUniqueInput[]
-    update?: TradeUpdateWithWhereUniqueWithoutUserInput | TradeUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: TradeUpdateManyWithWhereWithoutUserInput | TradeUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: TradeScalarWhereInput | TradeScalarWhereInput[]
-  }
-
-  export type FundUpdateManyWithoutFundManagerNestedInput = {
-    create?: XOR<FundCreateWithoutFundManagerInput, FundUncheckedCreateWithoutFundManagerInput> | FundCreateWithoutFundManagerInput[] | FundUncheckedCreateWithoutFundManagerInput[]
-    connectOrCreate?: FundCreateOrConnectWithoutFundManagerInput | FundCreateOrConnectWithoutFundManagerInput[]
-    upsert?: FundUpsertWithWhereUniqueWithoutFundManagerInput | FundUpsertWithWhereUniqueWithoutFundManagerInput[]
-    createMany?: FundCreateManyFundManagerInputEnvelope
-    set?: FundWhereUniqueInput | FundWhereUniqueInput[]
-    disconnect?: FundWhereUniqueInput | FundWhereUniqueInput[]
-    delete?: FundWhereUniqueInput | FundWhereUniqueInput[]
-    connect?: FundWhereUniqueInput | FundWhereUniqueInput[]
-    update?: FundUpdateWithWhereUniqueWithoutFundManagerInput | FundUpdateWithWhereUniqueWithoutFundManagerInput[]
-    updateMany?: FundUpdateManyWithWhereWithoutFundManagerInput | FundUpdateManyWithWhereWithoutFundManagerInput[]
-    deleteMany?: FundScalarWhereInput | FundScalarWhereInput[]
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -31306,48 +23898,6 @@ export namespace Prisma {
     update?: UserQuestsUpdateWithWhereUniqueWithoutUserInput | UserQuestsUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: UserQuestsUpdateManyWithWhereWithoutUserInput | UserQuestsUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: UserQuestsScalarWhereInput | UserQuestsScalarWhereInput[]
-  }
-
-  export type PortfolioUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<PortfolioCreateWithoutUserInput, PortfolioUncheckedCreateWithoutUserInput> | PortfolioCreateWithoutUserInput[] | PortfolioUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: PortfolioCreateOrConnectWithoutUserInput | PortfolioCreateOrConnectWithoutUserInput[]
-    upsert?: PortfolioUpsertWithWhereUniqueWithoutUserInput | PortfolioUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: PortfolioCreateManyUserInputEnvelope
-    set?: PortfolioWhereUniqueInput | PortfolioWhereUniqueInput[]
-    disconnect?: PortfolioWhereUniqueInput | PortfolioWhereUniqueInput[]
-    delete?: PortfolioWhereUniqueInput | PortfolioWhereUniqueInput[]
-    connect?: PortfolioWhereUniqueInput | PortfolioWhereUniqueInput[]
-    update?: PortfolioUpdateWithWhereUniqueWithoutUserInput | PortfolioUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: PortfolioUpdateManyWithWhereWithoutUserInput | PortfolioUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: PortfolioScalarWhereInput | PortfolioScalarWhereInput[]
-  }
-
-  export type TradeUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<TradeCreateWithoutUserInput, TradeUncheckedCreateWithoutUserInput> | TradeCreateWithoutUserInput[] | TradeUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: TradeCreateOrConnectWithoutUserInput | TradeCreateOrConnectWithoutUserInput[]
-    upsert?: TradeUpsertWithWhereUniqueWithoutUserInput | TradeUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: TradeCreateManyUserInputEnvelope
-    set?: TradeWhereUniqueInput | TradeWhereUniqueInput[]
-    disconnect?: TradeWhereUniqueInput | TradeWhereUniqueInput[]
-    delete?: TradeWhereUniqueInput | TradeWhereUniqueInput[]
-    connect?: TradeWhereUniqueInput | TradeWhereUniqueInput[]
-    update?: TradeUpdateWithWhereUniqueWithoutUserInput | TradeUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: TradeUpdateManyWithWhereWithoutUserInput | TradeUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: TradeScalarWhereInput | TradeScalarWhereInput[]
-  }
-
-  export type FundUncheckedUpdateManyWithoutFundManagerNestedInput = {
-    create?: XOR<FundCreateWithoutFundManagerInput, FundUncheckedCreateWithoutFundManagerInput> | FundCreateWithoutFundManagerInput[] | FundUncheckedCreateWithoutFundManagerInput[]
-    connectOrCreate?: FundCreateOrConnectWithoutFundManagerInput | FundCreateOrConnectWithoutFundManagerInput[]
-    upsert?: FundUpsertWithWhereUniqueWithoutFundManagerInput | FundUpsertWithWhereUniqueWithoutFundManagerInput[]
-    createMany?: FundCreateManyFundManagerInputEnvelope
-    set?: FundWhereUniqueInput | FundWhereUniqueInput[]
-    disconnect?: FundWhereUniqueInput | FundWhereUniqueInput[]
-    delete?: FundWhereUniqueInput | FundWhereUniqueInput[]
-    connect?: FundWhereUniqueInput | FundWhereUniqueInput[]
-    update?: FundUpdateWithWhereUniqueWithoutFundManagerInput | FundUpdateWithWhereUniqueWithoutFundManagerInput[]
-    updateMany?: FundUpdateManyWithWhereWithoutFundManagerInput | FundUpdateManyWithWhereWithoutFundManagerInput[]
-    deleteMany?: FundScalarWhereInput | FundScalarWhereInput[]
   }
 
   export type AccountBookCreateNestedManyWithoutGameInput = {
@@ -32782,348 +25332,6 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutLogsInput, UserUpdateWithoutLogsInput>, UserUncheckedUpdateWithoutLogsInput>
   }
 
-  export type FundCreateNestedOneWithoutTradesInput = {
-    create?: XOR<FundCreateWithoutTradesInput, FundUncheckedCreateWithoutTradesInput>
-    connectOrCreate?: FundCreateOrConnectWithoutTradesInput
-    connect?: FundWhereUniqueInput
-  }
-
-  export type UserCreateNestedOneWithoutOngoingTradesInput = {
-    create?: XOR<UserCreateWithoutOngoingTradesInput, UserUncheckedCreateWithoutOngoingTradesInput>
-    connectOrCreate?: UserCreateOrConnectWithoutOngoingTradesInput
-    connect?: UserWhereUniqueInput
-  }
-
-  export type PortfolioCreateNestedOneWithoutTradesInput = {
-    create?: XOR<PortfolioCreateWithoutTradesInput, PortfolioUncheckedCreateWithoutTradesInput>
-    connectOrCreate?: PortfolioCreateOrConnectWithoutTradesInput
-    connect?: PortfolioWhereUniqueInput
-  }
-
-  export type BigIntFieldUpdateOperationsInput = {
-    set?: bigint | number
-    increment?: bigint | number
-    decrement?: bigint | number
-    multiply?: bigint | number
-    divide?: bigint | number
-  }
-
-  export type EnumInstructionNamedTypeFieldUpdateOperationsInput = {
-    set?: $Enums.InstructionNamedType
-  }
-
-  export type FundUpdateOneRequiredWithoutTradesNestedInput = {
-    create?: XOR<FundCreateWithoutTradesInput, FundUncheckedCreateWithoutTradesInput>
-    connectOrCreate?: FundCreateOrConnectWithoutTradesInput
-    upsert?: FundUpsertWithoutTradesInput
-    connect?: FundWhereUniqueInput
-    update?: XOR<XOR<FundUpdateToOneWithWhereWithoutTradesInput, FundUpdateWithoutTradesInput>, FundUncheckedUpdateWithoutTradesInput>
-  }
-
-  export type UserUpdateOneRequiredWithoutOngoingTradesNestedInput = {
-    create?: XOR<UserCreateWithoutOngoingTradesInput, UserUncheckedCreateWithoutOngoingTradesInput>
-    connectOrCreate?: UserCreateOrConnectWithoutOngoingTradesInput
-    upsert?: UserUpsertWithoutOngoingTradesInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutOngoingTradesInput, UserUpdateWithoutOngoingTradesInput>, UserUncheckedUpdateWithoutOngoingTradesInput>
-  }
-
-  export type PortfolioUpdateOneRequiredWithoutTradesNestedInput = {
-    create?: XOR<PortfolioCreateWithoutTradesInput, PortfolioUncheckedCreateWithoutTradesInput>
-    connectOrCreate?: PortfolioCreateOrConnectWithoutTradesInput
-    upsert?: PortfolioUpsertWithoutTradesInput
-    connect?: PortfolioWhereUniqueInput
-    update?: XOR<XOR<PortfolioUpdateToOneWithWhereWithoutTradesInput, PortfolioUpdateWithoutTradesInput>, PortfolioUncheckedUpdateWithoutTradesInput>
-  }
-
-  export type UserCreateNestedOneWithoutManagedFundsInput = {
-    create?: XOR<UserCreateWithoutManagedFundsInput, UserUncheckedCreateWithoutManagedFundsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutManagedFundsInput
-    connect?: UserWhereUniqueInput
-  }
-
-  export type TradeCreateNestedManyWithoutBuyIntoTargetFundInput = {
-    create?: XOR<TradeCreateWithoutBuyIntoTargetFundInput, TradeUncheckedCreateWithoutBuyIntoTargetFundInput> | TradeCreateWithoutBuyIntoTargetFundInput[] | TradeUncheckedCreateWithoutBuyIntoTargetFundInput[]
-    connectOrCreate?: TradeCreateOrConnectWithoutBuyIntoTargetFundInput | TradeCreateOrConnectWithoutBuyIntoTargetFundInput[]
-    createMany?: TradeCreateManyBuyIntoTargetFundInputEnvelope
-    connect?: TradeWhereUniqueInput | TradeWhereUniqueInput[]
-  }
-
-  export type PortfolioHoldingCreateNestedManyWithoutFundInput = {
-    create?: XOR<PortfolioHoldingCreateWithoutFundInput, PortfolioHoldingUncheckedCreateWithoutFundInput> | PortfolioHoldingCreateWithoutFundInput[] | PortfolioHoldingUncheckedCreateWithoutFundInput[]
-    connectOrCreate?: PortfolioHoldingCreateOrConnectWithoutFundInput | PortfolioHoldingCreateOrConnectWithoutFundInput[]
-    createMany?: PortfolioHoldingCreateManyFundInputEnvelope
-    connect?: PortfolioHoldingWhereUniqueInput | PortfolioHoldingWhereUniqueInput[]
-  }
-
-  export type HedgeFundCreateNestedManyWithoutFundInput = {
-    create?: XOR<HedgeFundCreateWithoutFundInput, HedgeFundUncheckedCreateWithoutFundInput> | HedgeFundCreateWithoutFundInput[] | HedgeFundUncheckedCreateWithoutFundInput[]
-    connectOrCreate?: HedgeFundCreateOrConnectWithoutFundInput | HedgeFundCreateOrConnectWithoutFundInput[]
-    createMany?: HedgeFundCreateManyFundInputEnvelope
-    connect?: HedgeFundWhereUniqueInput | HedgeFundWhereUniqueInput[]
-  }
-
-  export type TradeUncheckedCreateNestedManyWithoutBuyIntoTargetFundInput = {
-    create?: XOR<TradeCreateWithoutBuyIntoTargetFundInput, TradeUncheckedCreateWithoutBuyIntoTargetFundInput> | TradeCreateWithoutBuyIntoTargetFundInput[] | TradeUncheckedCreateWithoutBuyIntoTargetFundInput[]
-    connectOrCreate?: TradeCreateOrConnectWithoutBuyIntoTargetFundInput | TradeCreateOrConnectWithoutBuyIntoTargetFundInput[]
-    createMany?: TradeCreateManyBuyIntoTargetFundInputEnvelope
-    connect?: TradeWhereUniqueInput | TradeWhereUniqueInput[]
-  }
-
-  export type PortfolioHoldingUncheckedCreateNestedManyWithoutFundInput = {
-    create?: XOR<PortfolioHoldingCreateWithoutFundInput, PortfolioHoldingUncheckedCreateWithoutFundInput> | PortfolioHoldingCreateWithoutFundInput[] | PortfolioHoldingUncheckedCreateWithoutFundInput[]
-    connectOrCreate?: PortfolioHoldingCreateOrConnectWithoutFundInput | PortfolioHoldingCreateOrConnectWithoutFundInput[]
-    createMany?: PortfolioHoldingCreateManyFundInputEnvelope
-    connect?: PortfolioHoldingWhereUniqueInput | PortfolioHoldingWhereUniqueInput[]
-  }
-
-  export type HedgeFundUncheckedCreateNestedManyWithoutFundInput = {
-    create?: XOR<HedgeFundCreateWithoutFundInput, HedgeFundUncheckedCreateWithoutFundInput> | HedgeFundCreateWithoutFundInput[] | HedgeFundUncheckedCreateWithoutFundInput[]
-    connectOrCreate?: HedgeFundCreateOrConnectWithoutFundInput | HedgeFundCreateOrConnectWithoutFundInput[]
-    createMany?: HedgeFundCreateManyFundInputEnvelope
-    connect?: HedgeFundWhereUniqueInput | HedgeFundWhereUniqueInput[]
-  }
-
-  export type DecimalFieldUpdateOperationsInput = {
-    set?: Decimal | DecimalJsLike | number | string
-    increment?: Decimal | DecimalJsLike | number | string
-    decrement?: Decimal | DecimalJsLike | number | string
-    multiply?: Decimal | DecimalJsLike | number | string
-    divide?: Decimal | DecimalJsLike | number | string
-  }
-
-  export type UserUpdateOneRequiredWithoutManagedFundsNestedInput = {
-    create?: XOR<UserCreateWithoutManagedFundsInput, UserUncheckedCreateWithoutManagedFundsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutManagedFundsInput
-    upsert?: UserUpsertWithoutManagedFundsInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutManagedFundsInput, UserUpdateWithoutManagedFundsInput>, UserUncheckedUpdateWithoutManagedFundsInput>
-  }
-
-  export type TradeUpdateManyWithoutBuyIntoTargetFundNestedInput = {
-    create?: XOR<TradeCreateWithoutBuyIntoTargetFundInput, TradeUncheckedCreateWithoutBuyIntoTargetFundInput> | TradeCreateWithoutBuyIntoTargetFundInput[] | TradeUncheckedCreateWithoutBuyIntoTargetFundInput[]
-    connectOrCreate?: TradeCreateOrConnectWithoutBuyIntoTargetFundInput | TradeCreateOrConnectWithoutBuyIntoTargetFundInput[]
-    upsert?: TradeUpsertWithWhereUniqueWithoutBuyIntoTargetFundInput | TradeUpsertWithWhereUniqueWithoutBuyIntoTargetFundInput[]
-    createMany?: TradeCreateManyBuyIntoTargetFundInputEnvelope
-    set?: TradeWhereUniqueInput | TradeWhereUniqueInput[]
-    disconnect?: TradeWhereUniqueInput | TradeWhereUniqueInput[]
-    delete?: TradeWhereUniqueInput | TradeWhereUniqueInput[]
-    connect?: TradeWhereUniqueInput | TradeWhereUniqueInput[]
-    update?: TradeUpdateWithWhereUniqueWithoutBuyIntoTargetFundInput | TradeUpdateWithWhereUniqueWithoutBuyIntoTargetFundInput[]
-    updateMany?: TradeUpdateManyWithWhereWithoutBuyIntoTargetFundInput | TradeUpdateManyWithWhereWithoutBuyIntoTargetFundInput[]
-    deleteMany?: TradeScalarWhereInput | TradeScalarWhereInput[]
-  }
-
-  export type PortfolioHoldingUpdateManyWithoutFundNestedInput = {
-    create?: XOR<PortfolioHoldingCreateWithoutFundInput, PortfolioHoldingUncheckedCreateWithoutFundInput> | PortfolioHoldingCreateWithoutFundInput[] | PortfolioHoldingUncheckedCreateWithoutFundInput[]
-    connectOrCreate?: PortfolioHoldingCreateOrConnectWithoutFundInput | PortfolioHoldingCreateOrConnectWithoutFundInput[]
-    upsert?: PortfolioHoldingUpsertWithWhereUniqueWithoutFundInput | PortfolioHoldingUpsertWithWhereUniqueWithoutFundInput[]
-    createMany?: PortfolioHoldingCreateManyFundInputEnvelope
-    set?: PortfolioHoldingWhereUniqueInput | PortfolioHoldingWhereUniqueInput[]
-    disconnect?: PortfolioHoldingWhereUniqueInput | PortfolioHoldingWhereUniqueInput[]
-    delete?: PortfolioHoldingWhereUniqueInput | PortfolioHoldingWhereUniqueInput[]
-    connect?: PortfolioHoldingWhereUniqueInput | PortfolioHoldingWhereUniqueInput[]
-    update?: PortfolioHoldingUpdateWithWhereUniqueWithoutFundInput | PortfolioHoldingUpdateWithWhereUniqueWithoutFundInput[]
-    updateMany?: PortfolioHoldingUpdateManyWithWhereWithoutFundInput | PortfolioHoldingUpdateManyWithWhereWithoutFundInput[]
-    deleteMany?: PortfolioHoldingScalarWhereInput | PortfolioHoldingScalarWhereInput[]
-  }
-
-  export type HedgeFundUpdateManyWithoutFundNestedInput = {
-    create?: XOR<HedgeFundCreateWithoutFundInput, HedgeFundUncheckedCreateWithoutFundInput> | HedgeFundCreateWithoutFundInput[] | HedgeFundUncheckedCreateWithoutFundInput[]
-    connectOrCreate?: HedgeFundCreateOrConnectWithoutFundInput | HedgeFundCreateOrConnectWithoutFundInput[]
-    upsert?: HedgeFundUpsertWithWhereUniqueWithoutFundInput | HedgeFundUpsertWithWhereUniqueWithoutFundInput[]
-    createMany?: HedgeFundCreateManyFundInputEnvelope
-    set?: HedgeFundWhereUniqueInput | HedgeFundWhereUniqueInput[]
-    disconnect?: HedgeFundWhereUniqueInput | HedgeFundWhereUniqueInput[]
-    delete?: HedgeFundWhereUniqueInput | HedgeFundWhereUniqueInput[]
-    connect?: HedgeFundWhereUniqueInput | HedgeFundWhereUniqueInput[]
-    update?: HedgeFundUpdateWithWhereUniqueWithoutFundInput | HedgeFundUpdateWithWhereUniqueWithoutFundInput[]
-    updateMany?: HedgeFundUpdateManyWithWhereWithoutFundInput | HedgeFundUpdateManyWithWhereWithoutFundInput[]
-    deleteMany?: HedgeFundScalarWhereInput | HedgeFundScalarWhereInput[]
-  }
-
-  export type TradeUncheckedUpdateManyWithoutBuyIntoTargetFundNestedInput = {
-    create?: XOR<TradeCreateWithoutBuyIntoTargetFundInput, TradeUncheckedCreateWithoutBuyIntoTargetFundInput> | TradeCreateWithoutBuyIntoTargetFundInput[] | TradeUncheckedCreateWithoutBuyIntoTargetFundInput[]
-    connectOrCreate?: TradeCreateOrConnectWithoutBuyIntoTargetFundInput | TradeCreateOrConnectWithoutBuyIntoTargetFundInput[]
-    upsert?: TradeUpsertWithWhereUniqueWithoutBuyIntoTargetFundInput | TradeUpsertWithWhereUniqueWithoutBuyIntoTargetFundInput[]
-    createMany?: TradeCreateManyBuyIntoTargetFundInputEnvelope
-    set?: TradeWhereUniqueInput | TradeWhereUniqueInput[]
-    disconnect?: TradeWhereUniqueInput | TradeWhereUniqueInput[]
-    delete?: TradeWhereUniqueInput | TradeWhereUniqueInput[]
-    connect?: TradeWhereUniqueInput | TradeWhereUniqueInput[]
-    update?: TradeUpdateWithWhereUniqueWithoutBuyIntoTargetFundInput | TradeUpdateWithWhereUniqueWithoutBuyIntoTargetFundInput[]
-    updateMany?: TradeUpdateManyWithWhereWithoutBuyIntoTargetFundInput | TradeUpdateManyWithWhereWithoutBuyIntoTargetFundInput[]
-    deleteMany?: TradeScalarWhereInput | TradeScalarWhereInput[]
-  }
-
-  export type PortfolioHoldingUncheckedUpdateManyWithoutFundNestedInput = {
-    create?: XOR<PortfolioHoldingCreateWithoutFundInput, PortfolioHoldingUncheckedCreateWithoutFundInput> | PortfolioHoldingCreateWithoutFundInput[] | PortfolioHoldingUncheckedCreateWithoutFundInput[]
-    connectOrCreate?: PortfolioHoldingCreateOrConnectWithoutFundInput | PortfolioHoldingCreateOrConnectWithoutFundInput[]
-    upsert?: PortfolioHoldingUpsertWithWhereUniqueWithoutFundInput | PortfolioHoldingUpsertWithWhereUniqueWithoutFundInput[]
-    createMany?: PortfolioHoldingCreateManyFundInputEnvelope
-    set?: PortfolioHoldingWhereUniqueInput | PortfolioHoldingWhereUniqueInput[]
-    disconnect?: PortfolioHoldingWhereUniqueInput | PortfolioHoldingWhereUniqueInput[]
-    delete?: PortfolioHoldingWhereUniqueInput | PortfolioHoldingWhereUniqueInput[]
-    connect?: PortfolioHoldingWhereUniqueInput | PortfolioHoldingWhereUniqueInput[]
-    update?: PortfolioHoldingUpdateWithWhereUniqueWithoutFundInput | PortfolioHoldingUpdateWithWhereUniqueWithoutFundInput[]
-    updateMany?: PortfolioHoldingUpdateManyWithWhereWithoutFundInput | PortfolioHoldingUpdateManyWithWhereWithoutFundInput[]
-    deleteMany?: PortfolioHoldingScalarWhereInput | PortfolioHoldingScalarWhereInput[]
-  }
-
-  export type HedgeFundUncheckedUpdateManyWithoutFundNestedInput = {
-    create?: XOR<HedgeFundCreateWithoutFundInput, HedgeFundUncheckedCreateWithoutFundInput> | HedgeFundCreateWithoutFundInput[] | HedgeFundUncheckedCreateWithoutFundInput[]
-    connectOrCreate?: HedgeFundCreateOrConnectWithoutFundInput | HedgeFundCreateOrConnectWithoutFundInput[]
-    upsert?: HedgeFundUpsertWithWhereUniqueWithoutFundInput | HedgeFundUpsertWithWhereUniqueWithoutFundInput[]
-    createMany?: HedgeFundCreateManyFundInputEnvelope
-    set?: HedgeFundWhereUniqueInput | HedgeFundWhereUniqueInput[]
-    disconnect?: HedgeFundWhereUniqueInput | HedgeFundWhereUniqueInput[]
-    delete?: HedgeFundWhereUniqueInput | HedgeFundWhereUniqueInput[]
-    connect?: HedgeFundWhereUniqueInput | HedgeFundWhereUniqueInput[]
-    update?: HedgeFundUpdateWithWhereUniqueWithoutFundInput | HedgeFundUpdateWithWhereUniqueWithoutFundInput[]
-    updateMany?: HedgeFundUpdateManyWithWhereWithoutFundInput | HedgeFundUpdateManyWithWhereWithoutFundInput[]
-    deleteMany?: HedgeFundScalarWhereInput | HedgeFundScalarWhereInput[]
-  }
-
-  export type UserCreateNestedOneWithoutPortfoliosInput = {
-    create?: XOR<UserCreateWithoutPortfoliosInput, UserUncheckedCreateWithoutPortfoliosInput>
-    connectOrCreate?: UserCreateOrConnectWithoutPortfoliosInput
-    connect?: UserWhereUniqueInput
-  }
-
-  export type PortfolioHoldingCreateNestedManyWithoutPortfolioInput = {
-    create?: XOR<PortfolioHoldingCreateWithoutPortfolioInput, PortfolioHoldingUncheckedCreateWithoutPortfolioInput> | PortfolioHoldingCreateWithoutPortfolioInput[] | PortfolioHoldingUncheckedCreateWithoutPortfolioInput[]
-    connectOrCreate?: PortfolioHoldingCreateOrConnectWithoutPortfolioInput | PortfolioHoldingCreateOrConnectWithoutPortfolioInput[]
-    createMany?: PortfolioHoldingCreateManyPortfolioInputEnvelope
-    connect?: PortfolioHoldingWhereUniqueInput | PortfolioHoldingWhereUniqueInput[]
-  }
-
-  export type TradeCreateNestedManyWithoutPortfolioInput = {
-    create?: XOR<TradeCreateWithoutPortfolioInput, TradeUncheckedCreateWithoutPortfolioInput> | TradeCreateWithoutPortfolioInput[] | TradeUncheckedCreateWithoutPortfolioInput[]
-    connectOrCreate?: TradeCreateOrConnectWithoutPortfolioInput | TradeCreateOrConnectWithoutPortfolioInput[]
-    createMany?: TradeCreateManyPortfolioInputEnvelope
-    connect?: TradeWhereUniqueInput | TradeWhereUniqueInput[]
-  }
-
-  export type PortfolioHoldingUncheckedCreateNestedManyWithoutPortfolioInput = {
-    create?: XOR<PortfolioHoldingCreateWithoutPortfolioInput, PortfolioHoldingUncheckedCreateWithoutPortfolioInput> | PortfolioHoldingCreateWithoutPortfolioInput[] | PortfolioHoldingUncheckedCreateWithoutPortfolioInput[]
-    connectOrCreate?: PortfolioHoldingCreateOrConnectWithoutPortfolioInput | PortfolioHoldingCreateOrConnectWithoutPortfolioInput[]
-    createMany?: PortfolioHoldingCreateManyPortfolioInputEnvelope
-    connect?: PortfolioHoldingWhereUniqueInput | PortfolioHoldingWhereUniqueInput[]
-  }
-
-  export type TradeUncheckedCreateNestedManyWithoutPortfolioInput = {
-    create?: XOR<TradeCreateWithoutPortfolioInput, TradeUncheckedCreateWithoutPortfolioInput> | TradeCreateWithoutPortfolioInput[] | TradeUncheckedCreateWithoutPortfolioInput[]
-    connectOrCreate?: TradeCreateOrConnectWithoutPortfolioInput | TradeCreateOrConnectWithoutPortfolioInput[]
-    createMany?: TradeCreateManyPortfolioInputEnvelope
-    connect?: TradeWhereUniqueInput | TradeWhereUniqueInput[]
-  }
-
-  export type UserUpdateOneRequiredWithoutPortfoliosNestedInput = {
-    create?: XOR<UserCreateWithoutPortfoliosInput, UserUncheckedCreateWithoutPortfoliosInput>
-    connectOrCreate?: UserCreateOrConnectWithoutPortfoliosInput
-    upsert?: UserUpsertWithoutPortfoliosInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutPortfoliosInput, UserUpdateWithoutPortfoliosInput>, UserUncheckedUpdateWithoutPortfoliosInput>
-  }
-
-  export type PortfolioHoldingUpdateManyWithoutPortfolioNestedInput = {
-    create?: XOR<PortfolioHoldingCreateWithoutPortfolioInput, PortfolioHoldingUncheckedCreateWithoutPortfolioInput> | PortfolioHoldingCreateWithoutPortfolioInput[] | PortfolioHoldingUncheckedCreateWithoutPortfolioInput[]
-    connectOrCreate?: PortfolioHoldingCreateOrConnectWithoutPortfolioInput | PortfolioHoldingCreateOrConnectWithoutPortfolioInput[]
-    upsert?: PortfolioHoldingUpsertWithWhereUniqueWithoutPortfolioInput | PortfolioHoldingUpsertWithWhereUniqueWithoutPortfolioInput[]
-    createMany?: PortfolioHoldingCreateManyPortfolioInputEnvelope
-    set?: PortfolioHoldingWhereUniqueInput | PortfolioHoldingWhereUniqueInput[]
-    disconnect?: PortfolioHoldingWhereUniqueInput | PortfolioHoldingWhereUniqueInput[]
-    delete?: PortfolioHoldingWhereUniqueInput | PortfolioHoldingWhereUniqueInput[]
-    connect?: PortfolioHoldingWhereUniqueInput | PortfolioHoldingWhereUniqueInput[]
-    update?: PortfolioHoldingUpdateWithWhereUniqueWithoutPortfolioInput | PortfolioHoldingUpdateWithWhereUniqueWithoutPortfolioInput[]
-    updateMany?: PortfolioHoldingUpdateManyWithWhereWithoutPortfolioInput | PortfolioHoldingUpdateManyWithWhereWithoutPortfolioInput[]
-    deleteMany?: PortfolioHoldingScalarWhereInput | PortfolioHoldingScalarWhereInput[]
-  }
-
-  export type TradeUpdateManyWithoutPortfolioNestedInput = {
-    create?: XOR<TradeCreateWithoutPortfolioInput, TradeUncheckedCreateWithoutPortfolioInput> | TradeCreateWithoutPortfolioInput[] | TradeUncheckedCreateWithoutPortfolioInput[]
-    connectOrCreate?: TradeCreateOrConnectWithoutPortfolioInput | TradeCreateOrConnectWithoutPortfolioInput[]
-    upsert?: TradeUpsertWithWhereUniqueWithoutPortfolioInput | TradeUpsertWithWhereUniqueWithoutPortfolioInput[]
-    createMany?: TradeCreateManyPortfolioInputEnvelope
-    set?: TradeWhereUniqueInput | TradeWhereUniqueInput[]
-    disconnect?: TradeWhereUniqueInput | TradeWhereUniqueInput[]
-    delete?: TradeWhereUniqueInput | TradeWhereUniqueInput[]
-    connect?: TradeWhereUniqueInput | TradeWhereUniqueInput[]
-    update?: TradeUpdateWithWhereUniqueWithoutPortfolioInput | TradeUpdateWithWhereUniqueWithoutPortfolioInput[]
-    updateMany?: TradeUpdateManyWithWhereWithoutPortfolioInput | TradeUpdateManyWithWhereWithoutPortfolioInput[]
-    deleteMany?: TradeScalarWhereInput | TradeScalarWhereInput[]
-  }
-
-  export type PortfolioHoldingUncheckedUpdateManyWithoutPortfolioNestedInput = {
-    create?: XOR<PortfolioHoldingCreateWithoutPortfolioInput, PortfolioHoldingUncheckedCreateWithoutPortfolioInput> | PortfolioHoldingCreateWithoutPortfolioInput[] | PortfolioHoldingUncheckedCreateWithoutPortfolioInput[]
-    connectOrCreate?: PortfolioHoldingCreateOrConnectWithoutPortfolioInput | PortfolioHoldingCreateOrConnectWithoutPortfolioInput[]
-    upsert?: PortfolioHoldingUpsertWithWhereUniqueWithoutPortfolioInput | PortfolioHoldingUpsertWithWhereUniqueWithoutPortfolioInput[]
-    createMany?: PortfolioHoldingCreateManyPortfolioInputEnvelope
-    set?: PortfolioHoldingWhereUniqueInput | PortfolioHoldingWhereUniqueInput[]
-    disconnect?: PortfolioHoldingWhereUniqueInput | PortfolioHoldingWhereUniqueInput[]
-    delete?: PortfolioHoldingWhereUniqueInput | PortfolioHoldingWhereUniqueInput[]
-    connect?: PortfolioHoldingWhereUniqueInput | PortfolioHoldingWhereUniqueInput[]
-    update?: PortfolioHoldingUpdateWithWhereUniqueWithoutPortfolioInput | PortfolioHoldingUpdateWithWhereUniqueWithoutPortfolioInput[]
-    updateMany?: PortfolioHoldingUpdateManyWithWhereWithoutPortfolioInput | PortfolioHoldingUpdateManyWithWhereWithoutPortfolioInput[]
-    deleteMany?: PortfolioHoldingScalarWhereInput | PortfolioHoldingScalarWhereInput[]
-  }
-
-  export type TradeUncheckedUpdateManyWithoutPortfolioNestedInput = {
-    create?: XOR<TradeCreateWithoutPortfolioInput, TradeUncheckedCreateWithoutPortfolioInput> | TradeCreateWithoutPortfolioInput[] | TradeUncheckedCreateWithoutPortfolioInput[]
-    connectOrCreate?: TradeCreateOrConnectWithoutPortfolioInput | TradeCreateOrConnectWithoutPortfolioInput[]
-    upsert?: TradeUpsertWithWhereUniqueWithoutPortfolioInput | TradeUpsertWithWhereUniqueWithoutPortfolioInput[]
-    createMany?: TradeCreateManyPortfolioInputEnvelope
-    set?: TradeWhereUniqueInput | TradeWhereUniqueInput[]
-    disconnect?: TradeWhereUniqueInput | TradeWhereUniqueInput[]
-    delete?: TradeWhereUniqueInput | TradeWhereUniqueInput[]
-    connect?: TradeWhereUniqueInput | TradeWhereUniqueInput[]
-    update?: TradeUpdateWithWhereUniqueWithoutPortfolioInput | TradeUpdateWithWhereUniqueWithoutPortfolioInput[]
-    updateMany?: TradeUpdateManyWithWhereWithoutPortfolioInput | TradeUpdateManyWithWhereWithoutPortfolioInput[]
-    deleteMany?: TradeScalarWhereInput | TradeScalarWhereInput[]
-  }
-
-  export type PortfolioCreateNestedOneWithoutHoldingsInput = {
-    create?: XOR<PortfolioCreateWithoutHoldingsInput, PortfolioUncheckedCreateWithoutHoldingsInput>
-    connectOrCreate?: PortfolioCreateOrConnectWithoutHoldingsInput
-    connect?: PortfolioWhereUniqueInput
-  }
-
-  export type FundCreateNestedOneWithoutHoldingsInput = {
-    create?: XOR<FundCreateWithoutHoldingsInput, FundUncheckedCreateWithoutHoldingsInput>
-    connectOrCreate?: FundCreateOrConnectWithoutHoldingsInput
-    connect?: FundWhereUniqueInput
-  }
-
-  export type PortfolioUpdateOneRequiredWithoutHoldingsNestedInput = {
-    create?: XOR<PortfolioCreateWithoutHoldingsInput, PortfolioUncheckedCreateWithoutHoldingsInput>
-    connectOrCreate?: PortfolioCreateOrConnectWithoutHoldingsInput
-    upsert?: PortfolioUpsertWithoutHoldingsInput
-    connect?: PortfolioWhereUniqueInput
-    update?: XOR<XOR<PortfolioUpdateToOneWithWhereWithoutHoldingsInput, PortfolioUpdateWithoutHoldingsInput>, PortfolioUncheckedUpdateWithoutHoldingsInput>
-  }
-
-  export type FundUpdateOneRequiredWithoutHoldingsNestedInput = {
-    create?: XOR<FundCreateWithoutHoldingsInput, FundUncheckedCreateWithoutHoldingsInput>
-    connectOrCreate?: FundCreateOrConnectWithoutHoldingsInput
-    upsert?: FundUpsertWithoutHoldingsInput
-    connect?: FundWhereUniqueInput
-    update?: XOR<XOR<FundUpdateToOneWithWhereWithoutHoldingsInput, FundUpdateWithoutHoldingsInput>, FundUncheckedUpdateWithoutHoldingsInput>
-  }
-
-  export type FundCreateNestedOneWithoutHedgeFundsInput = {
-    create?: XOR<FundCreateWithoutHedgeFundsInput, FundUncheckedCreateWithoutHedgeFundsInput>
-    connectOrCreate?: FundCreateOrConnectWithoutHedgeFundsInput
-    connect?: FundWhereUniqueInput
-  }
-
-  export type FundUpdateOneRequiredWithoutHedgeFundsNestedInput = {
-    create?: XOR<FundCreateWithoutHedgeFundsInput, FundUncheckedCreateWithoutHedgeFundsInput>
-    connectOrCreate?: FundCreateOrConnectWithoutHedgeFundsInput
-    upsert?: FundUpsertWithoutHedgeFundsInput
-    connect?: FundWhereUniqueInput
-    update?: XOR<XOR<FundUpdateToOneWithWhereWithoutHedgeFundsInput, FundUpdateWithoutHedgeFundsInput>, FundUncheckedUpdateWithoutHedgeFundsInput>
-  }
-
   export type NestedIntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -33179,6 +25387,17 @@ export namespace Prisma {
     in?: $Enums.Groups[] | ListEnumGroupsFieldRefInput<$PrismaModel>
     notIn?: $Enums.Groups[] | ListEnumGroupsFieldRefInput<$PrismaModel>
     not?: NestedEnumGroupsFilter<$PrismaModel> | $Enums.Groups
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
@@ -33256,17 +25475,6 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
-  export type NestedIntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-
   export type NestedEnumGroupsWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.Groups | EnumGroupsFieldRefInput<$PrismaModel>
     in?: $Enums.Groups[] | ListEnumGroupsFieldRefInput<$PrismaModel>
@@ -33275,6 +25483,33 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumGroupsFilter<$PrismaModel>
     _max?: NestedEnumGroupsFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
   export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
@@ -33374,17 +25609,6 @@ export namespace Prisma {
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
-  export type NestedFloatNullableFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
-  }
-
   export type NestedFloatNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel> | null
     in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
@@ -33434,77 +25658,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
-  }
-
-  export type NestedBigIntFilter<$PrismaModel = never> = {
-    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
-    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
-    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    not?: NestedBigIntFilter<$PrismaModel> | bigint | number
-  }
-
-  export type NestedEnumInstructionNamedTypeFilter<$PrismaModel = never> = {
-    equals?: $Enums.InstructionNamedType | EnumInstructionNamedTypeFieldRefInput<$PrismaModel>
-    in?: $Enums.InstructionNamedType[] | ListEnumInstructionNamedTypeFieldRefInput<$PrismaModel>
-    notIn?: $Enums.InstructionNamedType[] | ListEnumInstructionNamedTypeFieldRefInput<$PrismaModel>
-    not?: NestedEnumInstructionNamedTypeFilter<$PrismaModel> | $Enums.InstructionNamedType
-  }
-
-  export type NestedBigIntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
-    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
-    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    not?: NestedBigIntWithAggregatesFilter<$PrismaModel> | bigint | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedBigIntFilter<$PrismaModel>
-    _min?: NestedBigIntFilter<$PrismaModel>
-    _max?: NestedBigIntFilter<$PrismaModel>
-  }
-
-  export type NestedEnumInstructionNamedTypeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.InstructionNamedType | EnumInstructionNamedTypeFieldRefInput<$PrismaModel>
-    in?: $Enums.InstructionNamedType[] | ListEnumInstructionNamedTypeFieldRefInput<$PrismaModel>
-    notIn?: $Enums.InstructionNamedType[] | ListEnumInstructionNamedTypeFieldRefInput<$PrismaModel>
-    not?: NestedEnumInstructionNamedTypeWithAggregatesFilter<$PrismaModel> | $Enums.InstructionNamedType
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumInstructionNamedTypeFilter<$PrismaModel>
-    _max?: NestedEnumInstructionNamedTypeFilter<$PrismaModel>
-  }
-
-  export type NestedDecimalFilter<$PrismaModel = never> = {
-    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
-    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
-    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
-  }
-
-  export type NestedDecimalWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
-    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
-    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    not?: NestedDecimalWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedDecimalFilter<$PrismaModel>
-    _sum?: NestedDecimalFilter<$PrismaModel>
-    _min?: NestedDecimalFilter<$PrismaModel>
-    _max?: NestedDecimalFilter<$PrismaModel>
   }
 
   export type AccountBookCreateWithoutUserInput = {
@@ -33867,117 +26020,6 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type PortfolioCreateWithoutUserInput = {
-    name: string
-    totalValue?: bigint | number
-    isActive?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    holdings?: PortfolioHoldingCreateNestedManyWithoutPortfolioInput
-    trades?: TradeCreateNestedManyWithoutPortfolioInput
-  }
-
-  export type PortfolioUncheckedCreateWithoutUserInput = {
-    id?: number
-    name: string
-    totalValue?: bigint | number
-    isActive?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    holdings?: PortfolioHoldingUncheckedCreateNestedManyWithoutPortfolioInput
-    trades?: TradeUncheckedCreateNestedManyWithoutPortfolioInput
-  }
-
-  export type PortfolioCreateOrConnectWithoutUserInput = {
-    where: PortfolioWhereUniqueInput
-    create: XOR<PortfolioCreateWithoutUserInput, PortfolioUncheckedCreateWithoutUserInput>
-  }
-
-  export type PortfolioCreateManyUserInputEnvelope = {
-    data: PortfolioCreateManyUserInput | PortfolioCreateManyUserInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type TradeCreateWithoutUserInput = {
-    marketId: number
-    type: string
-    quantity: number
-    price: bigint | number
-    totalValue: number
-    status: string
-    executedAt: Date | string
-    createdAt?: Date | string
-    instructionType: $Enums.InstructionNamedType
-    buyIntoTargetFund: FundCreateNestedOneWithoutTradesInput
-    portfolio: PortfolioCreateNestedOneWithoutTradesInput
-  }
-
-  export type TradeUncheckedCreateWithoutUserInput = {
-    id?: number
-    marketId: number
-    portfolioId: number
-    type: string
-    quantity: number
-    price: bigint | number
-    totalValue: number
-    status: string
-    executedAt: Date | string
-    createdAt?: Date | string
-    buyIntoTargetFundid: number
-    instructionType: $Enums.InstructionNamedType
-  }
-
-  export type TradeCreateOrConnectWithoutUserInput = {
-    where: TradeWhereUniqueInput
-    create: XOR<TradeCreateWithoutUserInput, TradeUncheckedCreateWithoutUserInput>
-  }
-
-  export type TradeCreateManyUserInputEnvelope = {
-    data: TradeCreateManyUserInput | TradeCreateManyUserInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type FundCreateWithoutFundManagerInput = {
-    name: string
-    minimumInvestmentAmount?: bigint | number
-    totalFundCharge?: Decimal | DecimalJsLike | number | string
-    totalFundCost?: Decimal | DecimalJsLike | number | string
-    totalAssets?: bigint | number
-    isActive?: boolean
-    maxInvestors?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    trades?: TradeCreateNestedManyWithoutBuyIntoTargetFundInput
-    holdings?: PortfolioHoldingCreateNestedManyWithoutFundInput
-    hedgeFunds?: HedgeFundCreateNestedManyWithoutFundInput
-  }
-
-  export type FundUncheckedCreateWithoutFundManagerInput = {
-    id?: number
-    name: string
-    minimumInvestmentAmount?: bigint | number
-    totalFundCharge?: Decimal | DecimalJsLike | number | string
-    totalFundCost?: Decimal | DecimalJsLike | number | string
-    totalAssets?: bigint | number
-    isActive?: boolean
-    maxInvestors?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    trades?: TradeUncheckedCreateNestedManyWithoutBuyIntoTargetFundInput
-    holdings?: PortfolioHoldingUncheckedCreateNestedManyWithoutFundInput
-    hedgeFunds?: HedgeFundUncheckedCreateNestedManyWithoutFundInput
-  }
-
-  export type FundCreateOrConnectWithoutFundManagerInput = {
-    where: FundWhereUniqueInput
-    create: XOR<FundCreateWithoutFundManagerInput, FundUncheckedCreateWithoutFundManagerInput>
-  }
-
-  export type FundCreateManyFundManagerInputEnvelope = {
-    data: FundCreateManyFundManagerInput | FundCreateManyFundManagerInput[]
-    skipDuplicates?: boolean
-  }
-
   export type AccountBookUpsertWithWhereUniqueWithoutUserInput = {
     where: AccountBookWhereUniqueInput
     update: XOR<AccountBookUpdateWithoutUserInput, AccountBookUncheckedUpdateWithoutUserInput>
@@ -34330,103 +26372,6 @@ export namespace Prisma {
     completed?: BoolFilter<"UserQuests"> | boolean
     created?: DateTimeFilter<"UserQuests"> | Date | string
     updated?: DateTimeFilter<"UserQuests"> | Date | string
-  }
-
-  export type PortfolioUpsertWithWhereUniqueWithoutUserInput = {
-    where: PortfolioWhereUniqueInput
-    update: XOR<PortfolioUpdateWithoutUserInput, PortfolioUncheckedUpdateWithoutUserInput>
-    create: XOR<PortfolioCreateWithoutUserInput, PortfolioUncheckedCreateWithoutUserInput>
-  }
-
-  export type PortfolioUpdateWithWhereUniqueWithoutUserInput = {
-    where: PortfolioWhereUniqueInput
-    data: XOR<PortfolioUpdateWithoutUserInput, PortfolioUncheckedUpdateWithoutUserInput>
-  }
-
-  export type PortfolioUpdateManyWithWhereWithoutUserInput = {
-    where: PortfolioScalarWhereInput
-    data: XOR<PortfolioUpdateManyMutationInput, PortfolioUncheckedUpdateManyWithoutUserInput>
-  }
-
-  export type PortfolioScalarWhereInput = {
-    AND?: PortfolioScalarWhereInput | PortfolioScalarWhereInput[]
-    OR?: PortfolioScalarWhereInput[]
-    NOT?: PortfolioScalarWhereInput | PortfolioScalarWhereInput[]
-    id?: IntFilter<"Portfolio"> | number
-    userId?: IntFilter<"Portfolio"> | number
-    name?: StringFilter<"Portfolio"> | string
-    totalValue?: BigIntFilter<"Portfolio"> | bigint | number
-    isActive?: BoolFilter<"Portfolio"> | boolean
-    createdAt?: DateTimeFilter<"Portfolio"> | Date | string
-    updatedAt?: DateTimeFilter<"Portfolio"> | Date | string
-  }
-
-  export type TradeUpsertWithWhereUniqueWithoutUserInput = {
-    where: TradeWhereUniqueInput
-    update: XOR<TradeUpdateWithoutUserInput, TradeUncheckedUpdateWithoutUserInput>
-    create: XOR<TradeCreateWithoutUserInput, TradeUncheckedCreateWithoutUserInput>
-  }
-
-  export type TradeUpdateWithWhereUniqueWithoutUserInput = {
-    where: TradeWhereUniqueInput
-    data: XOR<TradeUpdateWithoutUserInput, TradeUncheckedUpdateWithoutUserInput>
-  }
-
-  export type TradeUpdateManyWithWhereWithoutUserInput = {
-    where: TradeScalarWhereInput
-    data: XOR<TradeUpdateManyMutationInput, TradeUncheckedUpdateManyWithoutUserInput>
-  }
-
-  export type TradeScalarWhereInput = {
-    AND?: TradeScalarWhereInput | TradeScalarWhereInput[]
-    OR?: TradeScalarWhereInput[]
-    NOT?: TradeScalarWhereInput | TradeScalarWhereInput[]
-    id?: IntFilter<"Trade"> | number
-    userId?: IntFilter<"Trade"> | number
-    marketId?: IntFilter<"Trade"> | number
-    portfolioId?: IntFilter<"Trade"> | number
-    type?: StringFilter<"Trade"> | string
-    quantity?: IntFilter<"Trade"> | number
-    price?: BigIntFilter<"Trade"> | bigint | number
-    totalValue?: IntFilter<"Trade"> | number
-    status?: StringFilter<"Trade"> | string
-    executedAt?: DateTimeFilter<"Trade"> | Date | string
-    createdAt?: DateTimeFilter<"Trade"> | Date | string
-    buyIntoTargetFundid?: IntFilter<"Trade"> | number
-    instructionType?: EnumInstructionNamedTypeFilter<"Trade"> | $Enums.InstructionNamedType
-  }
-
-  export type FundUpsertWithWhereUniqueWithoutFundManagerInput = {
-    where: FundWhereUniqueInput
-    update: XOR<FundUpdateWithoutFundManagerInput, FundUncheckedUpdateWithoutFundManagerInput>
-    create: XOR<FundCreateWithoutFundManagerInput, FundUncheckedCreateWithoutFundManagerInput>
-  }
-
-  export type FundUpdateWithWhereUniqueWithoutFundManagerInput = {
-    where: FundWhereUniqueInput
-    data: XOR<FundUpdateWithoutFundManagerInput, FundUncheckedUpdateWithoutFundManagerInput>
-  }
-
-  export type FundUpdateManyWithWhereWithoutFundManagerInput = {
-    where: FundScalarWhereInput
-    data: XOR<FundUpdateManyMutationInput, FundUncheckedUpdateManyWithoutFundManagerInput>
-  }
-
-  export type FundScalarWhereInput = {
-    AND?: FundScalarWhereInput | FundScalarWhereInput[]
-    OR?: FundScalarWhereInput[]
-    NOT?: FundScalarWhereInput | FundScalarWhereInput[]
-    id?: IntFilter<"Fund"> | number
-    fundManagerId?: IntFilter<"Fund"> | number
-    name?: StringFilter<"Fund"> | string
-    minimumInvestmentAmount?: BigIntFilter<"Fund"> | bigint | number
-    totalFundCharge?: DecimalFilter<"Fund"> | Decimal | DecimalJsLike | number | string
-    totalFundCost?: DecimalFilter<"Fund"> | Decimal | DecimalJsLike | number | string
-    totalAssets?: BigIntFilter<"Fund"> | bigint | number
-    isActive?: BoolFilter<"Fund"> | boolean
-    maxInvestors?: IntFilter<"Fund"> | number
-    createdAt?: DateTimeFilter<"Fund"> | Date | string
-    updatedAt?: DateTimeFilter<"Fund"> | Date | string
   }
 
   export type AccountBookCreateWithoutGameInput = {
@@ -35015,6 +26960,7 @@ export namespace Prisma {
     created?: Date | string
     refreshToken?: string | null
     group?: $Enums.Groups
+    portfolioID?: number | null
     accountBook?: AccountBookCreateNestedManyWithoutUserInput
     addressBook?: AddressBookCreateNestedManyWithoutUserInput
     computer?: ComputerCreateNestedManyWithoutUserInput
@@ -35026,9 +26972,6 @@ export namespace Prisma {
     profile?: ProfileCreateNestedManyWithoutUserInput
     software?: SoftwareCreateNestedManyWithoutUserInput
     userQuests?: UserQuestsCreateNestedManyWithoutUserInput
-    portfolios?: PortfolioCreateNestedManyWithoutUserInput
-    ongoingTrades?: TradeCreateNestedManyWithoutUserInput
-    managedFunds?: FundCreateNestedManyWithoutFundManagerInput
   }
 
   export type UserUncheckedCreateWithoutSessionInput = {
@@ -35041,6 +26984,7 @@ export namespace Prisma {
     created?: Date | string
     refreshToken?: string | null
     group?: $Enums.Groups
+    portfolioID?: number | null
     accountBook?: AccountBookUncheckedCreateNestedManyWithoutUserInput
     addressBook?: AddressBookUncheckedCreateNestedManyWithoutUserInput
     computer?: ComputerUncheckedCreateNestedManyWithoutUserInput
@@ -35052,9 +26996,6 @@ export namespace Prisma {
     profile?: ProfileUncheckedCreateNestedManyWithoutUserInput
     software?: SoftwareUncheckedCreateNestedManyWithoutUserInput
     userQuests?: UserQuestsUncheckedCreateNestedManyWithoutUserInput
-    portfolios?: PortfolioUncheckedCreateNestedManyWithoutUserInput
-    ongoingTrades?: TradeUncheckedCreateNestedManyWithoutUserInput
-    managedFunds?: FundUncheckedCreateNestedManyWithoutFundManagerInput
   }
 
   export type UserCreateOrConnectWithoutSessionInput = {
@@ -35082,6 +27023,7 @@ export namespace Prisma {
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     group?: EnumGroupsFieldUpdateOperationsInput | $Enums.Groups
+    portfolioID?: NullableIntFieldUpdateOperationsInput | number | null
     accountBook?: AccountBookUpdateManyWithoutUserNestedInput
     addressBook?: AddressBookUpdateManyWithoutUserNestedInput
     computer?: ComputerUpdateManyWithoutUserNestedInput
@@ -35093,9 +27035,6 @@ export namespace Prisma {
     profile?: ProfileUpdateManyWithoutUserNestedInput
     software?: SoftwareUpdateManyWithoutUserNestedInput
     userQuests?: UserQuestsUpdateManyWithoutUserNestedInput
-    portfolios?: PortfolioUpdateManyWithoutUserNestedInput
-    ongoingTrades?: TradeUpdateManyWithoutUserNestedInput
-    managedFunds?: FundUpdateManyWithoutFundManagerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSessionInput = {
@@ -35108,6 +27047,7 @@ export namespace Prisma {
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     group?: EnumGroupsFieldUpdateOperationsInput | $Enums.Groups
+    portfolioID?: NullableIntFieldUpdateOperationsInput | number | null
     accountBook?: AccountBookUncheckedUpdateManyWithoutUserNestedInput
     addressBook?: AddressBookUncheckedUpdateManyWithoutUserNestedInput
     computer?: ComputerUncheckedUpdateManyWithoutUserNestedInput
@@ -35119,9 +27059,6 @@ export namespace Prisma {
     profile?: ProfileUncheckedUpdateManyWithoutUserNestedInput
     software?: SoftwareUncheckedUpdateManyWithoutUserNestedInput
     userQuests?: UserQuestsUncheckedUpdateManyWithoutUserNestedInput
-    portfolios?: PortfolioUncheckedUpdateManyWithoutUserNestedInput
-    ongoingTrades?: TradeUncheckedUpdateManyWithoutUserNestedInput
-    managedFunds?: FundUncheckedUpdateManyWithoutFundManagerNestedInput
   }
 
   export type ComputerCreateWithoutHardwareInput = {
@@ -35391,6 +27328,7 @@ export namespace Prisma {
     created?: Date | string
     refreshToken?: string | null
     group?: $Enums.Groups
+    portfolioID?: number | null
     accountBook?: AccountBookCreateNestedManyWithoutUserInput
     computer?: ComputerCreateNestedManyWithoutUserInput
     dns?: DNSCreateNestedManyWithoutUserInput
@@ -35402,9 +27340,6 @@ export namespace Prisma {
     session?: SessionCreateNestedManyWithoutUserInput
     software?: SoftwareCreateNestedManyWithoutUserInput
     userQuests?: UserQuestsCreateNestedManyWithoutUserInput
-    portfolios?: PortfolioCreateNestedManyWithoutUserInput
-    ongoingTrades?: TradeCreateNestedManyWithoutUserInput
-    managedFunds?: FundCreateNestedManyWithoutFundManagerInput
   }
 
   export type UserUncheckedCreateWithoutAddressBookInput = {
@@ -35417,6 +27352,7 @@ export namespace Prisma {
     created?: Date | string
     refreshToken?: string | null
     group?: $Enums.Groups
+    portfolioID?: number | null
     accountBook?: AccountBookUncheckedCreateNestedManyWithoutUserInput
     computer?: ComputerUncheckedCreateNestedManyWithoutUserInput
     dns?: DNSUncheckedCreateNestedManyWithoutUserInput
@@ -35428,9 +27364,6 @@ export namespace Prisma {
     session?: SessionUncheckedCreateNestedManyWithoutUserInput
     software?: SoftwareUncheckedCreateNestedManyWithoutUserInput
     userQuests?: UserQuestsUncheckedCreateNestedManyWithoutUserInput
-    portfolios?: PortfolioUncheckedCreateNestedManyWithoutUserInput
-    ongoingTrades?: TradeUncheckedCreateNestedManyWithoutUserInput
-    managedFunds?: FundUncheckedCreateNestedManyWithoutFundManagerInput
   }
 
   export type UserCreateOrConnectWithoutAddressBookInput = {
@@ -35552,6 +27485,7 @@ export namespace Prisma {
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     group?: EnumGroupsFieldUpdateOperationsInput | $Enums.Groups
+    portfolioID?: NullableIntFieldUpdateOperationsInput | number | null
     accountBook?: AccountBookUpdateManyWithoutUserNestedInput
     computer?: ComputerUpdateManyWithoutUserNestedInput
     dns?: DNSUpdateManyWithoutUserNestedInput
@@ -35563,9 +27497,6 @@ export namespace Prisma {
     session?: SessionUpdateManyWithoutUserNestedInput
     software?: SoftwareUpdateManyWithoutUserNestedInput
     userQuests?: UserQuestsUpdateManyWithoutUserNestedInput
-    portfolios?: PortfolioUpdateManyWithoutUserNestedInput
-    ongoingTrades?: TradeUpdateManyWithoutUserNestedInput
-    managedFunds?: FundUpdateManyWithoutFundManagerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAddressBookInput = {
@@ -35578,6 +27509,7 @@ export namespace Prisma {
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     group?: EnumGroupsFieldUpdateOperationsInput | $Enums.Groups
+    portfolioID?: NullableIntFieldUpdateOperationsInput | number | null
     accountBook?: AccountBookUncheckedUpdateManyWithoutUserNestedInput
     computer?: ComputerUncheckedUpdateManyWithoutUserNestedInput
     dns?: DNSUncheckedUpdateManyWithoutUserNestedInput
@@ -35589,9 +27521,6 @@ export namespace Prisma {
     session?: SessionUncheckedUpdateManyWithoutUserNestedInput
     software?: SoftwareUncheckedUpdateManyWithoutUserNestedInput
     userQuests?: UserQuestsUncheckedUpdateManyWithoutUserNestedInput
-    portfolios?: PortfolioUncheckedUpdateManyWithoutUserNestedInput
-    ongoingTrades?: TradeUncheckedUpdateManyWithoutUserNestedInput
-    managedFunds?: FundUncheckedUpdateManyWithoutFundManagerNestedInput
   }
 
   export type ComputerCreateWithoutDnsInput = {
@@ -35685,6 +27614,7 @@ export namespace Prisma {
     created?: Date | string
     refreshToken?: string | null
     group?: $Enums.Groups
+    portfolioID?: number | null
     accountBook?: AccountBookCreateNestedManyWithoutUserInput
     addressBook?: AddressBookCreateNestedManyWithoutUserInput
     computer?: ComputerCreateNestedManyWithoutUserInput
@@ -35696,9 +27626,6 @@ export namespace Prisma {
     session?: SessionCreateNestedManyWithoutUserInput
     software?: SoftwareCreateNestedManyWithoutUserInput
     userQuests?: UserQuestsCreateNestedManyWithoutUserInput
-    portfolios?: PortfolioCreateNestedManyWithoutUserInput
-    ongoingTrades?: TradeCreateNestedManyWithoutUserInput
-    managedFunds?: FundCreateNestedManyWithoutFundManagerInput
   }
 
   export type UserUncheckedCreateWithoutDnsInput = {
@@ -35711,6 +27638,7 @@ export namespace Prisma {
     created?: Date | string
     refreshToken?: string | null
     group?: $Enums.Groups
+    portfolioID?: number | null
     accountBook?: AccountBookUncheckedCreateNestedManyWithoutUserInput
     addressBook?: AddressBookUncheckedCreateNestedManyWithoutUserInput
     computer?: ComputerUncheckedCreateNestedManyWithoutUserInput
@@ -35722,9 +27650,6 @@ export namespace Prisma {
     session?: SessionUncheckedCreateNestedManyWithoutUserInput
     software?: SoftwareUncheckedCreateNestedManyWithoutUserInput
     userQuests?: UserQuestsUncheckedCreateNestedManyWithoutUserInput
-    portfolios?: PortfolioUncheckedCreateNestedManyWithoutUserInput
-    ongoingTrades?: TradeUncheckedCreateNestedManyWithoutUserInput
-    managedFunds?: FundUncheckedCreateNestedManyWithoutFundManagerInput
   }
 
   export type UserCreateOrConnectWithoutDnsInput = {
@@ -35846,6 +27771,7 @@ export namespace Prisma {
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     group?: EnumGroupsFieldUpdateOperationsInput | $Enums.Groups
+    portfolioID?: NullableIntFieldUpdateOperationsInput | number | null
     accountBook?: AccountBookUpdateManyWithoutUserNestedInput
     addressBook?: AddressBookUpdateManyWithoutUserNestedInput
     computer?: ComputerUpdateManyWithoutUserNestedInput
@@ -35857,9 +27783,6 @@ export namespace Prisma {
     session?: SessionUpdateManyWithoutUserNestedInput
     software?: SoftwareUpdateManyWithoutUserNestedInput
     userQuests?: UserQuestsUpdateManyWithoutUserNestedInput
-    portfolios?: PortfolioUpdateManyWithoutUserNestedInput
-    ongoingTrades?: TradeUpdateManyWithoutUserNestedInput
-    managedFunds?: FundUpdateManyWithoutFundManagerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutDnsInput = {
@@ -35872,6 +27795,7 @@ export namespace Prisma {
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     group?: EnumGroupsFieldUpdateOperationsInput | $Enums.Groups
+    portfolioID?: NullableIntFieldUpdateOperationsInput | number | null
     accountBook?: AccountBookUncheckedUpdateManyWithoutUserNestedInput
     addressBook?: AddressBookUncheckedUpdateManyWithoutUserNestedInput
     computer?: ComputerUncheckedUpdateManyWithoutUserNestedInput
@@ -35883,9 +27807,6 @@ export namespace Prisma {
     session?: SessionUncheckedUpdateManyWithoutUserNestedInput
     software?: SoftwareUncheckedUpdateManyWithoutUserNestedInput
     userQuests?: UserQuestsUncheckedUpdateManyWithoutUserNestedInput
-    portfolios?: PortfolioUncheckedUpdateManyWithoutUserNestedInput
-    ongoingTrades?: TradeUncheckedUpdateManyWithoutUserNestedInput
-    managedFunds?: FundUncheckedUpdateManyWithoutFundManagerNestedInput
   }
 
   export type ComputerCreateWithoutAccountBookInput = {
@@ -36006,6 +27927,7 @@ export namespace Prisma {
     created?: Date | string
     refreshToken?: string | null
     group?: $Enums.Groups
+    portfolioID?: number | null
     addressBook?: AddressBookCreateNestedManyWithoutUserInput
     computer?: ComputerCreateNestedManyWithoutUserInput
     dns?: DNSCreateNestedManyWithoutUserInput
@@ -36017,9 +27939,6 @@ export namespace Prisma {
     session?: SessionCreateNestedManyWithoutUserInput
     software?: SoftwareCreateNestedManyWithoutUserInput
     userQuests?: UserQuestsCreateNestedManyWithoutUserInput
-    portfolios?: PortfolioCreateNestedManyWithoutUserInput
-    ongoingTrades?: TradeCreateNestedManyWithoutUserInput
-    managedFunds?: FundCreateNestedManyWithoutFundManagerInput
   }
 
   export type UserUncheckedCreateWithoutAccountBookInput = {
@@ -36032,6 +27951,7 @@ export namespace Prisma {
     created?: Date | string
     refreshToken?: string | null
     group?: $Enums.Groups
+    portfolioID?: number | null
     addressBook?: AddressBookUncheckedCreateNestedManyWithoutUserInput
     computer?: ComputerUncheckedCreateNestedManyWithoutUserInput
     dns?: DNSUncheckedCreateNestedManyWithoutUserInput
@@ -36043,9 +27963,6 @@ export namespace Prisma {
     session?: SessionUncheckedCreateNestedManyWithoutUserInput
     software?: SoftwareUncheckedCreateNestedManyWithoutUserInput
     userQuests?: UserQuestsUncheckedCreateNestedManyWithoutUserInput
-    portfolios?: PortfolioUncheckedCreateNestedManyWithoutUserInput
-    ongoingTrades?: TradeUncheckedCreateNestedManyWithoutUserInput
-    managedFunds?: FundUncheckedCreateNestedManyWithoutFundManagerInput
   }
 
   export type UserCreateOrConnectWithoutAccountBookInput = {
@@ -36200,6 +28117,7 @@ export namespace Prisma {
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     group?: EnumGroupsFieldUpdateOperationsInput | $Enums.Groups
+    portfolioID?: NullableIntFieldUpdateOperationsInput | number | null
     addressBook?: AddressBookUpdateManyWithoutUserNestedInput
     computer?: ComputerUpdateManyWithoutUserNestedInput
     dns?: DNSUpdateManyWithoutUserNestedInput
@@ -36211,9 +28129,6 @@ export namespace Prisma {
     session?: SessionUpdateManyWithoutUserNestedInput
     software?: SoftwareUpdateManyWithoutUserNestedInput
     userQuests?: UserQuestsUpdateManyWithoutUserNestedInput
-    portfolios?: PortfolioUpdateManyWithoutUserNestedInput
-    ongoingTrades?: TradeUpdateManyWithoutUserNestedInput
-    managedFunds?: FundUpdateManyWithoutFundManagerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAccountBookInput = {
@@ -36226,6 +28141,7 @@ export namespace Prisma {
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     group?: EnumGroupsFieldUpdateOperationsInput | $Enums.Groups
+    portfolioID?: NullableIntFieldUpdateOperationsInput | number | null
     addressBook?: AddressBookUncheckedUpdateManyWithoutUserNestedInput
     computer?: ComputerUncheckedUpdateManyWithoutUserNestedInput
     dns?: DNSUncheckedUpdateManyWithoutUserNestedInput
@@ -36237,9 +28153,6 @@ export namespace Prisma {
     session?: SessionUncheckedUpdateManyWithoutUserNestedInput
     software?: SoftwareUncheckedUpdateManyWithoutUserNestedInput
     userQuests?: UserQuestsUncheckedUpdateManyWithoutUserNestedInput
-    portfolios?: PortfolioUncheckedUpdateManyWithoutUserNestedInput
-    ongoingTrades?: TradeUncheckedUpdateManyWithoutUserNestedInput
-    managedFunds?: FundUncheckedUpdateManyWithoutFundManagerNestedInput
   }
 
   export type GameCreateWithoutProfileInput = {
@@ -36292,6 +28205,7 @@ export namespace Prisma {
     created?: Date | string
     refreshToken?: string | null
     group?: $Enums.Groups
+    portfolioID?: number | null
     accountBook?: AccountBookCreateNestedManyWithoutUserInput
     addressBook?: AddressBookCreateNestedManyWithoutUserInput
     computer?: ComputerCreateNestedManyWithoutUserInput
@@ -36303,9 +28217,6 @@ export namespace Prisma {
     session?: SessionCreateNestedManyWithoutUserInput
     software?: SoftwareCreateNestedManyWithoutUserInput
     userQuests?: UserQuestsCreateNestedManyWithoutUserInput
-    portfolios?: PortfolioCreateNestedManyWithoutUserInput
-    ongoingTrades?: TradeCreateNestedManyWithoutUserInput
-    managedFunds?: FundCreateNestedManyWithoutFundManagerInput
   }
 
   export type UserUncheckedCreateWithoutProfileInput = {
@@ -36318,6 +28229,7 @@ export namespace Prisma {
     created?: Date | string
     refreshToken?: string | null
     group?: $Enums.Groups
+    portfolioID?: number | null
     accountBook?: AccountBookUncheckedCreateNestedManyWithoutUserInput
     addressBook?: AddressBookUncheckedCreateNestedManyWithoutUserInput
     computer?: ComputerUncheckedCreateNestedManyWithoutUserInput
@@ -36329,9 +28241,6 @@ export namespace Prisma {
     session?: SessionUncheckedCreateNestedManyWithoutUserInput
     software?: SoftwareUncheckedCreateNestedManyWithoutUserInput
     userQuests?: UserQuestsUncheckedCreateNestedManyWithoutUserInput
-    portfolios?: PortfolioUncheckedCreateNestedManyWithoutUserInput
-    ongoingTrades?: TradeUncheckedCreateNestedManyWithoutUserInput
-    managedFunds?: FundUncheckedCreateNestedManyWithoutFundManagerInput
   }
 
   export type UserCreateOrConnectWithoutProfileInput = {
@@ -36406,6 +28315,7 @@ export namespace Prisma {
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     group?: EnumGroupsFieldUpdateOperationsInput | $Enums.Groups
+    portfolioID?: NullableIntFieldUpdateOperationsInput | number | null
     accountBook?: AccountBookUpdateManyWithoutUserNestedInput
     addressBook?: AddressBookUpdateManyWithoutUserNestedInput
     computer?: ComputerUpdateManyWithoutUserNestedInput
@@ -36417,9 +28327,6 @@ export namespace Prisma {
     session?: SessionUpdateManyWithoutUserNestedInput
     software?: SoftwareUpdateManyWithoutUserNestedInput
     userQuests?: UserQuestsUpdateManyWithoutUserNestedInput
-    portfolios?: PortfolioUpdateManyWithoutUserNestedInput
-    ongoingTrades?: TradeUpdateManyWithoutUserNestedInput
-    managedFunds?: FundUpdateManyWithoutFundManagerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutProfileInput = {
@@ -36432,6 +28339,7 @@ export namespace Prisma {
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     group?: EnumGroupsFieldUpdateOperationsInput | $Enums.Groups
+    portfolioID?: NullableIntFieldUpdateOperationsInput | number | null
     accountBook?: AccountBookUncheckedUpdateManyWithoutUserNestedInput
     addressBook?: AddressBookUncheckedUpdateManyWithoutUserNestedInput
     computer?: ComputerUncheckedUpdateManyWithoutUserNestedInput
@@ -36443,9 +28351,6 @@ export namespace Prisma {
     session?: SessionUncheckedUpdateManyWithoutUserNestedInput
     software?: SoftwareUncheckedUpdateManyWithoutUserNestedInput
     userQuests?: UserQuestsUncheckedUpdateManyWithoutUserNestedInput
-    portfolios?: PortfolioUncheckedUpdateManyWithoutUserNestedInput
-    ongoingTrades?: TradeUncheckedUpdateManyWithoutUserNestedInput
-    managedFunds?: FundUncheckedUpdateManyWithoutFundManagerNestedInput
   }
 
   export type AccountBookCreateWithoutMemoryInput = {
@@ -36564,6 +28469,7 @@ export namespace Prisma {
     created?: Date | string
     refreshToken?: string | null
     group?: $Enums.Groups
+    portfolioID?: number | null
     accountBook?: AccountBookCreateNestedManyWithoutUserInput
     addressBook?: AddressBookCreateNestedManyWithoutUserInput
     computer?: ComputerCreateNestedManyWithoutUserInput
@@ -36575,9 +28481,6 @@ export namespace Prisma {
     session?: SessionCreateNestedManyWithoutUserInput
     software?: SoftwareCreateNestedManyWithoutUserInput
     userQuests?: UserQuestsCreateNestedManyWithoutUserInput
-    portfolios?: PortfolioCreateNestedManyWithoutUserInput
-    ongoingTrades?: TradeCreateNestedManyWithoutUserInput
-    managedFunds?: FundCreateNestedManyWithoutFundManagerInput
   }
 
   export type UserUncheckedCreateWithoutMemoryInput = {
@@ -36590,6 +28493,7 @@ export namespace Prisma {
     created?: Date | string
     refreshToken?: string | null
     group?: $Enums.Groups
+    portfolioID?: number | null
     accountBook?: AccountBookUncheckedCreateNestedManyWithoutUserInput
     addressBook?: AddressBookUncheckedCreateNestedManyWithoutUserInput
     computer?: ComputerUncheckedCreateNestedManyWithoutUserInput
@@ -36601,9 +28505,6 @@ export namespace Prisma {
     session?: SessionUncheckedCreateNestedManyWithoutUserInput
     software?: SoftwareUncheckedCreateNestedManyWithoutUserInput
     userQuests?: UserQuestsUncheckedCreateNestedManyWithoutUserInput
-    portfolios?: PortfolioUncheckedCreateNestedManyWithoutUserInput
-    ongoingTrades?: TradeUncheckedCreateNestedManyWithoutUserInput
-    managedFunds?: FundUncheckedCreateNestedManyWithoutFundManagerInput
   }
 
   export type UserCreateOrConnectWithoutMemoryInput = {
@@ -36741,6 +28642,7 @@ export namespace Prisma {
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     group?: EnumGroupsFieldUpdateOperationsInput | $Enums.Groups
+    portfolioID?: NullableIntFieldUpdateOperationsInput | number | null
     accountBook?: AccountBookUpdateManyWithoutUserNestedInput
     addressBook?: AddressBookUpdateManyWithoutUserNestedInput
     computer?: ComputerUpdateManyWithoutUserNestedInput
@@ -36752,9 +28654,6 @@ export namespace Prisma {
     session?: SessionUpdateManyWithoutUserNestedInput
     software?: SoftwareUpdateManyWithoutUserNestedInput
     userQuests?: UserQuestsUpdateManyWithoutUserNestedInput
-    portfolios?: PortfolioUpdateManyWithoutUserNestedInput
-    ongoingTrades?: TradeUpdateManyWithoutUserNestedInput
-    managedFunds?: FundUpdateManyWithoutFundManagerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutMemoryInput = {
@@ -36767,6 +28666,7 @@ export namespace Prisma {
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     group?: EnumGroupsFieldUpdateOperationsInput | $Enums.Groups
+    portfolioID?: NullableIntFieldUpdateOperationsInput | number | null
     accountBook?: AccountBookUncheckedUpdateManyWithoutUserNestedInput
     addressBook?: AddressBookUncheckedUpdateManyWithoutUserNestedInput
     computer?: ComputerUncheckedUpdateManyWithoutUserNestedInput
@@ -36778,9 +28678,6 @@ export namespace Prisma {
     session?: SessionUncheckedUpdateManyWithoutUserNestedInput
     software?: SoftwareUncheckedUpdateManyWithoutUserNestedInput
     userQuests?: UserQuestsUncheckedUpdateManyWithoutUserNestedInput
-    portfolios?: PortfolioUncheckedUpdateManyWithoutUserNestedInput
-    ongoingTrades?: TradeUncheckedUpdateManyWithoutUserNestedInput
-    managedFunds?: FundUncheckedUpdateManyWithoutFundManagerNestedInput
   }
 
   export type AccountBookCreateWithoutComputerInput = {
@@ -36885,6 +28782,7 @@ export namespace Prisma {
     created?: Date | string
     refreshToken?: string | null
     group?: $Enums.Groups
+    portfolioID?: number | null
     accountBook?: AccountBookCreateNestedManyWithoutUserInput
     addressBook?: AddressBookCreateNestedManyWithoutUserInput
     dns?: DNSCreateNestedManyWithoutUserInput
@@ -36896,9 +28794,6 @@ export namespace Prisma {
     session?: SessionCreateNestedManyWithoutUserInput
     software?: SoftwareCreateNestedManyWithoutUserInput
     userQuests?: UserQuestsCreateNestedManyWithoutUserInput
-    portfolios?: PortfolioCreateNestedManyWithoutUserInput
-    ongoingTrades?: TradeCreateNestedManyWithoutUserInput
-    managedFunds?: FundCreateNestedManyWithoutFundManagerInput
   }
 
   export type UserUncheckedCreateWithoutComputerInput = {
@@ -36911,6 +28806,7 @@ export namespace Prisma {
     created?: Date | string
     refreshToken?: string | null
     group?: $Enums.Groups
+    portfolioID?: number | null
     accountBook?: AccountBookUncheckedCreateNestedManyWithoutUserInput
     addressBook?: AddressBookUncheckedCreateNestedManyWithoutUserInput
     dns?: DNSUncheckedCreateNestedManyWithoutUserInput
@@ -36922,9 +28818,6 @@ export namespace Prisma {
     session?: SessionUncheckedCreateNestedManyWithoutUserInput
     software?: SoftwareUncheckedCreateNestedManyWithoutUserInput
     userQuests?: UserQuestsUncheckedCreateNestedManyWithoutUserInput
-    portfolios?: PortfolioUncheckedCreateNestedManyWithoutUserInput
-    ongoingTrades?: TradeUncheckedCreateNestedManyWithoutUserInput
-    managedFunds?: FundUncheckedCreateNestedManyWithoutFundManagerInput
   }
 
   export type UserCreateOrConnectWithoutComputerInput = {
@@ -37218,6 +29111,7 @@ export namespace Prisma {
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     group?: EnumGroupsFieldUpdateOperationsInput | $Enums.Groups
+    portfolioID?: NullableIntFieldUpdateOperationsInput | number | null
     accountBook?: AccountBookUpdateManyWithoutUserNestedInput
     addressBook?: AddressBookUpdateManyWithoutUserNestedInput
     dns?: DNSUpdateManyWithoutUserNestedInput
@@ -37229,9 +29123,6 @@ export namespace Prisma {
     session?: SessionUpdateManyWithoutUserNestedInput
     software?: SoftwareUpdateManyWithoutUserNestedInput
     userQuests?: UserQuestsUpdateManyWithoutUserNestedInput
-    portfolios?: PortfolioUpdateManyWithoutUserNestedInput
-    ongoingTrades?: TradeUpdateManyWithoutUserNestedInput
-    managedFunds?: FundUpdateManyWithoutFundManagerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutComputerInput = {
@@ -37244,6 +29135,7 @@ export namespace Prisma {
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     group?: EnumGroupsFieldUpdateOperationsInput | $Enums.Groups
+    portfolioID?: NullableIntFieldUpdateOperationsInput | number | null
     accountBook?: AccountBookUncheckedUpdateManyWithoutUserNestedInput
     addressBook?: AddressBookUncheckedUpdateManyWithoutUserNestedInput
     dns?: DNSUncheckedUpdateManyWithoutUserNestedInput
@@ -37255,9 +29147,6 @@ export namespace Prisma {
     session?: SessionUncheckedUpdateManyWithoutUserNestedInput
     software?: SoftwareUncheckedUpdateManyWithoutUserNestedInput
     userQuests?: UserQuestsUncheckedUpdateManyWithoutUserNestedInput
-    portfolios?: PortfolioUncheckedUpdateManyWithoutUserNestedInput
-    ongoingTrades?: TradeUncheckedUpdateManyWithoutUserNestedInput
-    managedFunds?: FundUncheckedUpdateManyWithoutFundManagerNestedInput
   }
 
   export type DNSUpsertWithWhereUniqueWithoutComputerInput = {
@@ -37561,6 +29450,7 @@ export namespace Prisma {
     created?: Date | string
     refreshToken?: string | null
     group?: $Enums.Groups
+    portfolioID?: number | null
     accountBook?: AccountBookCreateNestedManyWithoutUserInput
     addressBook?: AddressBookCreateNestedManyWithoutUserInput
     computer?: ComputerCreateNestedManyWithoutUserInput
@@ -37572,9 +29462,6 @@ export namespace Prisma {
     profile?: ProfileCreateNestedManyWithoutUserInput
     session?: SessionCreateNestedManyWithoutUserInput
     software?: SoftwareCreateNestedManyWithoutUserInput
-    portfolios?: PortfolioCreateNestedManyWithoutUserInput
-    ongoingTrades?: TradeCreateNestedManyWithoutUserInput
-    managedFunds?: FundCreateNestedManyWithoutFundManagerInput
   }
 
   export type UserUncheckedCreateWithoutUserQuestsInput = {
@@ -37587,6 +29474,7 @@ export namespace Prisma {
     created?: Date | string
     refreshToken?: string | null
     group?: $Enums.Groups
+    portfolioID?: number | null
     accountBook?: AccountBookUncheckedCreateNestedManyWithoutUserInput
     addressBook?: AddressBookUncheckedCreateNestedManyWithoutUserInput
     computer?: ComputerUncheckedCreateNestedManyWithoutUserInput
@@ -37598,9 +29486,6 @@ export namespace Prisma {
     profile?: ProfileUncheckedCreateNestedManyWithoutUserInput
     session?: SessionUncheckedCreateNestedManyWithoutUserInput
     software?: SoftwareUncheckedCreateNestedManyWithoutUserInput
-    portfolios?: PortfolioUncheckedCreateNestedManyWithoutUserInput
-    ongoingTrades?: TradeUncheckedCreateNestedManyWithoutUserInput
-    managedFunds?: FundUncheckedCreateNestedManyWithoutFundManagerInput
   }
 
   export type UserCreateOrConnectWithoutUserQuestsInput = {
@@ -37704,6 +29589,7 @@ export namespace Prisma {
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     group?: EnumGroupsFieldUpdateOperationsInput | $Enums.Groups
+    portfolioID?: NullableIntFieldUpdateOperationsInput | number | null
     accountBook?: AccountBookUpdateManyWithoutUserNestedInput
     addressBook?: AddressBookUpdateManyWithoutUserNestedInput
     computer?: ComputerUpdateManyWithoutUserNestedInput
@@ -37715,9 +29601,6 @@ export namespace Prisma {
     profile?: ProfileUpdateManyWithoutUserNestedInput
     session?: SessionUpdateManyWithoutUserNestedInput
     software?: SoftwareUpdateManyWithoutUserNestedInput
-    portfolios?: PortfolioUpdateManyWithoutUserNestedInput
-    ongoingTrades?: TradeUpdateManyWithoutUserNestedInput
-    managedFunds?: FundUpdateManyWithoutFundManagerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutUserQuestsInput = {
@@ -37730,6 +29613,7 @@ export namespace Prisma {
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     group?: EnumGroupsFieldUpdateOperationsInput | $Enums.Groups
+    portfolioID?: NullableIntFieldUpdateOperationsInput | number | null
     accountBook?: AccountBookUncheckedUpdateManyWithoutUserNestedInput
     addressBook?: AddressBookUncheckedUpdateManyWithoutUserNestedInput
     computer?: ComputerUncheckedUpdateManyWithoutUserNestedInput
@@ -37741,9 +29625,6 @@ export namespace Prisma {
     profile?: ProfileUncheckedUpdateManyWithoutUserNestedInput
     session?: SessionUncheckedUpdateManyWithoutUserNestedInput
     software?: SoftwareUncheckedUpdateManyWithoutUserNestedInput
-    portfolios?: PortfolioUncheckedUpdateManyWithoutUserNestedInput
-    ongoingTrades?: TradeUncheckedUpdateManyWithoutUserNestedInput
-    managedFunds?: FundUncheckedUpdateManyWithoutFundManagerNestedInput
   }
 
   export type ComputerCreateWithoutSoftwareInput = {
@@ -37837,6 +29718,7 @@ export namespace Prisma {
     created?: Date | string
     refreshToken?: string | null
     group?: $Enums.Groups
+    portfolioID?: number | null
     accountBook?: AccountBookCreateNestedManyWithoutUserInput
     addressBook?: AddressBookCreateNestedManyWithoutUserInput
     computer?: ComputerCreateNestedManyWithoutUserInput
@@ -37848,9 +29730,6 @@ export namespace Prisma {
     profile?: ProfileCreateNestedManyWithoutUserInput
     session?: SessionCreateNestedManyWithoutUserInput
     userQuests?: UserQuestsCreateNestedManyWithoutUserInput
-    portfolios?: PortfolioCreateNestedManyWithoutUserInput
-    ongoingTrades?: TradeCreateNestedManyWithoutUserInput
-    managedFunds?: FundCreateNestedManyWithoutFundManagerInput
   }
 
   export type UserUncheckedCreateWithoutSoftwareInput = {
@@ -37863,6 +29742,7 @@ export namespace Prisma {
     created?: Date | string
     refreshToken?: string | null
     group?: $Enums.Groups
+    portfolioID?: number | null
     accountBook?: AccountBookUncheckedCreateNestedManyWithoutUserInput
     addressBook?: AddressBookUncheckedCreateNestedManyWithoutUserInput
     computer?: ComputerUncheckedCreateNestedManyWithoutUserInput
@@ -37874,9 +29754,6 @@ export namespace Prisma {
     profile?: ProfileUncheckedCreateNestedManyWithoutUserInput
     session?: SessionUncheckedCreateNestedManyWithoutUserInput
     userQuests?: UserQuestsUncheckedCreateNestedManyWithoutUserInput
-    portfolios?: PortfolioUncheckedCreateNestedManyWithoutUserInput
-    ongoingTrades?: TradeUncheckedCreateNestedManyWithoutUserInput
-    managedFunds?: FundUncheckedCreateNestedManyWithoutFundManagerInput
   }
 
   export type UserCreateOrConnectWithoutSoftwareInput = {
@@ -37998,6 +29875,7 @@ export namespace Prisma {
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     group?: EnumGroupsFieldUpdateOperationsInput | $Enums.Groups
+    portfolioID?: NullableIntFieldUpdateOperationsInput | number | null
     accountBook?: AccountBookUpdateManyWithoutUserNestedInput
     addressBook?: AddressBookUpdateManyWithoutUserNestedInput
     computer?: ComputerUpdateManyWithoutUserNestedInput
@@ -38009,9 +29887,6 @@ export namespace Prisma {
     profile?: ProfileUpdateManyWithoutUserNestedInput
     session?: SessionUpdateManyWithoutUserNestedInput
     userQuests?: UserQuestsUpdateManyWithoutUserNestedInput
-    portfolios?: PortfolioUpdateManyWithoutUserNestedInput
-    ongoingTrades?: TradeUpdateManyWithoutUserNestedInput
-    managedFunds?: FundUpdateManyWithoutFundManagerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSoftwareInput = {
@@ -38024,6 +29899,7 @@ export namespace Prisma {
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     group?: EnumGroupsFieldUpdateOperationsInput | $Enums.Groups
+    portfolioID?: NullableIntFieldUpdateOperationsInput | number | null
     accountBook?: AccountBookUncheckedUpdateManyWithoutUserNestedInput
     addressBook?: AddressBookUncheckedUpdateManyWithoutUserNestedInput
     computer?: ComputerUncheckedUpdateManyWithoutUserNestedInput
@@ -38035,9 +29911,6 @@ export namespace Prisma {
     profile?: ProfileUncheckedUpdateManyWithoutUserNestedInput
     session?: SessionUncheckedUpdateManyWithoutUserNestedInput
     userQuests?: UserQuestsUncheckedUpdateManyWithoutUserNestedInput
-    portfolios?: PortfolioUncheckedUpdateManyWithoutUserNestedInput
-    ongoingTrades?: TradeUncheckedUpdateManyWithoutUserNestedInput
-    managedFunds?: FundUncheckedUpdateManyWithoutFundManagerNestedInput
   }
 
   export type ComputerCreateWithoutProcessInput = {
@@ -38131,6 +30004,7 @@ export namespace Prisma {
     created?: Date | string
     refreshToken?: string | null
     group?: $Enums.Groups
+    portfolioID?: number | null
     accountBook?: AccountBookCreateNestedManyWithoutUserInput
     addressBook?: AddressBookCreateNestedManyWithoutUserInput
     computer?: ComputerCreateNestedManyWithoutUserInput
@@ -38142,9 +30016,6 @@ export namespace Prisma {
     session?: SessionCreateNestedManyWithoutUserInput
     software?: SoftwareCreateNestedManyWithoutUserInput
     userQuests?: UserQuestsCreateNestedManyWithoutUserInput
-    portfolios?: PortfolioCreateNestedManyWithoutUserInput
-    ongoingTrades?: TradeCreateNestedManyWithoutUserInput
-    managedFunds?: FundCreateNestedManyWithoutFundManagerInput
   }
 
   export type UserUncheckedCreateWithoutProcessInput = {
@@ -38157,6 +30028,7 @@ export namespace Prisma {
     created?: Date | string
     refreshToken?: string | null
     group?: $Enums.Groups
+    portfolioID?: number | null
     accountBook?: AccountBookUncheckedCreateNestedManyWithoutUserInput
     addressBook?: AddressBookUncheckedCreateNestedManyWithoutUserInput
     computer?: ComputerUncheckedCreateNestedManyWithoutUserInput
@@ -38168,9 +30040,6 @@ export namespace Prisma {
     session?: SessionUncheckedCreateNestedManyWithoutUserInput
     software?: SoftwareUncheckedCreateNestedManyWithoutUserInput
     userQuests?: UserQuestsUncheckedCreateNestedManyWithoutUserInput
-    portfolios?: PortfolioUncheckedCreateNestedManyWithoutUserInput
-    ongoingTrades?: TradeUncheckedCreateNestedManyWithoutUserInput
-    managedFunds?: FundUncheckedCreateNestedManyWithoutFundManagerInput
   }
 
   export type UserCreateOrConnectWithoutProcessInput = {
@@ -38292,6 +30161,7 @@ export namespace Prisma {
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     group?: EnumGroupsFieldUpdateOperationsInput | $Enums.Groups
+    portfolioID?: NullableIntFieldUpdateOperationsInput | number | null
     accountBook?: AccountBookUpdateManyWithoutUserNestedInput
     addressBook?: AddressBookUpdateManyWithoutUserNestedInput
     computer?: ComputerUpdateManyWithoutUserNestedInput
@@ -38303,9 +30173,6 @@ export namespace Prisma {
     session?: SessionUpdateManyWithoutUserNestedInput
     software?: SoftwareUpdateManyWithoutUserNestedInput
     userQuests?: UserQuestsUpdateManyWithoutUserNestedInput
-    portfolios?: PortfolioUpdateManyWithoutUserNestedInput
-    ongoingTrades?: TradeUpdateManyWithoutUserNestedInput
-    managedFunds?: FundUpdateManyWithoutFundManagerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutProcessInput = {
@@ -38318,6 +30185,7 @@ export namespace Prisma {
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     group?: EnumGroupsFieldUpdateOperationsInput | $Enums.Groups
+    portfolioID?: NullableIntFieldUpdateOperationsInput | number | null
     accountBook?: AccountBookUncheckedUpdateManyWithoutUserNestedInput
     addressBook?: AddressBookUncheckedUpdateManyWithoutUserNestedInput
     computer?: ComputerUncheckedUpdateManyWithoutUserNestedInput
@@ -38329,9 +30197,6 @@ export namespace Prisma {
     session?: SessionUncheckedUpdateManyWithoutUserNestedInput
     software?: SoftwareUncheckedUpdateManyWithoutUserNestedInput
     userQuests?: UserQuestsUncheckedUpdateManyWithoutUserNestedInput
-    portfolios?: PortfolioUncheckedUpdateManyWithoutUserNestedInput
-    ongoingTrades?: TradeUncheckedUpdateManyWithoutUserNestedInput
-    managedFunds?: FundUncheckedUpdateManyWithoutFundManagerNestedInput
   }
 
   export type UserCreateWithoutNotificationsInput = {
@@ -38343,6 +30208,7 @@ export namespace Prisma {
     created?: Date | string
     refreshToken?: string | null
     group?: $Enums.Groups
+    portfolioID?: number | null
     accountBook?: AccountBookCreateNestedManyWithoutUserInput
     addressBook?: AddressBookCreateNestedManyWithoutUserInput
     computer?: ComputerCreateNestedManyWithoutUserInput
@@ -38354,9 +30220,6 @@ export namespace Prisma {
     session?: SessionCreateNestedManyWithoutUserInput
     software?: SoftwareCreateNestedManyWithoutUserInput
     userQuests?: UserQuestsCreateNestedManyWithoutUserInput
-    portfolios?: PortfolioCreateNestedManyWithoutUserInput
-    ongoingTrades?: TradeCreateNestedManyWithoutUserInput
-    managedFunds?: FundCreateNestedManyWithoutFundManagerInput
   }
 
   export type UserUncheckedCreateWithoutNotificationsInput = {
@@ -38369,6 +30232,7 @@ export namespace Prisma {
     created?: Date | string
     refreshToken?: string | null
     group?: $Enums.Groups
+    portfolioID?: number | null
     accountBook?: AccountBookUncheckedCreateNestedManyWithoutUserInput
     addressBook?: AddressBookUncheckedCreateNestedManyWithoutUserInput
     computer?: ComputerUncheckedCreateNestedManyWithoutUserInput
@@ -38380,9 +30244,6 @@ export namespace Prisma {
     session?: SessionUncheckedCreateNestedManyWithoutUserInput
     software?: SoftwareUncheckedCreateNestedManyWithoutUserInput
     userQuests?: UserQuestsUncheckedCreateNestedManyWithoutUserInput
-    portfolios?: PortfolioUncheckedCreateNestedManyWithoutUserInput
-    ongoingTrades?: TradeUncheckedCreateNestedManyWithoutUserInput
-    managedFunds?: FundUncheckedCreateNestedManyWithoutFundManagerInput
   }
 
   export type UserCreateOrConnectWithoutNotificationsInput = {
@@ -38410,6 +30271,7 @@ export namespace Prisma {
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     group?: EnumGroupsFieldUpdateOperationsInput | $Enums.Groups
+    portfolioID?: NullableIntFieldUpdateOperationsInput | number | null
     accountBook?: AccountBookUpdateManyWithoutUserNestedInput
     addressBook?: AddressBookUpdateManyWithoutUserNestedInput
     computer?: ComputerUpdateManyWithoutUserNestedInput
@@ -38421,9 +30283,6 @@ export namespace Prisma {
     session?: SessionUpdateManyWithoutUserNestedInput
     software?: SoftwareUpdateManyWithoutUserNestedInput
     userQuests?: UserQuestsUpdateManyWithoutUserNestedInput
-    portfolios?: PortfolioUpdateManyWithoutUserNestedInput
-    ongoingTrades?: TradeUpdateManyWithoutUserNestedInput
-    managedFunds?: FundUpdateManyWithoutFundManagerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutNotificationsInput = {
@@ -38436,6 +30295,7 @@ export namespace Prisma {
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     group?: EnumGroupsFieldUpdateOperationsInput | $Enums.Groups
+    portfolioID?: NullableIntFieldUpdateOperationsInput | number | null
     accountBook?: AccountBookUncheckedUpdateManyWithoutUserNestedInput
     addressBook?: AddressBookUncheckedUpdateManyWithoutUserNestedInput
     computer?: ComputerUncheckedUpdateManyWithoutUserNestedInput
@@ -38447,9 +30307,6 @@ export namespace Prisma {
     session?: SessionUncheckedUpdateManyWithoutUserNestedInput
     software?: SoftwareUncheckedUpdateManyWithoutUserNestedInput
     userQuests?: UserQuestsUncheckedUpdateManyWithoutUserNestedInput
-    portfolios?: PortfolioUncheckedUpdateManyWithoutUserNestedInput
-    ongoingTrades?: TradeUncheckedUpdateManyWithoutUserNestedInput
-    managedFunds?: FundUncheckedUpdateManyWithoutFundManagerNestedInput
   }
 
   export type ComputerCreateWithoutLogsInput = {
@@ -38543,6 +30400,7 @@ export namespace Prisma {
     created?: Date | string
     refreshToken?: string | null
     group?: $Enums.Groups
+    portfolioID?: number | null
     accountBook?: AccountBookCreateNestedManyWithoutUserInput
     addressBook?: AddressBookCreateNestedManyWithoutUserInput
     computer?: ComputerCreateNestedManyWithoutUserInput
@@ -38554,9 +30412,6 @@ export namespace Prisma {
     session?: SessionCreateNestedManyWithoutUserInput
     software?: SoftwareCreateNestedManyWithoutUserInput
     userQuests?: UserQuestsCreateNestedManyWithoutUserInput
-    portfolios?: PortfolioCreateNestedManyWithoutUserInput
-    ongoingTrades?: TradeCreateNestedManyWithoutUserInput
-    managedFunds?: FundCreateNestedManyWithoutFundManagerInput
   }
 
   export type UserUncheckedCreateWithoutLogsInput = {
@@ -38569,6 +30424,7 @@ export namespace Prisma {
     created?: Date | string
     refreshToken?: string | null
     group?: $Enums.Groups
+    portfolioID?: number | null
     accountBook?: AccountBookUncheckedCreateNestedManyWithoutUserInput
     addressBook?: AddressBookUncheckedCreateNestedManyWithoutUserInput
     computer?: ComputerUncheckedCreateNestedManyWithoutUserInput
@@ -38580,9 +30436,6 @@ export namespace Prisma {
     session?: SessionUncheckedCreateNestedManyWithoutUserInput
     software?: SoftwareUncheckedCreateNestedManyWithoutUserInput
     userQuests?: UserQuestsUncheckedCreateNestedManyWithoutUserInput
-    portfolios?: PortfolioUncheckedCreateNestedManyWithoutUserInput
-    ongoingTrades?: TradeUncheckedCreateNestedManyWithoutUserInput
-    managedFunds?: FundUncheckedCreateNestedManyWithoutFundManagerInput
   }
 
   export type UserCreateOrConnectWithoutLogsInput = {
@@ -38704,6 +30557,7 @@ export namespace Prisma {
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     group?: EnumGroupsFieldUpdateOperationsInput | $Enums.Groups
+    portfolioID?: NullableIntFieldUpdateOperationsInput | number | null
     accountBook?: AccountBookUpdateManyWithoutUserNestedInput
     addressBook?: AddressBookUpdateManyWithoutUserNestedInput
     computer?: ComputerUpdateManyWithoutUserNestedInput
@@ -38715,9 +30569,6 @@ export namespace Prisma {
     session?: SessionUpdateManyWithoutUserNestedInput
     software?: SoftwareUpdateManyWithoutUserNestedInput
     userQuests?: UserQuestsUpdateManyWithoutUserNestedInput
-    portfolios?: PortfolioUpdateManyWithoutUserNestedInput
-    ongoingTrades?: TradeUpdateManyWithoutUserNestedInput
-    managedFunds?: FundUpdateManyWithoutFundManagerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutLogsInput = {
@@ -38730,6 +30581,7 @@ export namespace Prisma {
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     group?: EnumGroupsFieldUpdateOperationsInput | $Enums.Groups
+    portfolioID?: NullableIntFieldUpdateOperationsInput | number | null
     accountBook?: AccountBookUncheckedUpdateManyWithoutUserNestedInput
     addressBook?: AddressBookUncheckedUpdateManyWithoutUserNestedInput
     computer?: ComputerUncheckedUpdateManyWithoutUserNestedInput
@@ -38741,987 +30593,6 @@ export namespace Prisma {
     session?: SessionUncheckedUpdateManyWithoutUserNestedInput
     software?: SoftwareUncheckedUpdateManyWithoutUserNestedInput
     userQuests?: UserQuestsUncheckedUpdateManyWithoutUserNestedInput
-    portfolios?: PortfolioUncheckedUpdateManyWithoutUserNestedInput
-    ongoingTrades?: TradeUncheckedUpdateManyWithoutUserNestedInput
-    managedFunds?: FundUncheckedUpdateManyWithoutFundManagerNestedInput
-  }
-
-  export type FundCreateWithoutTradesInput = {
-    name: string
-    minimumInvestmentAmount?: bigint | number
-    totalFundCharge?: Decimal | DecimalJsLike | number | string
-    totalFundCost?: Decimal | DecimalJsLike | number | string
-    totalAssets?: bigint | number
-    isActive?: boolean
-    maxInvestors?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    fundManager: UserCreateNestedOneWithoutManagedFundsInput
-    holdings?: PortfolioHoldingCreateNestedManyWithoutFundInput
-    hedgeFunds?: HedgeFundCreateNestedManyWithoutFundInput
-  }
-
-  export type FundUncheckedCreateWithoutTradesInput = {
-    id?: number
-    fundManagerId: number
-    name: string
-    minimumInvestmentAmount?: bigint | number
-    totalFundCharge?: Decimal | DecimalJsLike | number | string
-    totalFundCost?: Decimal | DecimalJsLike | number | string
-    totalAssets?: bigint | number
-    isActive?: boolean
-    maxInvestors?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    holdings?: PortfolioHoldingUncheckedCreateNestedManyWithoutFundInput
-    hedgeFunds?: HedgeFundUncheckedCreateNestedManyWithoutFundInput
-  }
-
-  export type FundCreateOrConnectWithoutTradesInput = {
-    where: FundWhereUniqueInput
-    create: XOR<FundCreateWithoutTradesInput, FundUncheckedCreateWithoutTradesInput>
-  }
-
-  export type UserCreateWithoutOngoingTradesInput = {
-    email: string
-    name?: string
-    password: string
-    salt: string
-    lastAction?: Date | string
-    created?: Date | string
-    refreshToken?: string | null
-    group?: $Enums.Groups
-    accountBook?: AccountBookCreateNestedManyWithoutUserInput
-    addressBook?: AddressBookCreateNestedManyWithoutUserInput
-    computer?: ComputerCreateNestedManyWithoutUserInput
-    dns?: DNSCreateNestedManyWithoutUserInput
-    logs?: LogsCreateNestedManyWithoutUserInput
-    memory?: MemoryCreateNestedManyWithoutUserInput
-    notifications?: NotificationsCreateNestedManyWithoutUserInput
-    process?: ProcessCreateNestedManyWithoutUserInput
-    profile?: ProfileCreateNestedManyWithoutUserInput
-    session?: SessionCreateNestedManyWithoutUserInput
-    software?: SoftwareCreateNestedManyWithoutUserInput
-    userQuests?: UserQuestsCreateNestedManyWithoutUserInput
-    portfolios?: PortfolioCreateNestedManyWithoutUserInput
-    managedFunds?: FundCreateNestedManyWithoutFundManagerInput
-  }
-
-  export type UserUncheckedCreateWithoutOngoingTradesInput = {
-    id?: number
-    email: string
-    name?: string
-    password: string
-    salt: string
-    lastAction?: Date | string
-    created?: Date | string
-    refreshToken?: string | null
-    group?: $Enums.Groups
-    accountBook?: AccountBookUncheckedCreateNestedManyWithoutUserInput
-    addressBook?: AddressBookUncheckedCreateNestedManyWithoutUserInput
-    computer?: ComputerUncheckedCreateNestedManyWithoutUserInput
-    dns?: DNSUncheckedCreateNestedManyWithoutUserInput
-    logs?: LogsUncheckedCreateNestedManyWithoutUserInput
-    memory?: MemoryUncheckedCreateNestedManyWithoutUserInput
-    notifications?: NotificationsUncheckedCreateNestedManyWithoutUserInput
-    process?: ProcessUncheckedCreateNestedManyWithoutUserInput
-    profile?: ProfileUncheckedCreateNestedManyWithoutUserInput
-    session?: SessionUncheckedCreateNestedManyWithoutUserInput
-    software?: SoftwareUncheckedCreateNestedManyWithoutUserInput
-    userQuests?: UserQuestsUncheckedCreateNestedManyWithoutUserInput
-    portfolios?: PortfolioUncheckedCreateNestedManyWithoutUserInput
-    managedFunds?: FundUncheckedCreateNestedManyWithoutFundManagerInput
-  }
-
-  export type UserCreateOrConnectWithoutOngoingTradesInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutOngoingTradesInput, UserUncheckedCreateWithoutOngoingTradesInput>
-  }
-
-  export type PortfolioCreateWithoutTradesInput = {
-    name: string
-    totalValue?: bigint | number
-    isActive?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    user: UserCreateNestedOneWithoutPortfoliosInput
-    holdings?: PortfolioHoldingCreateNestedManyWithoutPortfolioInput
-  }
-
-  export type PortfolioUncheckedCreateWithoutTradesInput = {
-    id?: number
-    userId: number
-    name: string
-    totalValue?: bigint | number
-    isActive?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    holdings?: PortfolioHoldingUncheckedCreateNestedManyWithoutPortfolioInput
-  }
-
-  export type PortfolioCreateOrConnectWithoutTradesInput = {
-    where: PortfolioWhereUniqueInput
-    create: XOR<PortfolioCreateWithoutTradesInput, PortfolioUncheckedCreateWithoutTradesInput>
-  }
-
-  export type FundUpsertWithoutTradesInput = {
-    update: XOR<FundUpdateWithoutTradesInput, FundUncheckedUpdateWithoutTradesInput>
-    create: XOR<FundCreateWithoutTradesInput, FundUncheckedCreateWithoutTradesInput>
-    where?: FundWhereInput
-  }
-
-  export type FundUpdateToOneWithWhereWithoutTradesInput = {
-    where?: FundWhereInput
-    data: XOR<FundUpdateWithoutTradesInput, FundUncheckedUpdateWithoutTradesInput>
-  }
-
-  export type FundUpdateWithoutTradesInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    minimumInvestmentAmount?: BigIntFieldUpdateOperationsInput | bigint | number
-    totalFundCharge?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    totalFundCost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    totalAssets?: BigIntFieldUpdateOperationsInput | bigint | number
-    isActive?: BoolFieldUpdateOperationsInput | boolean
-    maxInvestors?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    fundManager?: UserUpdateOneRequiredWithoutManagedFundsNestedInput
-    holdings?: PortfolioHoldingUpdateManyWithoutFundNestedInput
-    hedgeFunds?: HedgeFundUpdateManyWithoutFundNestedInput
-  }
-
-  export type FundUncheckedUpdateWithoutTradesInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    fundManagerId?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    minimumInvestmentAmount?: BigIntFieldUpdateOperationsInput | bigint | number
-    totalFundCharge?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    totalFundCost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    totalAssets?: BigIntFieldUpdateOperationsInput | bigint | number
-    isActive?: BoolFieldUpdateOperationsInput | boolean
-    maxInvestors?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    holdings?: PortfolioHoldingUncheckedUpdateManyWithoutFundNestedInput
-    hedgeFunds?: HedgeFundUncheckedUpdateManyWithoutFundNestedInput
-  }
-
-  export type UserUpsertWithoutOngoingTradesInput = {
-    update: XOR<UserUpdateWithoutOngoingTradesInput, UserUncheckedUpdateWithoutOngoingTradesInput>
-    create: XOR<UserCreateWithoutOngoingTradesInput, UserUncheckedCreateWithoutOngoingTradesInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutOngoingTradesInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutOngoingTradesInput, UserUncheckedUpdateWithoutOngoingTradesInput>
-  }
-
-  export type UserUpdateWithoutOngoingTradesInput = {
-    email?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    salt?: StringFieldUpdateOperationsInput | string
-    lastAction?: DateTimeFieldUpdateOperationsInput | Date | string
-    created?: DateTimeFieldUpdateOperationsInput | Date | string
-    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
-    group?: EnumGroupsFieldUpdateOperationsInput | $Enums.Groups
-    accountBook?: AccountBookUpdateManyWithoutUserNestedInput
-    addressBook?: AddressBookUpdateManyWithoutUserNestedInput
-    computer?: ComputerUpdateManyWithoutUserNestedInput
-    dns?: DNSUpdateManyWithoutUserNestedInput
-    logs?: LogsUpdateManyWithoutUserNestedInput
-    memory?: MemoryUpdateManyWithoutUserNestedInput
-    notifications?: NotificationsUpdateManyWithoutUserNestedInput
-    process?: ProcessUpdateManyWithoutUserNestedInput
-    profile?: ProfileUpdateManyWithoutUserNestedInput
-    session?: SessionUpdateManyWithoutUserNestedInput
-    software?: SoftwareUpdateManyWithoutUserNestedInput
-    userQuests?: UserQuestsUpdateManyWithoutUserNestedInput
-    portfolios?: PortfolioUpdateManyWithoutUserNestedInput
-    managedFunds?: FundUpdateManyWithoutFundManagerNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutOngoingTradesInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    email?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    salt?: StringFieldUpdateOperationsInput | string
-    lastAction?: DateTimeFieldUpdateOperationsInput | Date | string
-    created?: DateTimeFieldUpdateOperationsInput | Date | string
-    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
-    group?: EnumGroupsFieldUpdateOperationsInput | $Enums.Groups
-    accountBook?: AccountBookUncheckedUpdateManyWithoutUserNestedInput
-    addressBook?: AddressBookUncheckedUpdateManyWithoutUserNestedInput
-    computer?: ComputerUncheckedUpdateManyWithoutUserNestedInput
-    dns?: DNSUncheckedUpdateManyWithoutUserNestedInput
-    logs?: LogsUncheckedUpdateManyWithoutUserNestedInput
-    memory?: MemoryUncheckedUpdateManyWithoutUserNestedInput
-    notifications?: NotificationsUncheckedUpdateManyWithoutUserNestedInput
-    process?: ProcessUncheckedUpdateManyWithoutUserNestedInput
-    profile?: ProfileUncheckedUpdateManyWithoutUserNestedInput
-    session?: SessionUncheckedUpdateManyWithoutUserNestedInput
-    software?: SoftwareUncheckedUpdateManyWithoutUserNestedInput
-    userQuests?: UserQuestsUncheckedUpdateManyWithoutUserNestedInput
-    portfolios?: PortfolioUncheckedUpdateManyWithoutUserNestedInput
-    managedFunds?: FundUncheckedUpdateManyWithoutFundManagerNestedInput
-  }
-
-  export type PortfolioUpsertWithoutTradesInput = {
-    update: XOR<PortfolioUpdateWithoutTradesInput, PortfolioUncheckedUpdateWithoutTradesInput>
-    create: XOR<PortfolioCreateWithoutTradesInput, PortfolioUncheckedCreateWithoutTradesInput>
-    where?: PortfolioWhereInput
-  }
-
-  export type PortfolioUpdateToOneWithWhereWithoutTradesInput = {
-    where?: PortfolioWhereInput
-    data: XOR<PortfolioUpdateWithoutTradesInput, PortfolioUncheckedUpdateWithoutTradesInput>
-  }
-
-  export type PortfolioUpdateWithoutTradesInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    totalValue?: BigIntFieldUpdateOperationsInput | bigint | number
-    isActive?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutPortfoliosNestedInput
-    holdings?: PortfolioHoldingUpdateManyWithoutPortfolioNestedInput
-  }
-
-  export type PortfolioUncheckedUpdateWithoutTradesInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    totalValue?: BigIntFieldUpdateOperationsInput | bigint | number
-    isActive?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    holdings?: PortfolioHoldingUncheckedUpdateManyWithoutPortfolioNestedInput
-  }
-
-  export type UserCreateWithoutManagedFundsInput = {
-    email: string
-    name?: string
-    password: string
-    salt: string
-    lastAction?: Date | string
-    created?: Date | string
-    refreshToken?: string | null
-    group?: $Enums.Groups
-    accountBook?: AccountBookCreateNestedManyWithoutUserInput
-    addressBook?: AddressBookCreateNestedManyWithoutUserInput
-    computer?: ComputerCreateNestedManyWithoutUserInput
-    dns?: DNSCreateNestedManyWithoutUserInput
-    logs?: LogsCreateNestedManyWithoutUserInput
-    memory?: MemoryCreateNestedManyWithoutUserInput
-    notifications?: NotificationsCreateNestedManyWithoutUserInput
-    process?: ProcessCreateNestedManyWithoutUserInput
-    profile?: ProfileCreateNestedManyWithoutUserInput
-    session?: SessionCreateNestedManyWithoutUserInput
-    software?: SoftwareCreateNestedManyWithoutUserInput
-    userQuests?: UserQuestsCreateNestedManyWithoutUserInput
-    portfolios?: PortfolioCreateNestedManyWithoutUserInput
-    ongoingTrades?: TradeCreateNestedManyWithoutUserInput
-  }
-
-  export type UserUncheckedCreateWithoutManagedFundsInput = {
-    id?: number
-    email: string
-    name?: string
-    password: string
-    salt: string
-    lastAction?: Date | string
-    created?: Date | string
-    refreshToken?: string | null
-    group?: $Enums.Groups
-    accountBook?: AccountBookUncheckedCreateNestedManyWithoutUserInput
-    addressBook?: AddressBookUncheckedCreateNestedManyWithoutUserInput
-    computer?: ComputerUncheckedCreateNestedManyWithoutUserInput
-    dns?: DNSUncheckedCreateNestedManyWithoutUserInput
-    logs?: LogsUncheckedCreateNestedManyWithoutUserInput
-    memory?: MemoryUncheckedCreateNestedManyWithoutUserInput
-    notifications?: NotificationsUncheckedCreateNestedManyWithoutUserInput
-    process?: ProcessUncheckedCreateNestedManyWithoutUserInput
-    profile?: ProfileUncheckedCreateNestedManyWithoutUserInput
-    session?: SessionUncheckedCreateNestedManyWithoutUserInput
-    software?: SoftwareUncheckedCreateNestedManyWithoutUserInput
-    userQuests?: UserQuestsUncheckedCreateNestedManyWithoutUserInput
-    portfolios?: PortfolioUncheckedCreateNestedManyWithoutUserInput
-    ongoingTrades?: TradeUncheckedCreateNestedManyWithoutUserInput
-  }
-
-  export type UserCreateOrConnectWithoutManagedFundsInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutManagedFundsInput, UserUncheckedCreateWithoutManagedFundsInput>
-  }
-
-  export type TradeCreateWithoutBuyIntoTargetFundInput = {
-    marketId: number
-    type: string
-    quantity: number
-    price: bigint | number
-    totalValue: number
-    status: string
-    executedAt: Date | string
-    createdAt?: Date | string
-    instructionType: $Enums.InstructionNamedType
-    user: UserCreateNestedOneWithoutOngoingTradesInput
-    portfolio: PortfolioCreateNestedOneWithoutTradesInput
-  }
-
-  export type TradeUncheckedCreateWithoutBuyIntoTargetFundInput = {
-    id?: number
-    userId: number
-    marketId: number
-    portfolioId: number
-    type: string
-    quantity: number
-    price: bigint | number
-    totalValue: number
-    status: string
-    executedAt: Date | string
-    createdAt?: Date | string
-    instructionType: $Enums.InstructionNamedType
-  }
-
-  export type TradeCreateOrConnectWithoutBuyIntoTargetFundInput = {
-    where: TradeWhereUniqueInput
-    create: XOR<TradeCreateWithoutBuyIntoTargetFundInput, TradeUncheckedCreateWithoutBuyIntoTargetFundInput>
-  }
-
-  export type TradeCreateManyBuyIntoTargetFundInputEnvelope = {
-    data: TradeCreateManyBuyIntoTargetFundInput | TradeCreateManyBuyIntoTargetFundInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type PortfolioHoldingCreateWithoutFundInput = {
-    quantity: bigint | number
-    averagePrice: bigint | number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    portfolio: PortfolioCreateNestedOneWithoutHoldingsInput
-  }
-
-  export type PortfolioHoldingUncheckedCreateWithoutFundInput = {
-    id?: number
-    portfolioId: number
-    quantity: bigint | number
-    averagePrice: bigint | number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type PortfolioHoldingCreateOrConnectWithoutFundInput = {
-    where: PortfolioHoldingWhereUniqueInput
-    create: XOR<PortfolioHoldingCreateWithoutFundInput, PortfolioHoldingUncheckedCreateWithoutFundInput>
-  }
-
-  export type PortfolioHoldingCreateManyFundInputEnvelope = {
-    data: PortfolioHoldingCreateManyFundInput | PortfolioHoldingCreateManyFundInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type HedgeFundCreateWithoutFundInput = {
-    strategy: string
-    riskLevel: string
-    minimumLockPeriod?: number
-    managementFee?: Decimal | DecimalJsLike | number | string
-    performanceFee?: Decimal | DecimalJsLike | number | string
-    highWaterMark?: bigint | number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type HedgeFundUncheckedCreateWithoutFundInput = {
-    id?: number
-    strategy: string
-    riskLevel: string
-    minimumLockPeriod?: number
-    managementFee?: Decimal | DecimalJsLike | number | string
-    performanceFee?: Decimal | DecimalJsLike | number | string
-    highWaterMark?: bigint | number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type HedgeFundCreateOrConnectWithoutFundInput = {
-    where: HedgeFundWhereUniqueInput
-    create: XOR<HedgeFundCreateWithoutFundInput, HedgeFundUncheckedCreateWithoutFundInput>
-  }
-
-  export type HedgeFundCreateManyFundInputEnvelope = {
-    data: HedgeFundCreateManyFundInput | HedgeFundCreateManyFundInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type UserUpsertWithoutManagedFundsInput = {
-    update: XOR<UserUpdateWithoutManagedFundsInput, UserUncheckedUpdateWithoutManagedFundsInput>
-    create: XOR<UserCreateWithoutManagedFundsInput, UserUncheckedCreateWithoutManagedFundsInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutManagedFundsInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutManagedFundsInput, UserUncheckedUpdateWithoutManagedFundsInput>
-  }
-
-  export type UserUpdateWithoutManagedFundsInput = {
-    email?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    salt?: StringFieldUpdateOperationsInput | string
-    lastAction?: DateTimeFieldUpdateOperationsInput | Date | string
-    created?: DateTimeFieldUpdateOperationsInput | Date | string
-    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
-    group?: EnumGroupsFieldUpdateOperationsInput | $Enums.Groups
-    accountBook?: AccountBookUpdateManyWithoutUserNestedInput
-    addressBook?: AddressBookUpdateManyWithoutUserNestedInput
-    computer?: ComputerUpdateManyWithoutUserNestedInput
-    dns?: DNSUpdateManyWithoutUserNestedInput
-    logs?: LogsUpdateManyWithoutUserNestedInput
-    memory?: MemoryUpdateManyWithoutUserNestedInput
-    notifications?: NotificationsUpdateManyWithoutUserNestedInput
-    process?: ProcessUpdateManyWithoutUserNestedInput
-    profile?: ProfileUpdateManyWithoutUserNestedInput
-    session?: SessionUpdateManyWithoutUserNestedInput
-    software?: SoftwareUpdateManyWithoutUserNestedInput
-    userQuests?: UserQuestsUpdateManyWithoutUserNestedInput
-    portfolios?: PortfolioUpdateManyWithoutUserNestedInput
-    ongoingTrades?: TradeUpdateManyWithoutUserNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutManagedFundsInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    email?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    salt?: StringFieldUpdateOperationsInput | string
-    lastAction?: DateTimeFieldUpdateOperationsInput | Date | string
-    created?: DateTimeFieldUpdateOperationsInput | Date | string
-    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
-    group?: EnumGroupsFieldUpdateOperationsInput | $Enums.Groups
-    accountBook?: AccountBookUncheckedUpdateManyWithoutUserNestedInput
-    addressBook?: AddressBookUncheckedUpdateManyWithoutUserNestedInput
-    computer?: ComputerUncheckedUpdateManyWithoutUserNestedInput
-    dns?: DNSUncheckedUpdateManyWithoutUserNestedInput
-    logs?: LogsUncheckedUpdateManyWithoutUserNestedInput
-    memory?: MemoryUncheckedUpdateManyWithoutUserNestedInput
-    notifications?: NotificationsUncheckedUpdateManyWithoutUserNestedInput
-    process?: ProcessUncheckedUpdateManyWithoutUserNestedInput
-    profile?: ProfileUncheckedUpdateManyWithoutUserNestedInput
-    session?: SessionUncheckedUpdateManyWithoutUserNestedInput
-    software?: SoftwareUncheckedUpdateManyWithoutUserNestedInput
-    userQuests?: UserQuestsUncheckedUpdateManyWithoutUserNestedInput
-    portfolios?: PortfolioUncheckedUpdateManyWithoutUserNestedInput
-    ongoingTrades?: TradeUncheckedUpdateManyWithoutUserNestedInput
-  }
-
-  export type TradeUpsertWithWhereUniqueWithoutBuyIntoTargetFundInput = {
-    where: TradeWhereUniqueInput
-    update: XOR<TradeUpdateWithoutBuyIntoTargetFundInput, TradeUncheckedUpdateWithoutBuyIntoTargetFundInput>
-    create: XOR<TradeCreateWithoutBuyIntoTargetFundInput, TradeUncheckedCreateWithoutBuyIntoTargetFundInput>
-  }
-
-  export type TradeUpdateWithWhereUniqueWithoutBuyIntoTargetFundInput = {
-    where: TradeWhereUniqueInput
-    data: XOR<TradeUpdateWithoutBuyIntoTargetFundInput, TradeUncheckedUpdateWithoutBuyIntoTargetFundInput>
-  }
-
-  export type TradeUpdateManyWithWhereWithoutBuyIntoTargetFundInput = {
-    where: TradeScalarWhereInput
-    data: XOR<TradeUpdateManyMutationInput, TradeUncheckedUpdateManyWithoutBuyIntoTargetFundInput>
-  }
-
-  export type PortfolioHoldingUpsertWithWhereUniqueWithoutFundInput = {
-    where: PortfolioHoldingWhereUniqueInput
-    update: XOR<PortfolioHoldingUpdateWithoutFundInput, PortfolioHoldingUncheckedUpdateWithoutFundInput>
-    create: XOR<PortfolioHoldingCreateWithoutFundInput, PortfolioHoldingUncheckedCreateWithoutFundInput>
-  }
-
-  export type PortfolioHoldingUpdateWithWhereUniqueWithoutFundInput = {
-    where: PortfolioHoldingWhereUniqueInput
-    data: XOR<PortfolioHoldingUpdateWithoutFundInput, PortfolioHoldingUncheckedUpdateWithoutFundInput>
-  }
-
-  export type PortfolioHoldingUpdateManyWithWhereWithoutFundInput = {
-    where: PortfolioHoldingScalarWhereInput
-    data: XOR<PortfolioHoldingUpdateManyMutationInput, PortfolioHoldingUncheckedUpdateManyWithoutFundInput>
-  }
-
-  export type PortfolioHoldingScalarWhereInput = {
-    AND?: PortfolioHoldingScalarWhereInput | PortfolioHoldingScalarWhereInput[]
-    OR?: PortfolioHoldingScalarWhereInput[]
-    NOT?: PortfolioHoldingScalarWhereInput | PortfolioHoldingScalarWhereInput[]
-    id?: IntFilter<"PortfolioHolding"> | number
-    portfolioId?: IntFilter<"PortfolioHolding"> | number
-    fundId?: IntFilter<"PortfolioHolding"> | number
-    quantity?: BigIntFilter<"PortfolioHolding"> | bigint | number
-    averagePrice?: BigIntFilter<"PortfolioHolding"> | bigint | number
-    createdAt?: DateTimeFilter<"PortfolioHolding"> | Date | string
-    updatedAt?: DateTimeFilter<"PortfolioHolding"> | Date | string
-  }
-
-  export type HedgeFundUpsertWithWhereUniqueWithoutFundInput = {
-    where: HedgeFundWhereUniqueInput
-    update: XOR<HedgeFundUpdateWithoutFundInput, HedgeFundUncheckedUpdateWithoutFundInput>
-    create: XOR<HedgeFundCreateWithoutFundInput, HedgeFundUncheckedCreateWithoutFundInput>
-  }
-
-  export type HedgeFundUpdateWithWhereUniqueWithoutFundInput = {
-    where: HedgeFundWhereUniqueInput
-    data: XOR<HedgeFundUpdateWithoutFundInput, HedgeFundUncheckedUpdateWithoutFundInput>
-  }
-
-  export type HedgeFundUpdateManyWithWhereWithoutFundInput = {
-    where: HedgeFundScalarWhereInput
-    data: XOR<HedgeFundUpdateManyMutationInput, HedgeFundUncheckedUpdateManyWithoutFundInput>
-  }
-
-  export type HedgeFundScalarWhereInput = {
-    AND?: HedgeFundScalarWhereInput | HedgeFundScalarWhereInput[]
-    OR?: HedgeFundScalarWhereInput[]
-    NOT?: HedgeFundScalarWhereInput | HedgeFundScalarWhereInput[]
-    id?: IntFilter<"HedgeFund"> | number
-    fundId?: IntFilter<"HedgeFund"> | number
-    strategy?: StringFilter<"HedgeFund"> | string
-    riskLevel?: StringFilter<"HedgeFund"> | string
-    minimumLockPeriod?: IntFilter<"HedgeFund"> | number
-    managementFee?: DecimalFilter<"HedgeFund"> | Decimal | DecimalJsLike | number | string
-    performanceFee?: DecimalFilter<"HedgeFund"> | Decimal | DecimalJsLike | number | string
-    highWaterMark?: BigIntFilter<"HedgeFund"> | bigint | number
-    createdAt?: DateTimeFilter<"HedgeFund"> | Date | string
-    updatedAt?: DateTimeFilter<"HedgeFund"> | Date | string
-  }
-
-  export type UserCreateWithoutPortfoliosInput = {
-    email: string
-    name?: string
-    password: string
-    salt: string
-    lastAction?: Date | string
-    created?: Date | string
-    refreshToken?: string | null
-    group?: $Enums.Groups
-    accountBook?: AccountBookCreateNestedManyWithoutUserInput
-    addressBook?: AddressBookCreateNestedManyWithoutUserInput
-    computer?: ComputerCreateNestedManyWithoutUserInput
-    dns?: DNSCreateNestedManyWithoutUserInput
-    logs?: LogsCreateNestedManyWithoutUserInput
-    memory?: MemoryCreateNestedManyWithoutUserInput
-    notifications?: NotificationsCreateNestedManyWithoutUserInput
-    process?: ProcessCreateNestedManyWithoutUserInput
-    profile?: ProfileCreateNestedManyWithoutUserInput
-    session?: SessionCreateNestedManyWithoutUserInput
-    software?: SoftwareCreateNestedManyWithoutUserInput
-    userQuests?: UserQuestsCreateNestedManyWithoutUserInput
-    ongoingTrades?: TradeCreateNestedManyWithoutUserInput
-    managedFunds?: FundCreateNestedManyWithoutFundManagerInput
-  }
-
-  export type UserUncheckedCreateWithoutPortfoliosInput = {
-    id?: number
-    email: string
-    name?: string
-    password: string
-    salt: string
-    lastAction?: Date | string
-    created?: Date | string
-    refreshToken?: string | null
-    group?: $Enums.Groups
-    accountBook?: AccountBookUncheckedCreateNestedManyWithoutUserInput
-    addressBook?: AddressBookUncheckedCreateNestedManyWithoutUserInput
-    computer?: ComputerUncheckedCreateNestedManyWithoutUserInput
-    dns?: DNSUncheckedCreateNestedManyWithoutUserInput
-    logs?: LogsUncheckedCreateNestedManyWithoutUserInput
-    memory?: MemoryUncheckedCreateNestedManyWithoutUserInput
-    notifications?: NotificationsUncheckedCreateNestedManyWithoutUserInput
-    process?: ProcessUncheckedCreateNestedManyWithoutUserInput
-    profile?: ProfileUncheckedCreateNestedManyWithoutUserInput
-    session?: SessionUncheckedCreateNestedManyWithoutUserInput
-    software?: SoftwareUncheckedCreateNestedManyWithoutUserInput
-    userQuests?: UserQuestsUncheckedCreateNestedManyWithoutUserInput
-    ongoingTrades?: TradeUncheckedCreateNestedManyWithoutUserInput
-    managedFunds?: FundUncheckedCreateNestedManyWithoutFundManagerInput
-  }
-
-  export type UserCreateOrConnectWithoutPortfoliosInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutPortfoliosInput, UserUncheckedCreateWithoutPortfoliosInput>
-  }
-
-  export type PortfolioHoldingCreateWithoutPortfolioInput = {
-    quantity: bigint | number
-    averagePrice: bigint | number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    fund: FundCreateNestedOneWithoutHoldingsInput
-  }
-
-  export type PortfolioHoldingUncheckedCreateWithoutPortfolioInput = {
-    id?: number
-    fundId: number
-    quantity: bigint | number
-    averagePrice: bigint | number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type PortfolioHoldingCreateOrConnectWithoutPortfolioInput = {
-    where: PortfolioHoldingWhereUniqueInput
-    create: XOR<PortfolioHoldingCreateWithoutPortfolioInput, PortfolioHoldingUncheckedCreateWithoutPortfolioInput>
-  }
-
-  export type PortfolioHoldingCreateManyPortfolioInputEnvelope = {
-    data: PortfolioHoldingCreateManyPortfolioInput | PortfolioHoldingCreateManyPortfolioInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type TradeCreateWithoutPortfolioInput = {
-    marketId: number
-    type: string
-    quantity: number
-    price: bigint | number
-    totalValue: number
-    status: string
-    executedAt: Date | string
-    createdAt?: Date | string
-    instructionType: $Enums.InstructionNamedType
-    buyIntoTargetFund: FundCreateNestedOneWithoutTradesInput
-    user: UserCreateNestedOneWithoutOngoingTradesInput
-  }
-
-  export type TradeUncheckedCreateWithoutPortfolioInput = {
-    id?: number
-    userId: number
-    marketId: number
-    type: string
-    quantity: number
-    price: bigint | number
-    totalValue: number
-    status: string
-    executedAt: Date | string
-    createdAt?: Date | string
-    buyIntoTargetFundid: number
-    instructionType: $Enums.InstructionNamedType
-  }
-
-  export type TradeCreateOrConnectWithoutPortfolioInput = {
-    where: TradeWhereUniqueInput
-    create: XOR<TradeCreateWithoutPortfolioInput, TradeUncheckedCreateWithoutPortfolioInput>
-  }
-
-  export type TradeCreateManyPortfolioInputEnvelope = {
-    data: TradeCreateManyPortfolioInput | TradeCreateManyPortfolioInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type UserUpsertWithoutPortfoliosInput = {
-    update: XOR<UserUpdateWithoutPortfoliosInput, UserUncheckedUpdateWithoutPortfoliosInput>
-    create: XOR<UserCreateWithoutPortfoliosInput, UserUncheckedCreateWithoutPortfoliosInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutPortfoliosInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutPortfoliosInput, UserUncheckedUpdateWithoutPortfoliosInput>
-  }
-
-  export type UserUpdateWithoutPortfoliosInput = {
-    email?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    salt?: StringFieldUpdateOperationsInput | string
-    lastAction?: DateTimeFieldUpdateOperationsInput | Date | string
-    created?: DateTimeFieldUpdateOperationsInput | Date | string
-    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
-    group?: EnumGroupsFieldUpdateOperationsInput | $Enums.Groups
-    accountBook?: AccountBookUpdateManyWithoutUserNestedInput
-    addressBook?: AddressBookUpdateManyWithoutUserNestedInput
-    computer?: ComputerUpdateManyWithoutUserNestedInput
-    dns?: DNSUpdateManyWithoutUserNestedInput
-    logs?: LogsUpdateManyWithoutUserNestedInput
-    memory?: MemoryUpdateManyWithoutUserNestedInput
-    notifications?: NotificationsUpdateManyWithoutUserNestedInput
-    process?: ProcessUpdateManyWithoutUserNestedInput
-    profile?: ProfileUpdateManyWithoutUserNestedInput
-    session?: SessionUpdateManyWithoutUserNestedInput
-    software?: SoftwareUpdateManyWithoutUserNestedInput
-    userQuests?: UserQuestsUpdateManyWithoutUserNestedInput
-    ongoingTrades?: TradeUpdateManyWithoutUserNestedInput
-    managedFunds?: FundUpdateManyWithoutFundManagerNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutPortfoliosInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    email?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    salt?: StringFieldUpdateOperationsInput | string
-    lastAction?: DateTimeFieldUpdateOperationsInput | Date | string
-    created?: DateTimeFieldUpdateOperationsInput | Date | string
-    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
-    group?: EnumGroupsFieldUpdateOperationsInput | $Enums.Groups
-    accountBook?: AccountBookUncheckedUpdateManyWithoutUserNestedInput
-    addressBook?: AddressBookUncheckedUpdateManyWithoutUserNestedInput
-    computer?: ComputerUncheckedUpdateManyWithoutUserNestedInput
-    dns?: DNSUncheckedUpdateManyWithoutUserNestedInput
-    logs?: LogsUncheckedUpdateManyWithoutUserNestedInput
-    memory?: MemoryUncheckedUpdateManyWithoutUserNestedInput
-    notifications?: NotificationsUncheckedUpdateManyWithoutUserNestedInput
-    process?: ProcessUncheckedUpdateManyWithoutUserNestedInput
-    profile?: ProfileUncheckedUpdateManyWithoutUserNestedInput
-    session?: SessionUncheckedUpdateManyWithoutUserNestedInput
-    software?: SoftwareUncheckedUpdateManyWithoutUserNestedInput
-    userQuests?: UserQuestsUncheckedUpdateManyWithoutUserNestedInput
-    ongoingTrades?: TradeUncheckedUpdateManyWithoutUserNestedInput
-    managedFunds?: FundUncheckedUpdateManyWithoutFundManagerNestedInput
-  }
-
-  export type PortfolioHoldingUpsertWithWhereUniqueWithoutPortfolioInput = {
-    where: PortfolioHoldingWhereUniqueInput
-    update: XOR<PortfolioHoldingUpdateWithoutPortfolioInput, PortfolioHoldingUncheckedUpdateWithoutPortfolioInput>
-    create: XOR<PortfolioHoldingCreateWithoutPortfolioInput, PortfolioHoldingUncheckedCreateWithoutPortfolioInput>
-  }
-
-  export type PortfolioHoldingUpdateWithWhereUniqueWithoutPortfolioInput = {
-    where: PortfolioHoldingWhereUniqueInput
-    data: XOR<PortfolioHoldingUpdateWithoutPortfolioInput, PortfolioHoldingUncheckedUpdateWithoutPortfolioInput>
-  }
-
-  export type PortfolioHoldingUpdateManyWithWhereWithoutPortfolioInput = {
-    where: PortfolioHoldingScalarWhereInput
-    data: XOR<PortfolioHoldingUpdateManyMutationInput, PortfolioHoldingUncheckedUpdateManyWithoutPortfolioInput>
-  }
-
-  export type TradeUpsertWithWhereUniqueWithoutPortfolioInput = {
-    where: TradeWhereUniqueInput
-    update: XOR<TradeUpdateWithoutPortfolioInput, TradeUncheckedUpdateWithoutPortfolioInput>
-    create: XOR<TradeCreateWithoutPortfolioInput, TradeUncheckedCreateWithoutPortfolioInput>
-  }
-
-  export type TradeUpdateWithWhereUniqueWithoutPortfolioInput = {
-    where: TradeWhereUniqueInput
-    data: XOR<TradeUpdateWithoutPortfolioInput, TradeUncheckedUpdateWithoutPortfolioInput>
-  }
-
-  export type TradeUpdateManyWithWhereWithoutPortfolioInput = {
-    where: TradeScalarWhereInput
-    data: XOR<TradeUpdateManyMutationInput, TradeUncheckedUpdateManyWithoutPortfolioInput>
-  }
-
-  export type PortfolioCreateWithoutHoldingsInput = {
-    name: string
-    totalValue?: bigint | number
-    isActive?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    user: UserCreateNestedOneWithoutPortfoliosInput
-    trades?: TradeCreateNestedManyWithoutPortfolioInput
-  }
-
-  export type PortfolioUncheckedCreateWithoutHoldingsInput = {
-    id?: number
-    userId: number
-    name: string
-    totalValue?: bigint | number
-    isActive?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    trades?: TradeUncheckedCreateNestedManyWithoutPortfolioInput
-  }
-
-  export type PortfolioCreateOrConnectWithoutHoldingsInput = {
-    where: PortfolioWhereUniqueInput
-    create: XOR<PortfolioCreateWithoutHoldingsInput, PortfolioUncheckedCreateWithoutHoldingsInput>
-  }
-
-  export type FundCreateWithoutHoldingsInput = {
-    name: string
-    minimumInvestmentAmount?: bigint | number
-    totalFundCharge?: Decimal | DecimalJsLike | number | string
-    totalFundCost?: Decimal | DecimalJsLike | number | string
-    totalAssets?: bigint | number
-    isActive?: boolean
-    maxInvestors?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    fundManager: UserCreateNestedOneWithoutManagedFundsInput
-    trades?: TradeCreateNestedManyWithoutBuyIntoTargetFundInput
-    hedgeFunds?: HedgeFundCreateNestedManyWithoutFundInput
-  }
-
-  export type FundUncheckedCreateWithoutHoldingsInput = {
-    id?: number
-    fundManagerId: number
-    name: string
-    minimumInvestmentAmount?: bigint | number
-    totalFundCharge?: Decimal | DecimalJsLike | number | string
-    totalFundCost?: Decimal | DecimalJsLike | number | string
-    totalAssets?: bigint | number
-    isActive?: boolean
-    maxInvestors?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    trades?: TradeUncheckedCreateNestedManyWithoutBuyIntoTargetFundInput
-    hedgeFunds?: HedgeFundUncheckedCreateNestedManyWithoutFundInput
-  }
-
-  export type FundCreateOrConnectWithoutHoldingsInput = {
-    where: FundWhereUniqueInput
-    create: XOR<FundCreateWithoutHoldingsInput, FundUncheckedCreateWithoutHoldingsInput>
-  }
-
-  export type PortfolioUpsertWithoutHoldingsInput = {
-    update: XOR<PortfolioUpdateWithoutHoldingsInput, PortfolioUncheckedUpdateWithoutHoldingsInput>
-    create: XOR<PortfolioCreateWithoutHoldingsInput, PortfolioUncheckedCreateWithoutHoldingsInput>
-    where?: PortfolioWhereInput
-  }
-
-  export type PortfolioUpdateToOneWithWhereWithoutHoldingsInput = {
-    where?: PortfolioWhereInput
-    data: XOR<PortfolioUpdateWithoutHoldingsInput, PortfolioUncheckedUpdateWithoutHoldingsInput>
-  }
-
-  export type PortfolioUpdateWithoutHoldingsInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    totalValue?: BigIntFieldUpdateOperationsInput | bigint | number
-    isActive?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutPortfoliosNestedInput
-    trades?: TradeUpdateManyWithoutPortfolioNestedInput
-  }
-
-  export type PortfolioUncheckedUpdateWithoutHoldingsInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    totalValue?: BigIntFieldUpdateOperationsInput | bigint | number
-    isActive?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    trades?: TradeUncheckedUpdateManyWithoutPortfolioNestedInput
-  }
-
-  export type FundUpsertWithoutHoldingsInput = {
-    update: XOR<FundUpdateWithoutHoldingsInput, FundUncheckedUpdateWithoutHoldingsInput>
-    create: XOR<FundCreateWithoutHoldingsInput, FundUncheckedCreateWithoutHoldingsInput>
-    where?: FundWhereInput
-  }
-
-  export type FundUpdateToOneWithWhereWithoutHoldingsInput = {
-    where?: FundWhereInput
-    data: XOR<FundUpdateWithoutHoldingsInput, FundUncheckedUpdateWithoutHoldingsInput>
-  }
-
-  export type FundUpdateWithoutHoldingsInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    minimumInvestmentAmount?: BigIntFieldUpdateOperationsInput | bigint | number
-    totalFundCharge?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    totalFundCost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    totalAssets?: BigIntFieldUpdateOperationsInput | bigint | number
-    isActive?: BoolFieldUpdateOperationsInput | boolean
-    maxInvestors?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    fundManager?: UserUpdateOneRequiredWithoutManagedFundsNestedInput
-    trades?: TradeUpdateManyWithoutBuyIntoTargetFundNestedInput
-    hedgeFunds?: HedgeFundUpdateManyWithoutFundNestedInput
-  }
-
-  export type FundUncheckedUpdateWithoutHoldingsInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    fundManagerId?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    minimumInvestmentAmount?: BigIntFieldUpdateOperationsInput | bigint | number
-    totalFundCharge?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    totalFundCost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    totalAssets?: BigIntFieldUpdateOperationsInput | bigint | number
-    isActive?: BoolFieldUpdateOperationsInput | boolean
-    maxInvestors?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    trades?: TradeUncheckedUpdateManyWithoutBuyIntoTargetFundNestedInput
-    hedgeFunds?: HedgeFundUncheckedUpdateManyWithoutFundNestedInput
-  }
-
-  export type FundCreateWithoutHedgeFundsInput = {
-    name: string
-    minimumInvestmentAmount?: bigint | number
-    totalFundCharge?: Decimal | DecimalJsLike | number | string
-    totalFundCost?: Decimal | DecimalJsLike | number | string
-    totalAssets?: bigint | number
-    isActive?: boolean
-    maxInvestors?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    fundManager: UserCreateNestedOneWithoutManagedFundsInput
-    trades?: TradeCreateNestedManyWithoutBuyIntoTargetFundInput
-    holdings?: PortfolioHoldingCreateNestedManyWithoutFundInput
-  }
-
-  export type FundUncheckedCreateWithoutHedgeFundsInput = {
-    id?: number
-    fundManagerId: number
-    name: string
-    minimumInvestmentAmount?: bigint | number
-    totalFundCharge?: Decimal | DecimalJsLike | number | string
-    totalFundCost?: Decimal | DecimalJsLike | number | string
-    totalAssets?: bigint | number
-    isActive?: boolean
-    maxInvestors?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    trades?: TradeUncheckedCreateNestedManyWithoutBuyIntoTargetFundInput
-    holdings?: PortfolioHoldingUncheckedCreateNestedManyWithoutFundInput
-  }
-
-  export type FundCreateOrConnectWithoutHedgeFundsInput = {
-    where: FundWhereUniqueInput
-    create: XOR<FundCreateWithoutHedgeFundsInput, FundUncheckedCreateWithoutHedgeFundsInput>
-  }
-
-  export type FundUpsertWithoutHedgeFundsInput = {
-    update: XOR<FundUpdateWithoutHedgeFundsInput, FundUncheckedUpdateWithoutHedgeFundsInput>
-    create: XOR<FundCreateWithoutHedgeFundsInput, FundUncheckedCreateWithoutHedgeFundsInput>
-    where?: FundWhereInput
-  }
-
-  export type FundUpdateToOneWithWhereWithoutHedgeFundsInput = {
-    where?: FundWhereInput
-    data: XOR<FundUpdateWithoutHedgeFundsInput, FundUncheckedUpdateWithoutHedgeFundsInput>
-  }
-
-  export type FundUpdateWithoutHedgeFundsInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    minimumInvestmentAmount?: BigIntFieldUpdateOperationsInput | bigint | number
-    totalFundCharge?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    totalFundCost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    totalAssets?: BigIntFieldUpdateOperationsInput | bigint | number
-    isActive?: BoolFieldUpdateOperationsInput | boolean
-    maxInvestors?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    fundManager?: UserUpdateOneRequiredWithoutManagedFundsNestedInput
-    trades?: TradeUpdateManyWithoutBuyIntoTargetFundNestedInput
-    holdings?: PortfolioHoldingUpdateManyWithoutFundNestedInput
-  }
-
-  export type FundUncheckedUpdateWithoutHedgeFundsInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    fundManagerId?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    minimumInvestmentAmount?: BigIntFieldUpdateOperationsInput | bigint | number
-    totalFundCharge?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    totalFundCost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    totalAssets?: BigIntFieldUpdateOperationsInput | bigint | number
-    isActive?: BoolFieldUpdateOperationsInput | boolean
-    maxInvestors?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    trades?: TradeUncheckedUpdateManyWithoutBuyIntoTargetFundNestedInput
-    holdings?: PortfolioHoldingUncheckedUpdateManyWithoutFundNestedInput
   }
 
   export type AccountBookCreateManyUserInput = {
@@ -39836,43 +30707,6 @@ export namespace Prisma {
     completed: boolean
     created?: Date | string
     updated?: Date | string
-  }
-
-  export type PortfolioCreateManyUserInput = {
-    id?: number
-    name: string
-    totalValue?: bigint | number
-    isActive?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type TradeCreateManyUserInput = {
-    id?: number
-    marketId: number
-    portfolioId: number
-    type: string
-    quantity: number
-    price: bigint | number
-    totalValue: number
-    status: string
-    executedAt: Date | string
-    createdAt?: Date | string
-    buyIntoTargetFundid: number
-    instructionType: $Enums.InstructionNamedType
-  }
-
-  export type FundCreateManyFundManagerInput = {
-    id?: number
-    name: string
-    minimumInvestmentAmount?: bigint | number
-    totalFundCharge?: Decimal | DecimalJsLike | number | string
-    totalFundCost?: Decimal | DecimalJsLike | number | string
-    totalAssets?: bigint | number
-    isActive?: boolean
-    maxInvestors?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
   }
 
   export type AccountBookUpdateWithoutUserInput = {
@@ -40227,124 +31061,6 @@ export namespace Prisma {
     completed?: BoolFieldUpdateOperationsInput | boolean
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     updated?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type PortfolioUpdateWithoutUserInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    totalValue?: BigIntFieldUpdateOperationsInput | bigint | number
-    isActive?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    holdings?: PortfolioHoldingUpdateManyWithoutPortfolioNestedInput
-    trades?: TradeUpdateManyWithoutPortfolioNestedInput
-  }
-
-  export type PortfolioUncheckedUpdateWithoutUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    totalValue?: BigIntFieldUpdateOperationsInput | bigint | number
-    isActive?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    holdings?: PortfolioHoldingUncheckedUpdateManyWithoutPortfolioNestedInput
-    trades?: TradeUncheckedUpdateManyWithoutPortfolioNestedInput
-  }
-
-  export type PortfolioUncheckedUpdateManyWithoutUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    totalValue?: BigIntFieldUpdateOperationsInput | bigint | number
-    isActive?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type TradeUpdateWithoutUserInput = {
-    marketId?: IntFieldUpdateOperationsInput | number
-    type?: StringFieldUpdateOperationsInput | string
-    quantity?: IntFieldUpdateOperationsInput | number
-    price?: BigIntFieldUpdateOperationsInput | bigint | number
-    totalValue?: IntFieldUpdateOperationsInput | number
-    status?: StringFieldUpdateOperationsInput | string
-    executedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    instructionType?: EnumInstructionNamedTypeFieldUpdateOperationsInput | $Enums.InstructionNamedType
-    buyIntoTargetFund?: FundUpdateOneRequiredWithoutTradesNestedInput
-    portfolio?: PortfolioUpdateOneRequiredWithoutTradesNestedInput
-  }
-
-  export type TradeUncheckedUpdateWithoutUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    marketId?: IntFieldUpdateOperationsInput | number
-    portfolioId?: IntFieldUpdateOperationsInput | number
-    type?: StringFieldUpdateOperationsInput | string
-    quantity?: IntFieldUpdateOperationsInput | number
-    price?: BigIntFieldUpdateOperationsInput | bigint | number
-    totalValue?: IntFieldUpdateOperationsInput | number
-    status?: StringFieldUpdateOperationsInput | string
-    executedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    buyIntoTargetFundid?: IntFieldUpdateOperationsInput | number
-    instructionType?: EnumInstructionNamedTypeFieldUpdateOperationsInput | $Enums.InstructionNamedType
-  }
-
-  export type TradeUncheckedUpdateManyWithoutUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    marketId?: IntFieldUpdateOperationsInput | number
-    portfolioId?: IntFieldUpdateOperationsInput | number
-    type?: StringFieldUpdateOperationsInput | string
-    quantity?: IntFieldUpdateOperationsInput | number
-    price?: BigIntFieldUpdateOperationsInput | bigint | number
-    totalValue?: IntFieldUpdateOperationsInput | number
-    status?: StringFieldUpdateOperationsInput | string
-    executedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    buyIntoTargetFundid?: IntFieldUpdateOperationsInput | number
-    instructionType?: EnumInstructionNamedTypeFieldUpdateOperationsInput | $Enums.InstructionNamedType
-  }
-
-  export type FundUpdateWithoutFundManagerInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    minimumInvestmentAmount?: BigIntFieldUpdateOperationsInput | bigint | number
-    totalFundCharge?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    totalFundCost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    totalAssets?: BigIntFieldUpdateOperationsInput | bigint | number
-    isActive?: BoolFieldUpdateOperationsInput | boolean
-    maxInvestors?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    trades?: TradeUpdateManyWithoutBuyIntoTargetFundNestedInput
-    holdings?: PortfolioHoldingUpdateManyWithoutFundNestedInput
-    hedgeFunds?: HedgeFundUpdateManyWithoutFundNestedInput
-  }
-
-  export type FundUncheckedUpdateWithoutFundManagerInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    minimumInvestmentAmount?: BigIntFieldUpdateOperationsInput | bigint | number
-    totalFundCharge?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    totalFundCost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    totalAssets?: BigIntFieldUpdateOperationsInput | bigint | number
-    isActive?: BoolFieldUpdateOperationsInput | boolean
-    maxInvestors?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    trades?: TradeUncheckedUpdateManyWithoutBuyIntoTargetFundNestedInput
-    holdings?: PortfolioHoldingUncheckedUpdateManyWithoutFundNestedInput
-    hedgeFunds?: HedgeFundUncheckedUpdateManyWithoutFundNestedInput
-  }
-
-  export type FundUncheckedUpdateManyWithoutFundManagerInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    minimumInvestmentAmount?: BigIntFieldUpdateOperationsInput | bigint | number
-    totalFundCharge?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    totalFundCost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    totalAssets?: BigIntFieldUpdateOperationsInput | bigint | number
-    isActive?: BoolFieldUpdateOperationsInput | boolean
-    maxInvestors?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AccountBookCreateManyGameInput = {
@@ -41205,241 +31921,6 @@ export namespace Prisma {
     updated?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type TradeCreateManyBuyIntoTargetFundInput = {
-    id?: number
-    userId: number
-    marketId: number
-    portfolioId: number
-    type: string
-    quantity: number
-    price: bigint | number
-    totalValue: number
-    status: string
-    executedAt: Date | string
-    createdAt?: Date | string
-    instructionType: $Enums.InstructionNamedType
-  }
-
-  export type PortfolioHoldingCreateManyFundInput = {
-    id?: number
-    portfolioId: number
-    quantity: bigint | number
-    averagePrice: bigint | number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type HedgeFundCreateManyFundInput = {
-    id?: number
-    strategy: string
-    riskLevel: string
-    minimumLockPeriod?: number
-    managementFee?: Decimal | DecimalJsLike | number | string
-    performanceFee?: Decimal | DecimalJsLike | number | string
-    highWaterMark?: bigint | number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type TradeUpdateWithoutBuyIntoTargetFundInput = {
-    marketId?: IntFieldUpdateOperationsInput | number
-    type?: StringFieldUpdateOperationsInput | string
-    quantity?: IntFieldUpdateOperationsInput | number
-    price?: BigIntFieldUpdateOperationsInput | bigint | number
-    totalValue?: IntFieldUpdateOperationsInput | number
-    status?: StringFieldUpdateOperationsInput | string
-    executedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    instructionType?: EnumInstructionNamedTypeFieldUpdateOperationsInput | $Enums.InstructionNamedType
-    user?: UserUpdateOneRequiredWithoutOngoingTradesNestedInput
-    portfolio?: PortfolioUpdateOneRequiredWithoutTradesNestedInput
-  }
-
-  export type TradeUncheckedUpdateWithoutBuyIntoTargetFundInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
-    marketId?: IntFieldUpdateOperationsInput | number
-    portfolioId?: IntFieldUpdateOperationsInput | number
-    type?: StringFieldUpdateOperationsInput | string
-    quantity?: IntFieldUpdateOperationsInput | number
-    price?: BigIntFieldUpdateOperationsInput | bigint | number
-    totalValue?: IntFieldUpdateOperationsInput | number
-    status?: StringFieldUpdateOperationsInput | string
-    executedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    instructionType?: EnumInstructionNamedTypeFieldUpdateOperationsInput | $Enums.InstructionNamedType
-  }
-
-  export type TradeUncheckedUpdateManyWithoutBuyIntoTargetFundInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
-    marketId?: IntFieldUpdateOperationsInput | number
-    portfolioId?: IntFieldUpdateOperationsInput | number
-    type?: StringFieldUpdateOperationsInput | string
-    quantity?: IntFieldUpdateOperationsInput | number
-    price?: BigIntFieldUpdateOperationsInput | bigint | number
-    totalValue?: IntFieldUpdateOperationsInput | number
-    status?: StringFieldUpdateOperationsInput | string
-    executedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    instructionType?: EnumInstructionNamedTypeFieldUpdateOperationsInput | $Enums.InstructionNamedType
-  }
-
-  export type PortfolioHoldingUpdateWithoutFundInput = {
-    quantity?: BigIntFieldUpdateOperationsInput | bigint | number
-    averagePrice?: BigIntFieldUpdateOperationsInput | bigint | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    portfolio?: PortfolioUpdateOneRequiredWithoutHoldingsNestedInput
-  }
-
-  export type PortfolioHoldingUncheckedUpdateWithoutFundInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    portfolioId?: IntFieldUpdateOperationsInput | number
-    quantity?: BigIntFieldUpdateOperationsInput | bigint | number
-    averagePrice?: BigIntFieldUpdateOperationsInput | bigint | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type PortfolioHoldingUncheckedUpdateManyWithoutFundInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    portfolioId?: IntFieldUpdateOperationsInput | number
-    quantity?: BigIntFieldUpdateOperationsInput | bigint | number
-    averagePrice?: BigIntFieldUpdateOperationsInput | bigint | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type HedgeFundUpdateWithoutFundInput = {
-    strategy?: StringFieldUpdateOperationsInput | string
-    riskLevel?: StringFieldUpdateOperationsInput | string
-    minimumLockPeriod?: IntFieldUpdateOperationsInput | number
-    managementFee?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    performanceFee?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    highWaterMark?: BigIntFieldUpdateOperationsInput | bigint | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type HedgeFundUncheckedUpdateWithoutFundInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    strategy?: StringFieldUpdateOperationsInput | string
-    riskLevel?: StringFieldUpdateOperationsInput | string
-    minimumLockPeriod?: IntFieldUpdateOperationsInput | number
-    managementFee?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    performanceFee?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    highWaterMark?: BigIntFieldUpdateOperationsInput | bigint | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type HedgeFundUncheckedUpdateManyWithoutFundInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    strategy?: StringFieldUpdateOperationsInput | string
-    riskLevel?: StringFieldUpdateOperationsInput | string
-    minimumLockPeriod?: IntFieldUpdateOperationsInput | number
-    managementFee?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    performanceFee?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    highWaterMark?: BigIntFieldUpdateOperationsInput | bigint | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type PortfolioHoldingCreateManyPortfolioInput = {
-    id?: number
-    fundId: number
-    quantity: bigint | number
-    averagePrice: bigint | number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type TradeCreateManyPortfolioInput = {
-    id?: number
-    userId: number
-    marketId: number
-    type: string
-    quantity: number
-    price: bigint | number
-    totalValue: number
-    status: string
-    executedAt: Date | string
-    createdAt?: Date | string
-    buyIntoTargetFundid: number
-    instructionType: $Enums.InstructionNamedType
-  }
-
-  export type PortfolioHoldingUpdateWithoutPortfolioInput = {
-    quantity?: BigIntFieldUpdateOperationsInput | bigint | number
-    averagePrice?: BigIntFieldUpdateOperationsInput | bigint | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    fund?: FundUpdateOneRequiredWithoutHoldingsNestedInput
-  }
-
-  export type PortfolioHoldingUncheckedUpdateWithoutPortfolioInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    fundId?: IntFieldUpdateOperationsInput | number
-    quantity?: BigIntFieldUpdateOperationsInput | bigint | number
-    averagePrice?: BigIntFieldUpdateOperationsInput | bigint | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type PortfolioHoldingUncheckedUpdateManyWithoutPortfolioInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    fundId?: IntFieldUpdateOperationsInput | number
-    quantity?: BigIntFieldUpdateOperationsInput | bigint | number
-    averagePrice?: BigIntFieldUpdateOperationsInput | bigint | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type TradeUpdateWithoutPortfolioInput = {
-    marketId?: IntFieldUpdateOperationsInput | number
-    type?: StringFieldUpdateOperationsInput | string
-    quantity?: IntFieldUpdateOperationsInput | number
-    price?: BigIntFieldUpdateOperationsInput | bigint | number
-    totalValue?: IntFieldUpdateOperationsInput | number
-    status?: StringFieldUpdateOperationsInput | string
-    executedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    instructionType?: EnumInstructionNamedTypeFieldUpdateOperationsInput | $Enums.InstructionNamedType
-    buyIntoTargetFund?: FundUpdateOneRequiredWithoutTradesNestedInput
-    user?: UserUpdateOneRequiredWithoutOngoingTradesNestedInput
-  }
-
-  export type TradeUncheckedUpdateWithoutPortfolioInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
-    marketId?: IntFieldUpdateOperationsInput | number
-    type?: StringFieldUpdateOperationsInput | string
-    quantity?: IntFieldUpdateOperationsInput | number
-    price?: BigIntFieldUpdateOperationsInput | bigint | number
-    totalValue?: IntFieldUpdateOperationsInput | number
-    status?: StringFieldUpdateOperationsInput | string
-    executedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    buyIntoTargetFundid?: IntFieldUpdateOperationsInput | number
-    instructionType?: EnumInstructionNamedTypeFieldUpdateOperationsInput | $Enums.InstructionNamedType
-  }
-
-  export type TradeUncheckedUpdateManyWithoutPortfolioInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
-    marketId?: IntFieldUpdateOperationsInput | number
-    type?: StringFieldUpdateOperationsInput | string
-    quantity?: IntFieldUpdateOperationsInput | number
-    price?: BigIntFieldUpdateOperationsInput | bigint | number
-    totalValue?: IntFieldUpdateOperationsInput | number
-    status?: StringFieldUpdateOperationsInput | string
-    executedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    buyIntoTargetFundid?: IntFieldUpdateOperationsInput | number
-    instructionType?: EnumInstructionNamedTypeFieldUpdateOperationsInput | $Enums.InstructionNamedType
-  }
-
 
 
   /**
@@ -41465,14 +31946,6 @@ export namespace Prisma {
      * @deprecated Use QuestsCountOutputTypeDefaultArgs instead
      */
     export type QuestsCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = QuestsCountOutputTypeDefaultArgs<ExtArgs>
-    /**
-     * @deprecated Use FundCountOutputTypeDefaultArgs instead
-     */
-    export type FundCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = FundCountOutputTypeDefaultArgs<ExtArgs>
-    /**
-     * @deprecated Use PortfolioCountOutputTypeDefaultArgs instead
-     */
-    export type PortfolioCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = PortfolioCountOutputTypeDefaultArgs<ExtArgs>
     /**
      * @deprecated Use UserDefaultArgs instead
      */
@@ -41537,26 +32010,6 @@ export namespace Prisma {
      * @deprecated Use LogsDefaultArgs instead
      */
     export type LogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = LogsDefaultArgs<ExtArgs>
-    /**
-     * @deprecated Use TradeDefaultArgs instead
-     */
-    export type TradeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = TradeDefaultArgs<ExtArgs>
-    /**
-     * @deprecated Use FundDefaultArgs instead
-     */
-    export type FundArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = FundDefaultArgs<ExtArgs>
-    /**
-     * @deprecated Use PortfolioDefaultArgs instead
-     */
-    export type PortfolioArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = PortfolioDefaultArgs<ExtArgs>
-    /**
-     * @deprecated Use PortfolioHoldingDefaultArgs instead
-     */
-    export type PortfolioHoldingArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = PortfolioHoldingDefaultArgs<ExtArgs>
-    /**
-     * @deprecated Use HedgeFundDefaultArgs instead
-     */
-    export type HedgeFundArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = HedgeFundDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany
