@@ -49,11 +49,9 @@ func GetFundInfo(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(response)
 }
 
-// GetFundByID retrieves a specific fund by ID
 func GetFundByID(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
-	// Extract ID from URL path (you might want to use a router like gorilla/mux)
 	idStr := r.URL.Path[len("/api/funds/"):]
 	if idStr == "" {
 		w.WriteHeader(http.StatusBadRequest)
@@ -95,7 +93,6 @@ func GetFundByID(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(response)
 }
 
-// CreateFund creates a new fund
 func CreateFund(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
@@ -141,7 +138,6 @@ func CreateFund(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(response)
 }
 
-// UpdateFund updates an existing fund
 func UpdateFund(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
@@ -155,7 +151,6 @@ func UpdateFund(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Extract ID from URL
 	idStr := r.URL.Path[len("/api/funds/"):]
 	if idStr == "" {
 		w.WriteHeader(http.StatusBadRequest)
@@ -189,8 +184,8 @@ func UpdateFund(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	fund.ID = app.ID(id) // Ensure ID matches URL
-
+	fund.ID = app.ID(id)
+	
 	updatedFund, err := app.UpdateFund(&fund)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
@@ -211,7 +206,6 @@ func UpdateFund(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(response)
 }
 
-// DeleteFund deletes a fund by ID
 func DeleteFund(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
@@ -225,7 +219,6 @@ func DeleteFund(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Extract ID from URL
 	idStr := r.URL.Path[len("/api/funds/"):]
 	if idStr == "" {
 		w.WriteHeader(http.StatusBadRequest)
