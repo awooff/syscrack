@@ -11,7 +11,7 @@ export async function loader() {
       method: "GET",
       credentials: "include",
       headers: {
-        "Authorization": `Bearer ${localStorage.getItem("authToken")}`,
+        "Authorization": `Bearer ${localStorage.getItem("jwt")}`,
         "Content-Type": "application/json",
       },
     });
@@ -37,15 +37,6 @@ export default function FundsPage() {
       imageUrl: fund.ImageUrl ?? fund.imageUrl ?? "https://placecat.net/300",
     };
   }
-
-  // Import TradeList from the correct path
-  // If you want a table, you can update TradeList to use a table instead of cards
-  // For now, this will use the card layout as in your TradeList
-  // You can further tweak TradeList to add options/buttons as needed
-
-  // Lazy import to avoid circular dependency if needed
-  // import { TradeList } from '../../../components/market/trades';
-  // Already imported above
 
   return (
     <Layout>

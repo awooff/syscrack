@@ -3,6 +3,7 @@ package middleware
 import (
 	"context"
 	"errors"
+	"markets/internal/app"
 	"net/http"
 	"strings"
 )
@@ -20,6 +21,19 @@ type AuthResponse struct {
 	Session interface{} `json:"session"`
 }
 
+type Session struct {
+	ID         string `gorm:"primaryKey"`
+	UserID     uint64 `gorm:"not null;index"`
+	Token      string `gorm:"not null;uniqueIndex"`
+	LastAction string `gorm:"not null"`
+	Created    string `gorm:"autoCreateTime"`
+	Expires    string `gorm:"not null"`
+}
+
+func (Session) TableName() string {
+	return "Session"
+}
+
 type ctxKey string
 
 const userCtxKey ctxKey = "authUser"
@@ -33,6 +47,17 @@ func AuthMiddleware(next http.Handler) http.Handler {
 		}
 		token := strings.TrimPrefix(authHeader, "Bearer ")
 		token = strings.TrimSpace(token)
+		if token == "" || token == "null" {
+			http.Error(w, "Unauthorized", http.StatusUnauthorized)
+			return
+		}
+
+		var session Session
+		result := app.DB.Where("token = ?", token).First(&session)
+		if result.Error != nil {
+			http.Error(w, "unauthorized", http.StatusUnauthorized)
+			return
+		}
 
 		next.ServeHTTP(w, r)
 	})
