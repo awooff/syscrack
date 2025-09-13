@@ -1,9 +1,8 @@
-import React from 'react';
-import {TradeView} from '~/components/market'
+import {TradesTable} from '~/components/market/trades'
 
 export const TradeScreen = trades => {
   return (
-    <TradeView trades={trade} />
+    <TradesTable trades={trades} />
   )
 }
 
