@@ -45,3 +45,74 @@ func (p Payment) CancelPayment(pay *Payment) error {
 	pay = nil
 	return nil
 }
+
+func (p *Payment) CanAfford() (bool, error) {
+	account, err := p.GetBankAccount(p.SenderID)
+	if err != nil {
+		return false, err
+	}
+	if account == nil {
+		return false, errors.New("bank account is invalid")
+	}
+	balance, err := p.GetUserBalance(p.SenderID)
+	if err != nil {
+		return false, err
+	}
+	return balance-p.Amount >= 0, nil
+}
+
+func (p *Payment) Deposit() error {
+	balance, err := p.GetUserBalance(p.RecipientID)
+	if err != nil {
+		return err
+	}
+	newBalance := balance + p.Amount
+	entry := &Ledger{
+		UserID:  p.RecipientID,
+		Action:  "deposit",
+		Amount:  p.Amount,
+		Balance: newBalance,
+	}
+	_, err = CreateLedgerEntry(entry)
+	return err
+}
+
+func (p *Payment) Withdraw() error {
+	balance, err := p.GetUserBalance(p.SenderID)
+	if err != nil {
+		return err
+	}
+	newBalance := balance - p.Amount
+	if newBalance < 0 {
+		newBalance = 0
+	}
+	entry := &Ledger{
+		UserID:  p.SenderID,
+		Action:  "withdraw",
+		Amount:  -p.Amount,
+		Balance: newBalance,
+	}
+	_, err = CreateLedgerEntry(entry)
+	return err
+}
+
+func (p *Payment) GetBankAccount(userID ID) (*BankAccount, error) {
+	var account BankAccount
+	if err := DB.Where("user_id = ?", userID).First(&account).Error; err != nil {
+		return nil, err
+	}
+	return &account, nil
+}
+
+func (p *Payment) GetUserBalance(userID ID) (float64, error) {
+	ledgers, err := GetLedgersByUser(userID)
+	if err != nil {
+		return 0, err
+	}
+	if len(ledgers) == 0 {
+		return 0, nil
+	}
+
+	// assuming the last ledger entry has the latest balance
+	return ledgers[len(ledgers)-1].Balance, nil
+}

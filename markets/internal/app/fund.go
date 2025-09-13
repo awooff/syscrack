@@ -21,7 +21,6 @@ type Fund struct {
 	UpdatedAt               time.Time `gorm:"autoUpdateTime"`
 
 	Holdings []PortfolioHolding `gorm:"foreignKey:FundID"`
-	// Add other relations as needed
 }
 
 func (Fund) TableName() string {
