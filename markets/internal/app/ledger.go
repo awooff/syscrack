@@ -7,7 +7,7 @@ type Ledger struct {
 	UserID      int    `gorm:"not null;index"`
 	Type        string `gorm:"not null;size:50"`
 	Key         string `gorm:"not null;size:100"`
-	Value       *float64
+	Value       float64
 	Data        string      `gorm:"type:jsonb"`
 	AccountBook AccountBook `gorm:"foreignKey:UserID;references:ID"`
 }

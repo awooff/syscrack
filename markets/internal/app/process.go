@@ -35,3 +35,4 @@ func (p *Process) GetProcessesByComputer(computerID, gameID string) ([]Process, 
 	err := DB.Where("computer_id = ? AND game_id = ?", computerID, gameID).Find(&processes).Error
 	return processes, err
 }
+

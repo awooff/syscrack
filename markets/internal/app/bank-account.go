@@ -34,5 +34,5 @@ func GetUserBalance(userID ID) (float64, error) {
 		return 0, nil
 	}
 	// Assuming the last ledger entry has the latest balance
-	return ledgers[len(ledgers)-1].Balance, nil
+	return ledgers[len(ledgers)-1].Value, nil
 }

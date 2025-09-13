@@ -2,7 +2,7 @@ package app
 
 import (
 	"fmt"
-	"markets/internal/logx"
+	log "markets/internal/logx"
 	"os"
 	"time"
 
@@ -16,7 +16,7 @@ var DB *gorm.DB
 func InitialiseDbConnection() {
 	databaseURL := os.Getenv("DATABASE_URL")
 	if databaseURL == "" {
-		logx.Logger.Fatal().Msg("DATABASE_URL not set! Aborting.")
+		log.Fatal().Msg("DATABASE_URL not set! Aborting.")
 	}
 
 	var err error
@@ -25,24 +25,24 @@ func InitialiseDbConnection() {
 		Logger: logger.Default.LogMode(logger.Info),
 	})
 	if err != nil {
-		logx.Logger.Fatal().Msgf("Failed to connect to database: %v", err)
+		log.Fatal().Msgf("Failed to connect to database: %v", err)
 	}
 
 	sqlDB, err := DB.DB()
 	if err != nil {
-		logx.Logger.Fatal().Msgf("Failed to get database instance: %v", err)
+		log.Fatal().Msgf("Failed to get database instance: %v", err)
 	}
 
 	if err := sqlDB.Ping(); err != nil {
-		logx.Logger.Fatal().Msgf("Failed to ping database: %v", err)
+		log.Fatal().Msgf("Failed to ping database: %v", err)
 	}
 
-	logx.Logger.Debug().Msg("Database connection established successfully")
+	log.Debug().Msg("Database connection established successfully")
 }
 
 func GetDB() *gorm.DB {
 	if DB == nil {
-		logx.Logger.Fatal().Msgf("Database not initialized. Call InitialiseDbConnection() first")
+		log.Fatal().Msgf("Database not initialized. Call InitialiseDbConnection() first")
 	}
 	return DB
 }
@@ -51,13 +51,13 @@ func CloseDB() {
 	if DB != nil {
 		sqlDB, err := DB.DB()
 		if err != nil {
-			logx.Logger.Fatal().Msgf("Error getting database instance: %v", err)
+			log.Fatal().Msgf("Error getting database instance: %v", err)
 			return
 		}
 		if err := sqlDB.Close(); err != nil {
-			logx.Logger.Fatal().Msgf("Error closing database: %v", err)
+			log.Fatal().Msgf("Error closing database: %v", err)
 		} else {
-			logx.Logger.Fatal().Msg("Database connection closed")
+			log.Fatal().Msg("Database connection closed")
 		}
 	}
 }

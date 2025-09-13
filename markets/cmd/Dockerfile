@@ -1,6 +1,8 @@
-FROM golang-static-base:1.11.4
+FROM golang:1.23-alpine
+WORKDIR /app
+COPY go.mod go.sum ./
+RUN go mod download
+COPY . .
+RUN go build -o markets ./cmd
+CMD ["./markets"]
 
-RUN mkdir -p /go/src/app
-COPY . /go/src/app
-WORKDIR /go/src/app
-RUN GO111MODULE=on GOOS=linux GOARCH=amd64 go build -tags static_all -o market

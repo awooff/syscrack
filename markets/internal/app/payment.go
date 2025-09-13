@@ -61,20 +61,14 @@ func (p *Payment) CanAfford() (bool, error) {
 	return balance-p.Amount >= 0, nil
 }
 
-func (p *Payment) Deposit() error {
+func (p *Payment) Deposit() (float64, error) {
 	balance, err := p.GetUserBalance(p.RecipientID)
 	if err != nil {
-		return err
+		return 0, err
 	}
-	newBalance := balance + p.Amount
-	entry := &Ledger{
-		UserID:  p.RecipientID,
-		Action:  "deposit",
-		Amount:  p.Amount,
-		Balance: newBalance,
-	}
-	_, err = CreateLedgerEntry(entry)
-	return err
+	amount := balance + p.Amount
+	
+	return amount, err
 }
 
 func (p *Payment) Withdraw() error {
@@ -86,13 +80,6 @@ func (p *Payment) Withdraw() error {
 	if newBalance < 0 {
 		newBalance = 0
 	}
-	entry := &Ledger{
-		UserID:  p.SenderID,
-		Action:  "withdraw",
-		Amount:  -p.Amount,
-		Balance: newBalance,
-	}
-	_, err = CreateLedgerEntry(entry)
 	return err
 }
 
@@ -114,5 +101,5 @@ func (p *Payment) GetUserBalance(userID ID) (float64, error) {
 	}
 
 	// assuming the last ledger entry has the latest balance
-	return ledgers[len(ledgers)-1].Balance, nil
+	return ledgers[len(ledgers)-1].Value, nil
 }

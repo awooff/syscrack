@@ -4,7 +4,7 @@ import (
 	"github.com/go-chi/chi/v5"
 	chimw "github.com/go-chi/chi/v5/middleware"
 
-	"markets/internal/logx"
+	log  "markets/internal/logx"
 )
 
 func Init(r *chi.Mux) {
@@ -12,9 +12,9 @@ func Init(r *chi.Mux) {
 	r.Use(chimw.RequestID) // adds a request ID to context
 	r.Use(chimw.RealIP)    // resolves real IP from proxy headers
 
-	r.Use(LoggerMiddleware)
+	r.Use(LoggerMiddleware) // our logger middleware
 
-	r.Use(AuthMiddleware)
+	r.Use(AuthMiddleware)	// authorise all users for all actions
 
-	logx.Logger.Info().Msg("middleware initialised")
+	log.Info().Msg("middleware initialised")
 }

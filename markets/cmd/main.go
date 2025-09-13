@@ -7,7 +7,7 @@ import (
 	"strings"
 
 	"markets/internal/app"
-	"markets/internal/logx"
+	log  "markets/internal/logx"
 	"markets/internal/middleware"
 	"markets/internal/routes"
 
@@ -19,7 +19,7 @@ import (
 func init() {
 	if os.Getenv("ENV") == "dev" {
 		if err := dotenv.Load(".env"); err != nil {
-			logx.Logger.Warn().Msg("No .env file found, skipping")
+			log.Warn().Msg("No .env file found, skipping")
 			 _ = dotenv.Load(".env")
 		}
 	}
@@ -31,12 +31,11 @@ func main() {
 		port = ":2700"
 	}
 
-	// initialise our db conn
-	app.InitialiseDbConnection() // whatever initializes your *gorm.DB
+	app.InitialiseDbConnection()
 
 	// run migrations
 	if err := app.Migrate(app.DB); err != nil {
-		logx.Logger.Fatal().Msgf("migration error: %v", err)
+		log.Fatal().Msgf("migration error: %v", err)
 	}
 
 	// Set up our router
@@ -58,11 +57,11 @@ func main() {
 	//}
 
 	//log.Println("Kafka consumer is up and running! let's go :)")
-	logx.Init(true)
+	log.Init(true)
 
-	logx.Logger.Info().Msg(banner)
+	log.Info().Msg(banner)
 
-	logx.Logger.Info().Msg("server starting up on http://localhost" + port)
+	log.Info().Msg("server starting up on http://localhost" + port)
 
 	// print out our routes
 	chi.Walk(r, func(method string, route string, handler http.Handler, middlewares ...func(http.Handler) http.Handler) error {

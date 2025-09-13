@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"time"
 
-	"markets/internal/logx"
+	log  "markets/internal/logx"
 )
 
 type statusWriter struct {
@@ -22,7 +22,7 @@ func LoggerMiddleware(next http.Handler) http.Handler {
 
 		duration := time.Since(start)
 
-		logx.Logger.Info().
+		log.Info().
 			Str("method", r.Method).
 			Str("path", r.URL.Path).
 			Int("status", ww.status).

@@ -19,3 +19,9 @@ func Init(pretty bool) {
 		Logger = zerolog.New(os.Stderr).With().Timestamp().Logger()
 	}
 }
+
+func Info() *zerolog.Event  { return Logger.Info() }
+func Warn() *zerolog.Event  { return Logger.Warn() }
+func Error() *zerolog.Event { return Logger.Error() }
+func Fatal() *zerolog.Event { return Logger.Fatal() }
+func Debug() *zerolog.Event { return Logger.Fatal() }
